@@ -1,0 +1,13 @@
+Fontes locais do site (WOFF2 subsetados, latim + latim estendido).
+Arquivos esperados por css/styles.css:
+
+  sora-300.woff2              Sora Light      (títulos e textos grandes)
+  sora-400.woff2              Sora Regular    (títulos dos cards)
+  sora-500.woff2              Sora Medium
+  instrument-sans-400.woff2   Instrument Sans Regular  (texto corrido)
+  instrument-sans-500.woff2   Instrument Sans Medium   (menu, contatos)
+  instrument-sans-600.woff2   Instrument Sans SemiBold (etiquetas, botões)
+
+Origem: Google Fonts (licença SIL Open Font License 1.1).
+Enquanto os arquivos não estiverem aqui, o navegador usa a pilha de
+reserva declarada no CSS (Helvetica Neue / Segoe UI / sans-serif).

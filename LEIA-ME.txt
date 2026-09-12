@@ -1,0 +1,47 @@
+LOGO — LIVE & LEARN BRAZIL
+==========================
+
+QUAL ARQUIVO USAR
+-----------------
+SVG      Sempre que puder. É vetor: não perde qualidade em nenhum tamanho,
+         serve de outdoor a favicon, e abre no Figma, Illustrator, Inkscape,
+         Canva e em qualquer navegador. O texto já está convertido em contorno,
+         então não depende de ter as fontes instaladas.
+
+PNG      Para onde SVG não entra: Word, PowerPoint, WhatsApp, alguns sistemas
+         de email. Estão em 2400px de largura, o bastante para impressão.
+
+
+AS TRÊS VERSÕES
+---------------
+horizontal   A assinatura completa. É a versão principal.
+stacked      Empilhada, símbolo em cima. Para espaços quadrados.
+mark         Só o símbolo. Para avatar, favicon, carimbo, selo.
+
+
+DARK OU LIGHT: OLHE O FUNDO, NÃO O ARQUIVO
+------------------------------------------
+dark    Para usar SOBRE fundo verde profundo #273219 ou outro fundo escuro.
+        A palavra sai em papel #FFFAFA.
+
+light   Para usar SOBRE fundo papel #FFFAFA ou outro fundo claro.
+        A palavra sai em verde profundo #273219.
+
+É a regra que mais se erra: o nome descreve o fundo onde o logo vai pousar,
+não a cor do logo. Nunca use a versão light sobre fundo claro invertida, nem
+papel sobre papel, nem verde sobre verde.
+
+
+PASTAS
+------
+SVG/                      Os vetores. Comece por aqui.
+PNG-fundo-transparente/   PNG sem fundo, para pousar sobre a sua cor.
+PNG-com-fundo/            PNG com o fundo da marca já embutido, mais o favicon
+                          quadrado em 512 e 1024px.
+
+
+NÃO FAÇA
+--------
+Não recomponha o logo à mão, não troque as fontes, não altere as proporções,
+não aplique sombra ou contorno, não incline, não mude as cores, não coloque
+sobre foto de baixo contraste. Se precisar de uma variação, peça.

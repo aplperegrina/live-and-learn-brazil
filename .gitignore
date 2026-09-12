@@ -1,0 +1,21 @@
+# Material bruto e arquivos de trabalho: ficam fora do repositório do site
+*.ttf
+*.zip
+sp 23 de maio.jpg
+interior sp aereo.jpg
+qr code 1.jpg
+qr code 2.jpg
+home.html
+home-artefato.html
+assets/
+PNG-com-fundo/
+.claude/
+.impeccable/
+design-canvas/
+design-canvas-v2/*
+!design-canvas-v2/*.dc.html
+!design-canvas-v2/canvas.json
+_preview*.html
+_frame.html
+Thumbs.db
+.DS_Store
