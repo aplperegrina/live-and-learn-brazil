@@ -6,8 +6,27 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Fontes locais (WOFF2 subsetados em /fonts)
+   1. Fontes locais (WOFF2 subsetados em /fonts, sem nenhuma chamada externa)
+   Sora e Instrument Sans: latino + latino estendido (acentos do português).
+   Noto Sans SC: só os ideogramas usados na página (中文), em arquivo separado.
+   Licenças: SIL Open Font License 1.1 (ver fonts/LICENCA-*.txt).
    -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Noto Sans SC";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/noto-sans-sc-400.woff2") format("woff2");
+  unicode-range: U+4E2D, U+6587;
+}
+@font-face {
+  font-family: "Noto Sans SC";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/noto-sans-sc-500.woff2") format("woff2");
+  unicode-range: U+4E2D, U+6587;
+}
 @font-face {
   font-family: "Sora";
   font-style: normal;
@@ -76,9 +95,9 @@
   --card-linho: rgba(var(--linho-rgb), 0.64);
 
   /* Tipografia */
-  --fonte-titulo: "Sora", "Helvetica Neue", "Segoe UI", sans-serif;
-  --fonte-texto: "Instrument Sans", "Helvetica Neue", "Segoe UI", sans-serif;
-  --fonte-idiomas: "Instrument Sans", "Helvetica Neue", "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --fonte-titulo: "Sora", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --fonte-texto: "Instrument Sans", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --fonte-idiomas: "Instrument Sans", "Noto Sans SC", "Helvetica Neue", "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
 
   /* Medidas */
   --largura-max: 1440px;
