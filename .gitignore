@@ -1,23 +1,43 @@
-# Material bruto e arquivos de trabalho: ficam fora do repositório do site
+# Site Live & Learn Brazil: só index.html, css/, fonts/, img/, textos e logos entram no repositório.
+# Material bruto e pastas de trabalho ficam fora.
+
+# Fontes originais e pacotes
 *.ttf
 *.zip
+Libertinus_Sans/
+Open_Sans/
+
+# Fotos originais em alta
 sp 23 de maio.jpg
 interior sp aereo.jpg
 qr code 1.jpg
 qr code 2.jpg
-home.html
-home-artefato.html
-assets/
-PNG-com-fundo/
-.claude/
-.impeccable/
+
+# Versão antiga do site (mosaico v1) e pastas de trabalho do canvas
+site/
+canvas-*/
 design-canvas/
 design-canvas-v2/
 design-canvas-v3/*
 !design-canvas-v3/*.dc.html
 !design-canvas-v3/canvas.json
+!design-canvas-v3/LEIA-ME.txt
+
+# Design system para o Claude Design e configurações locais
+ds-bundle/
+.design-sync/
+.claude/
+.impeccable/
+.playwright-mcp/
+
+# PNG com fundo (pesados; os SVG e os PNG transparentes bastam)
+PNG-com-fundo/
+
+# Diversos
+home.html
+home-artefato.html
 _preview*.html
 _frame.html
+*.png.bak
 Thumbs.db
 .DS_Store
-!design-canvas-v3/LEIA-ME.txt
