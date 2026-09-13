@@ -268,7 +268,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
 .card--portuguese { min-height: 619px; }
 .card--destination { min-height: 617px; } /* estica até a base da fileira, alinhado ao Portuguese e à foto */
 .card--innovation { grid-column: span 4; min-height: 664px; }
-.card--intercultural { min-height: 553px; }
+.card--intercultural { min-height: 553px; flex-grow: 1; } /* preenche a pilha e leva o diagnóstico até a base da fileira */
 .card--intercultural h2 { white-space: nowrap; }
 
 /* Itens com traço (Destination) */
@@ -314,8 +314,8 @@ html[lang="it"] .hero h1 { font-size: 76px; }
 .diagnostico {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: flex-start;
+  gap: 18px;
   padding: 24px 44px;
   min-height: 52px;
   background-color: var(--ardosia);
@@ -329,8 +329,8 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   transition: background-color 0.25s ease;
 }
 .diagnostico:hover { background-color: var(--verde); color: var(--neve); }
-.diagnostico-seta { font-size: 28px; line-height: 1; color: var(--verde); }
-.diagnostico:hover .diagnostico-seta { color: var(--champagne); }
+.diagnostico-seta { font-size: 28px; line-height: 1; color: var(--champagne); transition: transform 0.25s ease; }
+.diagnostico:hover .diagnostico-seta { transform: translateX(6px); }
 
 /* --------------------------------------------------------------------------
    8. Faixa "Across São Paulo State" com contatos e QR codes
