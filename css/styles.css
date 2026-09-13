@@ -198,6 +198,9 @@ h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); font-weight: 400; line
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.18);
 }
 .hero-lead { font-size: 34px; line-height: 1.55; color: var(--creme-hero); max-width: 673px; }
+/* Italiano: o título é mais longo; um pouco menor para manter as três linhas */
+html[lang="it"] .hero-texto { max-width: 900px; }
+html[lang="it"] .hero h1 { font-size: 76px; }
 
 /* Menu de idiomas, painel champagne ao lado do hero */
 .idiomas {
