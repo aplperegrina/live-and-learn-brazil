@@ -266,7 +266,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
 
 /* Alturas mínimas vindas do canvas; o conteúdo pode crescer sem transbordar */
 .card--portuguese { min-height: 619px; }
-.card--destination { min-height: 617px; align-self: flex-start; }
+.card--destination { min-height: 617px; } /* estica até a base da fileira, alinhado ao Portuguese e à foto */
 .card--innovation { grid-column: span 4; min-height: 664px; }
 .card--intercultural { min-height: 553px; }
 .card--intercultural h2 { white-space: nowrap; }
