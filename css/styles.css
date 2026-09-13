@@ -365,12 +365,15 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   font-family: var(--fonte-idiomas);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 21px;
+  letter-spacing: 0.06em;
+  font-size: 19px;
   line-height: 1.5;
   padding-bottom: 4px;
   border-bottom: 2px solid var(--champagne);
   color: var(--neve);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-align: right;
   transition: color 0.25s ease;
 }
 .contatos-links a:hover { color: var(--champagne); }
@@ -449,6 +452,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   .faixa h2 { font-size: 46px; }
   .faixa-texto p { font-size: 24px; }
   .contatos, .contatos-links { align-items: flex-start; }
+  .contatos-links a { text-align: left; }
   .footer-logo img { height: 110px; width: auto; }
 }
 
