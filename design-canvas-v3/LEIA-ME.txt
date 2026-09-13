@@ -1,0 +1,9 @@
+Origem da home publicada em index.html: canvas "Live and Learn Brazil Home"
+(artefato 90e0f9d1-187d-4e02-9bb6-25f337028bf7, versão 1789268079-67d0,
+salva em 13 de setembro de 2026). Main.dc.html é o artboard desktop de 1440px
+com estilos inline; canvas.json é o layout do canvas. As imagens do canvas
+(reduzidas) ficaram fora do repositório: o site usa as fotos em resolução
+maior de /img.
+
+A versão anterior (Variante 2: Sora, Instrument Sans, hunter green) foi
+substituída por esta em 13 de setembro de 2026 e continua no histórico do Git.

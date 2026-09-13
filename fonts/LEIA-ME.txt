@@ -1,17 +1,22 @@
 Fontes locais do site: WOFF2 subsetados, sem nenhuma chamada externa.
 
-  sora-300.woff2              Sora Light        latino + latino estendido
-  sora-400.woff2              Sora Regular      latino + latino estendido
-  sora-500.woff2              Sora Medium       latino + latino estendido
-  instrument-sans-400.woff2   Instrument Sans Regular   latino + latino estendido
-  instrument-sans-500.woff2   Instrument Sans Medium    latino + latino estendido
-  instrument-sans-600.woff2   Instrument Sans SemiBold  latino + latino estendido
-  noto-sans-sc-400.woff2      Noto Sans SC Regular      só os ideogramas 中文
-  noto-sans-sc-500.woff2      Noto Sans SC Medium       só os ideogramas 中文
+  libertinus-sans-400.woff2   Libertinus Sans Regular   títulos
+  libertinus-sans-700.woff2   Libertinus Sans Bold      títulos em negrito, se houver
+  open-sans-400.woff2         Open Sans Regular         texto corrido
+  open-sans-400-italic.woff2  Open Sans Italic          itálico, se houver
+  open-sans-600.woff2         Open Sans SemiBold        menu de idiomas
+  open-sans-700.woff2         Open Sans Bold            chamadas, botões, contatos, rodapé
+  pt-sans-narrow-400.woff2    PT Sans Narrow Regular    menu superior
+  pt-sans-narrow-700.woff2    PT Sans Narrow Bold       menu superior
+  noto-sans-sc-600.woff2      Noto Sans SC SemiBold     só os ideogramas 中文
 
-Origem: Sora e Instrument Sans baixadas de github.com/google/fonts (pasta ofl/),
-instanciadas nos pesos estáticos a partir das fontes variáveis e subsetadas com
-fontTools. Noto Sans SC subsetada das TTF na raiz do projeto.
-Licenças: SIL Open Font License 1.1 para as três famílias (LICENCA-*.txt).
+Subconjunto (todas menos a Noto): latino básico, latino-1, latino estendido
+A e B, pontuação geral, euro, marca registrada, setas (→) e sinal de menos.
+Cobre português, inglês, italiano e os acentos do texto.
+
+Origem: TTF na raiz do projeto SITE 2 (Libertinus_Sans/, Open_Sans/static/,
+PTSansNarrow-*.ttf, NotoSansSC-SemiBold.ttf), subsetadas com fontTools
+(python -m fontTools.subset, flavor woff2).
+Licenças: SIL Open Font License 1.1 para as quatro famílias (LICENCA-*.txt).
 Se a página ganhar mais texto em chinês, gere um novo subset da Noto Sans SC
 com os ideogramas usados e amplie o unicode-range em css/styles.css.
