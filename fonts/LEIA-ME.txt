@@ -8,7 +8,13 @@ Fontes locais do site: WOFF2 subsetados, sem nenhuma chamada externa.
   open-sans-700.woff2         Open Sans Bold            chamadas, botões, contatos, rodapé
   pt-sans-narrow-400.woff2    PT Sans Narrow Regular    menu superior
   pt-sans-narrow-700.woff2    PT Sans Narrow Bold       menu superior
-  noto-sans-sc-600.woff2      Noto Sans SC SemiBold     só os ideogramas 中文
+  noto-sans-sc-600.woff2      Noto Sans SC SemiBold     só os ideogramas 中文 (menu de idiomas das outras versões)
+  noto-sans-sc-zh-500.woff2   Noto Sans SC Medium       /zh/: títulos, barra do diagnóstico e perguntas do FAQ (117 glifos)
+  noto-sans-sc-zh-600.woff2   Noto Sans SC SemiBold     /zh/: menu superior (26 glifos)
+
+O corpo do texto em /zh/ usa a fonte CJK do sistema (PingFang, Microsoft YaHei…),
+sem webfont: uma Noto Sans SC completa pesaria 8 a 12 MB. Se algum título em
+chinês mudar, gere o subset de novo com os ideogramas usados (ver css/zh.css).
 
 Subconjunto (todas menos a Noto): latino básico, latino-1, latino estendido
 A e B, pontuação geral, euro, marca registrada, setas (→) e sinal de menos.

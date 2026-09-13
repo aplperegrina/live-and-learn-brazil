@@ -1,0 +1,138 @@
+/* ==========================================================================
+   Live & Learn Brazil — ajustes da versão em chinês (zh-Hans)
+   Carregada só em /zh/, depois de styles.css. O design é o mesmo; muda a
+   tipografia do texto chinês (BRIEF-pagina-chines.md, seções 2, 3 e 6).
+   ========================================================================== */
+
+/* Títulos e menu: Noto Sans SC auto-hospedada, subset só dos ideogramas
+   usados nesses elementos (fonts/noto-sans-sc-zh-*.woff2). O corpo do texto
+   usa a fonte do sistema: uma CJK completa pesaria 8 a 12 MB. */
+@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/noto-sans-sc-zh-500.woff2") format("woff2"); }
+@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/noto-sans-sc-zh-600.woff2") format("woff2"); }
+
+html[lang="zh-Hans"] {
+  --fonte-zh: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans SC", sans-serif;
+  --fonte-zh-titulo: "Noto Sans SC Titulos", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans SC", sans-serif;
+}
+
+/* Texto sobre foto: véu vertical um pouco mais denso para o ideograma passar de 7:1 */
+html[lang="zh-Hans"] .hero-veu--y { background: linear-gradient(0deg, rgba(var(--ardosia-rgb), 0.72), rgba(var(--ardosia-rgb), 0) 60%); }
+html[lang="zh-Hans"] .faixa-veu--y { background: linear-gradient(0deg, rgba(var(--ardosia-rgb), 0.7), rgba(var(--ardosia-rgb), 0.15) 70%); }
+
+/* Corpo: peso 400, entrelinha 1.8, sem letter-spacing, quebra estrita */
+html[lang="zh-Hans"] body {
+  font-family: var(--fonte-zh);
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: 0;
+  word-break: normal;
+  line-break: strict;
+}
+html[lang="zh-Hans"] p { line-height: 1.8; }
+
+/* Títulos: peso 500, entrelinha 1.4 */
+html[lang="zh-Hans"] h1,
+html[lang="zh-Hans"] h2,
+html[lang="zh-Hans"] h3 {
+  font-family: var(--fonte-zh-titulo);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+html[lang="zh-Hans"] .hero h1 { font-size: 64px; line-height: 1.35; }
+html[lang="zh-Hans"] .hero-lead { font-size: 30px; line-height: 1.7; max-width: 32em; }
+html[lang="zh-Hans"] .card h2 { font-size: 34px; }
+html[lang="zh-Hans"] .card--intercultural h2 { white-space: normal; }
+html[lang="zh-Hans"] .faixa h2 { font-size: 52px; }
+
+/* Texto corrido: mesmos corpos da versão em inglês, entrelinha 1.8, medida de 32 ideogramas */
+html[lang="zh-Hans"] .colunas p { line-height: 1.8; max-width: 32em; }
+html[lang="zh-Hans"] .card-corpo p,
+html[lang="zh-Hans"] .lista-tracos p { line-height: 1.8; }
+html[lang="zh-Hans"] .lista-tracos > div::before { margin-top: 17px; }
+html[lang="zh-Hans"] .faixa-texto p { line-height: 1.8; }
+
+/* Sem caixa alta e sem letter-spacing largo nos elementos em chinês */
+html[lang="zh-Hans"] .menu a {
+  font-family: var(--fonte-zh-titulo);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 20px;
+}
+html[lang="zh-Hans"] .idiomas a { text-transform: none; letter-spacing: 0.02em; }
+html[lang="zh-Hans"] .cta,
+html[lang="zh-Hans"] .btn,
+html[lang="zh-Hans"] .destaque-texto,
+html[lang="zh-Hans"] .diagnostico {
+  font-family: var(--fonte-zh);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+html[lang="zh-Hans"] .cta { font-size: 18px; line-height: 1.6; }
+html[lang="zh-Hans"] .btn { font-size: 20px; line-height: 1.2; }
+html[lang="zh-Hans"] .destaque-texto { font-size: 24px; line-height: 1.6; }
+html[lang="zh-Hans"] .diagnostico { font-size: 24px; line-height: 1.5; }
+html[lang="zh-Hans"] .contatos-links a { letter-spacing: 0.04em; }
+html[lang="zh-Hans"] .qr span { font-family: var(--fonte-zh); text-transform: none; letter-spacing: 0.04em; font-size: 15px; }
+
+/* Seção nova: 常见问题 (FAQ), acordeão em <details>, respostas presentes no HTML */
+html[lang="zh-Hans"] .faq { padding: 0 var(--margem) 120px; }
+html[lang="zh-Hans"] .faq h2 { font-size: 40px; margin-bottom: 32px; }
+html[lang="zh-Hans"] .faq-lista { max-width: 960px; border-top: 1px solid var(--linha); }
+html[lang="zh-Hans"] .faq details { border-bottom: 1px solid var(--linha); }
+html[lang="zh-Hans"] .faq summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 22px 0;
+  font-family: var(--fonte-zh-titulo);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--grafite);
+  cursor: pointer;
+  list-style: none;
+}
+html[lang="zh-Hans"] .faq summary::-webkit-details-marker { display: none; }
+html[lang="zh-Hans"] .faq summary::before {
+  content: "+";
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  margin-top: 4px;
+  border: 1px solid var(--champagne);
+  color: var(--verde);
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
+}
+html[lang="zh-Hans"] .faq details[open] summary::before { content: "–"; }
+html[lang="zh-Hans"] .faq summary:hover { color: var(--verde); }
+html[lang="zh-Hans"] .faq-resposta { padding: 0 0 26px 46px; max-width: 32em; }
+html[lang="zh-Hans"] .faq-resposta p { font-size: 18px; line-height: 1.8; color: var(--grafite); }
+html[lang="zh-Hans"] .faq-resposta p + p { margin-top: 12px; }
+
+@media (max-width: 1100px) {
+  html[lang="zh-Hans"] .hero h1 { font-size: 48px; }
+  html[lang="zh-Hans"] .hero-lead { font-size: 24px; }
+  html[lang="zh-Hans"] .card h2 { font-size: 30px; }
+  html[lang="zh-Hans"] .faixa h2 { font-size: 40px; }
+}
+@media (max-width: 760px) {
+  html[lang="zh-Hans"] .hero h1 { font-size: 36px; }
+  html[lang="zh-Hans"] .hero-lead { font-size: 19px; }
+  html[lang="zh-Hans"] .menu a { font-size: 16px; }
+  html[lang="zh-Hans"] .card h2 { font-size: 26px; }
+  html[lang="zh-Hans"] .card-corpo p, html[lang="zh-Hans"] .lista-tracos p { font-size: 17px; }
+  html[lang="zh-Hans"] .cta { font-size: 16px; }
+  html[lang="zh-Hans"] .destaque-texto { font-size: 20px; }
+  html[lang="zh-Hans"] .diagnostico { font-size: 19px; }
+  html[lang="zh-Hans"] .faixa h2 { font-size: 32px; }
+  html[lang="zh-Hans"] .faq { padding-bottom: 64px; }
+  html[lang="zh-Hans"] .faq h2 { font-size: 30px; }
+  html[lang="zh-Hans"] .faq summary { font-size: 18px; }
+  html[lang="zh-Hans"] .faq-resposta { padding-left: 0; }
+  html[lang="zh-Hans"] .faq-resposta p { font-size: 17px; }
+}
