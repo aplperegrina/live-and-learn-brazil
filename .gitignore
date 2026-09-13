@@ -41,3 +41,6 @@ _frame.html
 *.png.bak
 Thumbs.db
 .DS_Store
+
+# Pacotes de upload para a hospedagem
+deploy/
