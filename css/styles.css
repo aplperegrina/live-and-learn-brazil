@@ -474,6 +474,11 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   .btn { font-size: 16px; padding: 14px 20px; }
   .mosaico-grade, .fileira-1 { grid-template-columns: minmax(0, 1fr); }
   .fileira-1, .coluna-foto, .foto--larga, .foto--alta, .card--innovation, .pilha { grid-column: span 1; }
+  /* Ordem no celular: foto larga, Intercultural + diagnóstico, foto alta, Innovation Ties */
+  .foto--larga { order: 2; }
+  .pilha { order: 3; }
+  .foto--alta { order: 4; }
+  .card--innovation { order: 5; }
   .coluna-foto { flex-direction: column; }
   .coluna-foto .foto { min-height: 220px; }
   .coluna-foto .destaque { flex: none; }
