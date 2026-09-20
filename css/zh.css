@@ -103,13 +103,13 @@ html[lang="zh-Hans"] .faq summary::before {
   height: 28px;
   margin-top: 4px;
   border: 1px solid var(--champagne);
-  color: var(--verde);
+  color: var(--amora);
   font-size: 20px;
   line-height: 26px;
   text-align: center;
 }
 html[lang="zh-Hans"] .faq details[open] summary::before { content: "–"; }
-html[lang="zh-Hans"] .faq summary:hover { color: var(--verde); }
+html[lang="zh-Hans"] .faq summary:hover { color: var(--amora); }
 html[lang="zh-Hans"] .faq-resposta { padding: 0 0 26px 46px; max-width: 32em; }
 html[lang="zh-Hans"] .faq-resposta p { font-size: 18px; line-height: 1.8; color: var(--grafite); }
 html[lang="zh-Hans"] .faq-resposta p + p { margin-top: 12px; }
