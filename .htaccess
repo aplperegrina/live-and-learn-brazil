@@ -56,7 +56,16 @@ ErrorDocument 404 /404.html
   AddOutputFilterByType DEFLATE text/html text/css image/svg+xml application/json
 </IfModule>
 
-# ---- Arquivos de trabalho que não devem ser servidos ----
-<FilesMatch "^(LEIA-ME\.txt|LICENCA-.*\.txt|\.gitignore)$">
+# ---- Arquivos de trabalho e de configuração que não devem ser servidos (403) ----
+# Por nome exato
+<FilesMatch "^(LEIA-ME\.txt|LICENCA-.*\.txt|\.gitignore|\.htpasswd|\.env(\..*)?)$">
   Require all denied
 </FilesMatch>
+# Por extensão: textos de trabalho, scripts, workflows, chaves
+<FilesMatch "\.(md|py|yml|yaml|pem|key)$">
+  Require all denied
+</FilesMatch>
+# Pastas inteiras: scripts/ (Node e Python do workflow) e .github/
+<IfModule mod_rewrite.c>
+  RewriteRule ^(scripts|\.github)(/|$) - [F,L]
+</IfModule>
