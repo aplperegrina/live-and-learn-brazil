@@ -54,6 +54,8 @@ jobs:
             echo "mudou=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "dados: séries do SGS atualizadas em $(date -u +%Y-%m-%d)"
+            # o remoto pode ter recebido commits depois do checkout: reaplica o commit do bot por cima
+            git pull --rebase origin main
             git push
             echo "mudou=true" >> "$GITHUB_OUTPUT"
           fi
