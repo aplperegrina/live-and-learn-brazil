@@ -1,0 +1,68 @@
+# Atualização diária dos dados do dashboard imobiliário (src/data/dados-sgs.json)
+#
+# Horário: o GitHub só aceita cron em UTC. Brasília é UTC−3 o ano inteiro
+# (sem horário de verão desde 2019), então '0 10 * * 1-5' = 07:00 de Brasília,
+# de segunda a sexta. O SGS publica as séries diárias no fim da tarde do dia
+# anterior, então às 7h o dado do dia útil anterior já está lá.
+#
+# Passos: busca as séries → commita o JSON só se mudou → envia o JSON para a
+# Hostinger por FTPS (o deploy do site não é automático a partir do commit,
+# por isso o envio acontece aqui mesmo).
+#
+# Secrets necessários (Settings > Secrets and variables > Actions):
+#   FTP_HOST, FTP_USER, FTP_PASS   e, se a raiz não for /public_html, FTP_DEST
+
+name: Atualizar dados do dashboard
+
+on:
+  schedule:
+    - cron: '0 10 * * 1-5'   # 10:00 UTC = 07:00 Brasília, seg–sex
+  workflow_dispatch:          # botão "Run workflow" na aba Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-dados
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Buscar as séries do SGS
+        run: node scripts/buscar-dados.js
+
+      - name: Commitar o JSON se mudou
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/dados-sgs.json
+          if git diff --staged --quiet; then
+            echo "Sem mudança nos dados; nada a commitar."
+            echo "mudou=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "dados: séries do SGS atualizadas em $(date -u +%Y-%m-%d)"
+            git push
+            echo "mudou=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Enviar o JSON para a Hostinger (FTPS)
+        if: steps.commit.outputs.mudou == 'true'
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_DEST: ${{ secrets.FTP_DEST }}
+        run: python3 scripts/enviar-dados-ftp.py src/data/dados-sgs.json
