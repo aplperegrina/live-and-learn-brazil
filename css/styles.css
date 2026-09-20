@@ -65,6 +65,32 @@
   --coluna-gap: 24px;
   --altura-header: 132px;
   --altura-logo: 65px;
+
+  /* Texto secundário: puxa para a ardósia, nunca cinza neutro.
+     Contraste conferido: 5,9:1 sobre azul-gelo, 5,6:1 sobre gelo, 5,2:1 sobre champagne clara. */
+  --texto-secundario: #56607A;
+  --texto-sobre-ardosia: #C3CAD6;              /* texto secundário sobre ardósia, 7,6:1 */
+  --linha-champagne: rgba(220, 199, 146, 0.28); /* fio champagne sobre ardósia */
+
+  /* Tinta de dado (dashboard imobiliário). Só dentro de SVG, como linha,
+     barra, fatia ou ponto. Nunca em botão, borda, fundo, título ou ícone.
+     Ordem nas séries: ardósia → verde → coral → amarelo → verde escuro → champagne. */
+  --dado-ardosia: #3E495F;
+  --dado-verde: #8AAD34;
+  --dado-amarelo: #F8E45E;
+  --dado-coral: #E8674F;
+  --dado-champagne: #DCC792;
+  --dado-verde-esc: #3E5F4E;
+
+  /* Movimento dos gráficos: lento e contínuo, uma vez, só em tinta de dado */
+  --mov-linha: 20s;    /* traçado das linhas longas */
+  --mov-area: 6s;      /* preenchimento do degradê sob a linha */
+  --mov-barra: 1.6s;   /* crescimento de barra */
+  --mov-arco: 2.4s;    /* gauge radial */
+  --mov-bloco: 0.9s;   /* treemap, fatias de rosca */
+  --mov-ponto: 0.012s; /* atraso entre pontos do mapa */
+  --curva: cubic-bezier(.33, 0, .15, 1);
+  --curva-linha: cubic-bezier(.2, 0, .35, 1); /* quase linear: em 20s, aceleração forte fica estranha */
 }
 
 /* --------------------------------------------------------------------------

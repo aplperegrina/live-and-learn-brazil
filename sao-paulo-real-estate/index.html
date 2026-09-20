@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>São Paulo Real Estate, by the numbers · Live &amp; Learn Brazil</title>
+  <meta name="description" content="The rates, prices and currency that move São Paulo property, explained for the foreign executive. Refreshed every weekday from Central Bank data; every figure carries the date of its observation.">
+  <link rel="canonical" href="https://liveandlearnbrazil.com/sao-paulo-real-estate/">
+  <link rel="icon" type="image/svg+xml" href="../img/live-and-learn-brazil-favicon.svg">
+  <link rel="stylesheet" href="../css/styles.css?v=20260919a">
+  <link rel="stylesheet" href="../css/mercado.css?v=20260919a">
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== MENU ===== -->
+  <header class="header">
+    <a class="header-logo" href="../"><img src="../img/live-and-learn-brazil-horizontal-light.svg" alt="Live &amp; Learn Brazil"></a>
+    <nav class="menu" aria-label="Services">
+      <a href="../#due-diligence">Intercultural Due Diligence</a>
+      <a href="../#innovation">Innovation Ties</a>
+      <a href="../#portuguese">Business Portuguese</a>
+      <a href="../#destination">Destination Services</a>
+    </nav>
+  </header>
+
+  <main>
+
+  <!-- ===== ABERTURA (ardósia): título, o que é a página e a data da busca ===== -->
+  <section class="abertura" aria-labelledby="titulo-painel">
+    <div class="abertura-topo">
+      <div class="abertura-titulo">
+        <h1 id="titulo-painel">The São Paulo property market, read by the numbers that move it.</h1>
+        <!-- REVISAR: Andrea -->
+        <p>The rates that decide what an apartment costs to finance, what it must yield to be worth owning, and what your currency does to both. Refreshed every weekday from the Central Bank of Brazil.</p>
+      </div>
+      <p class="stamp"><i aria-hidden="true"></i><span><span data-atualizado>Data fetched every weekday</span>. Each figure carries the date of its own observation.</span></p>
+    </div>
+  </section>
+
+  <!-- ===== PAINEL: grade de 12 colunas, tiles em múltiplos de 60px. Só séries reais do SGS. ===== -->
+  <div class="painel">
+
+    <!-- 1. Juros, 24 meses -->
+    <article class="tile c6 a5" aria-labelledby="t-juros">
+      <h3 id="t-juros">Twenty-four months of rates</h3>
+      <p class="unidade">Percent per year, month-end values</p>
+      <ul class="chave" aria-label="Series and latest readings">
+        <li data-serie="selic"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-ardosia)"/></svg><span class="chave-nome">Selic</span> <b data-valor></b> <time data-data></time></li>
+        <li data-serie="cdi"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-amarelo)"/></svg><span class="chave-nome">CDI</span> <b data-valor></b> <time data-data></time></li>
+        <li data-serie="ipca"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-coral)"/></svg><span class="chave-nome">IPCA 12m</span> <b data-valor></b> <time data-data></time></li>
+        <li data-serie="financiamento"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-verde)"/></svg><span class="chave-nome">Mortgage</span> <b data-valor></b> <time data-data></time></li>
+      </ul>
+      <div class="grafico-area" data-grafico="juros"></div>
+      <table class="visually-hidden" data-tabela><caption>Benchmark rates, month by month</caption></table>
+      <details class="nota"><summary><span class="abre">What this means</span><span class="fecha">Close</span></summary>
+        <div class="texto"><!-- REVISAR: Andrea -->
+          <p><b>Selic</b> — <i>Special System for Settlement and Custody rate</i> — The Central Bank's policy rate, set eight times a year by the Copom; Brazil's equivalent of the Fed funds rate, and the number every other line here prices off. While it sits in double digits, a government bond pays more than most apartments yield in rent, so money stays in bonds and buyers negotiate hard. <b>CDI</b> — <i>Interbank Deposit Certificate rate</i> — runs a hair below the Selic and is the yardstick Brazilian investors quote; a rental yield below it means the owner is paying to hold the asset. <b>Taxa de financiamento imobiliário</b> — <i>mortgage rate</i> — what banks charge individuals on regulated home loans; it moves far less than the Selic because the funding is capped, and it sets the price ceiling of the domestic buyer you compete with.</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 2. Variação mensal de índices -->
+    <article class="tile c3 a5" aria-labelledby="t-variacao">
+      <h3 id="t-variacao">Monthly change</h3>
+      <p class="unidade">Change on the previous month, percent</p>
+      <ul class="chave" aria-label="Series and latest readings">
+        <li data-serie="ipca"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-ardosia)"/></svg><span class="chave-nome">IPCA</span> <b data-valor></b> <time data-data></time></li>
+        <li data-serie="igpm"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-verde)"/></svg><span class="chave-nome">IGP-M</span> <b data-valor></b> <time data-data></time></li>
+        <li data-serie="incc"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-amarelo)"/></svg><span class="chave-nome">INCC</span> <b data-valor></b> <time data-data></time></li>
+      </ul>
+      <div class="grafico-area" data-grafico="variacao"></div>
+      <table class="visually-hidden" data-tabela><caption>Monthly change of three price indices</caption></table>
+      <details class="nota"><summary><span class="abre">What this means</span><span class="fecha">Close</span></summary>
+        <div class="texto"><!-- REVISAR: Andrea -->
+          <p><b>IPCA</b> — <i>Broad National Consumer Price Index</i> — official inflation, the index the Central Bank targets and the one most residential leases follow. <b>IGP-M</b> — <i>General Market Price Index</i> — heavy in wholesale prices and the dollar; the traditional indexer of commercial leases, and the reason a rent can jump when the currency falls even while consumer inflation is quiet. <b>INCC</b> — <i>National Construction Cost Index</i> — what it costs to build; it adjusts the instalments of an off-plan purchase until the keys are handed over.</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 3. Gauges -->
+    <article class="tile c3 a5" aria-labelledby="t-gauges">
+      <h3 id="t-gauges">Where today sits</h3>
+      <p class="unidade">Three readings against their reference range</p>
+      <div class="grafico-area grafico-area--gauges" data-grafico="gauges"></div>
+      <ul class="visually-hidden" data-gauges aria-label="Gauge readings"></ul>
+      <details class="nota"><summary><span class="abre">What this means</span><span class="fecha">Close</span></summary>
+        <div class="texto"><!-- REVISAR: Andrea -->
+          <p><b>Selic no percentil</b> — <i>Selic against its own ten-year history</i> — how many month-ends of the last decade had a lower rate than today. Near the top of the range, the next move is more likely down, which is when buyers who were priced out return. <b>Juro real</b> — <i>real interest rate</i> — the Selic minus twelve-month inflation: what a government bond pays after inflation, and the strongest single brake on property prices. <b>IPCA contra o teto da meta</b> — <i>inflation against the target ceiling</i> — the Central Bank targets 3% with a tolerance of 1.5 points; above 4.5%, rates tend to rise or stay high.</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 4. Valores de garantia, custo de construção e inflação, indexados -->
+    <article class="tile c6 a5" aria-labelledby="t-valores">
+      <h3 id="t-valores">Home values, building costs and inflation</h3>
+      <p class="unidade">Index, first month of the window = 100</p>
+      <ul class="chave" aria-label="Series and latest readings">
+        <li data-serie="ivgr"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-ardosia)"/></svg><span class="chave-nome">IVG-R</span> <b data-valor></b> <time data-data></time></li>
+        <li data-serie="incc-acum"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-verde)"/></svg><span class="chave-nome">INCC, accumulated</span> <b data-valor></b> <time data-data></time></li>
+        <li data-serie="ipca-acum"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-coral)"/></svg><span class="chave-nome">IPCA, accumulated</span> <b data-valor></b> <time data-data></time></li>
+      </ul>
+      <div class="grafico-area" data-grafico="valores"></div>
+      <table class="visually-hidden" data-tabela><caption>Collateral values, construction costs and inflation, indexed</caption></table>
+      <details class="nota"><summary><span class="abre">What this means</span><span class="fecha">Close</span></summary>
+        <div class="texto"><!-- REVISAR: Andrea -->
+          <p><b>IVG-R</b> — <i>Residential Real Estate Collateral Value Index</i> — built from bank appraisals of financed homes rather than asking prices; the closest Brazilian equivalent to the FHFA House Price Index. It lags the market by a few months but ignores seller optimism. Read against construction costs (INCC) and inflation (IPCA), all rebased to 100: when collateral values grow slower than building costs, new launches get pricier than the existing stock, and the resale apartment is where the value is.</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 5. Câmbio -->
+    <article class="tile c3 a5" aria-labelledby="t-cambio">
+      <h3 id="t-cambio">The real against the dollar</h3>
+      <p class="unidade">Reais per US dollar, PTAX, daily</p>
+      <ul class="chave" aria-label="Series and latest readings">
+        <li data-serie="ptax"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-ardosia)"/></svg><span class="chave-nome">USD/BRL</span> <b data-valor></b> <time data-data></time></li>
+      </ul>
+      <div class="grafico-area" data-grafico="cambio"></div>
+      <table class="visually-hidden" data-tabela><caption>USD/BRL PTAX, month-end values</caption></table>
+      <details class="nota"><summary><span class="abre">What this means</span><span class="fecha">Close</span></summary>
+        <div class="texto"><!-- REVISAR: Andrea -->
+          <p><b>PTAX</b> — <i>the Central Bank's reference exchange rate</i> — the average of the day's dealer quotes, used in contracts and the rate that translates a São Paulo price into dollars. A weaker real lowers the entry price for a foreign buyer and lifts the rental yield in hard currency; what the round trip returns depends on where the rate sits when you sell.</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- 6. Atividade econômica -->
+    <article class="tile c3 a5" aria-labelledby="t-atividade">
+      <h3 id="t-atividade">Economic activity</h3>
+      <p class="unidade">IBC-Br index, seasonally adjusted</p>
+      <ul class="chave" aria-label="Series and latest readings">
+        <li data-serie="ibcbr"><svg class="amostra" aria-hidden="true"><rect style="fill:var(--dado-verde-esc)"/></svg><span class="chave-nome">IBC-Br</span> <b data-valor></b> <time data-data></time></li>
+      </ul>
+      <div class="grafico-area" data-grafico="atividade"></div>
+      <table class="visually-hidden" data-tabela><caption>IBC-Br economic activity index, monthly</caption></table>
+      <details class="nota"><summary><span class="abre">What this means</span><span class="fecha">Close</span></summary>
+        <div class="texto"><!-- REVISAR: Andrea -->
+          <p><b>IBC-Br</b> — <i>Central Bank Economic Activity Index</i> — a monthly proxy for GDP, published weeks before the official figure. Office demand and premium rents follow it with a lag; a rising line while the Selic falls is the combination that has historically preceded a price cycle.</p>
+        </div>
+      </details>
+    </article>
+
+  </div>
+
+  <!-- ===== PRÓXIMA SEÇÃO ENTRA AQUI (a fazer depois) ===== -->
+
+  <!-- ===== FECHO (ardósia): fontes, método e aviso ===== -->
+  <section class="fecho" aria-labelledby="t-fontes">
+    <h2 id="t-fontes">Sources and method</h2>
+    <p>All series come from the Central Bank of Brazil's SGS: Selic target (432), CDI (12), PTAX (1), IPCA (433 and 13522), IGP-M (189), INCC (192), IVG-R (21340), average mortgage rate for individuals (20770) and IBC-Br (24363). They are fetched every weekday at 07:00 Brasília time; each figure carries the date of the observation behind it, and a series that fails to update keeps its last good reading with its original date. CDI is the daily rate annualised over 252 business days. Indexed lines are rebased to 100 at the first month of the window.</p>
+    <p>Indicative only. This page is not investment advice and not a valuation of any specific property.</p>
+  </section>
+
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="footer">
+    <svg class="footer-curva" aria-hidden="true" viewBox="0 0 1000 1000" preserveAspectRatio="none"><path d="M0.0 900.0L9.0 901.5L18.1 902.7L27.0 903.5L36.0 904.1L44.9 904.3L53.9 904.2L62.8 903.8L71.7 903.1L80.7 902.1L89.5 900.7L98.5 899.1L107.3 897.2L116.2 895.0L125.1 892.4L133.9 889.7L142.7 886.6L151.5 883.2L160.4 879.6L169.2 875.7L178.0 871.5L186.7 867.1L195.4 862.4L204.2 857.5L212.9 852.4L221.6 847.0L230.3 841.4L238.9 835.5L247.6 829.5L256.2 823.2L264.8 816.7L273.4 810.1L281.9 803.2L290.5 796.2L299.0 788.9L307.5 781.5L316.0 773.9L324.4 766.2L332.9 758.2L341.3 750.2L349.6 742.0L358.0 733.6L366.4 725.1L374.7 716.5L383.0 707.7L391.3 698.9L399.6 689.9L407.8 680.8L416.0 671.6L424.2 662.3L432.4 652.9L440.6 643.5L448.7 633.9L456.9 624.3L465.0 614.6L473.1 604.8L481.1 595.0L489.2 585.1L497.2 575.1L505.3 565.2L513.3 555.2L521.3 545.2L529.3 535.1L537.3 525.1L545.2 514.9L553.2 504.9L561.1 494.8L569.0 484.6L576.9 474.6L584.9 464.5L592.8 454.5L600.7 444.4L608.6 434.4L616.5 424.4L624.3 414.5L632.2 404.6L640.1 394.8L647.9 385.1L655.8 375.4L663.6 365.7L671.5 356.2L679.4 346.7L687.2 337.3L695.1 328.0L703.0 318.8L710.9 309.7L718.7 300.7L726.6 291.8L734.6 283.1L742.5 274.5L750.4 265.9L758.3 257.5L766.3 249.3L774.2 241.3L782.2 233.3L790.2 225.5L798.2 218.0L806.3 210.5L814.3 203.3L822.4 196.2L830.5 189.3L838.7 182.6L846.8 176.1L855.0 169.8L863.2 163.7L871.5 157.8L879.8 152.2L888.1 146.7L896.4 141.5L904.8 136.6L913.3 131.9L921.7 127.4L930.2 123.2L938.8 119.3L947.4 115.6L956.0 112.3L964.8 109.2L973.5 106.4L982.3 103.9L991.1 101.8L1000.0 100.0" fill="none" stroke="#DCC792" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+    <a class="footer-logo" href="../"><img src="../img/live-and-learn-brazil-horizontal-dark.svg" alt="Live &amp; Learn Brazil"></a>
+    <a class="footer-site" href="https://liveandlearnbrazil.com">liveandlearnbrazil.com</a>
+  </footer>
+
+</div>
+<script type="module" src="../src/components/market/painel.js?v=20260919a"></script>
+</body>
+</html>

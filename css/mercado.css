@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Live & Learn Brazil — dashboard do mercado imobiliário de São Paulo
+   Estilos próprios da página /sao-paulo-real-estate/. Tokens vêm de
+   styles.css (paleta, tinta de dado, tempos de movimento, texto secundário).
+
+   Composição: painel compacto em grade de 12 colunas, tiles em múltiplos de
+   60px, vão de 12px, cantos retos, sem sombra, fio de 1px. Duas regiões
+   ardósia: a abertura e o fecho (que emenda no rodapé do site).
+   ========================================================================== */
+
+:root {
+  --vao: 12px;          /* vão entre tiles */
+  --linha-base: 60px;   /* altura de uma linha da grade; os tiles ocupam múltiplos dela */
+}
+
+/* --------------------------------------------------------------------------
+   1. Abertura ardósia: título, uma frase e a data da busca
+   -------------------------------------------------------------------------- */
+.abertura {
+  position: relative;
+  background: var(--ardosia);
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, .04), rgba(0, 0, 0, .04));
+  color: var(--neve);
+}
+.abertura::before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; background: var(--champagne); }
+.abertura-topo {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 30px var(--margem) 26px;
+}
+.abertura-titulo { flex: 1 1 auto; min-width: 0; max-width: 860px; }
+.abertura h1 { font-size: 30px; line-height: 1.2; color: var(--neve); }
+.abertura p { margin: 6px 0 0; font-size: 14px; line-height: 1.55; color: var(--texto-sobre-ardosia); }
+.stamp { flex: none; display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--texto-sobre-ardosia); max-width: 320px; text-align: right; }
+.stamp i { flex: none; width: 6px; height: 6px; background: var(--champagne); }
+.stamp [data-atualizado] { color: var(--neve); }
+
+/* --------------------------------------------------------------------------
+   2. Painel: grade densa de tiles
+   -------------------------------------------------------------------------- */
+.painel {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: var(--linha-base);
+  gap: var(--vao);
+  padding: var(--vao) var(--margem) 0;
+}
+.c3 { grid-column: span 3; } .c6 { grid-column: span 6; } .c9 { grid-column: span 9; } .c12 { grid-column: span 12; }
+.a4 { grid-row: span 4; } .a5 { grid-row: span 5; }
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 14px 16px 12px;
+  background: var(--azul-gelo);
+  border: 1px solid var(--linha);
+  color: var(--grafite);
+}
+.tile h3 { font-size: 18px; line-height: 1.2; }
+.tile .unidade { margin: 2px 0 6px; font-size: 12.5px; line-height: 1.4; color: var(--texto-secundario); }
+
+/* chave de séries com a última leitura e a data da observação */
+.chave { display: flex; flex-wrap: wrap; gap: 2px 16px; margin: 0 0 8px; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.5; color: var(--texto-secundario); }
+.chave li { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+.chave .amostra { align-self: center; }
+.chave b { font-weight: 600; color: var(--grafite); font-variant-numeric: tabular-nums; }
+.chave time { font-size: 11.5px; }
+.amostra { display: block; flex: none; width: 12px; height: 3px; }
+.amostra rect { width: 100%; height: 100%; }
+
+/* o gráfico ocupa o que sobrar do tile; o componente desenha no tamanho real da área */
+.grafico-area { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.grafico-area svg { display: block; overflow: visible; }
+
+/* tinta de interface dentro do SVG (eixos, rótulos, gauges): cores da marca */
+.eixo-linha { stroke: var(--linha); stroke-width: 1; }
+.eixo-base { stroke: var(--grafite); stroke-opacity: .35; stroke-width: 1; }
+.eixo-rotulo { font-family: var(--fonte-menu); font-size: 11px; letter-spacing: .08em; fill: var(--texto-secundario); }
+.eixo-rotulo--ano { fill: var(--grafite); font-weight: 700; }
+.serie-linha { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.gauge-fundo { fill: none; stroke: var(--linha); }
+.gauge-arco { fill: none; stroke-linecap: round; }
+.gauge-valor { font-family: var(--fonte-titulo); font-size: 16px; fill: var(--grafite); font-variant-numeric: tabular-nums; }
+.gauge-rotulo { font-family: var(--fonte-texto); font-size: 13px; fill: var(--grafite); }
+.gauge-detalhe { font-family: var(--fonte-texto); font-size: 11px; fill: var(--texto-secundario); }
+
+/* aviso quando o JSON não carrega: sem número sem data */
+.grafico-indisponivel { margin: 0; padding: 24px 0; font-size: 14px; line-height: 1.5; color: var(--texto-secundario); }
+
+/* --------------------------------------------------------------------------
+   3. Legenda explicativa: fechada, é uma linha; aberta, cobre o gráfico
+      sem mudar a altura do tile, com "Close" sempre visível
+   -------------------------------------------------------------------------- */
+.nota { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--champagne); font-size: 13px; line-height: 1.55; color: var(--texto-secundario); }
+.nota summary { cursor: pointer; list-style: none; position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--verde); }
+.nota summary::-webkit-details-marker { display: none; }
+.nota summary::after { content: "+"; font-family: var(--fonte-titulo); font-size: 15px; line-height: 1; }
+.nota[open] summary::after { content: "×"; }
+.nota summary .fecha { display: none; }
+.nota[open] summary .abre { display: none; }
+.nota[open] summary .fecha { display: inline; }
+.nota .texto {
+  position: absolute; left: -1px; right: -1px; bottom: -1px; z-index: 2;
+  padding: 14px 16px 40px;
+  background: var(--azul-gelo);
+  border: 1px solid var(--linha);
+  border-top: 2px solid var(--champagne);
+}
+.nota .texto p { margin: 0; }
+.nota b { font-weight: 600; color: var(--grafite); }
+.nota i { font-style: italic; color: var(--verde); }
+
+/* --------------------------------------------------------------------------
+   4. Fecho ardósia: fontes, método e aviso; emenda no rodapé do site
+   -------------------------------------------------------------------------- */
+.fecho {
+  position: relative;
+  margin-top: 56px;
+  padding: 44px var(--margem) 8px;
+  background: var(--ardosia);
+  color: var(--texto-sobre-ardosia);
+}
+.fecho::before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; background: var(--champagne); }
+.fecho h2 { font-size: 22px; color: var(--neve); margin-bottom: 12px; }
+.fecho p { max-width: 78ch; font-size: 14px; line-height: 1.75; }
+.fecho p + p { margin-top: 10px; }
+
+/* só para leitor de tela (tabelas dos números e lista dos gauges) */
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* uma <table> não obedece overflow: como bloco, a largura de 1px segura o conteúdo e a página não ganha rolagem lateral */
+table.visually-hidden { display: block; }
+
+/* --------------------------------------------------------------------------
+   5. Telas até 1100px
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .painel { grid-auto-rows: auto; }
+  .c3, .c6, .c9 { grid-column: span 6; }
+  .a4, .a5 { grid-row: auto; }
+  .grafico-area { height: 250px; }
+  .abertura h1 { font-size: 26px; }
+}
+
+/* --------------------------------------------------------------------------
+   6. Celular (até 760px): um tile por linha, chave em coluna
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .abertura-topo { flex-direction: column; align-items: flex-start; gap: 14px; padding: 24px var(--margem) 22px; }
+  .abertura h1 { font-size: 22px; }
+  .stamp { max-width: none; text-align: left; }
+  .tile { grid-column: span 12; }
+  .chave { flex-direction: column; gap: 2px; }
+  .grafico-area { height: 230px; }
+  .fecho { padding: 36px var(--margem) 8px; }
+}
+
+/* Sem movimento: os componentes leem a preferência e desenham no estado final. */
+@media (prefers-reduced-motion: reduce) {
+  .serie-linha, .serie-area, .serie-ponta, .gauge-arco { animation: none !important; transition: none !important; }
+}
