@@ -21,11 +21,29 @@ import ftplib
 import os
 import sys
 
-HOST = os.environ.get("FTP_HOST", "")
-USER = os.environ.get("FTP_USER", "")
+import re
+import socket
+
+
+def limpar_host(valor):
+    """Aceita o host como as pessoas costumam colar ("ftp://x.y/", "x.y:21", com espaços)
+    e devolve só o nome ou IP. Devolve também a porta, se vier junto."""
+    v = valor.strip()
+    v = re.sub(r"^[a-z]+://", "", v, flags=re.I)   # ftp://, ftps://, sftp://
+    v = v.split("/")[0]                               # tira caminho
+    porta = None
+    if re.match(r"^[^:]+:\d+$", v):                   # host:porta
+        v, p = v.rsplit(":", 1)
+        porta = int(p)
+    return v, porta
+
+
+HOST, porta_no_host = limpar_host(os.environ.get("FTP_HOST", ""))
+USER = os.environ.get("FTP_USER", "").strip()
 PASS = os.environ.get("FTP_PASS", "")
-DEST = os.environ.get("FTP_DEST", "/public_html").rstrip("/") or "/"
-PORT = int(os.environ.get("FTP_PORT", "21"))
+DEST = os.environ.get("FTP_DEST", "").strip() or "/public_html"
+DEST = "/" + DEST.strip("/") if DEST.strip("/") else "/"
+PORT = porta_no_host or int(os.environ.get("FTP_PORT", "21").strip() or "21")
 
 arquivos = [a for a in sys.argv[1:] if a.strip()]
 if not arquivos:
@@ -39,6 +57,15 @@ for a in arquivos:
     if not os.path.isfile(a):
         print(f"Arquivo não encontrado: {a}")
         sys.exit(2)
+
+# Resolve o nome antes de conectar, para o erro dizer o que está errado e não um traceback.
+try:
+    socket.getaddrinfo(HOST, PORT, 0, socket.SOCK_STREAM)
+except socket.gaierror as erro:
+    print(f"Não consegui resolver o host FTP '{HOST}' (porta {PORT}): {erro}.")
+    print("O secret FTP_HOST deve ter só o IP ou o nome do servidor, ex.: 185.211.7.251 ou ftp.seudominio.com, "
+          "sem ftp://, sem porta e sem barra.")
+    sys.exit(2)
 
 ftp = ftplib.FTP_TLS(timeout=60)
 ftp.connect(HOST, PORT)
