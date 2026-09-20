@@ -2,6 +2,8 @@
    Live & Learn Brazil — dashboard do mercado imobiliário de São Paulo
    Estilos próprios da página /sao-paulo-real-estate/. Tokens vêm de
    styles.css (paleta, tinta de dado, tempos de movimento, texto secundário).
+   O dashboard mantém a versão anterior da paleta, mais colorida: o verde
+   e o off-white que saíram da paleta principal ficam definidos aqui.
 
    Composição: painel compacto em grade de 12 colunas, tiles em múltiplos de
    60px, vão de 12px, cantos retos, sem sombra, fio de 1px. Duas regiões
@@ -11,6 +13,10 @@
 :root {
   --vao: 12px;          /* vão entre tiles */
   --linha-base: 60px;   /* altura de uma linha da grade; os tiles ocupam múltiplos dela */
+
+  /* Tokens próprios do dashboard (paleta anterior) */
+  --verde: #3E5F4E;     /* notas explicativas e itálicos das legendas */
+  --neve: #FAF9F4;      /* texto sobre a abertura e o fecho ardósia */
 }
 
 /* --------------------------------------------------------------------------
@@ -20,7 +26,7 @@
   position: relative;
   background: var(--ardosia);
   background-image: linear-gradient(160deg, rgba(255, 255, 255, .04), rgba(0, 0, 0, .04));
-  color: var(--gelo);
+  color: var(--neve);
 }
 .abertura::before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; background: var(--champagne); }
 .abertura-topo {
@@ -31,11 +37,11 @@
   padding: 30px var(--margem) 26px;
 }
 .abertura-titulo { flex: 1 1 auto; min-width: 0; max-width: 860px; }
-.abertura h1 { font-size: 30px; line-height: 1.2; color: var(--gelo); }
+.abertura h1 { font-size: 30px; line-height: 1.2; color: var(--neve); }
 .abertura p { margin: 6px 0 0; font-size: 14px; line-height: 1.55; color: var(--texto-sobre-ardosia); }
 .stamp { flex: none; display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--texto-sobre-ardosia); max-width: 320px; text-align: right; }
 .stamp i { flex: none; width: 6px; height: 6px; background: var(--champagne); }
-.stamp [data-atualizado] { color: var(--gelo); }
+.stamp [data-atualizado] { color: var(--neve); }
 
 /* --------------------------------------------------------------------------
    2. Painel: grade densa de tiles
@@ -97,7 +103,7 @@
       sem mudar a altura do tile, com "Close" sempre visível
    -------------------------------------------------------------------------- */
 .nota { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--champagne); font-size: 13px; line-height: 1.55; color: var(--texto-secundario); }
-.nota summary { cursor: pointer; list-style: none; position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--amora); }
+.nota summary { cursor: pointer; list-style: none; position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--verde); }
 .nota summary::-webkit-details-marker { display: none; }
 .nota summary::after { content: "+"; font-family: var(--fonte-titulo); font-size: 15px; line-height: 1; }
 .nota[open] summary::after { content: "×"; }
@@ -113,7 +119,7 @@
 }
 .nota .texto p { margin: 0; }
 .nota b { font-weight: 600; color: var(--grafite); }
-.nota i { font-style: italic; color: var(--amora); }
+.nota i { font-style: italic; color: var(--verde); }
 
 /* --------------------------------------------------------------------------
    4. Fecho ardósia: fontes, método e aviso; emenda no rodapé do site
@@ -126,7 +132,7 @@
   color: var(--texto-sobre-ardosia);
 }
 .fecho::before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; background: var(--champagne); }
-.fecho h2 { font-size: 22px; color: var(--gelo); margin-bottom: 12px; }
+.fecho h2 { font-size: 22px; color: var(--neve); margin-bottom: 12px; }
 .fecho p { max-width: 78ch; font-size: 14px; line-height: 1.75; }
 .fecho p + p { margin-top: 10px; }
 
