@@ -1,0 +1,147 @@
+/* ==========================================================================
+   Live & Learn Brazil — /full-advisory/ (formulário de contato)
+   Estilos próprios da página. Tokens de styles.css; rótulos, botão, chamada
+   e fecho reaproveitados de due-diligence.css (.dd-rotulo, .dd-btn, .dd-cta,
+   .dd-fecho). Gelo dominante, grafite no texto, uma região ardósia (o fecho),
+   champagne só em fios, numerais e foco. Sem sombra, sem canto arredondado.
+   ========================================================================== */
+
+.fa { --borda-campo: rgba(51, 51, 51, 0.45); --coluna-form: 720px; --coluna-lado: 360px; }
+
+/* Abertura: migalhas, rótulo, título, standfirst */
+.fa-abertura { display: flex; flex-direction: column; gap: 24px; padding: 72px var(--margem) 72px; max-width: calc(var(--coluna-lado) + var(--coluna-form) + 80px + 2 * var(--margem)); }
+.fa-migalhas { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 16px; letter-spacing: 0.12em; margin-bottom: 8px; }
+.fa-migalhas a { padding-bottom: 2px; border-bottom: 1px solid var(--champagne); transition: color 0.25s ease; }
+.fa-migalhas a:hover { color: var(--amora); }
+.fa-abertura h1 { font-size: 64px; line-height: 1.04; color: var(--grafite); }
+.fa-lead { font-size: 24px; line-height: 1.55; color: var(--grafite); max-width: 34em; }
+
+/* Corpo: coluna de apoio à esquerda, formulário à direita */
+.fa-corpo { display: grid; grid-template-columns: minmax(0, var(--coluna-lado)) minmax(0, var(--coluna-form)); gap: 80px; align-items: start; padding: 0 var(--margem) 120px; }
+
+/* O que inclui (champagne-claro): lista com traço champagne */
+.fa-inclui { position: sticky; top: 32px; display: flex; flex-direction: column; gap: 22px; padding: 36px 40px 40px; background: var(--champagne-claro); }
+.fa-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.fa-lista li { display: flex; gap: 14px; align-items: flex-start; font-size: 18px; line-height: 1.5; color: var(--grafite); }
+.fa-lista li::before { content: ""; flex: 0 0 14px; height: 1px; background: var(--champagne); margin-top: 14px; }
+.fa-nota { font-size: 16px; line-height: 1.55; color: var(--grafite); padding-top: 16px; border-top: 1px solid var(--champagne); }
+
+/* Formulário */
+.fa-coluna { min-width: 0; }
+.fa-form { display: flex; flex-direction: column; gap: 56px; }
+.fa-secao, .fa-grupo { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; }
+.fa-secao { gap: 26px; }
+.fa-secao > legend { padding: 0; margin-bottom: 10px; float: left; width: 100%; } /* float: faz o legend entrar no flex do fieldset */
+.fa-secao > legend h2 { margin: 0; }
+.fa-secao > legend + * { clear: both; }
+.fa-grupo { gap: 12px; }
+.fa-grupo > legend { padding: 0; float: left; width: 100%; }
+.fa-grupo > legend + * { clear: both; }
+.fa-campo { display: flex; flex-direction: column; gap: 8px; }
+.fa-campo label, .fa-grupo > legend { font-family: var(--fonte-texto); font-weight: 600; font-size: 16px; line-height: 1.4; color: var(--grafite); }
+.fa-req { font-weight: 400; color: var(--texto-secundario); }
+.fa-ajuda { font-size: 15px; line-height: 1.5; color: var(--texto-secundario); }
+
+.fa-campo input, .fa-campo select, .fa-campo textarea {
+  width: 100%;
+  margin: 0;
+  font: 400 17px/1.5 var(--fonte-texto);
+  color: var(--grafite);
+  background: var(--branco);
+  border: 1px solid var(--borda-campo);
+  border-radius: 0;
+  padding: 14px 16px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.fa-campo textarea { resize: vertical; min-height: 160px; }
+.fa-campo input::placeholder, .fa-campo textarea::placeholder { color: var(--texto-secundario); opacity: 1; }
+.fa-campo select {
+  padding-right: 48px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M3 6l5 5 5-5' fill='none' stroke='%233E495F' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+.fa-campo input:focus-visible, .fa-campo select:focus-visible, .fa-campo textarea:focus-visible { outline: 2px solid var(--champagne); outline-offset: 2px; border-color: var(--grafite); }
+
+/* Caixas de seleção e botões de opção */
+.fa-opcoes { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.fa-opcoes--grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
+.fa-opcao { display: flex; align-items: flex-start; gap: 12px; font-size: 17px; line-height: 1.5; color: var(--grafite); cursor: pointer; }
+.fa-opcao input { flex: none; width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--ardosia); }
+.fa-opcao input:focus-visible { outline: 2px solid var(--champagne); outline-offset: 2px; }
+.fa-consentimento { padding-top: 8px; }
+.fa-consentimento .fa-opcao { font-size: 16px; }
+
+/* Botão Send: o .dd-btn é feito para <a>; aqui zera o estilo nativo do <button> */
+.fa-acoes { display: flex; padding-top: 8px; }
+.fa-enviar { cursor: pointer; margin: 0; }
+.fa-enviar:disabled { cursor: progress; opacity: 0.7; }
+.fa-enviar:focus-visible { outline: 2px solid var(--champagne); outline-offset: 3px; }
+
+/* Estados: erro (dentro do formulário) e recebido (no lugar do formulário) */
+.fa-erro { display: none; padding: 18px 22px; border-left: 3px solid var(--amora); background: var(--azul-gelo); font-size: 17px; line-height: 1.55; color: var(--grafite); }
+.fa-estado-erro .fa-erro { display: block; }
+.fa-recebido { display: none; flex-direction: column; gap: 24px; align-items: flex-start; }
+.fa-recebido h2 { font-size: 46px; line-height: 1.08; color: var(--grafite); }
+.fa-recebido p { font-size: 20px; line-height: 1.6; color: var(--grafite); max-width: 34em; }
+.fa-recebido .dd-cta { margin-top: 8px; white-space: normal; }
+.fa-estado-enviado .fa-recebido { display: flex; }
+.fa-estado-enviado .fa-form { display: none; }
+.fa-link { border-bottom: 1px solid var(--champagne); transition: color 0.25s ease; }
+.fa-link:hover { color: var(--amora); }
+
+/* Honeypot: fora da tela, fora da tabulação, fora da árvore de acessibilidade */
+.fa-armadilha { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* Fecho (ardósia) */
+.fa-fecho h2 { font-size: 46px; line-height: 1.08; color: var(--gelo); }
+.fa-email {
+  align-self: flex-start;
+  margin-top: 8px;
+  font-family: var(--fonte-idiomas);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 19px;
+  line-height: 1.5;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--champagne);
+  color: var(--gelo);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  transition: color 0.25s ease;
+}
+.fa-email:hover { color: var(--champagne); }
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .fa-abertura { padding: 56px var(--margem) 56px; }
+  .fa-abertura h1 { font-size: 52px; }
+  .fa-lead { font-size: 22px; }
+  .fa-corpo { grid-template-columns: minmax(0, 1fr); gap: 56px; padding-bottom: 96px; }
+  .fa-inclui { position: static; max-width: var(--coluna-form); }
+  .fa-coluna { max-width: var(--coluna-form); }
+  .fa-recebido h2, .fa-fecho h2 { font-size: 40px; }
+}
+
+/* Celular */
+@media (max-width: 760px) {
+  .fa-abertura { padding: 40px var(--margem) 44px; gap: 18px; }
+  .fa-migalhas { font-size: 14px; }
+  .fa-abertura h1 { font-size: 40px; }
+  .fa-abertura h1 br, .fa-recebido h2 br { display: none; }
+  .fa-lead { font-size: 19px; }
+  .fa-corpo { gap: 44px; padding-bottom: 72px; }
+  .fa-inclui { padding: 28px 24px 32px; }
+  .fa-lista li { font-size: 17px; }
+  .fa-form { gap: 44px; }
+  .fa-secao { gap: 22px; }
+  .fa-campo input, .fa-campo select, .fa-campo textarea { font-size: 16px; padding: 12px 14px; }
+  .fa-opcoes--grade { grid-template-columns: minmax(0, 1fr); }
+  .fa-opcoes { flex-direction: column; gap: 12px; }
+  .fa-enviar { width: 100%; white-space: normal; }
+  .fa-recebido h2, .fa-fecho h2 { font-size: 34px; }
+  .fa-recebido p { font-size: 18px; }
+  .fa-email { font-size: 16px; }
+}
