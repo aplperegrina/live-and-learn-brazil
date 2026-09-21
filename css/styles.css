@@ -35,6 +35,7 @@
   --salvia-clara: #E3E8E1;      /* sálvia clara: fundo alternativo de caixa */
   --champagne: #DCC792;         /* champagne: sublinhados, pontos, fio do hero, curva do rodapé */
   --champagne-claro: #F1EAD3;   /* champagne clara: card Innovation, caixa "What is new", texto da faixa */
+  --amora: #4E1F39;             /* amora: rótulos de grupo, caixa marcada e acento da página Destination Services (11,9:1 sobre gelo) */
   --gelo: #F0F3F4;              /* gelo: fundo da página e do cabeçalho */
   --neve: #FAF9F4;              /* neve (off-white): texto sobre fundos escuros */
   --branco-quente: #FAFAFA;     /* texto do card Destination */
@@ -289,6 +290,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
 .card--ardosia { background-color: var(--ardosia); color: var(--branco-quente); }
 .card--ardosia h2, .card--ardosia p, .card--ardosia .cta { color: var(--branco-quente); }
 .card--champagne { background-color: var(--champagne-claro); }
+.card--champagne-cheio { background-color: var(--champagne); } /* champagne cheio: dois cards de Destination Services (grafite sobre champagne, 7,6:1) */
 
 /* Alturas mínimas vindas do canvas; o conteúdo pode crescer sem transbordar */
 .card--portuguese { min-height: 619px; }
