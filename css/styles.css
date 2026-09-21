@@ -1,6 +1,6 @@
 /* ==========================================================================
    Live & Learn Brazil — folha de estilos comum
-   Versão grafite e champagne (canvas "Live and Learn Brazil Home").
+   Versão grafite, ardósia e champagne com acento amora (canvas "Live and Learn Brazil Home").
    Tudo o que é compartilhado entre as páginas vive aqui: fontes, paleta,
    tipografia, header, hero, blocos reutilizáveis e footer. As páginas só
    trazem conteúdo.
@@ -27,25 +27,23 @@
    2. Variáveis: paleta, tipografia, medidas
    -------------------------------------------------------------------------- */
 :root {
-  /* Paleta principal */
+  /* Paleta principal (proporção aproximada de área na página)
+     gelo 55% · ardósia 20% · champagne clara 10% · azul-gelo 8% · champagne 5% · amora 2% */
+  --gelo: #F0F3F4;              /* 55%: fundo da página e do cabeçalho; texto sobre fundos escuros */
+  --ardosia: #3E495F;           /* 20%: hero, filtro das fotos, card Destination, diagnóstico, faixa, rodapé */
+  --champagne-claro: #F1EAD3;   /* 10%: superfície de apoio: card Innovation, caixa "What is new", texto da faixa */
+  --azul-gelo: #F6F9FF;         /*  8%: cards claros (Portuguese, Intercultural) e fundo do botão */
+  --champagne: #DCC792;         /*  5%: fios, sublinhados, numerais, pontos, curva do rodapé */
+  --amora: #4E1F39;             /*  2%: acento: hover do menu, contorno e hover do botão, traços */
   --grafite: #333333;           /* texto corrido e títulos sobre fundo claro */
-  --verde: #3E5F4E;             /* verde institucional: hover do menu, contorno do botão, traços */
-  --ardosia: #3E495F;           /* ardósia: hero, filtro das fotos, card Destination, diagnóstico, faixa, rodapé */
-  --salvia: #7A8F7A;            /* sálvia: reservada ao menu de idiomas */
-  --salvia-clara: #E3E8E1;      /* sálvia clara: fundo alternativo de caixa */
-  --champagne: #DCC792;         /* champagne: sublinhados, pontos, fio do hero, curva do rodapé */
-  --champagne-claro: #F1EAD3;   /* champagne clara: card Innovation, caixa "What is new", texto da faixa */
-  --gelo: #F0F3F4;              /* gelo: fundo da página e do cabeçalho */
-  --neve: #FAF9F4;              /* neve (off-white): texto sobre fundos escuros */
-  --branco-quente: #FAFAFA;     /* texto do card Destination */
-  --azul-gelo: #F6F9FF;         /* cards Portuguese e Intercultural */
-  --azul-gelo-botao: #F3F9FF;   /* fundo do botão "Meet the team" */
-  --branco: #FFFFFF;            /* cartelas dos QR codes */
+
+  /* Utilitárias fora da paleta */
+  --branco: #FFFFFF;            /* cartelas dos QR codes (o branco puro garante a leitura) */
   --linha: rgba(51, 51, 51, 0.12);
 
   /* Transparências derivadas */
   --ardosia-rgb: 62, 73, 95;
-  --creme-hero: rgba(249, 242, 219, 0.92);   /* parágrafo do hero */
+  --creme-hero: rgba(241, 234, 211, 0.92);   /* parágrafo do hero: champagne clara a 92% */
   --painel-idiomas: rgba(220, 199, 146, 0.8); /* champagne a 80% ao lado do hero */
 
   /* Filtro das fotos recortadas entre os cards */
@@ -138,9 +136,9 @@ h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); font-weight: 400; line
   transition: border-color 0.25s ease;
 }
 .cta:hover { border-color: currentColor; }
-.cta--verde { border-bottom-color: var(--verde); }
+.cta--amora { border-bottom-color: var(--amora); }
 
-/* Botão com contorno verde */
+/* Botão com contorno amora */
 .btn {
   display: inline-block;
   font-family: var(--fonte-texto);
@@ -150,12 +148,12 @@ h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); font-weight: 400; line
   font-size: 20px;
   line-height: 1;
   padding: 16px 26px;
-  border: 1px solid var(--verde);
+  border: 1px solid var(--amora);
   color: var(--grafite);
-  background: var(--azul-gelo-botao);
+  background: var(--azul-gelo);
   transition: background-color 0.25s ease, color 0.25s ease;
 }
-.btn:hover { background: var(--verde); color: var(--neve); }
+.btn:hover { background: var(--amora); color: var(--gelo); }
 
 /* Foto recortada com filtro ardósia */
 .foto { position: relative; overflow: hidden; background: var(--ardosia); }
@@ -188,7 +186,7 @@ h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); font-weight: 400; line
   white-space: nowrap;
   transition: color 0.25s ease;
 }
-.menu a:hover { color: var(--verde); }
+.menu a:hover { color: var(--amora); }
 
 /* --------------------------------------------------------------------------
    5. Hero (abertura)
@@ -201,7 +199,7 @@ h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); font-weight: 400; line
   width: 100%;
   overflow: hidden;
   background-color: var(--ardosia);
-  color: var(--neve);
+  color: var(--gelo);
 }
 .hero-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
 .hero-bloco { position: relative; flex: 0 0 1056px; width: 1056px; height: 100%; overflow: hidden; }
@@ -220,7 +218,7 @@ h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); font-weight: 400; line
 .hero h1 {
   font-size: 86px;
   line-height: 1.02;
-  color: var(--neve);
+  color: var(--gelo);
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.18);
 }
 .hero-lead { font-size: 34px; line-height: 1.55; color: var(--creme-hero); max-width: 673px; }
@@ -252,7 +250,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   color: var(--grafite);
   transition: color 0.25s ease;
 }
-.idiomas a:hover { color: var(--verde); }
+.idiomas a:hover { color: var(--amora); }
 .idiomas a[hreflang="zh"] { text-transform: none; }
 .idiomas a::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--champagne); }
 
@@ -286,8 +284,8 @@ html[lang="it"] .hero h1 { font-size: 76px; }
 .card-corpo { display: flex; flex-direction: column; gap: 16px; flex-grow: 1; }
 .card-corpo p { font-size: 20px; line-height: 1.6; }
 .card--azul-gelo { background-color: var(--azul-gelo); }
-.card--ardosia { background-color: var(--ardosia); color: var(--branco-quente); }
-.card--ardosia h2, .card--ardosia p, .card--ardosia .cta { color: var(--branco-quente); }
+.card--ardosia { background-color: var(--ardosia); color: var(--gelo); }
+.card--ardosia h2, .card--ardosia p, .card--ardosia .cta { color: var(--gelo); }
 .card--champagne { background-color: var(--champagne-claro); }
 
 /* Alturas mínimas vindas do canvas; o conteúdo pode crescer sem transbordar */
@@ -300,7 +298,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
 /* Itens com traço (Destination) */
 .lista-tracos { display: flex; flex-direction: column; gap: 10px; }
 .lista-tracos > div { display: flex; gap: 12px; align-items: flex-start; line-height: 1.5; }
-.lista-tracos > div::before { content: ""; flex: 0 0 10px; height: 2px; background: var(--verde); margin-top: 12px; }
+.lista-tracos > div::before { content: ""; flex: 0 0 10px; height: 2px; background: var(--amora); margin-top: 12px; }
 .lista-tracos p { font-size: 20px; line-height: 1.5; }
 
 /* Coluna direita da fileira 1: foto + caixa "What is new" */
@@ -354,7 +352,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   line-height: 1.2;
   transition: background-color 0.25s ease;
 }
-.diagnostico:hover { background-color: var(--verde); color: var(--neve); }
+.diagnostico:hover { background-color: var(--amora); color: var(--gelo); }
 .diagnostico-seta { font-size: 28px; line-height: 1; color: var(--champagne); transition: transform 0.25s ease; }
 .diagnostico:hover .diagnostico-seta { transform: translateX(6px); }
 
@@ -366,7 +364,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   min-height: 392px;
   overflow: hidden;
   background: var(--ardosia);
-  color: var(--neve);
+  color: var(--gelo);
   margin: 42px var(--margem) 0;
 }
 .faixa-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) contrast(0.9); }
@@ -383,7 +381,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   min-height: 392px;
 }
 .faixa-texto { display: flex; flex-direction: column; gap: 28px; }
-.faixa h2 { font-size: 62px; line-height: 1.08; color: var(--neve); }
+.faixa h2 { font-size: 62px; line-height: 1.08; color: var(--gelo); }
 .faixa-texto p { font-size: 28px; line-height: 1.55; color: var(--champagne-claro); max-width: 698px; }
 .contatos { display: flex; flex-direction: column; gap: 28px; align-items: flex-end; }
 .contatos-links { display: flex; flex-direction: column; gap: 18px; align-items: flex-end; }
@@ -396,7 +394,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   line-height: 1.5;
   padding-bottom: 4px;
   border-bottom: 2px solid var(--champagne);
-  color: var(--neve);
+  color: var(--gelo);
   max-width: 100%;
   overflow-wrap: anywhere;
   text-align: right;
@@ -412,7 +410,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 14px;
-  color: var(--neve);
+  color: var(--gelo);
 }
 
 /* --------------------------------------------------------------------------
@@ -424,7 +422,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   align-items: center;
   justify-content: space-between;
   padding: 48px var(--margem);
-  color: var(--neve);
+  color: var(--gelo);
   background-color: var(--ardosia);
   overflow: hidden;
 }
@@ -440,7 +438,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   font-size: 18px;
   padding-bottom: 4px;
   border-bottom: 1px solid var(--champagne);
-  color: var(--neve);
+  color: var(--gelo);
   transition: color 0.25s ease;
 }
 .footer-site:hover { color: var(--champagne); }

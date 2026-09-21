@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://liveandlearnbrazil.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://liveandlearnbrazil.com/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://liveandlearnbrazil.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://liveandlearnbrazil.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://liveandlearnbrazil.com/zh/"/>
+  </url>
+  <url><loc>https://liveandlearnbrazil.com/pt/</loc></url>
+  <url><loc>https://liveandlearnbrazil.com/it/</loc></url>
+  <url><loc>https://liveandlearnbrazil.com/zh/</loc></url>
+  <url><loc>https://liveandlearnbrazil.com/sao-paulo-real-estate/</loc></url>
+  <url><loc>https://liveandlearnbrazil.com/intercultural-due-diligence/</loc></url>
+</urlset>

@@ -1,0 +1,509 @@
+/* ==========================================================================
+   Live & Learn Brazil — Intercultural Due Diligence
+   Estilos próprios da página /intercultural-due-diligence/. Tokens vêm de
+   styles.css (paleta, fontes, medidas). Desktop como base; tablet até 1100px
+   e celular até 760px, os mesmos pontos de quebra do site.
+
+   Composição: duas regiões escuras (abertura e fecho), três curvas champagne
+   em degradê atravessando a página, blocos separados por cor chapada ou fio.
+   Sem sombra, sem cantos arredondados, sem script.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Ajustes de página: menu em amora, fundo gelo, cabeçalho compartilhado
+   -------------------------------------------------------------------------- */
+.dd .menu a { color: var(--amora); }
+.dd .menu a[aria-current="page"] { border-bottom: 2px solid var(--champagne); padding-bottom: 4px; }
+.dd section { box-sizing: border-box; }
+.dd h1, .dd h2, .dd h3 { font-family: var(--fonte-titulo); font-weight: 400; }
+.dd p { margin: 0; }
+
+/* Rótulos em PT Sans Narrow, caixa alta */
+.dd-rotulo {
+  margin: 0;
+  font-family: var(--fonte-menu);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--texto-secundario);
+}
+.dd-rotulo--secao { font-size: 30px; color: var(--amora); }     /* "01 / RECOGNISE THE SIGNALS" */
+.dd-rotulo--sub { font-size: 22px; color: var(--amora); }       /* "WORKING SESSIONS …", "FULL ADVISORY" */
+.dd-rotulo--claro { color: var(--gelo); }
+.dd-rotulo--ardosia { color: var(--texto-sobre-ardosia); }
+
+/* Título de seção: numa linha só, 40px */
+.dd-titulo { margin: 0; font-size: 40px; line-height: 1.08; color: var(--grafite); max-width: 1500px; }
+
+/* Introdução de seção em duas colunas */
+.dd-intro { column-count: 2; column-gap: 48px; padding-top: 8px; }
+.dd-intro p { font-size: 26px; line-height: 1.5; color: var(--grafite); }
+
+/* Cabeçalho de seção: rótulo, título, introdução */
+.dd-cabeca { display: flex; flex-direction: column; gap: 24px; }
+
+/* Seção padrão */
+.dd-secao { display: flex; flex-direction: column; gap: 32px; padding: 104px var(--margem); }
+.dd-secao--azul { background: var(--azul-gelo); }
+.dd-secao--curva { position: relative; isolation: isolate; }
+
+/* Curvas champagne em degradê (decorativas, atrás do conteúdo) */
+.dd-curva { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.dd-curva--fundo { z-index: -1; }
+.dd-curva .so-celular { display: none; }
+
+/* Botão e chamada (variantes locais do .btn e .cta do site) */
+.dd-btn {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--fonte-texto);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 20px;
+  line-height: 1;
+  padding: 16px 26px;
+  border: 1px solid var(--amora);
+  color: var(--grafite);
+  background: var(--azul-gelo);
+  text-align: center;
+  white-space: nowrap;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.dd-btn:hover { background: var(--amora); color: var(--gelo); }
+.dd-btn--card { font-size: 17px; letter-spacing: 0.12em; line-height: 1.3; padding: 13px 22px; white-space: normal; margin-top: 8px; }
+.dd-cta {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--fonte-texto);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 17px;
+  line-height: 1.4;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--champagne);
+  color: var(--grafite);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+.dd-cta--claro { color: var(--gelo); }
+.dd-cta:hover { color: var(--champagne); }
+
+/* --------------------------------------------------------------------------
+   1. Abertura (ardósia, sem foto) e faixa "Built for"
+   -------------------------------------------------------------------------- */
+.dd-abertura { position: relative; display: flex; flex-direction: column; }
+.dd-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 64px var(--margem);
+  background: var(--ardosia);
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.04));
+  border-top: 2px solid var(--champagne);
+  color: var(--gelo);
+}
+.dd-hero-conteudo { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 32px; }
+.dd-hero-corpo { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 48px; align-items: end; }
+.dd-hero-texto { display: flex; flex-direction: column; gap: 22px; }
+.dd-hero h1 { margin: 0; font-size: 76px; line-height: 1.04; color: var(--gelo); }
+.dd-hero-lead { font-size: 24px; line-height: 1.5; color: var(--creme-hero); }
+.dd-hero-acoes { display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end; gap: 22px; padding-top: 34px; }
+.dd-hero-acoes .dd-btn { font-size: 18px; letter-spacing: 0.12em; }
+
+.dd-para {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 120px repeat(4, minmax(0, 1fr));
+  align-items: start;
+  padding: 28px var(--margem) 28px calc(var(--margem) + 32px);
+  background: var(--gelo);
+  border-bottom: 1px solid var(--linha);
+}
+.dd-para .dd-rotulo { font-size: 22px; color: var(--amora); white-space: nowrap; padding-top: 2px; }
+.dd-para span { font-family: var(--fonte-texto); font-weight: 600; font-size: 18px; line-height: 1.4; color: var(--grafite); padding: 2px 20px; border-left: 1px solid var(--champagne); }
+
+/* --------------------------------------------------------------------------
+   2. 01 / Sinais: quatro quadros
+   -------------------------------------------------------------------------- */
+.dd-sinais { gap: 28px; padding-top: 52px; }
+.dd-sinais-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 16px; }
+.dd-sinal { display: flex; flex-direction: column; gap: 12px; padding: 36px; background: var(--azul-gelo); border-top: 2px solid var(--champagne); }
+.dd-sinal-topo { display: flex; gap: 16px; align-items: baseline; }
+.dd-numero { font-family: var(--fonte-titulo); font-size: 40px; line-height: 1; color: var(--champagne); }
+.dd-sinal h3 { margin: 0; font-family: var(--fonte-texto); font-weight: 600; font-size: 26px; line-height: 1.3; color: var(--grafite); }
+.dd-sinal p { font-size: 17px; line-height: 1.55; }
+.dd-fecho-secao { font-family: var(--fonte-titulo); font-size: 30px; line-height: 1.35; color: var(--grafite); }
+
+/* --------------------------------------------------------------------------
+   3. 02 / Custos (azul-gelo)
+   -------------------------------------------------------------------------- */
+.dd-custos { padding-bottom: 52px; }
+.dd-custos .dd-intro p { font-size: 22px; line-height: 1.55; }
+.dd-custos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin-top: 24px; }
+.dd-custo { display: flex; flex-direction: column; gap: 14px; padding-top: 20px; border-top: 2px solid var(--amora); }
+.dd-custo h3 { margin: 0; font-size: 34px; line-height: 1.1; }
+.dd-custo p { font-size: 19px; line-height: 1.55; }
+.dd-upside { display: flex; flex-direction: column; gap: 16px; padding: 52px; background: var(--champagne-claro); border-left: 2px solid var(--champagne); margin-top: 8px; }
+.dd-upside-texto { column-count: 2; column-gap: 48px; }
+.dd-upside-texto p { font-size: 22px; line-height: 1.55; }
+
+/* --------------------------------------------------------------------------
+   4. 03 / Abordagem: linha do tempo
+   -------------------------------------------------------------------------- */
+.dd-abordagem { gap: 24px; padding-top: 52px; }
+.dd-linha { display: flex; flex-direction: column; margin-top: 32px; }
+.dd-linha-numeros, .dd-linha-marcas, .dd-linha-etapas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.dd-linha-numeros { align-items: end; }
+.dd-linha-numeros .dd-numero { font-size: 64px; padding-right: 24px; }
+.dd-linha-numeros .dd-numero:nth-child(2) { font-size: 70px; }
+.dd-linha-numeros .dd-numero:nth-child(3) { font-size: 76px; }
+.dd-linha-numeros .dd-numero:nth-child(4) { font-size: 82px; }
+.dd-linha-fio { height: 2px; background: var(--champagne); margin-top: 20px; }
+.dd-linha-marcas span { display: block; width: 12px; height: 12px; background: var(--champagne); margin-top: -5px; }
+.dd-linha-marcas span:nth-child(2) { width: 16px; height: 16px; margin-top: -7px; }
+.dd-linha-marcas span:nth-child(3) { width: 20px; height: 20px; margin-top: -9px; }
+.dd-linha-marcas span:nth-child(4) { width: 24px; height: 24px; margin-top: -11px; }
+.dd-etapa { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 0 0; }
+.dd-etapa h3 { margin: 0; font-family: var(--fonte-texto); font-weight: 600; font-size: 24px; line-height: 1.35; }
+.dd-etapa p { font-size: 19px; line-height: 1.55; }
+.dd-etapa .dd-numero { display: none; } /* só na versão vertical */
+.dd-abordagem .dd-fecho-secao { font-size: 32px; }
+
+/* --------------------------------------------------------------------------
+   5. 04 / Como funciona: carrossel de duas telas
+   -------------------------------------------------------------------------- */
+.dd-como { gap: 24px; }
+.dd-como .dd-intro p { font-size: 24px; }
+.dd-carrossel { display: flex; flex-direction: column; gap: 20px; max-width: 1180px; margin: 24px auto 0; width: 100%; }
+.dd-carrossel-linha { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 24px; align-items: center; }
+.dd-seta {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; flex-shrink: 0;
+  border: 1px solid var(--ardosia); color: var(--ardosia); background: var(--gelo);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.dd-seta:hover { background: var(--ardosia); color: var(--gelo); }
+.dd-seta svg { display: block; }
+.dd-setas-topo { display: none; }
+.dd-trilha {
+  display: flex; flex-direction: row; gap: 24px; align-items: flex-start;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.dd-trilha::-webkit-scrollbar { display: none; }
+.dd-tela {
+  flex: 0 0 100%; scroll-snap-align: start;
+  display: flex; flex-direction: column; gap: 20px;
+  padding: 44px; height: 760px; overflow-y: auto;
+  background: var(--gelo); border: 1px solid var(--ardosia);
+}
+.dd-tela .dd-rotulo { color: var(--grafite); }
+.dd-tela-intro { font-size: 19px; line-height: 1.5; }
+.dd-tela-nota { font-size: 16px; line-height: 1.5; color: var(--texto-secundario); }
+.dd-pontos { display: flex; justify-content: center; gap: 28px; }
+.dd-pontos a {
+  font-family: var(--fonte-menu); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 18px; color: var(--texto-secundario); padding-bottom: 4px; border-bottom: 2px solid transparent;
+}
+.dd-pontos a:first-child { color: var(--grafite); border-bottom-color: var(--champagne); }
+.dd-pontos a:hover { color: var(--amora); }
+
+/* Tela 01: questionário de amostra (formulário real, nada é enviado) */
+.dd-form { display: flex; flex-direction: column; margin: 0; }
+.dd-form > .dd-rotulo { color: var(--texto-secundario); }
+.dd-form .dd-aviso { padding-bottom: 16px; }
+.dd-form .dd-item-rotulo { padding-top: 12px; }
+.dd-pergunta { display: flex; flex-direction: column; gap: 14px; padding: 20px 0; border-top: 1px solid var(--linha); }
+.dd-pergunta > p { font-size: 20px; line-height: 1.5; font-style: italic; }
+.dd-escala { display: flex; flex-wrap: wrap; gap: 12px 10px; position: relative; }
+.dd-escala label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.dd-escala input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.dd-caixa {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; height: 44px; padding: 0 14px;
+  border: 1px solid var(--ardosia); background: var(--azul-gelo);
+  font-family: var(--fonte-texto); font-weight: 600; font-size: 17px; color: var(--grafite);
+}
+.dd-escala input:checked + .dd-caixa { background: var(--ardosia); color: var(--gelo); border-color: var(--ardosia); }
+.dd-escala input:focus-visible + .dd-caixa { outline: 2px solid var(--champagne); outline-offset: 3px; }
+.dd-resposta { display: flex; flex-direction: column; gap: 8px; }
+.dd-resposta span { font-family: var(--fonte-menu); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 16px; color: var(--texto-secundario); }
+.dd-resposta textarea {
+  width: 100%; box-sizing: border-box; resize: vertical;
+  font-family: var(--fonte-texto); font-size: 20px; line-height: 1.5; padding: 14px 16px;
+  border: 1px solid var(--ardosia); background: var(--azul-gelo); color: var(--grafite);
+}
+.dd-form-fim { border-top: 1px solid var(--linha); }
+
+/* Tela 02: relatório de amostra como documento */
+.dd-relatorio-grade { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; }
+.dd-relatorio { display: flex; flex-direction: column; gap: 14px; padding: 36px; background: var(--azul-gelo); border: 1px solid var(--linha); }
+.dd-relatorio-titulo { font-family: var(--fonte-titulo); font-size: 26px; line-height: 1.15; }
+.dd-relatorio-meta { display: flex; flex-direction: column; gap: 4px; padding-bottom: 18px; border-bottom: 1px solid var(--champagne); }
+.dd-relatorio-achado { padding-top: 4px; font-family: var(--fonte-menu); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 20px; line-height: 1.3; color: var(--grafite); }
+.dd-relatorio p { font-size: 16px; line-height: 1.6; }
+.dd-sumario { display: flex; flex-direction: column; gap: 12px; }
+.dd-sumario ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-bottom: 1px solid var(--linha); }
+.dd-sumario li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--linha); }
+.dd-sumario li.mostrado { background: var(--champagne-claro); margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+.dd-sumario li b { font-family: var(--fonte-titulo); font-weight: 400; font-size: 24px; line-height: 1; color: var(--ardosia); }
+.dd-sumario li span { font-size: 19px; line-height: 1.45; }
+.dd-sumario li i { color: var(--texto-secundario); }
+
+/* --------------------------------------------------------------------------
+   6. 03 / Escopo e preço (azul-gelo)
+   -------------------------------------------------------------------------- */
+.dd-escopo { gap: 24px; }
+.dd-painel { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 28px; padding-top: 40px; }
+.dd-escopo-intro { font-size: 22px; line-height: 1.55; max-width: 880px; }
+.dd-sub { display: flex; flex-direction: column; gap: 10px; padding-top: 24px; }
+.dd-fio { height: 2px; background: var(--champagne); flex-shrink: 0; }
+.dd-ofertas { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: stretch; }
+.dd-sessoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-left: 8.333%; }
+.dd-card { display: flex; flex-direction: column; gap: 18px; padding: 52px; background: var(--azul-gelo); }
+.dd-card--contorno { border: 1px solid var(--amora); }
+.dd-card--destaque { background: var(--champagne-claro); border-top: 2px solid var(--champagne); margin-top: -24px; }
+.dd-card--sessao { background: var(--gelo); border: 1px solid var(--linha); padding: 36px; }
+.dd-card h3 { margin: 0; font-size: 32px; line-height: 1.1; }
+.dd-preco { font-family: var(--fonte-titulo); font-size: 48px; line-height: 1; }
+.dd-card--destaque .dd-preco { font-size: 56px; }
+.dd-card--sessao .dd-preco { font-size: 36px; }
+.dd-card-corpo { display: flex; flex-direction: column; gap: 16px; flex-grow: 1; }
+.dd-card-corpo p { font-size: 18px; line-height: 1.55; }
+.dd-card-corpo .dd-nota { font-size: 17px; color: var(--texto-secundario); }
+.dd-tracos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.dd-tracos li { display: flex; gap: 12px; align-items: flex-start; font-size: 19px; line-height: 1.5; }
+.dd-tracos li::before { content: ""; flex: 0 0 10px; height: 2px; background: var(--amora); margin-top: 12px; }
+.dd-completa { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 48px; padding: 52px; background: var(--champagne-claro); border-top: 2px solid var(--champagne); }
+.dd-completa-cabeca { display: flex; flex-direction: column; gap: 14px; }
+.dd-completa-cabeca h3 { margin: 0; font-size: 32px; line-height: 1.1; }
+.dd-completa-cabeca .dd-escopado { font-family: var(--fonte-texto); font-weight: 600; font-size: 20px; line-height: 1.3; }
+.dd-completa-corpo { display: flex; flex-direction: column; gap: 16px; }
+.dd-completa-corpo p { font-size: 19px; line-height: 1.55; }
+
+/* Termos: três cards quadrados */
+.dd-termos { display: flex; flex-direction: column; gap: 16px; padding-top: 32px; }
+.dd-termos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 8px; }
+.dd-termo { display: flex; flex-direction: column; gap: 12px; padding: 36px; background: var(--gelo); border-top: 2px solid var(--champagne); aspect-ratio: 1 / 1; }
+.dd-termo h3 { margin: 0; font-size: 28px; line-height: 1.15; }
+.dd-termo p { font-size: 17px; line-height: 1.55; }
+
+/* --------------------------------------------------------------------------
+   7. Fecho (ardósia), emenda no rodapé do site
+   -------------------------------------------------------------------------- */
+.dd-fecho {
+  display: flex; flex-direction: column; gap: 28px;
+  padding: 104px var(--margem) 88px;
+  background: var(--ardosia);
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.04));
+  border-top: 2px solid var(--champagne);
+  color: var(--gelo);
+}
+.dd-fecho .dd-rotulo--ardosia { font-size: 40px; }
+.dd-fecho-texto { font-size: 26px; line-height: 1.55; color: var(--creme-hero); max-width: 760px; }
+.dd-fecho-acoes { display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 24px 36px; padding-top: 8px; }
+.dd-idiomas { padding-top: 32px; }
+.dd-idiomas p { font-family: var(--fonte-menu); font-weight: 700; font-size: 22px; letter-spacing: 0.1em; line-height: 1.3; color: var(--texto-sobre-ardosia); }
+
+/* --------------------------------------------------------------------------
+   8. Tablet (até 1100px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .dd .menu { flex-wrap: wrap; justify-content: flex-end; gap: 8px 22px; }
+  .dd-rotulo { font-size: 17px; }
+  .dd-rotulo--secao { font-size: 28px; }
+  .dd-rotulo--sub { font-size: 20px; }
+  .dd-titulo { font-size: 36px; }
+  .dd-cabeca { gap: 20px; }
+  .dd-intro { column-gap: 48px; }
+  .dd-intro p { font-size: 24px; }
+  .dd-secao { padding: 72px var(--margem); gap: 28px; }
+  .dd-btn { font-size: 17px; letter-spacing: 0.12em; line-height: 1.3; padding: 12px 20px; white-space: normal; }
+  .dd-btn--card { padding: 12px 20px; }
+
+  .dd-hero { padding: 52px var(--margem); }
+  .dd-hero-conteudo { gap: 24px; }
+  .dd-hero-corpo { display: flex; flex-direction: column; gap: 28px; }
+  .dd-hero-texto { gap: 18px; }
+  .dd-hero h1 { font-size: 56px; }
+  .dd-hero-lead { font-size: 24px; }
+  .dd-hero-acoes { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 16px 36px; padding-top: 0; }
+  .dd-hero-acoes .dd-btn { font-size: 17px; }
+  .dd-para { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 0; }
+  .dd-para .dd-rotulo { grid-column: 1 / -1; }
+  .dd-para span:nth-child(odd) { border-left: 0; }
+
+  .dd-sinais { padding-top: 36px; }
+  .dd-sinais-grade { margin-top: 8px; }
+  .dd-sinal { padding: 28px; }
+  .dd-numero { font-size: 34px; }
+  .dd-sinal h3 { font-size: 24px; }
+  .dd-sinal p { font-size: 16px; }
+  .dd-fecho-secao { font-size: 24px; }
+
+  .dd-custos { padding-bottom: 36px; }
+  .dd-custos .dd-intro p { font-size: 19px; }
+  .dd-custos-grade { gap: 24px; margin-top: 8px; }
+  .dd-custo h3 { font-size: 28px; }
+  .dd-custo p { font-size: 19px; }
+  .dd-upside { padding: 36px; margin-top: 0; }
+  .dd-upside-texto p { font-size: 19px; }
+
+  .dd-abordagem { padding-top: 36px; }
+  .dd-linha { margin-top: 16px; }
+  .dd-linha-numeros .dd-numero { font-size: 52px; }
+  .dd-linha-numeros .dd-numero:nth-child(2) { font-size: 56px; }
+  .dd-linha-numeros .dd-numero:nth-child(3) { font-size: 60px; }
+  .dd-linha-numeros .dd-numero:nth-child(4) { font-size: 64px; }
+  .dd-etapa h3 { font-size: 20px; }
+  .dd-etapa p { font-size: 17px; }
+  .dd-abordagem .dd-fecho-secao { font-size: 24px; }
+
+  .dd-como .dd-intro p { font-size: 22px; }
+  .dd-carrossel { margin-top: 8px; }
+  .dd-carrossel-linha { gap: 12px; }
+  .dd-tela { padding: 32px; height: 720px; }
+  .dd-tela-intro { font-size: 18px; }
+  .dd-tela-nota { font-size: 15px; }
+  .dd-pontos a { font-size: 17px; }
+  .dd-pergunta { padding: 16px 0; }
+  .dd-pergunta > p { font-size: 19px; }
+  .dd-caixa { font-size: 16px; }
+  .dd-resposta span { font-size: 15px; }
+  .dd-resposta textarea { font-size: 19px; }
+  .dd-relatorio-grade { display: flex; flex-direction: column; gap: 24px; }
+  .dd-relatorio { padding: 28px; }
+  .dd-relatorio-titulo { font-size: 22px; }
+  .dd-relatorio-achado { font-size: 19px; }
+  .dd-sumario li { grid-template-columns: 36px minmax(0, 1fr); }
+  .dd-sumario li b { font-size: 20px; }
+  .dd-sumario li span { font-size: 18px; }
+
+  .dd-painel { padding-top: 28px; }
+  .dd-escopo-intro { font-size: 19px; }
+  .dd-sub { padding-top: 12px; }
+  .dd-sessoes { margin-left: 0; }
+  .dd-card { padding: 36px; }
+  .dd-card--sessao { padding: 36px; }
+  .dd-card--destaque { margin-top: 0; }
+  .dd-card h3 { font-size: 26px; }
+  .dd-preco { font-size: 36px; }
+  .dd-card--destaque .dd-preco { font-size: 40px; }
+  .dd-card--sessao .dd-preco { font-size: 30px; }
+  .dd-card-corpo p { font-size: 17px; }
+  .dd-card-corpo .dd-nota { font-size: 16px; }
+  .dd-tracos li { font-size: 18px; }
+  .dd-completa { display: flex; flex-direction: column; gap: 24px; padding: 36px; }
+  .dd-completa-cabeca h3 { font-size: 26px; }
+  .dd-completa-cabeca .dd-escopado { font-size: 19px; }
+  .dd-completa-corpo p { font-size: 18px; }
+  .dd-termos { padding-top: 24px; }
+  .dd-termos-grade { grid-template-columns: minmax(0, 1fr); }
+  .dd-termo { padding: 28px; aspect-ratio: auto; }
+  .dd-termo h3 { font-size: 24px; }
+  .dd-termo p { font-size: 18px; }
+
+  .dd-fecho { gap: 22px; padding: 72px var(--margem) 56px; }
+  .dd-fecho .dd-rotulo--ardosia { font-size: 32px; }
+  .dd-fecho-texto { font-size: 19px; }
+  .dd-idiomas { padding-top: 20px; }
+  .dd-idiomas p { font-size: 20px; }
+}
+
+/* --------------------------------------------------------------------------
+   9. Celular (até 760px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .dd-rotulo { font-size: 15px; }
+  .dd-rotulo--secao { font-size: 24px; }
+  .dd-rotulo--sub { font-size: 18px; }
+  .dd-titulo { font-size: 30px; }
+  .dd-intro { column-count: 1; }
+  .dd-intro p { font-size: 20px; }
+  .dd-secao { padding: 56px var(--margem); }
+  .dd-btn { font-size: 16px; }
+  .dd-cta { font-size: 15px; white-space: normal; }
+
+  .dd-hero { padding: 40px var(--margem); }
+  .dd-hero h1 { font-size: 40px; }
+  .dd-hero-lead { font-size: 19px; }
+  .dd-hero-acoes { flex-direction: column; align-items: flex-start; }
+  .dd-hero-acoes .dd-btn { font-size: 16px; }
+  .dd-curva .so-celular { display: block; }
+  .dd-curva .so-largo { display: none; }
+  .dd-para { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px var(--margem) 32px calc(var(--margem) + 32px); }
+  .dd-para span { padding: 6px 0; border-left: 0; border-bottom: 1px solid var(--champagne); }
+  .dd-para span:last-child { border-bottom: 0; }
+
+  .dd-sinais { padding-top: 28px; }
+  .dd-sinais-grade { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .dd-sinal h3 { font-size: 22px; }
+  .dd-sinal p { font-size: 15px; }
+  .dd-fecho-secao { font-size: 20px; }
+
+  .dd-custos { padding-bottom: 28px; }
+  .dd-custos .dd-intro p { font-size: 18px; }
+  .dd-custos-grade { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .dd-custo p { font-size: 18px; }
+  .dd-upside { padding: 28px; }
+  .dd-upside-texto { column-count: 1; }
+  .dd-upside-texto p { font-size: 18px; }
+
+  .dd-abordagem { padding-top: 28px; }
+  .dd-linha { border-left: 2px solid var(--champagne); margin: 16px 0 0 8px; padding-top: 8px; }
+  .dd-linha-numeros, .dd-linha-fio, .dd-linha-marcas { display: none; }
+  .dd-linha-etapas { grid-template-columns: minmax(0, 1fr); }
+  .dd-etapa { position: relative; gap: 8px; padding: 0 0 36px 40px; }
+  .dd-etapa .dd-numero { display: block; font-size: 44px; }
+  .dd-etapa::before { content: ""; position: absolute; left: -7px; top: 14px; width: 12px; height: 12px; background: var(--champagne); }
+  .dd-etapa:nth-child(2)::before { left: -9px; width: 16px; height: 16px; }
+  .dd-etapa:nth-child(3)::before { left: -11px; width: 20px; height: 20px; }
+  .dd-etapa:nth-child(4)::before { left: -13px; width: 24px; height: 24px; }
+  .dd-etapa h3 { font-size: 20px; }
+  .dd-etapa p { font-size: 18px; }
+  .dd-abordagem .dd-fecho-secao { font-size: 20px; }
+
+  .dd-como .dd-intro p { font-size: 18px; }
+  .dd-carrossel { gap: 16px; }
+  .dd-carrossel-linha { display: block; }
+  .dd-carrossel-linha > .dd-seta { display: none; }
+  .dd-setas-topo { display: flex; justify-content: space-between; }
+  .dd-trilha { gap: 20px; }
+  .dd-tela { padding: 20px; height: 640px; }
+  .dd-tela-intro { font-size: 17px; }
+  .dd-tela-nota { font-size: 14px; }
+  .dd-pontos a { font-size: 15px; }
+  .dd-pergunta > p { font-size: 18px; }
+  .dd-caixa { font-size: 15px; }
+  .dd-resposta textarea { font-size: 18px; }
+  .dd-relatorio { padding: 20px; }
+  .dd-relatorio p { font-size: 15px; }
+  .dd-sumario li span { font-size: 17px; }
+
+  .dd-escopo-intro { font-size: 18px; }
+  .dd-ofertas, .dd-sessoes { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .dd-card, .dd-card--sessao { padding: 28px; }
+  .dd-card-corpo p { font-size: 16px; }
+  .dd-card-corpo .dd-nota { font-size: 15px; }
+  .dd-tracos li { font-size: 17px; }
+  .dd-completa { padding: 28px; gap: 20px; }
+  .dd-completa-cabeca .dd-escopado { font-size: 18px; }
+  .dd-completa-corpo p { font-size: 17px; }
+  .dd-termos-grade { gap: 20px; }
+  .dd-termo p { font-size: 17px; }
+
+  .dd-fecho { padding: 56px var(--margem) 40px; }
+  .dd-fecho .dd-rotulo--ardosia { font-size: 26px; }
+  .dd-fecho-texto { font-size: 18px; }
+  .dd-fecho-acoes { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .dd-idiomas p { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dd-trilha { scroll-behavior: auto; }
+}

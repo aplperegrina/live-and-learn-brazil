@@ -2,6 +2,8 @@
    Live & Learn Brazil — dashboard do mercado imobiliário de São Paulo
    Estilos próprios da página /sao-paulo-real-estate/. Tokens vêm de
    styles.css (paleta, tinta de dado, tempos de movimento, texto secundário).
+   O dashboard mantém a versão anterior da paleta, mais colorida: o verde
+   e o off-white que saíram da paleta principal ficam definidos aqui.
 
    Composição: painel compacto em grade de 12 colunas, tiles em múltiplos de
    60px, vão de 12px, cantos retos, sem sombra, fio de 1px. Duas regiões
@@ -11,6 +13,10 @@
 :root {
   --vao: 12px;          /* vão entre tiles */
   --linha-base: 60px;   /* altura de uma linha da grade; os tiles ocupam múltiplos dela */
+
+  /* Tokens próprios do dashboard (paleta anterior) */
+  --verde: #3E5F4E;     /* notas explicativas e itálicos das legendas */
+  --neve: #FAF9F4;      /* texto sobre a abertura e o fecho ardósia */
 }
 
 /* --------------------------------------------------------------------------
