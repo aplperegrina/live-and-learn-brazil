@@ -5,12 +5,10 @@
 # de segunda a sexta. O SGS publica as séries diárias no fim da tarde do dia
 # anterior, então às 7h o dado do dia útil anterior já está lá.
 #
-# Passos: busca as séries → commita o JSON só se mudou → envia o JSON para a
-# Hostinger por FTPS (o deploy do site não é automático a partir do commit,
-# por isso o envio acontece aqui mesmo).
-#
-# Secrets necessários (Settings > Secrets and variables > Actions):
-#   FTP_HOST, FTP_USER, FTP_PASS   e, se a raiz não for /public_html, FTP_DEST
+# Passos: busca as séries → commita o JSON só se mudou → push. A integração
+# Git da Hostinger (hPanel) faz checkout do repositório em /public_html a cada
+# push, então o próprio push já publica o JSON; não há envio por FTPS aqui.
+# Não precisa de secret nenhum.
 
 name: Atualizar dados do dashboard
 
@@ -59,12 +57,3 @@ jobs:
             git push
             echo "mudou=true" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: Enviar o JSON para a Hostinger (FTPS)
-        if: steps.commit.outputs.mudou == 'true'
-        env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASS: ${{ secrets.FTP_PASS }}
-          FTP_DEST: ${{ secrets.FTP_DEST }}
-        run: python3 scripts/enviar-dados-ftp.py src/data/dados-sgs.json
