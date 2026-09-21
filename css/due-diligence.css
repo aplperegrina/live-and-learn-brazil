@@ -30,7 +30,7 @@
   color: var(--texto-secundario);
 }
 .dd-rotulo--secao { font-size: 30px; color: var(--amora); }     /* "01 / RECOGNISE THE SIGNALS" */
-.dd-rotulo--sub { font-size: 22px; color: var(--amora); }       /* "WORKING SESSIONS …", "FULL ADVISORY" */
+.dd h2.dd-rotulo--sub, .dd h3.dd-rotulo--sub, .dd-rotulo--sub { font-family: var(--fonte-menu); font-weight: 700; font-size: 26px; line-height: 1.3; color: var(--amora); }       /* "WORKING SESSIONS …", "FULL ADVISORY" */
 .dd-rotulo--claro { color: var(--gelo); }
 .dd-rotulo--ardosia { color: var(--texto-sobre-ardosia); }
 
@@ -40,6 +40,7 @@
 /* Introdução de seção em duas colunas */
 .dd-intro { column-count: 2; column-gap: 48px; padding-top: 8px; }
 .dd-intro p { font-size: 26px; line-height: 1.5; color: var(--grafite); }
+.dd-intro--linha { column-count: 1; }        /* frase única, sem colunas */
 
 /* Cabeçalho de seção: rótulo, título, introdução */
 .dd-cabeca { display: flex; flex-direction: column; gap: 24px; }
@@ -131,7 +132,7 @@
    2. 01 / Sinais: quatro quadros
    -------------------------------------------------------------------------- */
 .dd-sinais { gap: 28px; padding-top: 52px; }
-.dd-sinais-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 16px; }
+.dd-sinais-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 0; }
 .dd-sinal { display: flex; flex-direction: column; gap: 12px; padding: 36px; background: var(--azul-gelo); border-top: 2px solid var(--champagne); }
 .dd-sinal-topo { display: flex; gap: 16px; align-items: baseline; }
 .dd-numero { font-family: var(--fonte-titulo); font-size: 40px; line-height: 1; color: var(--champagne); }
@@ -144,10 +145,9 @@
    -------------------------------------------------------------------------- */
 .dd-custos { padding-bottom: 52px; }
 .dd-custos .dd-intro p { font-size: 22px; line-height: 1.55; }
-.dd-custos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin-top: 24px; }
-.dd-custo { display: flex; flex-direction: column; gap: 14px; padding-top: 20px; border-top: 2px solid var(--amora); }
-.dd-custo h3 { margin: 0; font-size: 34px; line-height: 1.1; }
-.dd-custo p { font-size: 19px; line-height: 1.55; }
+.dd-custos-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin-top: 0; }
+.dd-custo { display: flex; flex-direction: column; gap: 0; padding-top: 16px; border-top: 2px solid var(--amora); }
+.dd-custo h3 { margin: 0; font-size: 34px; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.06em; }
 .dd-upside { display: flex; flex-direction: column; gap: 16px; padding: 52px; background: var(--champagne-claro); border-left: 2px solid var(--champagne); margin-top: 8px; }
 .dd-upside-texto { column-count: 2; column-gap: 48px; }
 .dd-upside-texto p { font-size: 22px; line-height: 1.55; }
@@ -179,6 +179,7 @@
    -------------------------------------------------------------------------- */
 .dd-como { gap: 24px; }
 .dd-como .dd-intro p { font-size: 24px; }
+.dd-como .dd-intro--linha p { font-size: 17px; }   /* frase única: cabe numa linha a 1440 (18px já quebra) */
 .dd-carrossel { display: flex; flex-direction: column; gap: 20px; max-width: 1180px; margin: 24px auto 0; width: 100%; }
 .dd-carrossel-linha { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 24px; align-items: center; }
 .dd-seta {
@@ -260,7 +261,6 @@
    -------------------------------------------------------------------------- */
 .dd-escopo { gap: 24px; }
 .dd-painel { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 28px; padding-top: 40px; }
-.dd-escopo-intro { font-size: 22px; line-height: 1.55; max-width: 880px; }
 .dd-sub { display: flex; flex-direction: column; gap: 10px; padding-top: 24px; }
 .dd-fio { height: 2px; background: var(--champagne); flex-shrink: 0; }
 .dd-ofertas { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: stretch; }
@@ -317,7 +317,7 @@
   .dd .menu { flex-wrap: wrap; justify-content: flex-end; gap: 8px 22px; }
   .dd-rotulo { font-size: 17px; }
   .dd-rotulo--secao { font-size: 28px; }
-  .dd-rotulo--sub { font-size: 20px; }
+  .dd-rotulo--sub { font-size: 24px; }
   .dd-titulo { font-size: 36px; }
   .dd-cabeca { gap: 20px; }
   .dd-intro { column-gap: 48px; }
@@ -339,7 +339,7 @@
   .dd-para span:nth-child(odd) { border-left: 0; }
 
   .dd-sinais { padding-top: 36px; }
-  .dd-sinais-grade { margin-top: 8px; }
+  .dd-sinais-grade { margin-top: 0; }
   .dd-sinal { padding: 28px; }
   .dd-numero { font-size: 34px; }
   .dd-sinal h3 { font-size: 24px; }
@@ -348,9 +348,8 @@
 
   .dd-custos { padding-bottom: 36px; }
   .dd-custos .dd-intro p { font-size: 19px; }
-  .dd-custos-grade { gap: 24px; margin-top: 8px; }
+  .dd-custos-grade { gap: 24px; margin-top: 0; }
   .dd-custo h3 { font-size: 28px; }
-  .dd-custo p { font-size: 19px; }
   .dd-upside { padding: 36px; margin-top: 0; }
   .dd-upside-texto p { font-size: 19px; }
 
@@ -365,6 +364,7 @@
   .dd-abordagem .dd-fecho-secao { font-size: 24px; }
 
   .dd-como .dd-intro p { font-size: 22px; }
+  .dd-como .dd-intro--linha p { font-size: 20px; }
   .dd-carrossel { margin-top: 8px; }
   .dd-carrossel-linha { gap: 12px; }
   .dd-tela { padding: 32px; height: 720px; }
@@ -385,7 +385,6 @@
   .dd-sumario li span { font-size: 18px; }
 
   .dd-painel { padding-top: 28px; }
-  .dd-escopo-intro { font-size: 19px; }
   .dd-sub { padding-top: 12px; }
   .dd-sessoes { margin-left: 0; }
   .dd-card { padding: 36px; }
@@ -421,7 +420,7 @@
 @media (max-width: 760px) {
   .dd-rotulo { font-size: 15px; }
   .dd-rotulo--secao { font-size: 24px; }
-  .dd-rotulo--sub { font-size: 18px; }
+  .dd-rotulo--sub { font-size: 21px; }
   .dd-titulo { font-size: 30px; }
   .dd-intro { column-count: 1; }
   .dd-intro p { font-size: 20px; }
@@ -449,7 +448,6 @@
   .dd-custos { padding-bottom: 28px; }
   .dd-custos .dd-intro p { font-size: 18px; }
   .dd-custos-grade { grid-template-columns: minmax(0, 1fr); gap: 20px; }
-  .dd-custo p { font-size: 18px; }
   .dd-upside { padding: 28px; }
   .dd-upside-texto { column-count: 1; }
   .dd-upside-texto p { font-size: 18px; }
@@ -469,6 +467,7 @@
   .dd-abordagem .dd-fecho-secao { font-size: 20px; }
 
   .dd-como .dd-intro p { font-size: 18px; }
+  .dd-como .dd-intro--linha p { font-size: 18px; }
   .dd-carrossel { gap: 16px; }
   .dd-carrossel-linha { display: block; }
   .dd-carrossel-linha > .dd-seta { display: none; }
@@ -485,7 +484,6 @@
   .dd-relatorio p { font-size: 15px; }
   .dd-sumario li span { font-size: 17px; }
 
-  .dd-escopo-intro { font-size: 18px; }
   .dd-ofertas, .dd-sessoes { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .dd-card, .dd-card--sessao { padding: 28px; }
   .dd-card-corpo p { font-size: 16px; }
