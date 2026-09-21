@@ -168,9 +168,16 @@
 .dd-linha-marcas span:nth-child(2) { width: 16px; height: 16px; margin-top: -7px; }
 .dd-linha-marcas span:nth-child(3) { width: 20px; height: 20px; margin-top: -9px; }
 .dd-linha-marcas span:nth-child(4) { width: 24px; height: 24px; margin-top: -11px; }
-.dd-etapa { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 0 0; }
-.dd-etapa h3 { margin: 0; font-family: var(--fonte-texto); font-weight: 600; font-size: 24px; line-height: 1.35; }
-.dd-etapa p { font-size: 19px; line-height: 1.55; }
+/* Cada etapa vira três células da mesma grelha (display: contents), para que os fechos
+   fiquem todos na mesma linha e a faixa ardósia atrás deles seja contínua. */
+.dd-etapa { display: contents; }
+.dd-etapa h3 { grid-row: 1; margin: 0; padding: 24px 24px 0 0; font-family: var(--fonte-texto); font-weight: 600; font-size: 24px; line-height: 1.35; }
+.dd-etapa p { grid-row: 2; padding: 12px 24px 0 0; font-size: 19px; line-height: 1.55; }
+.dd-etapa .dd-rotulo { grid-row: 3; margin-top: 24px; padding: 14px 24px 14px 16px; font-size: 18px; line-height: 1.3; background: var(--ardosia); color: var(--creme-hero); }
+.dd-etapa:nth-child(1) > * { grid-column: 1; }
+.dd-etapa:nth-child(2) > * { grid-column: 2; }
+.dd-etapa:nth-child(3) > * { grid-column: 3; }
+.dd-etapa:nth-child(4) > * { grid-column: 4; }
 .dd-etapa .dd-numero { display: none; } /* só na versão vertical */
 .dd-abordagem .dd-fecho-secao { font-size: 32px; }
 
@@ -361,6 +368,7 @@
   .dd-linha-numeros .dd-numero:nth-child(4) { font-size: 64px; }
   .dd-etapa h3 { font-size: 20px; }
   .dd-etapa p { font-size: 17px; }
+  .dd-etapa .dd-rotulo { font-size: 17px; margin-top: 20px; }
   .dd-abordagem .dd-fecho-secao { font-size: 24px; }
 
   .dd-como .dd-intro p { font-size: 22px; }
@@ -456,7 +464,9 @@
   .dd-linha { border-left: 2px solid var(--champagne); margin: 16px 0 0 8px; padding-top: 8px; }
   .dd-linha-numeros, .dd-linha-fio, .dd-linha-marcas { display: none; }
   .dd-linha-etapas { grid-template-columns: minmax(0, 1fr); }
-  .dd-etapa { position: relative; gap: 8px; padding: 0 0 36px 40px; }
+  .dd-etapa { display: flex; flex-direction: column; position: relative; gap: 8px; padding: 0 0 36px 40px; }
+  .dd-etapa h3, .dd-etapa p { padding: 0; }
+  .dd-etapa .dd-rotulo { margin-top: 8px; padding: 12px 16px; font-size: 15px; }
   .dd-etapa .dd-numero { display: block; font-size: 44px; }
   .dd-etapa::before { content: ""; position: absolute; left: -7px; top: 14px; width: 12px; height: 12px; background: var(--champagne); }
   .dd-etapa:nth-child(2)::before { left: -9px; width: 16px; height: 16px; }
