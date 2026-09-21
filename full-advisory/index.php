@@ -71,7 +71,7 @@ $estado = (($_GET['sent'] ?? '') === '1') ? 'enviado' : ((($_GET['error'] ?? '')
       <section class="fa-recebido" aria-labelledby="fa-t-recebido">
         <p class="dd-rotulo dd-rotulo--sub">RECEIVED</p>
         <h2 id="fa-t-recebido" tabindex="-1">Thank you. We will reply <br>within two working days.</h2>
-        <p>A copy of your message has been sent to the email you gave. If nothing arrives, check your spam folder, or write to <a class="fa-link" href="mailto:reception@liveandlearnbrazil.com">reception@liveandlearnbrazil.com</a>.</p>
+        <p>A copy of your message has been sent to the email you gave. If nothing arrives, check your spam folder, or <a class="fa-link" href="../contact/">use the contact form</a>.</p>
         <a class="dd-cta" href="../intercultural-due-diligence/">Back to Intercultural Due Diligence <span aria-hidden="true">↗</span></a>
       </section>
 
@@ -79,7 +79,7 @@ $estado = (($_GET['sent'] ?? '') === '1') ? 'enviado' : ((($_GET['error'] ?? '')
       <form class="fa-form" id="fa-form" method="post" action="send.php" accept-charset="UTF-8">
 
         <!-- Estado: erro (aparece com ?error=1 ou quando o envio por fetch falha) -->
-        <p class="fa-erro" id="fa-erro" role="alert" tabindex="-1">Something went wrong and your message was not sent. Please try again, or write to <a class="fa-link" href="mailto:reception@liveandlearnbrazil.com">reception@liveandlearnbrazil.com</a>.</p>
+        <p class="fa-erro" id="fa-erro" role="alert" tabindex="-1">Something went wrong and your message was not sent. Please try again, or <a class="fa-link" href="../contact/">use the contact form</a>.</p>
 
         <!-- Carimbo de hora assinado (anti-robô) e honeypot fora do fluxo de leitura e de tabulação -->
         <input type="hidden" name="t" value="<?= htmlspecialchars($carimbo, ENT_QUOTES, 'UTF-8') ?>">
@@ -201,8 +201,8 @@ $estado = (($_GET['sent'] ?? '') === '1') ? 'enviado' : ((($_GET['error'] ?? '')
   <!-- ===== FECHO (ardósia), emenda no rodapé ===== -->
   <section class="dd-fecho fa-fecho" aria-labelledby="fa-t-fecho">
     <h2 id="fa-t-fecho">Prefer to talk first?</h2>
-    <p class="dd-fecho-texto">Write to us directly. We work in Portuguese, English, Mandarin and Italian.</p>
-    <a class="fa-email" href="mailto:reception@liveandlearnbrazil.com">RECEPTION@<wbr>LIVEANDLEARNBRAZIL.COM</a>
+    <p class="dd-fecho-texto">Use the contact form, or WhatsApp. We work in Portuguese, English, Mandarin and Italian.</p>
+    <a class="fa-email" href="../contact/">CONTACT US</a>
   </section>
 
   </main>

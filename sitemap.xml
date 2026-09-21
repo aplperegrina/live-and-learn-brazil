@@ -14,4 +14,11 @@
   <url><loc>https://liveandlearnbrazil.com/intercultural-due-diligence/</loc></url>
   <url><loc>https://liveandlearnbrazil.com/destination-services/</loc></url>
   <url><loc>https://liveandlearnbrazil.com/full-advisory/</loc></url>
+  <url>
+    <loc>https://liveandlearnbrazil.com/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://liveandlearnbrazil.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://liveandlearnbrazil.com/contact/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://liveandlearnbrazil.com/contact/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://liveandlearnbrazil.com/contact/?lang=zh"/>
+  </url>
 </urlset>

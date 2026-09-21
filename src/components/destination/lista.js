@@ -1,7 +1,8 @@
 /* Destination Services — a lista que o visitante monta.
    Lê as caixas marcadas no formulário [data-lista], mostra a lista no fecho
-   e escreve o pedido de escopo no link REQUEST A SCOPE (mailto com os itens
-   no corpo). Sem JavaScript o link continua funcionando, só sem a lista.
+   e leva os itens no link REQUEST A SCOPE, que abre o formulário de contato
+   (/contact/?about=destination&items=a|b|c) já com a lista na mensagem.
+   Sem JavaScript o link continua funcionando, só sem a lista.
    Os textos ficam em data-* no HTML para a versão traduzida não mexer aqui. */
 
 const form = document.querySelector('[data-lista]');
@@ -14,11 +15,10 @@ if (form) {
   const textos = {
     vazio: frase ? frase.textContent : '',
     marcados: form.dataset.textoMarcados || 'Your list so far:',
-    assunto: form.dataset.assunto || 'Request a scope — Destination Services',
-    abertura: form.dataset.abertura || 'Hello,\n\nI would like a scope, timing and one price for the following destination services:',
-    fecho: form.dataset.fecho || 'Thank you.',
   };
-  const email = pedido ? pedido.getAttribute('href').replace(/^mailto:/, '').split('?')[0] : '';
+  // Endereço do formulário de contato, sem a lista (o href inicial do link)
+  const base = pedido ? pedido.getAttribute('href').split('?')[0] : '';
+  const pergunta = pedido ? (pedido.getAttribute('href').split('?')[1] || '') : '';
 
   function marcados() {
     return caixas.filter((c) => c.checked).map((c) => c.value);
@@ -39,18 +39,15 @@ if (form) {
     if (frase) {
       frase.textContent = lista.length ? textos.marcados : textos.vazio;
     }
-    if (pedido && email) {
-      const corpo = lista.length
-        ? `${textos.abertura}\n\n${lista.map((nome) => `- ${nome}`).join('\n')}\n\n${textos.fecho}`
-        : '';
-      let href = `mailto:${email}?subject=${encodeURIComponent(textos.assunto)}`;
-      if (corpo) href += `&body=${encodeURIComponent(corpo)}`;
+    if (pedido && base) {
+      let href = base + (pergunta ? `?${pergunta}` : '');
+      if (lista.length) href += `${pergunta ? '&' : '?'}items=${encodeURIComponent(lista.join('|'))}`;
       pedido.setAttribute('href', href);
     }
   }
 
   form.addEventListener('change', atualizar);
-  // Sem backend: o formulário nunca é enviado; o pedido sai pelo link
+  // Sem backend aqui: o formulário nunca é enviado; o pedido segue pelo link
   form.addEventListener('submit', (e) => e.preventDefault());
   atualizar();
 }

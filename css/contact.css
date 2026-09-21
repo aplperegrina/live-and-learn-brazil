@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Live & Learn Brazil — /contact/ (formulário curto de contato)
+   Reaproveita os campos, estados e botão de full-advisory.css (.fa-*) e os
+   rótulos de due-diligence.css. Aqui só o que é próprio desta página: uma
+   coluna, o bloco WhatsApp / WeChat em champagne-claro e os ícones.
+   ========================================================================== */
+
+.ct-abertura { max-width: calc(var(--coluna-form) + 2 * var(--margem)); padding-bottom: 56px; }
+.ct-corpo { display: flex; flex-direction: column; gap: 64px; max-width: var(--coluna-form); padding: 0 var(--margem) 120px; box-sizing: content-box; }
+.ct-form { gap: 26px; }
+.ct-acoes { flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 12px; }
+.ct-nota { font-size: 15px; line-height: 1.5; color: var(--texto-secundario); }
+
+/* Bloco celular: champagne-claro, dois canais lado a lado */
+.ct-mobile { display: flex; flex-direction: column; gap: 18px; padding: 36px 40px 40px; background: var(--champagne-claro); }
+.ct-mobile-p { font-size: 18px; line-height: 1.55; color: var(--grafite); }
+.ct-canais { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; padding-top: 12px; border-top: 1px solid var(--champagne); margin-top: 6px; }
+.ct-canal { display: flex; gap: 16px; align-items: flex-start; color: var(--grafite); padding-top: 12px; }
+a.ct-canal { transition: color 0.25s ease; }
+a.ct-canal:hover { color: var(--amora); }
+.ct-icone { flex: 0 0 34px; width: 34px; height: 34px; color: var(--ardosia); margin-top: -2px; }
+a.ct-canal:hover .ct-icone { color: var(--amora); }
+.ct-canal-texto { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ct-canal-nome { font-family: var(--fonte-menu); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 16px; line-height: 1.3; color: var(--texto-secundario); }
+.ct-canal-valor { font-family: var(--fonte-idiomas); font-weight: 700; font-size: 20px; line-height: 1.4; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid var(--champagne); align-self: flex-start; }
+.ct-qr { width: 150px; height: 150px; background: var(--branco); padding: 8px; border: 1px solid var(--champagne); margin-top: 4px; }
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .ct-abertura { padding-bottom: 44px; }
+  .ct-corpo { gap: 56px; padding-bottom: 96px; }
+}
+
+/* Celular */
+@media (max-width: 760px) {
+  .ct-abertura { padding-bottom: 36px; }
+  .ct-corpo { gap: 44px; padding-bottom: 72px; }
+  .ct-mobile { padding: 28px 24px 32px; }
+  .ct-canais { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .ct-canal { padding-top: 16px; }
+  .ct-canal + .ct-canal { border-top: 1px solid var(--champagne); margin-top: 8px; padding-top: 24px; }
+  .ct-canal-valor { font-size: 18px; }
+}
+
+/* Chinês: o título em ideogramas é mais largo; um passo abaixo para não partir a meio da palavra */
+html[lang="zh-Hans"] .ct-abertura h1 { font-size: 56px; }
+@media (max-width: 1100px) { html[lang="zh-Hans"] .ct-abertura h1 { font-size: 46px; } }
+@media (max-width: 760px)  { html[lang="zh-Hans"] .ct-abertura h1 { font-size: 34px; } }
