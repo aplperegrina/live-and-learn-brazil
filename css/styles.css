@@ -450,7 +450,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
    -------------------------------------------------------------------------- */
 @media (max-width: 1100px) {
   :root { --margem: 40px; }
-  .menu { gap: 24px; }
+  .menu { flex-wrap: wrap; justify-content: flex-end; gap: 8px 24px; }
   .menu a { font-size: 17px; }
   .hero { height: 600px; }
   .hero-bloco { flex: 0 0 72%; width: 72%; }
