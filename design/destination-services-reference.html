@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Destination Services — layout reference</title>
+<!--
+  REFERÊNCIA DE LAYOUT — não é código de produção.
+  Desktop 1440px. Cores, medidas, tipografia e texto são os definitivos;
+  a marcação é HTML plano para ser relida e reescrita com os componentes do site.
+
+  Fontes: use as auto-hospedadas do projeto (sem Google Fonts).
+  Os caminhos em /fonts/ abaixo são ilustrativos — aponte para os arquivos do repositório.
+-->
+<style>
+  @font-face { font-family: "Libertinus Sans"; src: url("/fonts/libertinus-sans-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Open Sans"; src: url("/fonts/open-sans-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Open Sans"; src: url("/fonts/open-sans-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+  @font-face { font-family: "Open Sans"; src: url("/fonts/open-sans-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+  @font-face { font-family: "PT Sans Narrow"; src: url("/fonts/pt-sans-narrow-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+  :root {
+    --gelo: #f0f3f4;
+    --ardosia: #3e495f;
+    --grafite: #333333;
+    --amora: #4e1f39;
+    --champagne: #dcc792;
+    --champagne-claro: #f1ead3;
+    --azul-gelo: #f6f9ff;
+    --linha: rgba(51, 51, 51, 0.12);
+    --texto-secundario: #56607a;
+    --texto-sobre-ardosia: #c3cad6;
+    --creme-hero: rgba(241, 234, 211, 0.92);
+    --fonte-titulo: "Libertinus Sans", "Segoe UI", Arial, sans-serif;
+    --fonte-texto: "Open Sans", "Segoe UI", Arial, sans-serif;
+    --fonte-menu: "PT Sans Narrow", "Arial Narrow", sans-serif;
+    --margem: 56px;
+    --coluna-gap: 24px;
+  }
+  body { margin: 0; }
+  a { color: var(--amora); } a:hover { color: var(--grafite); }
+  input[type="checkbox"] { accent-color: var(--amora); }
+
+  .page { width: 1440px; box-sizing: border-box; background: var(--gelo); color: var(--grafite); font-family: var(--fonte-texto); display: flex; flex-direction: column; }
+
+  /* rótulo de seção: é o título da página agora (PT Sans Narrow, caixa alta, amora) */
+  .rotulo-secao { margin: 0; font-family: var(--fonte-menu); font-weight: 700; font-size: 42px; line-height: 1.2; letter-spacing: 0.14em; color: var(--amora); }
+
+  /* card de serviço: o visitante marca a caixa e monta o próprio pacote */
+  .card { box-sizing: border-box; background: var(--azul-gelo); border-top: 2px solid var(--champagne); padding: 40px; display: flex; flex-direction: column; gap: 20px; }
+  .card--champagne-claro { background: var(--champagne-claro); border-top-color: var(--amora); }
+  .card--champagne { background: var(--champagne); border-top-color: var(--amora); }
+  .card__topo { display: flex; align-items: flex-start; gap: 14px; }
+  .card__caixa { width: 22px; height: 22px; margin: 10px 0 0; flex-shrink: 0; }
+  .card__titulo { font-family: var(--fonte-titulo); font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--grafite); cursor: pointer; }
+  .card__titulo--menor { font-size: 30px; }
+  .card__texto { margin: 0; font-size: 20px; line-height: 1.6; color: var(--texto-secundario); }
+  .card__texto--escuro { color: var(--grafite); }
+
+  .grade { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--coluna-gap); }
+  .col-4 { grid-column: span 4; } .col-5 { grid-column: span 5; } .col-7 { grid-column: span 7; } .col-12 { grid-column: span 12; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- CABEÇALHO — o placeholder [ LOGO ] vira o componente Logo do site -->
+  <header style="height: 96px; box-sizing: border-box; padding: 0 var(--margem); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--linha);">
+    <div style="width: 210px; height: 46px; box-sizing: border-box; border: 1px dashed var(--champagne); display: flex; align-items: center; justify-content: center; font-family: var(--fonte-menu); font-weight: 700; font-size: 15px; letter-spacing: 0.14em; color: var(--texto-secundario);">[ LOGO ]</div>
+    <nav style="display: flex; gap: 36px; font-family: var(--fonte-menu); font-weight: 700; font-size: 20px; letter-spacing: 0.14em;">
+      <a href="#services" style="text-decoration: none; color: var(--grafite);">SERVICES</a>
+      <a href="#team" style="text-decoration: none; color: var(--grafite);">TEAM</a>
+      <a href="#contact" style="text-decoration: none; color: var(--grafite);">CONTACT</a>
+    </nav>
+  </header>
+
+  <!-- HERO (primeira região escura). O painel champagne claro nasce aqui e desce
+       para a seção seguinte: é ele que une as duas seções. -->
+  <section style="position: relative; height: 467px; box-sizing: border-box; background: var(--ardosia); border-top: 2px solid var(--champagne); padding: 92px var(--margem) 0;">
+    <div style="width: 834px; display: flex; flex-direction: column; gap: 28px;">
+      <p style="margin: 0; font-family: var(--fonte-menu); font-weight: 700; font-size: 42px; letter-spacing: 0.14em; color: var(--champagne);">DESTINATION SERVICES</p>
+      <h1 style="margin: 0; font-family: var(--fonte-titulo); font-weight: 400; font-size: 76px; line-height: 1.04; color: var(--gelo);">You, ready on new ground</h1>
+      <p style="margin: 0; font-size: 21px; line-height: 1.6; color: var(--gelo);">The services listed on this page can be hired isolated or in packages, just according to what you want and need for starting your strategy in Brazil. Our team includes lawyers, teachers, police officers, real estate advisors and administrators. All we do is carefully designed and delivered so you understand and make Brazil your territory too.</p>
+    </div>
+
+    <aside style="position: absolute; right: 61px; top: 188px; width: 347px; height: 532px; box-sizing: border-box; background: var(--champagne-claro); padding: 44px 40px; z-index: 3; display: flex; flex-direction: column; gap: 30px;">
+      <p style="margin: 0; font-family: var(--fonte-menu); font-weight: 700; font-size: 22px; letter-spacing: 0.14em; color: var(--amora);">HOW IT WORKS</p>
+      <div style="display: flex; gap: 18px;">
+        <span style="font-family: var(--fonte-menu); font-weight: 700; font-size: 34px; color: var(--champagne); line-height: 1;">01</span>
+        <p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--grafite);">Tick the services you want, in either group.</p>
+      </div>
+      <div style="height: 1px; background: var(--linha);"></div>
+      <div style="display: flex; gap: 18px;">
+        <span style="font-family: var(--fonte-menu); font-weight: 700; font-size: 34px; color: var(--champagne); line-height: 1;">02</span>
+        <p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--grafite);">We come back with scope, timing and one price for the set.</p>
+      </div>
+      <div style="height: 1px; background: var(--linha);"></div>
+      <div style="display: flex; gap: 18px;">
+        <span style="font-family: var(--fonte-menu); font-weight: 700; font-size: 34px; color: var(--champagne); line-height: 1;">03</span>
+        <p style="margin: 0; font-size: 20px; line-height: 1.55; color: var(--grafite);">One coordinator answers for all of it with you.</p>
+      </div>
+      <div style="height: 1px; background: var(--linha);"></div>
+    </aside>
+  </section>
+
+  <!-- INTRODUÇÃO — alinhada pela base: a última linha termina na mesma altura
+       em que termina a caixa "How it works". -->
+  <section style="height: 232px; box-sizing: border-box; padding: 40px var(--margem) 0; display: flex; align-items: flex-end;">
+    <p style="margin: 0; width: 880px; font-size: 28px; line-height: 1.45; color: var(--grafite);">Every service is provided based on a mutual agreement for how you need it to be done. We operate with concierges that speak English, Chinese, Italian and Portuguese. Some are Brazilians with years of experience and study abroad, some are foreigners living in Brazil for more than five years, familiarized with local regulations.</p>
+  </section>
+
+  <!-- GRUPO 1 -->
+  <section id="services" style="box-sizing: border-box; padding: 0 var(--margem) 88px;">
+    <div style="height: 140px; display: flex; flex-direction: column; justify-content: center;">
+      <h2 class="rotulo-secao">SITE, HOME AND OPERATIONS</h2>
+    </div>
+    <div class="grade">
+
+      <div class="card col-5" style="min-height: 260px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-location">
+          <label class="card__titulo" for="svc-location">Location study</label>
+        </div>
+        <p class="card__texto">Research on the best location for the operation, read against logistics, available labour, the tax picture and the licences the activity will need.</p>
+      </div>
+
+      <div class="card card--champagne-claro col-7" style="min-height: 258px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-property">
+          <label class="card__titulo" for="svc-property">Property, commercial and residential</label>
+        </div>
+        <p class="card__texto">From lofts to the top of the market, included in every package. The property is read against its location, its basic security and the quality of the build — not only the floor plan and the asking price.</p>
+      </div>
+
+      <div class="card col-7" style="min-height: 256px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-settling">
+          <label class="card__titulo" for="svc-settling">Settling in and company registration</label>
+        </div>
+        <p class="card__texto">Water, power and internet connected, basic furnishing in place, and the company registered with every licence and permit the activity requires before it can open its doors.</p>
+      </div>
+
+      <div class="card col-5" style="min-height: 256px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-renovation">
+          <label class="card__titulo" for="svc-renovation">Renovation advisory</label>
+        </div>
+        <p class="card__texto">If you want it: a review of the building structure, a budget, and the hiring of the work — with reporting at each step, so everything is contracted and agreed against your own plan.</p>
+      </div>
+
+      <div class="card card--champagne col-12" style="min-height: 260px; padding: 40px 44px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-security">
+          <label class="card__titulo" for="svc-security">Security advisory</label>
+        </div>
+        <p class="card__texto card__texto--escuro" style="max-width: 1040px;">A review of the infrastructure that keeps people safe: doors, entrances and exits, parking, the structures that stop access, the location itself and the daily route between office and home. Where it is needed, installation of physical and digital systems and hiring of staff vetted with the local Military Police.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FIO INCLINADO separando os dois grupos -->
+  <div style="position: relative; height: 85px; overflow: hidden;">
+    <div style="position: absolute; left: -60px; right: -60px; top: 58px; height: 2px; background: var(--champagne); transform: rotate(-1.2deg);"></div>
+  </div>
+
+  <!-- GRUPO 2 -->
+  <section style="box-sizing: border-box; padding: 0 var(--margem) 88px;">
+    <div style="height: 140px; display: flex; flex-direction: column; justify-content: center;">
+      <h2 class="rotulo-secao">DAILY LIFE AND FAMILY</h2>
+    </div>
+    <div class="grade">
+
+      <div class="card col-7" style="min-height: 261px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-school">
+          <label class="card__titulo" for="svc-school">School placement</label>
+        </div>
+        <p class="card__texto">The whole process: conversation with the family, time with the child, a shortlist of schools that actually suit them, the choice, the visits and the enrolment — with interpretation and a first briefing on rules, materials and how the school runs day to day.</p>
+      </div>
+
+      <div class="card card--champagne-claro col-5" style="min-height: 262px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-followup">
+          <label class="card__titulo" for="svc-followup">Coordination and follow-up</label>
+        </div>
+        <p class="card__texto">A conversation with the school's coordination team and follow-up through the first months, while the child settles and the family learns how the school really works.</p>
+      </div>
+
+      <div class="card card--champagne col-5" style="min-height: 275px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-portuguese">
+          <label class="card__titulo" for="svc-portuguese">Portuguese for children and teenagers</label>
+        </div>
+        <p class="card__texto card__texto--escuro">A first course for the children, built around what the family needs — before the term starts, alongside it, or both.</p>
+      </div>
+
+      <div class="card col-7" style="min-height: 277px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-network">
+          <label class="card__titulo" for="svc-network">Curated support network</label>
+        </div>
+        <p class="card__texto">Names we have checked ourselves: doctors and hospitals, sport, physiotherapy, domestic help — the small network a family needs in its first weeks and has no way to assemble alone.</p>
+      </div>
+
+      <div class="card col-4" style="min-height: 260px; gap: 18px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-transport" style="margin-top: 8px;">
+          <label class="card__titulo card__titulo--menor" for="svc-transport">School transport</label>
+        </div>
+        <p class="card__texto">Arranged and checked with the school and the family's own timetable.</p>
+      </div>
+
+      <div class="card col-4" style="min-height: 260px; gap: 18px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-afterschool" style="margin-top: 8px;">
+          <label class="card__titulo card__titulo--menor" for="svc-afterschool">After-school programme</label>
+        </div>
+        <p class="card__texto">Where the family's hours need a second half of the day: choice, enrolment and the journey between the two.</p>
+      </div>
+
+      <div class="card col-4" style="min-height: 260px; gap: 18px;">
+        <div class="card__topo">
+          <input class="card__caixa" type="checkbox" id="svc-insurance" style="margin-top: 8px;">
+          <label class="card__titulo card__titulo--menor" for="svc-insurance">Insurance</label>
+        </div>
+        <p class="card__texto">Health, personal, home and car — arranged with you, including what each policy leaves out.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FECHO (segunda região escura) -->
+  <section id="contact" style="min-height: 420px; box-sizing: border-box; background: var(--ardosia); border-top: 2px solid var(--champagne); padding: 76px var(--margem); display: flex; align-items: flex-start; justify-content: space-between; gap: 64px;">
+    <div style="width: 720px; display: flex; flex-direction: column; gap: 24px;">
+      <h2 style="margin: 0; font-family: var(--fonte-titulo); font-weight: 400; font-size: 56px; line-height: 1.08; color: var(--gelo);">Send us your list</h2>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: var(--creme-hero);">Tell us which items you want to evaluate and we come back with scope, timing and one price for the whole set.</p>
+      <a href="#contact" style="align-self: flex-start; margin-top: 8px; padding: 18px 34px; border: 2px solid var(--champagne); text-decoration: none; color: var(--gelo); font-family: var(--fonte-texto); font-weight: 700; font-size: 18px; letter-spacing: 0.14em;">REQUEST A SCOPE</a>
+    </div>
+    <aside style="width: 509px; min-height: 264px; box-sizing: border-box; background: rgba(240, 243, 244, 0.08); border-top: 2px solid var(--gelo); padding: 36px 32px; display: flex; flex-direction: column; gap: 16px;">
+      <p style="margin: 0; font-family: var(--fonte-menu); font-weight: 700; font-size: 20px; letter-spacing: 0.14em; color: var(--champagne);">USEFUL INFORMATION BEFORE ARRIVING</p>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: var(--texto-sobre-ardosia);">Here you can find an arrival briefing: guide, video and a written set of recommendations for your first weeks.</p>
+      <a href="#contact" style="text-decoration: none; color: var(--gelo); font-family: var(--fonte-texto); font-weight: 700; font-size: 16px; letter-spacing: 0.14em; border-bottom: 2px solid var(--champagne); align-self: flex-start; padding-bottom: 6px;">SEE THE BRIEFING</a>
+    </aside>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer id="team" style="height: 160px; box-sizing: border-box; padding: 0 var(--margem); display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--linha); font-family: var(--fonte-menu); font-weight: 700; font-size: 20px; letter-spacing: 0.14em; color: var(--texto-secundario);">
+    <div>LIVE AND LEARN BRAZIL · SÃO PAULO</div>
+    <nav style="display: flex; gap: 36px;">
+      <a href="#services" style="text-decoration: none; color: var(--grafite);">SERVICES</a>
+      <a href="#team" style="text-decoration: none; color: var(--grafite);">TEAM</a>
+      <a href="#contact" style="text-decoration: none; color: var(--grafite);">CONTACT</a>
+    </nav>
+  </footer>
+
+</div>
+
+</body>
+</html>

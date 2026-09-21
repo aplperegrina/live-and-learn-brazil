@@ -1,0 +1,330 @@
+/* ==========================================================================
+   Live & Learn Brazil — Destination Services
+   Estilos próprios da página /destination-services/. Tokens vêm de
+   styles.css (paleta, fontes, margens, texto secundário, .card e .cta).
+
+   Composição (design/destination-services-reference.html, desktop 1440px):
+   cabeçalho → hero ardósia com o painel "How it works" ao lado → parágrafo
+   de introdução → grupo SITE, HOME AND OPERATIONS (5 cards) → fio inclinado
+   → grupo DAILY LIFE AND FAMILY (7 cards) → fecho "Send us your list"
+   (ardósia, emenda no rodapé do site).
+
+   A página é um cardápio: cada card é uma caixa de seleção de verdade
+   (<input type="checkbox"> + <label for>), e a lista marcada segue no
+   pedido de escopo (src/components/destination/lista.js).
+
+   Nenhum verde nesta página: o hover do menu passa para a amora.
+   O painel "How it works" é o único elemento fora do fluxo simples: ver a
+   grade da abertura (seção 1).
+   ========================================================================== */
+
+:root {
+  --painel-largura: 347px;   /* painel "How it works" */
+  --painel-direita: 61px;    /* distância do painel à borda direita da página */
+  --painel-topo: 190px;      /* topo do painel, contado da borda superior do hero (188px abaixo do fio de 2px) */
+  --painel-altura: 532px;    /* altura mínima do painel */
+  --hero-altura: 467px;      /* altura do hero no desktop; se um idioma precisar de mais linhas, aumente aqui (html[lang="…"]) */
+  --fundo-fecho-caixa: rgba(240, 243, 244, 0.08); /* gelo a 8% sobre ardósia */
+}
+
+/* Sem verde nesta página */
+.menu a:hover { color: var(--amora); }
+.menu a[aria-current="page"] { color: var(--amora); }
+
+/* --------------------------------------------------------------------------
+   1. Abertura: hero ardósia + painel "How it works" + parágrafo de introdução
+      O painel nasce dentro do hero e desce até a base da introdução. É uma
+      grade de três linhas: o hero ocupa as duas primeiras (painel-topo e o
+      resto da altura do hero), o painel começa na segunda e vai até a
+      terceira, a introdução fica só na terceira, com o texto encostado na
+      base. Assim a última linha do parágrafo termina na mesma altura em que
+      termina o painel, seja qual for o comprimento do texto traduzido.
+   -------------------------------------------------------------------------- */
+.abertura {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--painel-largura) var(--painel-direita);
+  grid-template-rows: var(--painel-topo) calc(var(--hero-altura) - var(--painel-topo)) auto;
+}
+
+.hero-ds {
+  grid-column: 1 / -1;
+  grid-row: 1 / 3;
+  min-height: var(--hero-altura);
+  background: var(--ardosia);
+  border-top: 2px solid var(--champagne);
+  padding: 92px var(--margem) 0;
+  color: var(--gelo);
+}
+.hero-ds-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  /* nunca invade o painel: 834px, ou o que sobrar até 40px antes dele */
+  max-width: min(834px, calc(100% - var(--painel-largura) - var(--painel-direita) - 40px + var(--margem)));
+}
+.rotulo-pagina {
+  font-family: var(--fonte-menu);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 42px;
+  line-height: 1.2;
+  color: var(--champagne);
+}
+.hero-ds h1 { font-size: 76px; line-height: 1.04; color: var(--gelo); }
+.hero-ds-lead { font-size: 21px; line-height: 1.6; color: var(--gelo); }
+
+/* Painel "How it works": champagne clara, por cima do hero e da introdução */
+.como {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  z-index: 3;
+  width: var(--painel-largura);
+  min-height: var(--painel-altura);
+  padding: 44px 40px;
+  background: var(--champagne-claro);
+  color: var(--grafite);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.como h2 {
+  font-family: var(--fonte-menu);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--amora);
+}
+.como ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 30px; }
+.como li { display: flex; gap: 18px; padding-bottom: 30px; border-bottom: 1px solid var(--linha); }
+/* Numeral em amora, não em champagne: champagne sobre champagne clara dá 1,4:1 */
+.como-num { flex: none; font-family: var(--fonte-menu); font-weight: 700; font-size: 34px; line-height: 1; color: var(--amora); }
+.como li p { font-size: 20px; line-height: 1.55; color: var(--grafite); }
+
+/* Introdução: alinhada pela base ao painel */
+.intro {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px var(--margem) 0;
+}
+.intro p { max-width: 880px; font-size: 28px; line-height: 1.45; color: var(--grafite); }
+
+/* --------------------------------------------------------------------------
+   2. Grupos de serviços: rótulo em PT Sans Narrow, caixa alta, amora
+      (é o título da seção; não há título em Libertinus aqui) e grade de
+      12 colunas com os cards de seleção
+   -------------------------------------------------------------------------- */
+.grupo { margin: 0; padding: 0 var(--margem) 88px; border: 0; min-width: 0; }
+.grupo legend { display: block; padding: 0; width: 100%; }
+.rotulo-secao {
+  display: flex;
+  align-items: center;
+  min-height: 140px;
+  font-family: var(--fonte-menu);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 42px;
+  line-height: 1.2;
+  color: var(--amora);
+}
+.grade { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--coluna-gap); }
+.col-4 { grid-column: span 4; }
+.col-5 { grid-column: span 5; }
+.col-7 { grid-column: span 7; }
+.col-12 { grid-column: span 12; }
+
+/* Card de serviço: .card do site com caixa de seleção, fio no topo e
+   min-height (o texto em português e italiano é mais longo, nunca é cortado) */
+.servico {
+  position: relative;
+  gap: 20px;
+  padding: 40px;
+  min-height: 260px;
+  border-top: 2px solid var(--champagne);
+  transition: box-shadow 0.25s ease;
+}
+.servico.card--champagne, .servico.card--champagne-cheio { border-top-color: var(--amora); }
+.servico.col-12 { padding: 40px 44px; }
+.servico-topo { display: flex; align-items: flex-start; gap: 14px; }
+.servico-caixa { flex: none; width: 22px; height: 22px; margin: 10px 0 0; accent-color: var(--amora); cursor: pointer; }
+.servico h3 { font-size: 34px; line-height: 1.1; color: var(--grafite); }
+.servico h3 label { cursor: pointer; }
+.servico h3 label:hover { color: var(--amora); }
+.servico p { font-size: 20px; line-height: 1.6; color: var(--texto-secundario); }
+.servico.card--champagne-cheio p { color: var(--grafite); }
+.servico.col-12 p { max-width: 1040px; }
+.servico--menor { gap: 18px; }
+.servico--menor h3 { font-size: 30px; }
+.servico--menor .servico-caixa { margin-top: 8px; }
+
+/* Card marcado: contorno amora por dentro, sem mexer no tamanho */
+.servico:has(.servico-caixa:checked) { box-shadow: inset 0 0 0 2px var(--amora); }
+.servico:has(.servico-caixa:checked) h3 { color: var(--amora); }
+
+/* Fio inclinado entre os dois grupos */
+.fio { position: relative; height: 85px; overflow: hidden; }
+.fio::before {
+  content: "";
+  position: absolute;
+  left: -60px;
+  right: -60px;
+  top: 58px;
+  height: 2px;
+  background: var(--champagne);
+  transform: rotate(-1.2deg);
+}
+
+/* --------------------------------------------------------------------------
+   3. Fecho "Send us your list" (ardósia): a lista marcada e o pedido de
+      escopo à esquerda, a caixa do briefing à direita; emenda no rodapé
+   -------------------------------------------------------------------------- */
+.fecho-ds {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 64px;
+  min-height: 420px;
+  padding: 76px var(--margem);
+  background: var(--ardosia);
+  border-top: 2px solid var(--champagne);
+  color: var(--gelo);
+}
+.fecho-ds-texto { display: flex; flex-direction: column; gap: 24px; max-width: 720px; }
+.fecho-ds-texto h2 { font-size: 56px; line-height: 1.08; color: var(--gelo); }
+.fecho-ds-texto > p { font-size: 20px; line-height: 1.6; color: var(--creme-hero); }
+
+/* A lista marcada, escrita por lista.js; sem JavaScript fica só a frase de apoio */
+.lista-marcada { display: flex; flex-direction: column; gap: 10px; }
+.lista-marcada p { font-size: 17px; line-height: 1.6; color: var(--texto-sobre-ardosia); }
+.lista-marcada ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.lista-marcada li {
+  padding: 6px 12px;
+  border: 1px solid var(--linha-champagne);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--gelo);
+}
+
+.btn-escopo {
+  align-self: flex-start;
+  display: inline-block;
+  margin-top: 8px;
+  padding: 18px 34px;
+  border: 2px solid var(--champagne);
+  font-family: var(--fonte-texto);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--gelo);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.btn-escopo:hover { background: var(--champagne); color: var(--grafite); }
+
+.briefing {
+  flex: none;
+  width: 509px;
+  min-height: 264px;
+  padding: 36px 32px;
+  background: var(--fundo-fecho-caixa);
+  border-top: 2px solid var(--gelo);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.briefing h2 {
+  font-family: var(--fonte-menu);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--champagne);
+}
+.briefing p { font-size: 20px; line-height: 1.6; color: var(--texto-sobre-ardosia); }
+.briefing .cta { font-size: 16px; color: var(--gelo); }
+
+/* --------------------------------------------------------------------------
+   4. Chinês (zh-Hans): sem caixa alta nem espaçamento largo nos rótulos
+   -------------------------------------------------------------------------- */
+html[lang="zh-Hans"] .rotulo-pagina,
+html[lang="zh-Hans"] .rotulo-secao,
+html[lang="zh-Hans"] .como h2,
+html[lang="zh-Hans"] .briefing h2,
+html[lang="zh-Hans"] .btn-escopo {
+  font-family: var(--fonte-zh-titulo);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+html[lang="zh-Hans"] .servico h3 { line-height: 1.4; }
+html[lang="zh-Hans"] .servico p,
+html[lang="zh-Hans"] .como li p,
+html[lang="zh-Hans"] .intro p { line-height: 1.8; }
+
+/* --------------------------------------------------------------------------
+   5. Telas até 1100px (tablet): o painel entra em fluxo depois do texto do
+      hero; os cards viram duas colunas
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .abertura { display: block; }
+  .hero-ds { min-height: 0; padding: 64px var(--margem) 112px; }
+  .hero-ds-texto { max-width: 760px; }
+  .rotulo-pagina { font-size: 32px; }
+  .hero-ds h1 { font-size: 60px; }
+  .hero-ds-lead { font-size: 20px; }
+  /* o painel entra em fluxo depois do hero, montado sobre a emenda ardósia/gelo */
+  .como { width: auto; max-width: 560px; min-height: 0; margin: -64px var(--margem) 0; padding: 36px 32px; }
+  .intro { padding: 56px var(--margem) 0; }
+  .intro p { font-size: 24px; }
+  .grupo { padding-bottom: 64px; }
+  .rotulo-secao { min-height: 112px; font-size: 32px; }
+  .col-4, .col-5, .col-7 { grid-column: span 6; }
+  .servico, .servico.col-12 { padding: 32px; min-height: 0; }
+  .servico h3 { font-size: 30px; }
+  .servico--menor h3 { font-size: 28px; }
+  .servico p { font-size: 18px; }
+  .fecho-ds { flex-direction: column; gap: 48px; padding: 64px var(--margem); }
+  .fecho-ds-texto h2 { font-size: 46px; }
+  .briefing { width: 100%; max-width: 640px; }
+}
+
+/* --------------------------------------------------------------------------
+   6. Celular (até 760px): uma coluna
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .hero-ds { padding: 48px var(--margem) 88px; }
+  .hero-ds-texto { gap: 20px; }
+  .rotulo-pagina { font-size: 24px; }
+  .hero-ds h1 { font-size: 42px; }
+  .hero-ds-lead { font-size: 18px; }
+  .como { margin-top: -48px; padding: 28px 24px; gap: 22px; }
+  .como ol { gap: 22px; }
+  .como li { gap: 14px; padding-bottom: 22px; }
+  .como-num { font-size: 28px; }
+  .como li p { font-size: 18px; }
+  .intro { padding: 40px var(--margem) 0; }
+  .intro p { font-size: 21px; }
+  .grupo { padding-bottom: 48px; }
+  .rotulo-secao { min-height: 88px; font-size: 24px; letter-spacing: 0.1em; }
+  .col-4, .col-5, .col-7, .col-12 { grid-column: span 12; }
+  .servico, .servico.col-12 { padding: 28px 24px; }
+  .servico h3, .servico--menor h3 { font-size: 26px; }
+  .servico-caixa, .servico--menor .servico-caixa { width: 20px; height: 20px; margin-top: 6px; }
+  .servico p { font-size: 17px; }
+  .fio { height: 56px; }
+  .fio::before { top: 38px; }
+  .fecho-ds { gap: 36px; padding: 56px var(--margem) 48px; min-height: 0; }
+  .fecho-ds-texto h2 { font-size: 36px; }
+  .fecho-ds-texto > p { font-size: 18px; }
+  .btn-escopo { font-size: 15px; padding: 16px 24px; }
+  .briefing { padding: 28px 24px; min-height: 0; }
+  .briefing h2 { font-size: 17px; }
+  .briefing p { font-size: 18px; }
+}

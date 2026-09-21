@@ -287,6 +287,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
 .card--ardosia { background-color: var(--ardosia); color: var(--gelo); }
 .card--ardosia h2, .card--ardosia p, .card--ardosia .cta { color: var(--gelo); }
 .card--champagne { background-color: var(--champagne-claro); }
+.card--champagne-cheio { background-color: var(--champagne); } /* champagne cheio: dois cards de Destination Services (grafite sobre champagne, 7,6:1) */
 
 /* Alturas mínimas vindas do canvas; o conteúdo pode crescer sem transbordar */
 .card--portuguese { min-height: 619px; }

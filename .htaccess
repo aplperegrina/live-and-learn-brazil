@@ -65,7 +65,7 @@ ErrorDocument 404 /404.html
 <FilesMatch "\.(md|py|yml|yaml|pem|key)$">
   Require all denied
 </FilesMatch>
-# Pastas inteiras: scripts/ (Node e Python do workflow) e .github/
+# Pastas inteiras: scripts/ (Node e Python do workflow), .github/ e design/ (referências de layout)
 <IfModule mod_rewrite.c>
-  RewriteRule ^(scripts|\.github)(/|$) - [F,L]
+  RewriteRule ^(scripts|\.github|design)(/|$) - [F,L]
 </IfModule>
