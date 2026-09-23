@@ -1,0 +1,233 @@
+/* ==========================================================================
+   Live & Learn Brazil — /innovation-ties/
+   Tokens de styles.css; rótulos, títulos, botões e fecho vêm de due-diligence.css,
+   e os campos do formulário de full-advisory.css. Aqui só o que é próprio desta
+   página, mais os dois modelos de design sobre a mesma copy:
+
+     .it-modelo-a  a arte de circuito como TEXTURA, repetida ao fundo
+     .it-modelo-b  a arte de circuito como BLOCOS (painel do hero e faixa larga)
+
+   Gelo dominante, grafite no texto, ardósia no hero e no fecho, champanhe nos
+   fios, números e na arte. Sem sombra, sem canto arredondado.
+   ========================================================================== */
+
+.it { --coluna-form: 760px; }
+
+/* --------------------------------------------------------------------------
+   1. Hero (ardósia)
+   -------------------------------------------------------------------------- */
+.it-hero { position: relative; isolation: isolate; background: var(--ardosia); padding: 72px var(--margem) 88px; }
+.it-hero-texto { display: flex; flex-direction: column; gap: 20px; max-width: 980px; }
+.it-migalhas { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 16px; letter-spacing: 0.12em; color: var(--texto-sobre-ardosia); margin-bottom: 4px; }
+.it-migalhas a { color: var(--texto-sobre-ardosia); padding-bottom: 2px; border-bottom: 1px solid var(--champagne); transition: color 0.25s ease; }
+.it-migalhas a:hover { color: var(--champagne); }
+.it-h1 { font-size: 68px; line-height: 1.04; color: var(--gelo); max-width: 16em; }
+.it-sub { font-size: 24px; line-height: 1.55; color: var(--texto-sobre-ardosia); max-width: 34em; }
+.it-hero-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; padding-top: 16px; }
+
+/* Botão e link sobre fundo escuro */
+.it-btn--claro { background: transparent; border-color: var(--gelo); color: var(--gelo); }
+.it-btn--claro:hover { background: var(--gelo); color: var(--ardosia); }
+.it-link-claro, .it-link {
+  font-family: var(--fonte-texto); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 17px; line-height: 1.4;
+  padding-bottom: 4px; border-bottom: 2px solid var(--champagne);
+  transition: color 0.25s ease;
+}
+.it-link-claro { color: var(--gelo); }
+.it-link-claro:hover { color: var(--champagne); }
+.it-link { color: var(--grafite); }
+.it-link:hover { color: var(--amora); }
+
+/* --------------------------------------------------------------------------
+   2. 02 / O que fazemos + Nossa experiência
+   -------------------------------------------------------------------------- */
+.it-oque { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: start; margin-top: 8px; }
+.it-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.it-lista li { display: flex; gap: 16px; align-items: flex-start; font-size: 19px; line-height: 1.55; color: var(--grafite); }
+.it-lista li::before { content: ""; flex: 0 0 16px; height: 2px; background: var(--champagne); margin-top: 15px; }
+.it-lista--grande li { font-size: 24px; line-height: 1.5; }
+.it-lista--grande li::before { margin-top: 18px; }
+.it-experiencia { display: flex; flex-direction: column; gap: 18px; padding: 36px 40px 40px; background: var(--champagne-claro); }
+.it-exp-intro { font-size: 18px; line-height: 1.55; color: var(--grafite); }
+
+/* --------------------------------------------------------------------------
+   3. 03 / Como funciona: a linha com pontos
+   Cada etapa carrega o seu pedaço de fio, por isso a linha se refaz sozinha
+   quando as colunas passam de 6 para 3 e depois para 1.
+   -------------------------------------------------------------------------- */
+.it-linha { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 36px 0; }
+.it-etapa { display: flex; flex-direction: column; min-width: 0; }
+.it-numero { font-family: var(--fonte-titulo); font-size: 52px; line-height: 1; color: var(--champagne); padding: 0 24px 12px 0; }
+.it-fio { position: relative; display: block; width: 100%; height: 2px; background: var(--champagne); }
+.it-fio::before { content: ""; position: absolute; left: 0; top: -5px; width: 12px; height: 12px; background: var(--champagne); }
+.it-etapa h3 { margin: 22px 0 0; padding-right: 24px; font-family: var(--fonte-texto); font-weight: 600; font-size: 19px; line-height: 1.35; color: var(--grafite); }
+.it-etapa p { margin-top: 10px; padding-right: 24px; font-size: 17px; line-height: 1.5; color: var(--texto-secundario); }
+
+/* --------------------------------------------------------------------------
+   4. 04 / Para quem  ·  05 / Preço
+   -------------------------------------------------------------------------- */
+.it-quem { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 8px; }
+.it-quem-card { display: flex; flex-direction: column; gap: 12px; padding: 24px 24px 0 0; border-top: 2px solid var(--amora); }
+.it-quem-card h3 { margin: 0; font-family: var(--fonte-texto); font-weight: 600; font-size: 21px; line-height: 1.3; color: var(--grafite); }
+.it-quem-card p { font-size: 18px; line-height: 1.55; color: var(--texto-secundario); }
+
+.it-preco { margin: 44px 0 0; display: flex; flex-direction: column; }
+.it-preco-linha { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 32px; padding: 20px 0; border-top: 1px solid var(--linha); }
+.it-preco-linha:last-child { border-bottom: 1px solid var(--linha); }
+.it-preco dt { font-family: var(--fonte-texto); font-weight: 600; font-size: 19px; line-height: 1.4; color: var(--grafite); }
+.it-preco dd { margin: 0; font-size: 18px; line-height: 1.55; color: var(--texto-secundario); }
+
+/* --------------------------------------------------------------------------
+   5. Começar (champagne-claro) e formulário
+   -------------------------------------------------------------------------- */
+.it-comecar { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 18px; padding: 72px var(--margem) 80px; background: var(--champagne-claro); }
+.it-comecar-titulo { font-size: 44px; line-height: 1.08; color: var(--grafite); max-width: 20em; }
+
+.it-form-secao { max-width: calc(var(--coluna-form) + 2 * var(--margem)); box-sizing: content-box; }
+.it-form { gap: 48px; margin-top: 8px; max-width: var(--coluna-form); }
+.it-nota-req { font-size: 15px; line-height: 1.5; color: var(--texto-secundario); }
+.it-req { color: var(--amora); font-weight: 700; }
+.it-secao { gap: 28px; padding-top: 12px; border-top: 2px solid var(--champagne); }
+/* Campos condicionais: o atributo hidden tem de vencer o display: flex dos campos */
+.fa-campo[hidden], .fa-grupo[hidden], .it-secao [hidden] { display: none; }
+.it-grupo legend { font-family: var(--fonte-texto); font-weight: 600; font-size: 16px; line-height: 1.4; color: var(--grafite); }
+.it-contador { font-variant-numeric: tabular-nums; }
+.it-passou .it-contador { color: var(--amora); font-weight: 600; }
+.it-passou textarea { border-color: var(--amora); }
+.it-form .fa-enviar:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* Fecho (ardósia) */
+.it-fecho h2 { font-size: 46px; line-height: 1.08; color: var(--gelo); }
+.it-fecho-cta {
+  align-self: flex-start; margin-top: 8px;
+  font-family: var(--fonte-idiomas); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; font-size: 19px; line-height: 1.5;
+  padding-bottom: 4px; border-bottom: 2px solid var(--champagne);
+  color: var(--gelo); transition: color 0.25s ease;
+}
+.it-fecho-cta:hover { color: var(--champagne); }
+
+/* ==========================================================================
+   MODELO A — a arte de circuito como textura
+   ========================================================================== */
+.it-textura, .it-hero--textura, .it-comecar--textura { position: relative; isolation: isolate; }
+.it-textura::before, .it-hero--textura::before, .it-comecar--textura::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;                       /* atrás do texto, à frente do fundo da seção */
+  background-image: url("../img/circuito-textura.png");
+  background-repeat: repeat;
+  background-size: 420px auto;
+  pointer-events: none;
+}
+.it-textura::before { opacity: 0.15; }
+.it-hero--textura::before { opacity: 0.26; background-size: 560px auto; }
+.it-comecar--textura::before { opacity: 0.38; background-size: 380px auto; }
+
+/* Véu sobre o hero: o texto fica num campo limpo, a textura aparece à direita */
+.it-hero--textura::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, var(--ardosia) 22%, rgba(62, 73, 95, 0.86) 46%, rgba(62, 73, 95, 0.2) 78%);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   MODELO B — a arte de circuito como blocos
+   ========================================================================== */
+/* Bloco 1: painel ao lado do título */
+.it-hero--painel { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: stretch; padding-right: 0; }
+.it-hero--painel .it-hero-texto { padding: 8px 0 8px; }
+.it-painel {
+  background-color: #2F3A4C;         /* um tom abaixo da ardósia, para o desenho aparecer */
+  background-image: url("../img/circuito-bloco.png");
+  background-size: cover;
+  background-position: 40% center;
+  min-height: 460px;
+}
+/* Bloco 2: faixa larga antes do formulário */
+.it-comecar--faixa { position: relative; isolation: isolate; background: var(--ardosia); padding-top: 88px; padding-bottom: 96px; }
+.it-comecar--faixa::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("../img/circuito-faixa.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+  opacity: 0.5;
+  pointer-events: none;
+}
+/* Véu à esquerda: o convite fica legível, o desenho continua visível à direita */
+.it-comecar--faixa::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, var(--ardosia) 18%, rgba(62, 73, 95, 0.82) 44%, rgba(62, 73, 95, 0.12) 82%);
+  pointer-events: none;
+}
+.it-comecar--faixa .dd-rotulo--sub { color: var(--champagne); }
+.it-comecar--faixa .it-comecar-titulo { color: var(--gelo); }
+.it-comecar--faixa .dd-btn { background: transparent; border-color: var(--gelo); color: var(--gelo); }
+.it-comecar--faixa .dd-btn:hover { background: var(--gelo); color: var(--ardosia); }
+.it-comecar--faixa .it-link { color: var(--gelo); }
+.it-comecar--faixa .it-link:hover { color: var(--champagne); }
+
+/* --------------------------------------------------------------------------
+   Tablet
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .it-hero { padding: 52px var(--margem) 64px; }
+  .it-h1 { font-size: 52px; }
+  .it-sub { font-size: 21px; }
+  .it-oque { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .it-lista--grande li { font-size: 21px; }
+  .it-linha { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 0; }
+  .it-numero { font-size: 44px; }
+  .it-quem { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .it-preco-linha { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .it-comecar { padding: 56px var(--margem) 60px; }
+  .it-comecar-titulo { font-size: 36px; }
+  .it-fecho h2 { font-size: 40px; }
+
+  .it-hero--painel { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-right: var(--margem); }
+  .it-painel { min-height: 280px; background-position: center 35%; }
+}
+
+/* --------------------------------------------------------------------------
+   Celular: a linha fica vertical, como na Due Diligence
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .it-hero { padding: 40px var(--margem) 48px; gap: 16px; }
+  .it-migalhas { font-size: 14px; }
+  .it-h1 { font-size: 38px; }
+  .it-sub { font-size: 18px; }
+  .it-hero-acoes { gap: 16px 24px; }
+  .it-hero-acoes .dd-btn { width: 100%; text-align: center; white-space: normal; }
+
+  .it-lista--grande li { font-size: 19px; }
+  .it-experiencia { padding: 28px 24px 32px; }
+
+  .it-linha { grid-template-columns: minmax(0, 1fr); gap: 0; margin-left: 8px; }
+  .it-etapa { position: relative; border-left: 2px solid var(--champagne); padding: 0 0 32px 28px; }
+  .it-etapa::before { content: ""; position: absolute; left: -7px; top: 8px; width: 12px; height: 12px; background: var(--champagne); }
+  .it-etapa:last-child { border-left-color: transparent; }
+  .it-fio { display: none; }
+  .it-numero { font-size: 36px; padding: 0 0 4px; }
+  .it-etapa h3 { margin-top: 4px; padding-right: 0; }
+  .it-etapa p { padding-right: 0; }
+
+  .it-comecar { padding: 44px var(--margem) 48px; }
+  .it-comecar-titulo { font-size: 30px; }
+  .it-comecar--faixa { padding-top: 56px; padding-bottom: 60px; }
+  .it-fecho h2 { font-size: 32px; }
+  .it-fecho-cta { font-size: 16px; }
+  .it-painel { min-height: 220px; }
+  .it-hero--textura::before { background-size: 380px auto; }
+}

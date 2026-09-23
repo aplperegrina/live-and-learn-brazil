@@ -7,7 +7,7 @@
    Sem JavaScript: redireciona para /full-advisory/?sent=1 ou ?error=1. */
 
 declare(strict_types=1);
-require __DIR__ . '/config.php';
+require_once __DIR__ . '/config.php';
 
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');

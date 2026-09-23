@@ -7,8 +7,8 @@
    Sem JavaScript: redireciona para /contact/?lang=xx&sent=1 ou &error=1. */
 
 declare(strict_types=1);
-require __DIR__ . '/../full-advisory/config.php';
-require __DIR__ . '/textos.php';
+require_once __DIR__ . '/../full-advisory/config.php';
+require_once __DIR__ . '/textos.php';
 
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
@@ -85,7 +85,7 @@ $d = [
     'telefone' => linha(campo('phone', 60)),
     'email'    => linha(campo('email', 254)),
     'mensagem' => campo('message', 5000),
-    'about'    => (($_POST['about'] ?? '') === 'destination') ? 'destination' : '',
+    'about'    => in_array($_POST['about'] ?? '', ['destination', 'innovation'], true) ? (string) $_POST['about'] : '',
 ];
 
 foreach (['nome', 'email', 'mensagem'] as $k) {
@@ -117,7 +117,8 @@ function enviar(string $para, string $assunto, string $corpo, string $reply_to =
 }
 
 $idiomas = ['en' => 'English', 'pt' => 'Portuguese', 'it' => 'Italian', 'zh' => 'Mandarin'];
-$origem  = $d['about'] === 'destination' ? 'Destination Services — request a scope' : 'Contact form';
+$origens = ['destination' => 'Destination Services — request a scope', 'innovation' => 'Innovation Ties — initial call'];
+$origem  = $origens[$d['about']] ?? 'Contact form';
 $rotulo  = fn(string $r, string $v): string => str_pad($r, 20) . ($v === '' ? '—' : $v) . "\n";
 $quando  = gmdate('Y-m-d H:i') . ' UTC';
 
@@ -130,7 +131,8 @@ $corpo .= $rotulo('Page language', $idiomas[$lang]);
 $corpo .= "\nMessage\n" . $d['mensagem'] . "\n\n";
 $corpo .= "Reply to this message to answer " . $d['nome'] . " directly.\n";
 
-$assunto = ($d['about'] === 'destination' ? 'Request a scope — Destination Services' : 'Contact form') . ' — ' . linha($d['nome'], 120);
+$assuntos = ['destination' => 'Request a scope — Destination Services', 'innovation' => 'Innovation Ties — initial call'];
+$assunto = ($assuntos[$d['about']] ?? 'Contact form') . ' — ' . linha($d['nome'], 120);
 
 $t = CT_TEXTOS[$lang];
 $confirmacao  = str_replace('{nome}', $d['nome'], $t['conf_corpo']) . "\n\n";

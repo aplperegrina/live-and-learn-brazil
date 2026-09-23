@@ -2,7 +2,7 @@
 /* Live & Learn Brazil — /full-advisory/ (página PHP para carimbar a hora de abertura
    e mostrar o estado ?sent=1 / ?error=1 sem depender de JavaScript). */
 declare(strict_types=1);
-require __DIR__ . '/config.php';
+require_once __DIR__ . '/config.php';
 header('Cache-Control: no-store');
 $emitido = time();
 $carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo());

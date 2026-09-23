@@ -63,7 +63,7 @@ ErrorDocument 404 /404.html
   Require all denied
 </FilesMatch>
 # Configuração do formulário: só o PHP a lê, nunca o navegador
-<FilesMatch "^(config|textos)\.php$">
+<FilesMatch "^(config|textos|dados|partes)\.php$">
   Require all denied
 </FilesMatch>
 # Por extensão: textos de trabalho, scripts, workflows, chaves

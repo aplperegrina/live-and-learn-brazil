@@ -5,8 +5,8 @@
    sem depender de JavaScript. ?about=destination&items=a|b|c preenche a mensagem com a
    lista de serviços marcada na página Destination Services. */
 declare(strict_types=1);
-require __DIR__ . '/../full-advisory/config.php';
-require __DIR__ . '/textos.php';
+require_once __DIR__ . '/../full-advisory/config.php';
+require_once __DIR__ . '/textos.php';
 header('Cache-Control: no-store');
 
 $lang = ct_idioma((string) ($_GET['lang'] ?? 'en'));
@@ -18,8 +18,12 @@ $carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo())
 $estado = (($_GET['sent'] ?? '') === '1') ? 'enviado' : ((($_GET['error'] ?? '') === '1') ? 'erro' : '');
 
 /* Mensagem pré-preenchida vinda da Destination Services */
-$about = (($_GET['about'] ?? '') === 'destination') ? 'destination' : '';
+$pedido_about = (string) ($_GET['about'] ?? '');
+$about = in_array($pedido_about, ['destination', 'innovation'], true) ? $pedido_about : '';
 $mensagem = '';
+if ($about === 'innovation') {
+    $mensagem = $t['inovacao_abertura'] . "\n";
+}
 if ($about === 'destination') {
     $itens = [];
     foreach (explode('|', (string) ($_GET['items'] ?? '')) as $item) {
