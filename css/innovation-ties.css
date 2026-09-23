@@ -2,10 +2,8 @@
    Live & Learn Brazil — /innovation-ties/
    Tokens de styles.css; rótulos, títulos, botões e fecho vêm de due-diligence.css,
    e os campos do formulário de full-advisory.css. Aqui só o que é próprio desta
-   página, mais os dois modelos de design sobre a mesma copy:
-
-     .it-modelo-a  a arte de circuito como TEXTURA, repetida ao fundo
-     .it-modelo-b  a arte de circuito como BLOCOS (painel do hero e faixa larga)
+   página: a arte de circuito em dois blocos ardósia (o hero e o convite a
+   começar), em gelo acinzentado, à direita, esvanecendo antes do texto.
 
    Gelo dominante, grafite no texto, ardósia no hero e no fecho, champanhe nos
    fios, números e na arte. Sem sombra, sem canto arredondado.
@@ -17,7 +15,7 @@
    1. Hero (ardósia)
    -------------------------------------------------------------------------- */
 .it-hero { position: relative; isolation: isolate; background: var(--ardosia); padding: 72px var(--margem) 88px; }
-.it-hero-texto { display: flex; flex-direction: column; gap: 20px; max-width: 980px; }
+.it-hero-texto { display: flex; flex-direction: column; gap: 20px; max-width: 62%; }
 .it-migalhas { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 16px; letter-spacing: 0.12em; color: var(--texto-sobre-ardosia); margin-bottom: 4px; }
 .it-migalhas a { color: var(--texto-sobre-ardosia); padding-bottom: 2px; border-bottom: 1px solid var(--champagne); transition: color 0.25s ease; }
 .it-migalhas a:hover { color: var(--champagne); }
@@ -86,6 +84,7 @@
 
 .it-form-secao { max-width: calc(var(--coluna-form) + 2 * var(--margem)); box-sizing: content-box; }
 .it-form { gap: 48px; margin-top: 8px; max-width: var(--coluna-form); }
+.it-form-lead { font-size: 22px; line-height: 1.5; color: var(--grafite); }
 .it-nota-req { font-size: 15px; line-height: 1.5; color: var(--texto-secundario); }
 .it-req { color: var(--amora); font-weight: 700; }
 .it-secao { gap: 28px; padding-top: 12px; border-top: 2px solid var(--champagne); }
@@ -109,75 +108,33 @@
 .it-fecho-cta:hover { color: var(--champagne); }
 
 /* ==========================================================================
-   MODELO A — a arte de circuito como textura
+   A arte de circuito nos dois blocos ardósia
+   O desenho já vem em gelo acinzentado e com o esvanecimento embutido no PNG:
+   cheio à direita, transparente onde o texto passa. Por isso aqui não há véu.
+   São dois recortes diferentes da mesma arte, nunca espelhados.
    ========================================================================== */
-.it-textura, .it-hero--textura, .it-comecar--textura { position: relative; isolation: isolate; }
-.it-textura::before, .it-hero--textura::before, .it-comecar--textura::before {
+.it-hero--arte, .it-comecar--arte { position: relative; isolation: isolate; }
+.it-hero--arte::before, .it-comecar--arte::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;                       /* atrás do texto, à frente do fundo da seção */
-  background-image: url("../img/circuito-textura.png");
-  background-repeat: repeat;
-  background-size: 420px auto;
-  pointer-events: none;
-}
-.it-textura::before { opacity: 0.15; }
-.it-hero--textura::before { opacity: 0.26; background-size: 560px auto; }
-.it-comecar--textura::before { opacity: 0.38; background-size: 380px auto; }
-
-/* Véu sobre o hero: o texto fica num campo limpo, a textura aparece à direita */
-.it-hero--textura::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(100deg, var(--ardosia) 22%, rgba(62, 73, 95, 0.86) 46%, rgba(62, 73, 95, 0.2) 78%);
-  pointer-events: none;
-}
-
-/* ==========================================================================
-   MODELO B — a arte de circuito como blocos
-   ========================================================================== */
-/* Bloco 1: painel ao lado do título */
-.it-hero--painel { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: stretch; padding-right: 0; }
-.it-hero--painel .it-hero-texto { padding: 8px 0 8px; }
-.it-painel {
-  background-color: #2F3A4C;         /* um tom abaixo da ardósia, para o desenho aparecer */
-  background-image: url("../img/circuito-bloco.png");
-  background-size: cover;
-  background-position: 40% center;
-  min-height: 460px;
-}
-/* Bloco 2: faixa larga antes do formulário */
-.it-comecar--faixa { position: relative; isolation: isolate; background: var(--ardosia); padding-top: 88px; padding-bottom: 96px; }
-.it-comecar--faixa::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: url("../img/circuito-faixa.png");
+  z-index: -1;                       /* atrás do texto, à frente do fundo ardósia */
   background-repeat: no-repeat;
   background-position: right center;
   background-size: cover;
-  opacity: 0.5;
   pointer-events: none;
 }
-/* Véu à esquerda: o convite fica legível, o desenho continua visível à direita */
-.it-comecar--faixa::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(100deg, var(--ardosia) 18%, rgba(62, 73, 95, 0.82) 44%, rgba(62, 73, 95, 0.12) 82%);
-  pointer-events: none;
-}
-.it-comecar--faixa .dd-rotulo--sub { color: var(--champagne); }
-.it-comecar--faixa .it-comecar-titulo { color: var(--gelo); }
-.it-comecar--faixa .dd-btn { background: transparent; border-color: var(--gelo); color: var(--gelo); }
-.it-comecar--faixa .dd-btn:hover { background: var(--gelo); color: var(--ardosia); }
-.it-comecar--faixa .it-link { color: var(--gelo); }
-.it-comecar--faixa .it-link:hover { color: var(--champagne); }
+.it-hero--arte::before { background-image: url("../img/circuito-hero.png"); opacity: 0.9; }
+.it-comecar--arte::before { background-image: url("../img/circuito-faixa.png"); opacity: 0.85; }
+
+/* Segundo bloco: ardósia, como o hero */
+.it-comecar--arte { background: var(--ardosia); padding-top: 88px; padding-bottom: 96px; }
+.it-comecar--arte .dd-rotulo--sub { color: var(--champagne); }
+.it-comecar--arte .it-comecar-titulo { color: var(--gelo); }
+.it-comecar--arte .dd-btn { background: transparent; border-color: var(--gelo); color: var(--gelo); }
+.it-comecar--arte .dd-btn:hover { background: var(--gelo); color: var(--ardosia); }
+.it-comecar--arte .it-link { color: var(--gelo); }
+.it-comecar--arte .it-link:hover { color: var(--champagne); }
 
 /* --------------------------------------------------------------------------
    Tablet
@@ -194,10 +151,11 @@
   .it-preco-linha { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .it-comecar { padding: 56px var(--margem) 60px; }
   .it-comecar-titulo { font-size: 36px; }
+  .it-form-lead { font-size: 20px; }
   .it-fecho h2 { font-size: 40px; }
 
-  .it-hero--painel { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-right: var(--margem); }
-  .it-painel { min-height: 280px; background-position: center 35%; }
+  .it-hero-texto { max-width: 74%; }
+  .it-comecar--arte { padding-top: 64px; padding-bottom: 68px; }
 }
 
 /* --------------------------------------------------------------------------
@@ -225,9 +183,16 @@
 
   .it-comecar { padding: 44px var(--margem) 48px; }
   .it-comecar-titulo { font-size: 30px; }
-  .it-comecar--faixa { padding-top: 56px; padding-bottom: 60px; }
+  .it-form-lead { font-size: 18px; }
+  .it-comecar--arte { padding-top: 48px; padding-bottom: 52px; }
   .it-fecho h2 { font-size: 32px; }
   .it-fecho-cta { font-size: 16px; }
-  .it-painel { min-height: 220px; }
-  .it-hero--textura::before { background-size: 380px auto; }
+  /* No celular não há faixa livre ao lado do texto: a arte desce para o canto
+     inferior direito, menor e mais fraca, e o título fica num campo limpo. */
+  .it-hero-texto { max-width: 100%; }
+  .it-hero--arte::before, .it-comecar--arte::before {
+    opacity: 0.3;
+    background-position: right bottom;
+    background-size: auto 62%;
+  }
 }

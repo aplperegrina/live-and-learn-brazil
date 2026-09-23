@@ -45,7 +45,6 @@ function it_intro(): void
     $c = IT_COPY; ?>
     <div class="dd-cabeca">
       <p class="dd-rotulo dd-rotulo--secao"><?= e($c['intro_rotulo']) ?></p>
-      <h2 class="dd-titulo"><?= e($c['intro_titulo']) ?></h2>
       <div class="dd-intro"><p><?= e($c['intro']) ?></p></div>
     </div>
 <?php }
@@ -187,14 +186,14 @@ function it_formulario(string $raiz, string $carimbo, array $valores = []): void
     <div class="dd-cabeca">
       <p class="dd-rotulo dd-rotulo--secao"><?= e($c['form_rotulo']) ?></p>
       <h2 class="dd-titulo" id="it-t-form"><?= e($c['form_titulo']) ?></h2>
+      <p class="it-form-lead"><?= e($c['form_lead']) ?></p>
       <div class="dd-intro dd-intro--linha"><p><?= e($c['form_intro']) ?></p></div>
     </div>
 
-    <form class="fa-form it-form" id="it-form" method="post" action="<?= e($raiz === '../' ? 'enviar.php' : '../enviar.php') ?>" accept-charset="UTF-8" novalidate>
+    <form class="fa-form it-form" id="it-form" method="post" action="enviar.php" accept-charset="UTF-8" novalidate>
       <p class="fa-erro" id="it-erro" role="alert" tabindex="-1"><?= e($c['erro']) ?></p>
 
       <input type="hidden" name="t" value="<?= e($carimbo) ?>">
-      <input type="hidden" name="modelo" value="<?= $raiz === '../' ? 'a' : 'b' ?>">
       <div class="fa-armadilha" aria-hidden="true">
         <label for="it-website-extra">Website</label>
         <input type="text" id="it-website-extra" name="website_extra" tabindex="-1" autocomplete="off">
@@ -246,5 +245,5 @@ function it_head(string $raiz, string $canonical, bool $noindex = false): void
   <link rel="stylesheet" href="<?= e($raiz) ?>css/styles.css?v=20260921a">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/due-diligence.css?v=20260921c">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/full-advisory.css?v=20260921b">
-  <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260923a">
+  <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260923b">
 <?php }

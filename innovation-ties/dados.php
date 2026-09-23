@@ -15,7 +15,6 @@ const IT_COPY = [
     'cta_secundario' => 'Schedule an initial call',
 
     'intro_rotulo' => '01 / WHY IT IS WORTH THE WORK',
-    'intro_titulo' => 'The most original innovation happens between different cultures.',
     'intro'        => 'In the 2020s, technology connects production chains across cultures from the very first idea. Teams in different countries can now develop a project together from day one, compressing into months what used to take years. Cross-cultural partnerships are where some of the most original innovation happens. They are also demanding: different languages, expectations and ways of working can slow a promising project down. With the right support, a shared ground for communication and clear working mechanisms, two diverse teams can reach their goal and build something new together.',
 
     'oque_rotulo'  => '02 / WHAT WE DO',
@@ -62,6 +61,7 @@ const IT_COPY = [
 
     'form_rotulo'  => 'INNOVATION TIES REQUEST',
     'form_titulo'  => 'Innovation Ties request',
+    'form_lead'    => 'Fill in the form below and request an online conversation.',
     'form_intro'   => 'Innovation Ties works with institutions that have a defined project and the resources to develop an international partnership, which usually includes at least one delegation visit. The questions below help us assess fit and prepare a relevant first mapping. We reply within 5 business days.',
     'obrigatorio'  => '*',
     'obrigatorio_nota' => 'Fields marked with an asterisk are required.',

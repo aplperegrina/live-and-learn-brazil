@@ -18,7 +18,6 @@ header('X-Content-Type-Options: nosniff');
 const IT_CONFIRMACAO = '/innovation-ties/request-received/';
 
 $quer_json = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
-$modelo = (($_POST['modelo'] ?? '') === 'b') ? 'b' : 'a';
 
 /* ---- Leitura e limpeza ----------------------------------------------------------- */
 
@@ -48,7 +47,7 @@ $valores = [];
 
 function responder(bool $ok, string $motivo = ''): never
 {
-    global $quer_json, $modelo, $valores;
+    global $quer_json, $valores;
     if ($quer_json) {
         header('Content-Type: application/json; charset=UTF-8');
         echo json_encode($ok ? ['ok' => true, 'redirect' => IT_CONFIRMACAO] : ['ok' => false, 'reason' => $motivo]);
@@ -62,7 +61,7 @@ function responder(bool $ok, string $motivo = ''): never
     http_response_code(422);
     $it_valores = $valores;
     $it_erro = true;
-    require __DIR__ . ($modelo === 'b' ? '/modelo-b/index.php' : '/index.php');
+    require __DIR__ . '/index.php';
     exit;
 }
 

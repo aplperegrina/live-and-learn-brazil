@@ -1,6 +1,8 @@
 <?php
-/* Live & Learn Brazil — /innovation-ties/ — MODELO A: a arte de circuito entra como
-   textura, repetida ao fundo do hero e de duas seções, sempre em champanhe fraco.
+/* Live & Learn Brazil — /innovation-ties/
+   A arte de circuito entra como dois blocos em ardósia: o hero e a faixa de
+   "get started". Em cada um o desenho fica em gelo acinzentado, à direita, e
+   esvanece antes de chegar ao texto (o esvanecimento já vem no próprio PNG).
    enviar.php inclui este arquivo quando o envio falha sem JavaScript, passando
    $it_valores (o que a pessoa já tinha escrito) e $it_erro. */
 declare(strict_types=1);
@@ -20,22 +22,22 @@ $carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo())
 <head>
 <?php it_head($raiz, 'https://liveandlearnbrazil.com/innovation-ties/'); ?>
 </head>
-<body class="it-modelo-a<?= $erro ? ' fa-estado-erro' : '' ?>">
+<body class="<?= $erro ? 'fa-estado-erro' : '' ?>">
 <div class="page dd fa it">
 
 <?php it_cabecalho($raiz); ?>
 
   <main>
 
-  <!-- ===== HERO (ardósia, textura de circuito por cima) ===== -->
-  <section class="it-hero it-hero--textura" aria-labelledby="it-h1">
+  <!-- ===== HERO: bloco ardósia, circuito à direita esvanecendo até o texto ===== -->
+  <section class="it-hero it-hero--arte" aria-labelledby="it-h1">
     <div class="it-hero-texto">
 <?php it_hero_texto($raiz); ?>
     </div>
   </section>
 
-  <!-- ===== 01 / POR QUE VALE (gelo com textura fraca) ===== -->
-  <section class="dd-secao it-textura" aria-label="Why it is worth the work">
+  <!-- ===== 01 / POR QUE VALE ===== -->
+  <section class="dd-secao" aria-label="Why it is worth the work">
 <?php it_intro(); ?>
   </section>
 
@@ -44,8 +46,8 @@ $carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo())
 <?php it_oque(); ?>
   </section>
 
-  <!-- ===== 03 / COMO FUNCIONA: a linha com pontos (gelo com textura fraca) ===== -->
-  <section class="dd-secao it-textura" aria-label="How it works">
+  <!-- ===== 03 / COMO FUNCIONA: a linha com pontos ===== -->
+  <section class="dd-secao" aria-label="How it works">
 <?php it_como(); ?>
   </section>
 
@@ -55,8 +57,8 @@ $carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo())
 <?php it_preco(); ?>
   </section>
 
-  <!-- ===== COMEÇAR (champagne-claro, textura mais presente) ===== -->
-  <section class="it-comecar it-comecar--textura" aria-label="Get started">
+  <!-- ===== COMEÇAR: segundo bloco ardósia, mesmo tratamento do hero ===== -->
+  <section class="it-comecar it-comecar--arte" aria-label="Get started">
 <?php it_comecar($raiz); ?>
   </section>
 
@@ -75,6 +77,6 @@ $carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo())
 <?php it_rodape($raiz); ?>
 
 </div>
-<script type="module" src="<?= e($raiz) ?>src/components/innovation/formulario.js?v=20260923a"></script>
+<script type="module" src="<?= e($raiz) ?>src/components/innovation/formulario.js?v=20260923b"></script>
 </body>
 </html>
