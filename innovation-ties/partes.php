@@ -245,5 +245,5 @@ function it_head(string $raiz, string $canonical, bool $noindex = false): void
   <link rel="stylesheet" href="<?= e($raiz) ?>css/styles.css?v=20260921a">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/due-diligence.css?v=20260921c">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/full-advisory.css?v=20260921b">
-  <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260923b">
+  <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260923c">
 <?php }

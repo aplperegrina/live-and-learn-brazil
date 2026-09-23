@@ -124,8 +124,9 @@
   background-size: cover;
   pointer-events: none;
 }
-.it-hero--arte::before { background-image: url("../img/circuito-hero.png"); opacity: 0.9; }
-.it-comecar--arte::before { background-image: url("../img/circuito-faixa.png"); opacity: 0.85; }
+/* Traço fino: a arte pede um pouco mais de presença para continuar legível */
+.it-hero--arte::before { background-image: url("../img/circuito-hero.png"); opacity: 1; }
+.it-comecar--arte::before { background-image: url("../img/circuito-faixa.png"); opacity: 0.95; }
 
 /* Segundo bloco: ardósia, como o hero */
 .it-comecar--arte { background: var(--ardosia); padding-top: 88px; padding-bottom: 96px; }
