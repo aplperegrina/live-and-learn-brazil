@@ -5,66 +5,21 @@
    com about=portuguese e voltam para cá com ?sent=1 quando não há JavaScript.
    A ilustração a lápis entra em PNG sem papel, já com o esvanecimento embutido. */
 declare(strict_types=1);
-require_once __DIR__ . '/../full-advisory/config.php';
 header('Cache-Control: no-store');
 
 $raiz = '../';
-$enviado = (($_GET['sent'] ?? '') === '1');
-$erro = (($_GET['error'] ?? '') === '1');
-$emitido = time();
-$carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo());
-
 function e(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 
-/* Os dois formulários são iguais; só muda o tamanho e o texto de cima. */
-function bp_formulario(string $id, string $carimbo, bool $largo = false): void
+/* O convite: um botão para a página de contato padrão, que traz o WhatsApp
+   e o WeChat logo abaixo do formulário. */
+function bp_convite(string $raiz, string $rotulo, string $texto, string $botao): void
 { ?>
-      <div class="bp-recebido" id="<?= e($id) ?>-recebido" tabindex="-1">
-        <h3>Thank you. We will reply within two working days.</h3>
-        <p>A copy of your message has been sent to the email you gave. If nothing arrives, check your spam folder, or write to us on WhatsApp at +55 11 95439 5027.</p>
+      <div class="bp-convite">
+        <p class="dd-rotulo bp-rotulo"><?= e($rotulo) ?></p>
+        <p class="bp-convite-texto"><?= e($texto) ?></p>
+        <a class="dd-btn" href="<?= e($raiz) ?>contact/?about=portuguese"><?= e($botao) ?></a>
+        <p class="bp-convite-nota">WhatsApp and WeChat are on that page too.</p>
       </div>
-
-      <form class="fa-form bp-form<?= $largo ? ' bp-form--claro' : '' ?>" method="post" action="../contact/send.php" accept-charset="UTF-8" data-bp-form>
-        <p class="fa-erro" role="alert" tabindex="-1">Something went wrong and your message was not sent. Please try again, or write to us on WhatsApp at +55 11 95439 5027.</p>
-
-        <input type="hidden" name="t" value="<?= e($carimbo) ?>">
-        <input type="hidden" name="lang" value="en">
-        <input type="hidden" name="about" value="portuguese">
-        <input type="hidden" name="back" value="/brazilian-portuguese-and-communication/">
-        <div class="fa-armadilha" aria-hidden="true">
-          <label for="<?= e($id) ?>-website">Website</label>
-          <input type="text" id="<?= e($id) ?>-website" name="website" tabindex="-1" autocomplete="off">
-        </div>
-
-        <?php if (!$largo): ?>
-        <div class="bp-form-cabeca">
-          <p class="dd-rotulo dd-rotulo--sub">Talk to a professor</p>
-          <p>Tell us who will study and what you need. We reply within two working days.</p>
-        </div>
-        <?php endif; ?>
-
-        <div class="fa-campo">
-          <label for="<?= e($id) ?>-name">Full name</label>
-          <input type="text" id="<?= e($id) ?>-name" name="name" required autocomplete="name" maxlength="200">
-        </div>
-        <div class="<?= $largo ? 'bp-dupla' : '' ?>">
-          <div class="fa-campo">
-            <label for="<?= e($id) ?>-email">Email</label>
-            <input type="email" id="<?= e($id) ?>-email" name="email" required autocomplete="email" maxlength="254">
-          </div>
-          <div class="fa-campo">
-            <label for="<?= e($id) ?>-phone">Phone or WhatsApp</label>
-            <input type="tel" id="<?= e($id) ?>-phone" name="phone" autocomplete="tel" maxlength="60">
-          </div>
-        </div>
-        <div class="fa-campo">
-          <label for="<?= e($id) ?>-message">What do you need?</label>
-          <textarea id="<?= e($id) ?>-message" name="message" rows="<?= $largo ? 5 : 3 ?>" required maxlength="5000"></textarea>
-        </div>
-
-        <button class="dd-btn fa-enviar" type="submit" data-enviando="Sending…">Send</button>
-        <?php if ($largo): ?><p class="bp-form-nota">We use what you write here only to reply to you.</p><?php endif; ?>
-      </form>
 <?php }
 ?>
 <!doctype html>
@@ -81,9 +36,9 @@ function bp_formulario(string $id, string $carimbo, bool $largo = false): void
   <link rel="stylesheet" href="../css/styles.css?v=20260921a">
   <link rel="stylesheet" href="../css/due-diligence.css?v=20260923c">
   <link rel="stylesheet" href="../css/full-advisory.css?v=20260921b">
-  <link rel="stylesheet" href="../css/portuguese.css?v=20260924a">
+  <link rel="stylesheet" href="../css/portuguese.css?v=20260924b">
 </head>
-<body class="<?= $enviado ? 'bp-enviado' : '' ?><?= $erro ? ' fa-estado-erro' : '' ?>">
+<body>
 <div class="page dd fa bp">
 
   <!-- ===== MENU ===== -->
@@ -117,8 +72,8 @@ function bp_formulario(string $id, string $carimbo, bool $largo = false): void
       </div>
     </div>
 
-    <div class="bp-coluna-form">
-<?php bp_formulario('t', $carimbo); ?>
+    <div class="bp-coluna-convite">
+<?php bp_convite($raiz, 'Talk to a professor', 'Tell us who will study and what you need. We reply within two working days.', 'Ask for a class plan'); ?>
     </div>
   </section>
 
@@ -126,8 +81,7 @@ function bp_formulario(string $id, string $carimbo, bool $largo = false): void
   <section class="bp-dobra bp-dobra--conversa" aria-labelledby="bp-t-foco">
     <img class="bp-ilustracao" src="../img/ilustracao-conversa.png" alt="Pencil drawing of three people talking beside a pharmacy sign" width="1240" height="523">
     <div class="bp-dobra-texto">
-      <p class="dd-rotulo dd-rotulo--secao">01 / Our focus</p>
-      <h2 id="bp-t-foco">Communication, and the results it produces.</h2>
+      <p class="dd-rotulo bp-rotulo" id="bp-t-foco">01 / Our focus</p>
       <p>Grammar and pronunciation are the starting point. Our focus is communication and the results you, your family and your team achieve through it. In any culture, word choice, intonation, facial expressions and turn-taking can radically change the outcome of a conversation. We specialize in teaching the most effective way to communicate in each context, according to your goals.</p>
       <p class="bp-citacao">Our course rests on two foundations: learning the essential rules and thriving in the contexts that matter most to you.</p>
     </div>
@@ -232,18 +186,16 @@ function bp_formulario(string $id, string $carimbo, bool $largo = false): void
   <!-- ===== DOBRA 2: famílias e escolas, ilustração à direita ===== -->
   <section class="bp-dobra bp-dobra--placas" aria-labelledby="bp-t-familias">
     <div class="bp-dobra-texto">
-      <p class="dd-rotulo dd-rotulo--secao">04 / Families and schools</p>
-      <h2 id="bp-t-familias">Arriving is a conversation too.</h2>
+      <p class="dd-rotulo bp-rotulo" id="bp-t-familias">04 / Families and schools</p>
       <p class="bp-grande">Two of our professors also have years of experience mediating communication between expatriate families in São Paulo and their children's schools, supporting international students and families as they adapt and laying the groundwork for a successful study journey in Brazil.</p>
     </div>
     <img class="bp-ilustracao" src="../img/ilustracao-placas.png" alt="Pencil drawing of road signs to Santos, Cubatão and Praia Grande above a viaduct" width="1240" height="369">
   </section>
 
   <!-- ===== FECHO: o formulário completo ===== -->
-  <section class="bp-fecho" id="contact" aria-labelledby="bp-t-fecho">
+  <section class="bp-fecho" id="contact" aria-label="Start here">
     <div class="bp-fecho-texto">
-      <p class="dd-rotulo dd-rotulo--secao">Start here</p>
-      <h2 id="bp-t-fecho">Tell us who will study, and what for.</h2>
+      <p class="dd-rotulo bp-rotulo">Start here</p>
       <p>A class plan starts with a conversation: who is learning, the contexts that matter most, and the results you want. We reply within two working days, in Portuguese, English, Mandarin or Italian.</p>
       <div class="bp-whatsapp">
         <p>Prefer mobile? Write to us on WhatsApp.</p>
@@ -251,8 +203,8 @@ function bp_formulario(string $id, string $carimbo, bool $largo = false): void
       </div>
     </div>
 
-    <div class="bp-coluna-form">
-<?php bp_formulario('f', $carimbo, true); ?>
+    <div class="bp-coluna-convite">
+<?php bp_convite($raiz, 'Ready when you are', 'Fill in the form on our contact page and we will come back with a class plan.', 'Ask for a class plan'); ?>
     </div>
   </section>
 
@@ -266,6 +218,5 @@ function bp_formulario(string $id, string $carimbo, bool $largo = false): void
   </footer>
 
 </div>
-<script type="module" src="<?= e($raiz) ?>src/components/portuguese/formulario.js?v=20260924a"></script>
 </body>
 </html>

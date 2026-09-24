@@ -15,7 +15,7 @@
 /* --------------------------------------------------------------------------
    1. Abertura (ardósia): texto à esquerda, formulário à direita
    -------------------------------------------------------------------------- */
-.bp-abertura { background: var(--ardosia); padding: 56px var(--margem) 64px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: start; }
+.bp-abertura { background: var(--ardosia); padding: 56px var(--margem) 64px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: center; }
 .bp-abertura-texto { display: flex; flex-direction: column; gap: 22px; }
 .bp-migalhas { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 16px; letter-spacing: 0.12em; color: var(--texto-sobre-ardosia); }
 .bp-migalhas a { color: var(--texto-sobre-ardosia); padding-bottom: 2px; border-bottom: 1px solid var(--champagne); transition: color 0.25s ease; }
@@ -29,25 +29,16 @@
 .bp-numero span { font-size: 15px; line-height: 1.4; color: var(--texto-sobre-ardosia); }
 
 /* --------------------------------------------------------------------------
-   2. Formulário (dois na página: na abertura e no fim)
+   2. Convite: o botão que leva à página de contato
    -------------------------------------------------------------------------- */
-.bp-form { display: flex; flex-direction: column; gap: 16px; background: var(--gelo); padding: 30px 32px 32px; }
-.bp-form--claro { background: var(--azul-gelo); padding: 32px 34px 34px; gap: 18px; }
-.bp-form-cabeca { display: flex; flex-direction: column; gap: 6px; }
-.bp-form-cabeca p { font-size: 16px; line-height: 1.5; color: var(--texto-secundario); }
-.bp-form .fa-enviar { align-self: flex-start; margin-top: 2px; }
-.bp-form-nota { font-size: 14px; line-height: 1.5; color: var(--texto-secundario); }
-.bp-dupla { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.bp-convite { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; padding: 30px 32px 32px; background: var(--gelo); }
+.bp-convite-texto { font-size: 17px; line-height: 1.6; color: var(--grafite); }
+.bp-convite-nota { font-size: 15px; line-height: 1.5; color: var(--texto-secundario); }
+.bp-fecho .bp-convite { background: var(--azul-gelo); }
 
-/* Estado recebido: substitui o formulário depois do envio */
-.bp-recebido { display: none; flex-direction: column; gap: 14px; background: var(--champagne-claro); padding: 32px 34px 34px; }
-.bp-recebido h3 { margin: 0; font-size: 30px; line-height: 1.1; color: var(--grafite); }
-.bp-recebido p { font-size: 17px; line-height: 1.6; color: var(--grafite); }
-.bp-enviado .bp-recebido { display: flex; }
-.bp-enviado .bp-form { display: none; }
-/* Sem JavaScript o aviso vem no corpo inteiro: basta mostrá-lo uma vez, na abertura */
-body.bp-enviado .bp-fecho { grid-template-columns: minmax(0, 1fr); }
-body.bp-enviado .bp-fecho .bp-coluna-form { display: none; }
+/* Rótulos de seção desta página: amora, um pouco maiores que o corpo */
+.bp-rotulo { font-size: 22px; line-height: 1.3; color: var(--amora); }
+.bp-fecho .bp-rotulo { font-size: 24px; }
 
 /* --------------------------------------------------------------------------
    3. As duas dobras ilustradas
@@ -59,7 +50,7 @@ body.bp-enviado .bp-fecho .bp-coluna-form { display: none; }
 .bp-dobra-texto { display: flex; flex-direction: column; gap: 20px; padding: 56px var(--margem) 60px 48px; }
 .bp-dobra--placas .bp-dobra-texto { padding: 56px 48px 60px var(--margem); }
 .bp-dobra-texto h2 { font-size: 40px; line-height: 1.08; color: var(--grafite); }
-.bp-dobra-texto p { font-size: 19px; line-height: 1.65; color: var(--grafite); }
+.bp-dobra-texto p:not(.bp-rotulo) { font-size: 19px; line-height: 1.65; color: var(--grafite); }
 .bp-dobra-texto .bp-grande { font-size: 22px; }
 .bp-citacao { font-size: 20px; line-height: 1.55; padding-left: 22px; border-left: 2px solid var(--champagne); }
 
@@ -76,8 +67,8 @@ body.bp-enviado .bp-fecho .bp-coluna-form { display: none; }
 
 .bp-materiais { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
 .bp-material { display: flex; flex-direction: column; gap: 12px; padding: 28px 30px 32px; background: var(--gelo); border-top: 2px solid var(--amora); }
-.bp-material h3 { margin: 0; font-size: 27px; line-height: 1.15; color: var(--grafite); }
-.bp-material p { font-size: 17px; line-height: 1.6; color: var(--grafite); }
+.bp-material h3 { margin: 0; font-size: 30px; line-height: 1.15; color: var(--grafite); }
+.bp-material p { font-size: 18px; line-height: 1.6; color: var(--grafite); }
 
 .bp-cursos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
 .bp-curso { display: flex; flex-direction: column; gap: 14px; padding: 32px 30px 34px; background: var(--azul-gelo); }
@@ -108,7 +99,7 @@ body.bp-enviado .bp-fecho .bp-coluna-form { display: none; }
 .bp-fecho { background: var(--gelo); padding: 64px var(--margem) 72px; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 56px; align-items: start; }
 .bp-fecho-texto { display: flex; flex-direction: column; gap: 18px; }
 .bp-fecho-texto h2 { font-size: 44px; line-height: 1.06; color: var(--grafite); }
-.bp-fecho-texto p { font-size: 22px; line-height: 1.6; color: var(--grafite); }
+.bp-fecho-texto p:not(.bp-rotulo) { font-size: 22px; line-height: 1.6; color: var(--grafite); }
 .bp-whatsapp { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; margin-top: 4px; border-top: 2px solid var(--champagne); }
 .bp-whatsapp p { font-size: 22px; line-height: 1.5; color: var(--texto-secundario); }
 .bp-whatsapp a { align-self: flex-start; font-family: var(--fonte-idiomas); font-weight: 700; font-size: 22px; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid var(--champagne); color: var(--grafite); transition: color 0.25s ease; }
@@ -118,10 +109,10 @@ body.bp-enviado .bp-fecho .bp-coluna-form { display: none; }
    Tablet
    -------------------------------------------------------------------------- */
 @media (max-width: 1100px) {
+  .bp-convite { max-width: 620px; }
   .bp-abertura { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 44px var(--margem) 52px; }
   .bp-h1 { font-size: 48px; }
   .bp-lead { font-size: 19px; }
-  .bp-form, .bp-form--claro { max-width: 620px; }
 
   .bp-dobra { grid-template-columns: minmax(0, 1fr); }
   /* No tablet a ilustração passa a ser uma faixa acima do texto */
@@ -144,6 +135,9 @@ body.bp-enviado .bp-fecho .bp-coluna-form { display: none; }
    Celular
    -------------------------------------------------------------------------- */
 @media (max-width: 760px) {
+  .bp-convite { padding: 24px 22px 26px; }
+  .bp-convite .dd-btn { width: 100%; text-align: center; white-space: normal; }
+  .bp-rotulo, .bp-fecho .bp-rotulo { font-size: 20px; }
   .bp-abertura { padding: 32px var(--margem) 40px; gap: 28px; }
   .bp-migalhas { font-size: 14px; }
   .bp-h1 { font-size: 36px; }
@@ -151,9 +145,6 @@ body.bp-enviado .bp-fecho .bp-coluna-form { display: none; }
   .bp-numeros { gap: 20px 28px; }
   .bp-numero b { font-size: 34px; }
 
-  .bp-form, .bp-form--claro { padding: 24px 22px 26px; }
-  .bp-dupla { grid-template-columns: minmax(0, 1fr); gap: 14px; }
-  .bp-form .fa-enviar { width: 100%; text-align: center; white-space: normal; }
 
   .bp-dobra-texto, .bp-dobra--placas .bp-dobra-texto { padding: 28px var(--margem) 36px; gap: 16px; }
   .bp-dobra-texto h2 { font-size: 28px; }
@@ -175,6 +166,4 @@ body.bp-enviado .bp-fecho .bp-coluna-form { display: none; }
   .bp-fecho { padding: 36px var(--margem) 44px; gap: 26px; }
   .bp-fecho-texto h2 { font-size: 28px; }
   .bp-fecho-texto p, .bp-whatsapp p, .bp-whatsapp a { font-size: 17px; }
-  .bp-recebido { padding: 24px 22px 26px; }
-  .bp-recebido h3 { font-size: 24px; }
 }

@@ -16,19 +16,14 @@ header('X-Content-Type-Options: nosniff');
 $quer_json = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 $lang = ct_idioma(is_string($_POST['lang'] ?? null) ? $_POST['lang'] : 'en');
 
-/* Páginas do site que usam este formulário e para onde a resposta volta sem
-   JavaScript. Só endereços desta lista são aceitos, nunca o que vier no POST. */
-const CT_VOLTAS = ['/brazilian-portuguese-and-communication/'];
-$volta = in_array($_POST['back'] ?? '', CT_VOLTAS, true) ? (string) $_POST['back'] : '';
-
 function responder(bool $ok, string $motivo = ''): never
 {
-    global $quer_json, $lang, $volta;
+    global $quer_json, $lang;
     if ($quer_json) {
         header('Content-Type: application/json; charset=UTF-8');
         echo json_encode($ok ? ['ok' => true] : ['ok' => false, 'reason' => $motivo]);
     } else {
-        $pagina = $volta !== '' ? $volta : ct_pagina($lang);
+        $pagina = ct_pagina($lang);
         $pagina .= (str_contains($pagina, '?') ? '&' : '?') . ($ok ? 'sent=1' : 'error=1');
         header('Location: ' . $pagina, true, 303);
     }

@@ -19,10 +19,13 @@ $estado = (($_GET['sent'] ?? '') === '1') ? 'enviado' : ((($_GET['error'] ?? '')
 
 /* Mensagem pré-preenchida vinda da Destination Services */
 $pedido_about = (string) ($_GET['about'] ?? '');
-$about = in_array($pedido_about, ['destination', 'innovation'], true) ? $pedido_about : '';
+$about = in_array($pedido_about, ['destination', 'innovation', 'portuguese'], true) ? $pedido_about : '';
 $mensagem = '';
 if ($about === 'innovation') {
     $mensagem = $t['inovacao_abertura'] . "\n";
+}
+if ($about === 'portuguese') {
+    $mensagem = $t['portugues_abertura'] . "\n";
 }
 if ($about === 'destination') {
     $itens = [];
