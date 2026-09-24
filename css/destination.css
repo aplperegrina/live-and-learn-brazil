@@ -9,6 +9,10 @@
    → grupo DAILY LIFE AND FAMILY (7 cards) → fecho "Send us your list"
    (ardósia, emenda no rodapé do site).
 
+   Entre os cards, três recortes de ilustração em traço: varanda e rua em
+   grafite com traço gelo, escritório em gelo com traço grafite (o par
+   champagne com traço amora fica disponível em .arte--champagne).
+
    A página é um cardápio: cada card é uma caixa de seleção de verdade
    (<input type="checkbox"> + <label for>), e a lista marcada segue no
    pedido de escopo (src/components/destination/lista.js).
@@ -136,6 +140,7 @@
 .col-4 { grid-column: span 4; }
 .col-5 { grid-column: span 5; }
 .col-7 { grid-column: span 7; }
+.col-8 { grid-column: span 8; }
 .col-12 { grid-column: span 12; }
 
 /* Card de serviço: .card do site com caixa de seleção, fio no topo e
@@ -165,6 +170,41 @@
 /* Card marcado: contorno amora por dentro, sem mexer no tamanho */
 .servico:has(.servico-caixa:checked) { box-shadow: inset 0 0 0 2px var(--amora); }
 .servico:has(.servico-caixa:checked) h3 { color: var(--amora); }
+
+/* Blocos de arte entre os cards: recortes das três ilustrações em traço.
+   O PNG em img/traco-*.png é só a máscara (alfa = traço); a cor do traço e
+   a do fundo vêm dos tokens, por isso a mesma arte serve a qualquer par.
+   Sem suporte a mask-image fica só o bloco de cor. */
+.arte {
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  border-top: 2px solid var(--champagne);
+}
+.arte--grafite { background: var(--grafite); --traco: var(--gelo); }
+.arte--gelo { background: var(--gelo); --traco: var(--grafite); }
+.arte--champagne { background: var(--champagne); --traco: var(--amora); border-top-color: var(--amora); }
+.arte--varanda { --mascara: url("../img/traco-varanda.png"); --mascara-pos: center; }
+.arte--escritorio { --mascara: url("../img/traco-escritorio.png"); --mascara-pos: center; }
+.arte--rua { --mascara: url("../img/traco-rua.png"); --mascara-pos: center bottom; }
+.arte--alta { grid-row: span 2; } /* atravessa duas fileiras de cards menores */
+@supports (mask-image: url("")) or (-webkit-mask-image: url("")) {
+  .arte::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--traco);
+    -webkit-mask-image: var(--mascara);
+    -webkit-mask-size: cover;
+    -webkit-mask-position: var(--mascara-pos);
+    -webkit-mask-repeat: no-repeat;
+    mask-image: var(--mascara);
+    mask-size: cover;
+    mask-position: var(--mascara-pos);
+    mask-repeat: no-repeat;
+    pointer-events: none;
+  }
+}
 
 /* Fio inclinado entre os dois grupos */
 .fio { position: relative; height: 85px; overflow: hidden; }
@@ -285,7 +325,8 @@ html[lang="zh-Hans"] .intro p { line-height: 1.8; }
   .intro p { font-size: 24px; }
   .grupo { padding-bottom: 64px; }
   .rotulo-secao { min-height: 112px; font-size: 32px; }
-  .col-4, .col-5, .col-7 { grid-column: span 6; }
+  .col-4, .col-5, .col-7, .col-8 { grid-column: span 6; }
+  .arte--alta { grid-row: auto; }
   .servico, .servico.col-12 { padding: 32px; min-height: 0; }
   .servico h3 { font-size: 30px; }
   .servico--menor h3 { font-size: 28px; }
@@ -313,7 +354,8 @@ html[lang="zh-Hans"] .intro p { line-height: 1.8; }
   .intro p { font-size: 21px; }
   .grupo { padding-bottom: 48px; }
   .rotulo-secao { min-height: 88px; font-size: 24px; letter-spacing: 0.1em; }
-  .col-4, .col-5, .col-7, .col-12 { grid-column: span 12; }
+  .col-4, .col-5, .col-7, .col-8, .col-12 { grid-column: span 12; }
+  .arte { aspect-ratio: 3 / 2; min-height: 0; }
   .servico, .servico.col-12 { padding: 28px 24px; }
   .servico h3, .servico--menor h3 { font-size: 26px; }
   .servico-caixa, .servico--menor .servico-caixa { width: 20px; height: 20px; margin-top: 6px; }
