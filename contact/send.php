@@ -16,14 +16,19 @@ header('X-Content-Type-Options: nosniff');
 $quer_json = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 $lang = ct_idioma(is_string($_POST['lang'] ?? null) ? $_POST['lang'] : 'en');
 
+/* Páginas do site que usam este formulário e para onde a resposta volta sem
+   JavaScript. Só endereços desta lista são aceitos, nunca o que vier no POST. */
+const CT_VOLTAS = ['/brazilian-portuguese-and-communication/'];
+$volta = in_array($_POST['back'] ?? '', CT_VOLTAS, true) ? (string) $_POST['back'] : '';
+
 function responder(bool $ok, string $motivo = ''): never
 {
-    global $quer_json, $lang;
+    global $quer_json, $lang, $volta;
     if ($quer_json) {
         header('Content-Type: application/json; charset=UTF-8');
         echo json_encode($ok ? ['ok' => true] : ['ok' => false, 'reason' => $motivo]);
     } else {
-        $pagina = ct_pagina($lang);
+        $pagina = $volta !== '' ? $volta : ct_pagina($lang);
         $pagina .= (str_contains($pagina, '?') ? '&' : '?') . ($ok ? 'sent=1' : 'error=1');
         header('Location: ' . $pagina, true, 303);
     }
@@ -85,7 +90,7 @@ $d = [
     'telefone' => linha(campo('phone', 60)),
     'email'    => linha(campo('email', 254)),
     'mensagem' => campo('message', 5000),
-    'about'    => in_array($_POST['about'] ?? '', ['destination', 'innovation'], true) ? (string) $_POST['about'] : '',
+    'about'    => in_array($_POST['about'] ?? '', ['destination', 'innovation', 'portuguese'], true) ? (string) $_POST['about'] : '',
 ];
 
 foreach (['nome', 'email', 'mensagem'] as $k) {
@@ -117,7 +122,7 @@ function enviar(string $para, string $assunto, string $corpo, string $reply_to =
 }
 
 $idiomas = ['en' => 'English', 'pt' => 'Portuguese', 'it' => 'Italian', 'zh' => 'Mandarin'];
-$origens = ['destination' => 'Destination Services — request a scope', 'innovation' => 'Innovation Ties — initial call'];
+$origens = ['destination' => 'Destination Services — request a scope', 'innovation' => 'Innovation Ties — initial call', 'portuguese' => 'Brazilian Portuguese and Communication — class plan'];
 $origem  = $origens[$d['about']] ?? 'Contact form';
 $rotulo  = fn(string $r, string $v): string => str_pad($r, 20) . ($v === '' ? '—' : $v) . "\n";
 $quando  = gmdate('Y-m-d H:i') . ' UTC';
@@ -131,7 +136,7 @@ $corpo .= $rotulo('Page language', $idiomas[$lang]);
 $corpo .= "\nMessage\n" . $d['mensagem'] . "\n\n";
 $corpo .= "Reply to this message to answer " . $d['nome'] . " directly.\n";
 
-$assuntos = ['destination' => 'Request a scope — Destination Services', 'innovation' => 'Innovation Ties — initial call'];
+$assuntos = ['destination' => 'Request a scope — Destination Services', 'innovation' => 'Innovation Ties — initial call', 'portuguese' => 'Class plan — Brazilian Portuguese and Communication'];
 $assunto = ($assuntos[$d['about']] ?? 'Contact form') . ' — ' . linha($d['nome'], 120);
 
 $t = CT_TEXTOS[$lang];

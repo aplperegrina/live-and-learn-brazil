@@ -64,7 +64,7 @@ function e(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8')
     <nav class="menu" aria-label="<?= e($t['menu_aria']) ?>">
       <a href="../intercultural-due-diligence/"><?= e($t['menu'][0]) ?></a>
       <a href="../innovation-ties/"><?= e($t['menu'][1]) ?></a>
-      <a href="<?= e($home) ?>#portuguese"><?= e($t['menu'][2]) ?></a>
+      <a href="../brazilian-portuguese-and-communication/"><?= e($t['menu'][2]) ?></a>
       <a href="<?= e($home) ?>#destination"><?= e($t['menu'][3]) ?></a>
     </nav>
   </header>

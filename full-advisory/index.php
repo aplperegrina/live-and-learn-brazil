@@ -30,7 +30,7 @@ $estado = (($_GET['sent'] ?? '') === '1') ? 'enviado' : ((($_GET['error'] ?? '')
     <nav class="menu" aria-label="Services">
       <a href="../intercultural-due-diligence/">Intercultural Due Diligence</a>
       <a href="../innovation-ties/">Innovation Ties</a>
-      <a href="../#portuguese">Business Portuguese</a>
+      <a href="../brazilian-portuguese-and-communication/">Brazilian Portuguese and Communication</a>
       <a href="../#destination">Destination Services</a>
     </nav>
   </header>

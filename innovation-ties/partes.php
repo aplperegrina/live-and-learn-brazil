@@ -16,7 +16,7 @@ function it_cabecalho(string $raiz): void
     <nav class="menu" aria-label="Services">
       <a href="<?= e($raiz) ?>intercultural-due-diligence/">Intercultural Due Diligence</a>
       <a href="./" aria-current="page">Innovation Ties</a>
-      <a href="<?= e($raiz) ?>#portuguese">Business Portuguese</a>
+      <a href="<?= e($raiz) ?>brazilian-portuguese-and-communication/">Brazilian Portuguese and Communication</a>
       <a href="<?= e($raiz) ?>destination-services/">Destination Services</a>
     </nav>
   </header>
