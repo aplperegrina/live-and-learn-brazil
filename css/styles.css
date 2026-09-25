@@ -101,7 +101,7 @@ body {
   background: var(--gelo);
   color: var(--grafite);
   font-family: var(--fonte-texto);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -130,7 +130,7 @@ h1, h2, h3 { margin: 0; font-family: var(--fonte-titulo); font-weight: 400; line
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 17px;
+  font-size: 20px;
   padding-bottom: 6px;
   border-bottom: 2px solid var(--champagne);
   transition: border-color 0.25s ease;
