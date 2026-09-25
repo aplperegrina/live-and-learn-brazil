@@ -115,7 +115,7 @@
   align-items: flex-end;
   padding: 40px var(--margem) 0;
 }
-.intro p { max-width: 880px; font-size: 28px; line-height: 1.45; color: var(--grafite); }
+.intro p { max-width: 880px; font-size: 20px; line-height: 1.6; color: var(--grafite); } /* introdução abaixo do hero: 20px, como o corpo */
 
 /* --------------------------------------------------------------------------
    2. Grupos de serviços: rótulo em PT Sans Narrow, caixa alta, amora
@@ -322,7 +322,6 @@ html[lang="zh-Hans"] .intro p { line-height: 1.8; }
   /* o painel entra em fluxo depois do hero, montado sobre a emenda ardósia/gelo */
   .como { width: auto; max-width: 560px; min-height: 0; margin: -64px var(--margem) 0; padding: 36px 32px; }
   .intro { padding: 56px var(--margem) 0; }
-  .intro p { font-size: 24px; }
   .grupo { padding-bottom: 64px; }
   .rotulo-secao { min-height: 112px; font-size: 32px; }
   .col-4, .col-5, .col-7, .col-8 { grid-column: span 6; }
@@ -351,7 +350,6 @@ html[lang="zh-Hans"] .intro p { line-height: 1.8; }
   .como-num { font-size: 28px; }
   .como li p { font-size: 18px; }
   .intro { padding: 40px var(--margem) 0; }
-  .intro p { font-size: 21px; }
   .grupo { padding-bottom: 48px; }
   .rotulo-secao { min-height: 88px; font-size: 24px; letter-spacing: 0.1em; }
   .col-4, .col-5, .col-7, .col-8, .col-12 { grid-column: span 12; }

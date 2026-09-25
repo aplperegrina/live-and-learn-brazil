@@ -266,7 +266,7 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   padding: 104px var(--margem);
   align-items: start;
 }
-.colunas p { font-size: 32px; font-weight: 400; line-height: 1.45; color: var(--grafite); }
+.colunas p { font-size: 20px; font-weight: 400; line-height: 1.6; color: var(--grafite); } /* introdução abaixo do hero: 20px, como o corpo */
 .citacao { display: flex; flex-direction: column; gap: 24px; border-left: 2px solid var(--champagne); padding-left: 40px; }
 .colunas--equipe { padding: 120px var(--margem); }
 .colunas--equipe p { font-size: 28px; }
@@ -460,7 +460,6 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   .idiomas { padding: 64px 32px; }
   .idiomas a { font-size: 20px; }
   .colunas { gap: 48px; padding: 72px var(--margem); }
-  .colunas p { font-size: 26px; }
   .colunas--equipe p { font-size: 24px; }
   .fileira-1 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .card { padding: 36px; }
@@ -499,7 +498,6 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   .idiomas { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 12px 24px; padding: 24px var(--margem); }
   .idiomas a { font-size: 16px; }
   .colunas { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 56px var(--margem); }
-  .colunas p { font-size: 22px; }
   .colunas--equipe p { font-size: 21px; }
   .citacao { padding-left: 24px; }
   .btn { font-size: 16px; padding: 14px 20px; }
