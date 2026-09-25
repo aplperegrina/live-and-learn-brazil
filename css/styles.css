@@ -28,10 +28,10 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Paleta principal (proporção aproximada de área na página)
-     gelo 55% · ardósia 20% · champagne clara 10% · azul-gelo 8% · champagne 5% · amora 2% */
-  --gelo: #F0F3F4;              /* 55%: fundo da página e do cabeçalho; texto sobre fundos escuros */
+     branco pérola (--gelo) 55% · ardósia 20% · champagne clara 10% · azul-gelo 8% · champagne 5% · amora 2% */
+  --gelo: #FBFCF8;              /* 55%: branco pérola (o token mantém o nome antigo): fundo da página e do cabeçalho; texto sobre fundos escuros */
   --ardosia: #3E495F;           /* 20%: hero, filtro das fotos, card Destination, diagnóstico, faixa, rodapé */
-  --champagne-claro: #F1EAD3;   /* 10%: superfície de apoio: card Innovation, caixa "What is new", texto da faixa */
+  --champagne-claro: #E6DCBC;   /* 10%: superfície de apoio: card Innovation, caixa "What is new", texto da faixa */
   --azul-gelo: #F6F9FF;         /*  8%: cards claros (Portuguese, Intercultural) e fundo do botão */
   --champagne: #DCC792;         /*  5%: fios, sublinhados, numerais, pontos, curva do rodapé */
   --amora: #4E1F39;             /*  2%: acento: hover do menu, contorno e hover do botão, traços */
@@ -43,7 +43,7 @@
 
   /* Transparências derivadas */
   --ardosia-rgb: 62, 73, 95;
-  --creme-hero: rgba(241, 234, 211, 0.92);   /* parágrafo do hero: champagne clara a 92% */
+  --creme-hero: rgba(230, 220, 188, 0.92);   /* parágrafo do hero: champagne clara a 92% */
   --painel-idiomas: rgba(220, 199, 146, 0.8); /* champagne a 80% ao lado do hero */
 
   /* Filtro das fotos recortadas entre os cards */
@@ -65,7 +65,7 @@
   --altura-logo: 78px;
 
   /* Texto secundário: puxa para a ardósia, nunca cinza neutro.
-     Contraste conferido: 5,9:1 sobre azul-gelo, 5,6:1 sobre gelo, 5,2:1 sobre champagne clara. */
+     Contraste conferido: 5,9:1 sobre azul-gelo, 6,1:1 sobre branco pérola, 4,6:1 sobre champagne clara. */
   --texto-secundario: #56607A;
   --texto-sobre-ardosia: #C3CAD6;              /* texto secundário sobre ardósia, 7,6:1 */
   --linha-champagne: rgba(220, 199, 146, 0.28); /* fio champagne sobre ardósia */

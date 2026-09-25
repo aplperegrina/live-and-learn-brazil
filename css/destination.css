@@ -28,7 +28,7 @@
   --painel-topo: 190px;      /* topo do painel, contado da borda superior do hero (188px abaixo do fio de 2px) */
   --painel-altura: 532px;    /* altura mínima do painel */
   --hero-altura: 467px;      /* altura do hero no desktop; se um idioma precisar de mais linhas, aumente aqui (html[lang="…"]) */
-  --fundo-fecho-caixa: rgba(240, 243, 244, 0.08); /* gelo a 8% sobre ardósia */
+  --fundo-fecho-caixa: rgba(251, 252, 248, 0.08); /* branco pérola (--gelo) a 8% sobre ardósia */
 }
 
 /* Sem verde nesta página */
