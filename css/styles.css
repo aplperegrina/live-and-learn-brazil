@@ -365,6 +365,53 @@ html[lang="it"] .hero h1 { font-size: 76px; }
 .diagnostico:hover .diagnostico-seta { transform: translateX(6px); }
 
 /* --------------------------------------------------------------------------
+   7b. Marca e comunicação cultural (home em inglês, português e chinês)
+   Região clara entre o mosaico e a faixa de contatos: etiqueta em PT Sans
+   Narrow amora, título em Libertinus, introdução a 20px, quatro cards 2 × 2
+   em azul-gelo e champagne clara alternados (xadrez), cada um com fio
+   champagne de 2px no topo, e uma linha final com o guia e o botão.
+   Contraste: grafite 12:1 sobre azul-gelo e 10:1 sobre champagne clara;
+   amora 11,9:1 sobre o branco pérola.
+   -------------------------------------------------------------------------- */
+.marca { display: flex; flex-direction: column; gap: 28px; padding: 104px var(--margem) 88px; }
+.marca-rotulo {
+  font-family: var(--fonte-menu);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--amora);
+}
+.marca h2 { font-size: 48px; line-height: 1.1; color: var(--grafite); max-width: 22em; }
+.marca-intro { font-size: 20px; line-height: 1.6; color: var(--grafite); max-width: 880px; }
+.marca-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--coluna-gap); margin-top: 20px; }
+.marca-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 240px;
+  padding: 40px;
+  background: var(--azul-gelo);
+  border-top: 2px solid var(--champagne);
+}
+.marca-card:nth-child(2), .marca-card:nth-child(3) { background: var(--champagne-claro); }
+.marca-card h3 { font-size: 32px; line-height: 1.1; color: var(--grafite); }
+.marca-card p { font-size: 20px; line-height: 1.6; color: var(--grafite); }
+.marca-fecho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px 48px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 32px;
+  border-top: 1px solid var(--linha);
+}
+.marca-fecho p { font-size: 20px; line-height: 1.6; color: var(--grafite); max-width: 760px; }
+.marca-fecho .cta { display: inline-block; white-space: nowrap; margin-left: 4px; } /* o link do guia nunca quebra no meio; desce inteiro para a linha seguinte */
+
+/* --------------------------------------------------------------------------
    8. Faixa "Across São Paulo State" com contatos e QR codes
    -------------------------------------------------------------------------- */
 .faixa {
@@ -480,6 +527,10 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   .foto--larga { grid-column: span 12; }
   .foto--alta { grid-column: span 12; grid-row: auto; min-height: 320px; }
   .card--innovation { grid-column: span 6; }
+  .marca { padding: 72px var(--margem) 64px; }
+  .marca h2 { font-size: 40px; }
+  .marca-card { padding: 32px; min-height: 0; }
+  .marca-card h3 { font-size: 28px; }
   .pilha { grid-column: span 6; margin: 0; }
   .diagnostico { font-size: 20px; padding: 20px 32px; }
   .faixa-conteudo { grid-template-columns: minmax(0, 1fr); gap: 40px; padding: 40px 36px; }
@@ -522,6 +573,14 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   .coluna-foto .foto { min-height: 220px; }
   .coluna-foto .destaque { flex: none; }
   .card { padding: 32px 28px; }
+  .marca { gap: 20px; padding: 56px var(--margem) 48px; }
+  .marca-rotulo { font-size: 20px; letter-spacing: 0.1em; }
+  .marca h2 { font-size: 32px; }
+  .marca-intro, .marca-card p, .marca-fecho p { font-size: 18px; }
+  .marca-grade { grid-template-columns: minmax(0, 1fr); }
+  .marca-card { padding: 28px 24px; }
+  .marca-card h3 { font-size: 26px; }
+  .marca-fecho { flex-direction: column; align-items: flex-start; }
   .card h2 { font-size: 30px; }
   .card-corpo p, .lista-tracos p { font-size: 18px; }
   .cta { font-size: 15px; }
