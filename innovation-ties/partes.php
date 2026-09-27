@@ -306,6 +306,6 @@ function it_head(string $raiz, string $canonical, bool $noindex = false): void
   <link rel="stylesheet" href="<?= e($raiz) ?>css/due-diligence.css?v=20260921c">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/full-advisory.css?v=20260921b">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260927b">
-  <?php if (it_zh()): ?><link rel="stylesheet" href="<?= e($raiz) ?>css/zh.css?v=20260927e">
+  <?php if (it_zh()): ?><link rel="stylesheet" href="<?= e($raiz) ?>css/zh.css?v=20260928a">
   <?php endif; ?>
 <?php }
