@@ -98,7 +98,7 @@ const IT_TALENTOS = [
         'para'        => [
             'Empresas chinesas com demanda contínua de contratação',
             'Universidades chinesas',
-            'Empresas brasileiras em expansão internacional que desejam iniciar a parceria com o país de destino por meio de colaborações científicas e profissionais',
+            'Empresas brasileiras em expansão internacional que desejam iniciar a parceria com o país de destino através das colaborações científicas e profissionais',
         ],
     ],
     'zh' => [
