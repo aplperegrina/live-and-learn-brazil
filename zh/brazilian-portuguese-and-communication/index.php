@@ -39,7 +39,7 @@ function bp_convite(string $raiz, string $rotulo, string $texto, string $botao):
   <link rel="stylesheet" href="../../css/due-diligence.css?v=20260923c">
   <link rel="stylesheet" href="../../css/full-advisory.css?v=20260921b">
   <link rel="stylesheet" href="../../css/portuguese.css?v=20260924b">
-  <link rel="stylesheet" href="../../css/zh.css?v=20260927c">
+  <link rel="stylesheet" href="../../css/zh.css?v=20260927d">
 </head>
 <body>
 <div class="page dd fa bp">
