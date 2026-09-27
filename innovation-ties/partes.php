@@ -93,8 +93,8 @@ function it_como(): void
 <?php }
 
 /* Talentos: bloco claro no meio da página. Painel em champagne clara com fio
-   champagne no topo; texto à esquerda e, à direita, a linha de público-alvo num
-   card azul-gelo. Uma coluna no celular. */
+   champagne no topo; texto à esquerda e, à direita, o público-alvo num card
+   azul-gelo, um público por linha. Uma coluna no celular. */
 function it_talentos(string $lang = 'en'): void
 {
     $c = IT_TALENTOS[$lang] ?? IT_TALENTOS['en']; ?>
@@ -103,7 +103,12 @@ function it_talentos(string $lang = 'en'): void
       <h2 class="dd-titulo" id="it-t-talentos"><?= e($c['titulo']) ?></h2>
       <div class="it-talentos-corpo">
         <p class="it-talentos-texto"><?= e($c['texto']) ?></p>
-        <p class="it-talentos-para"><span class="dd-rotulo"><?= e($c['para_rotulo']) ?></span> <?= e($c['para']) ?></p>
+        <div class="it-talentos-para">
+          <p class="dd-rotulo"><?= e($c['para_rotulo']) ?></p>
+          <ul class="lista-pontos">
+            <?php foreach ($c['para'] as $publico): ?><li><?= e($publico) ?></li><?php endforeach; ?>
+          </ul>
+        </div>
       </div>
     </div>
 <?php }
@@ -261,5 +266,5 @@ function it_head(string $raiz, string $canonical, bool $noindex = false): void
   <link rel="stylesheet" href="<?= e($raiz) ?>css/styles.css?v=20260921a">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/due-diligence.css?v=20260921c">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/full-advisory.css?v=20260921b">
-  <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260927a">
+  <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260927b">
 <?php }
