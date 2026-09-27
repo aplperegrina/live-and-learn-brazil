@@ -5,15 +5,21 @@
    ========================================================================== */
 
 /* Títulos e menu: Noto Sans SC auto-hospedada, subset só dos ideogramas
-   usados nesses elementos (fonts/noto-sans-sc-zh-*.woff2). O corpo do texto
+   usados nesses elementos em todas as páginas /zh/, mais ASCII e pontuação
+   (fonts/noto-sans-sc-zh-*.woff2, ~69 KB cada). Ao escrever um título novo
+   em chinês, gere o subset de novo, senão a linha mistura duas fontes. O corpo do texto
    usa a fonte do sistema: uma CJK completa pesaria 8 a 12 MB. */
-@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/noto-sans-sc-zh-500.woff2") format("woff2"); }
-@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/noto-sans-sc-zh-600.woff2") format("woff2"); }
+@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/noto-sans-sc-zh-500.woff2?v=20260927") format("woff2"); }
+@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/noto-sans-sc-zh-600.woff2?v=20260927") format("woff2"); }
 
 html[lang="zh-Hans"] {
-  --fonte-zh: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans SC", sans-serif;
-  --fonte-zh-titulo: "Noto Sans SC Titulos", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans SC", sans-serif;
+  /* "Noto Sans CJK SC" é a do Android/Linux. "Noto Sans SC" fica fora da lista: em styles.css
+     esse nome é uma webfont só com 中 e 文 em peso 600, que deixava os dois ideogramas em negrito */
+  --fonte-zh: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+  --fonte-zh-titulo: "Noto Sans SC Titulos", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
 }
+/* Títulos sem um ideograma sozinho na última linha */
+html[lang="zh-Hans"] h1, html[lang="zh-Hans"] h2, html[lang="zh-Hans"] h3, html[lang="zh-Hans"] .destaque-texto { text-wrap: balance; }
 
 /* Texto sobre foto: véu vertical um pouco mais denso para o ideograma passar de 7:1 */
 html[lang="zh-Hans"] .hero-veu--y { background: linear-gradient(0deg, rgba(var(--ardosia-rgb), 0.72), rgba(var(--ardosia-rgb), 0) 60%); }
@@ -125,6 +131,90 @@ html[lang="zh-Hans"] .faq-resposta { padding: 0 0 26px 46px; max-width: 32em; }
 html[lang="zh-Hans"] .faq-resposta p { font-size: 18px; line-height: 1.8; color: var(--grafite); }
 html[lang="zh-Hans"] .faq-resposta p + p { margin-top: 12px; }
 
+/* ==========================================================================
+   Home chinesa reestruturada (documento "copy chinês revisada", seção 1):
+   dor → como trabalhamos → serviços por fase → cards → números → equipe → contato
+   ========================================================================== */
+
+/* Hero: mais texto que no inglês (marca, subtítulo, dor, fecho, serviços,
+   dois botões); a altura passa a acompanhar o conteúdo */
+html[lang="zh-Hans"] .hero { height: auto; min-height: 662px; }
+html[lang="zh-Hans"] .hero-bloco { height: auto; }
+html[lang="zh-Hans"] .hero-conteudo { height: auto; min-height: 100%; padding: 88px var(--margem) 80px; }
+html[lang="zh-Hans"] .hero-texto { gap: 22px; max-width: 880px; }
+/* Títulos longos: cada oração (até a vírgula) fica inteira, a linha quebra entre elas */
+.zh-frase { display: inline-block; }
+html[lang="zh-Hans"] .hero-texto .hero-lead { font-size: 22px; line-height: 1.8; max-width: 34em; }
+/* O texto chinês vai mais longe sobre a foto: véu horizontal mais denso até o fim do bloco */
+html[lang="zh-Hans"] .hero-veu--x { background: linear-gradient(90deg, rgba(var(--ardosia-rgb), 0.9) 0%, rgba(var(--ardosia-rgb), 0.8) 60%, rgba(var(--ardosia-rgb), 0.5) 100%); }
+.hero-marca {
+  font-family: var(--fonte-menu);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--champagne);                 /* 5,4:1 sobre a ardósia do véu */
+}
+html[lang="zh-Hans"] .hero-sub { font-family: var(--fonte-zh-titulo); font-weight: 500; font-size: 28px; line-height: 1.5; color: var(--gelo); }
+.hero-fecho { font-size: 20px; line-height: 1.8; color: var(--gelo); max-width: 40em; }
+.hero-servicos { font-family: var(--fonte-zh-titulo); font-weight: 600; font-size: 20px; line-height: 1.6; letter-spacing: 0.04em; color: var(--champagne); }
+.hero-servicos span { white-space: nowrap; }
+.hero-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 36px; margin-top: 6px; }
+html[lang="zh-Hans"] .btn--hero { background: var(--champagne); border-color: var(--champagne); color: var(--grafite); padding: 18px 28px; }
+html[lang="zh-Hans"] .btn--hero:hover { background: var(--amora); border-color: var(--amora); color: var(--gelo); }
+.cta--hero { align-self: center; color: var(--gelo); }
+
+/* Número de etapa, comum aos blocos novos */
+.zh-num { flex: none; font-family: var(--fonte-menu); font-weight: 700; font-size: 34px; line-height: 1; }
+
+/* 四大痛点: quatro cards claros e a frase de fecho em amora */
+.zh-dores { display: flex; flex-direction: column; gap: 36px; padding: 104px var(--margem) 88px; }
+html[lang="zh-Hans"] .zh-dores h2,
+html[lang="zh-Hans"] .zh-metodo h2,
+html[lang="zh-Hans"] .zh-fases h2 { font-size: 44px; }
+.zh-dores-lista { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--coluna-gap); }
+.zh-dores-lista li { display: flex; flex-direction: column; gap: 20px; padding: 36px 32px; background: var(--azul-gelo); border-top: 2px solid var(--champagne); }
+.zh-dores .zh-num { color: var(--amora); }
+.zh-dores-lista p, .zh-metodo-lista p { font-size: 20px; line-height: 1.8; }
+.zh-dores-lista strong { font-weight: 700; color: var(--amora); }
+.zh-dores-fecho { border-left: 2px solid var(--champagne); padding-left: 32px; font-family: var(--fonte-zh-titulo); font-weight: 500; font-size: 28px; line-height: 1.6; color: var(--amora); }
+
+/* 我们的工作方式: faixa ardósia, numerais champagne (5,4:1), texto branco pérola */
+.zh-metodo { display: flex; flex-direction: column; gap: 44px; padding: 96px var(--margem); background: var(--ardosia); color: var(--gelo); }
+.zh-metodo h2 { color: var(--gelo); }
+.zh-metodo-lista { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px; }
+.zh-metodo-lista li { display: flex; flex-direction: column; gap: 18px; padding-top: 24px; border-top: 1px solid var(--linha-champagne); }
+.zh-metodo .zh-num { font-size: 42px; color: var(--champagne); }
+.zh-metodo-lista p { color: var(--gelo); }
+.zh-metodo-lista strong { font-weight: 700; color: var(--champagne); }
+
+/* 覆盖投资全周期的服务: três fases lado a lado */
+.zh-fases { display: flex; flex-direction: column; gap: 36px; padding: 104px var(--margem) 64px; }
+.zh-fases-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--coluna-gap); }
+.zh-fase { display: flex; flex-direction: column; gap: 24px; padding: 40px 36px 44px; background: var(--azul-gelo); border-top: 2px solid var(--champagne); }
+.zh-fase:nth-child(2) { background: var(--champagne-claro); }
+html[lang="zh-Hans"] .zh-fase h3 { font-size: 32px; color: var(--amora); }
+.zh-fase .lista-pontos li { font-size: 20px; }
+
+/* Cards: a frase de dor abre cada card */
+html[lang="zh-Hans"] .card-corpo .card-dor { font-family: var(--fonte-zh-titulo); font-weight: 500; font-size: 22px; line-height: 1.6; color: var(--amora); }
+html[lang="zh-Hans"] .card--ardosia .card-corpo .card-dor { color: var(--champagne); }
+
+/* Faixa de números: champagne clara, numerais em amora */
+.zh-numeros { margin: 40px var(--margem) 0; padding: 48px 56px; background: var(--champagne-claro); border-top: 2px solid var(--champagne); }
+.zh-numeros-lista { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px 40px; }
+.zh-numeros-lista li { display: flex; flex-direction: column; gap: 8px; }
+.zh-numeros-lista b { font-family: "Libertinus Sans", var(--fonte-zh-titulo); font-weight: 500; font-size: 44px; line-height: 1.1; color: var(--amora); }
+.zh-numeros-lista span { font-size: 18px; line-height: 1.5; color: var(--grafite); }
+
+/* Equipe: título novo e textos um pouco menores que no inglês (frases longas em chinês) */
+html[lang="zh-Hans"] .colunas--equipe h2 { font-size: 40px; color: var(--grafite); }
+html[lang="zh-Hans"] .colunas--equipe p { font-size: 22px; line-height: 1.8; }
+html[lang="zh-Hans"] .colunas--equipe .equipe-col { gap: 28px; }
+html[lang="zh-Hans"] .faixa { margin-bottom: 0; }
+html[lang="zh-Hans"] .faq + .faixa { margin-top: 0; }
+
 @media (max-width: 1100px) {
   html[lang="zh-Hans"] .marca h2 { font-size: 34px; }
   html[lang="zh-Hans"] .hero h1 { font-size: 48px; }
@@ -149,3 +239,68 @@ html[lang="zh-Hans"] .faq-resposta p + p { margin-top: 12px; }
   html[lang="zh-Hans"] .faq-resposta { padding-left: 0; }
   html[lang="zh-Hans"] .faq-resposta p { font-size: 17px; }
 }
+
+@media (max-width: 1100px) {
+  html[lang="zh-Hans"] .hero { min-height: 600px; }
+  html[lang="zh-Hans"] .hero-texto .hero-lead { font-size: 20px; }
+  html[lang="zh-Hans"] .hero-sub { font-size: 24px; }
+  .zh-dores-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .zh-metodo-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .zh-dores, .zh-fases { padding: 72px var(--margem) 56px; }
+  .zh-metodo { padding: 72px var(--margem); }
+  html[lang="zh-Hans"] .zh-dores h2,
+  html[lang="zh-Hans"] .zh-metodo h2,
+  html[lang="zh-Hans"] .zh-fases h2 { font-size: 36px; }
+  .zh-fases-grade { grid-template-columns: minmax(0, 1fr); }
+  .zh-numeros-lista { justify-content: flex-start; }
+  .zh-numeros-lista b { font-size: 36px; }
+}
+@media (max-width: 760px) {
+  html[lang="zh-Hans"] .fa-abertura h1 { font-size: 34px; line-height: 1.4; }
+  html[lang="zh-Hans"] .hero-bloco { height: auto; }
+  html[lang="zh-Hans"] .hero-conteudo { padding: 48px var(--margem); }
+  html[lang="zh-Hans"] .hero-texto { gap: 18px; }
+  html[lang="zh-Hans"] .hero-texto .hero-lead { font-size: 18px; }
+  .hero-marca { font-size: 15px; letter-spacing: 0.1em; }
+  html[lang="zh-Hans"] .hero-sub { font-size: 21px; }
+  .hero-fecho, .hero-servicos { font-size: 17px; }
+  html[lang="zh-Hans"] .btn--hero { font-size: 17px; padding: 16px 20px; }
+  .zh-dores-lista, .zh-metodo-lista { grid-template-columns: minmax(0, 1fr); }
+  .zh-dores, .zh-fases { gap: 28px; padding: 56px var(--margem) 40px; }
+  .zh-metodo { gap: 32px; padding: 56px var(--margem); }
+  html[lang="zh-Hans"] .zh-dores h2,
+  html[lang="zh-Hans"] .zh-metodo h2,
+  html[lang="zh-Hans"] .zh-fases h2 { font-size: 28px; }
+  .zh-dores-lista li { padding: 28px 24px; }
+  .zh-dores-lista p, .zh-metodo-lista p, .zh-fase .lista-pontos li { font-size: 18px; }
+  .zh-dores-fecho { padding-left: 20px; font-size: 22px; }
+  .zh-fase { padding: 32px 24px; }
+  html[lang="zh-Hans"] .zh-fase h3 { font-size: 26px; }
+  html[lang="zh-Hans"] .card-corpo .card-dor { font-size: 19px; }
+  .zh-numeros { margin: 24px var(--margem) 0; padding: 32px 24px; }
+  .zh-numeros-lista { flex-direction: column; gap: 20px; }
+  .zh-numeros-lista b { font-size: 32px; }
+  html[lang="zh-Hans"] .colunas--equipe h2 { font-size: 28px; }
+  html[lang="zh-Hans"] .colunas--equipe p { font-size: 18px; }
+}
+
+/* Rótulos, migalhas e botões das páginas internas em chinês (diagnóstico,
+   full advisory, confirmações, Innovation Ties, português, contato):
+   sem caixa alta, entreletra curta e a fonte chinesa do sistema, inteira */
+html[lang="zh-Hans"] :is(.conf-rotulo, .ct-canal-nome, .dd-btn, .dd-cta, .dd-idiomas p, .dd-pontos a,
+  .dd-relatorio-achado, .dd-resposta span, .dd-rotulo, .fa-migalhas, .it-fecho-cta, .it-link,
+  .it-link-claro, .it-migalhas, .it-talentos-rotulo, .bp-curso-meta, .bp-migalhas, .bp-tela figcaption) {
+  font-family: var(--fonte-zh);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+html[lang="zh-Hans"] .dd-custo h3 { text-transform: none; letter-spacing: 0; }
+/* Diagnóstico: o parágrafo "正向收益" em chinês é curto; numa coluna só, sem cortar a frase ao meio */
+html[lang="zh-Hans"] .dd-upside-texto { column-count: 1; max-width: 44em; }
+/* Introduções em duas colunas (diagnóstico, Innovation Ties): o chinês é curto e
+   a coluna cortava a frase ao meio; uma coluna, medida de ~44 ideogramas */
+html[lang="zh-Hans"] .dd-intro { column-count: 1; max-width: 44em; }
+html[lang="zh-Hans"] .dd-intro p + p { margin-top: 12px; }
+/* Innovation Ties, 适用对象: sem a segunda linha do inglês, os cards ficavam colados em "05 / 价格" */
+html[lang="zh-Hans"] .it-quem { margin-bottom: 36px; }
+html[lang="zh-Hans"] .it-quem-card h3 { font-family: var(--fonte-zh-titulo); font-weight: 500; line-height: 1.6; }

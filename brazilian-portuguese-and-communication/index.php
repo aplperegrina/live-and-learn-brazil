@@ -31,6 +31,7 @@ function bp_convite(string $raiz, string $rotulo, string $texto, string $botao):
   <meta name="description" content="Three USP professors teaching Brazilian Portuguese and communication: Survival Portuguese, Business Portuguese and tailored courses for families, executives and teams, online or in person in São Paulo.">
   <link rel="canonical" href="https://liveandlearnbrazil.com/brazilian-portuguese-and-communication/">
   <link rel="alternate" hreflang="en" href="https://liveandlearnbrazil.com/brazilian-portuguese-and-communication/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://liveandlearnbrazil.com/zh/brazilian-portuguese-and-communication/">
   <link rel="alternate" hreflang="x-default" href="https://liveandlearnbrazil.com/brazilian-portuguese-and-communication/">
   <link rel="icon" type="image/svg+xml" href="../img/live-and-learn-brazil-favicon.svg">
   <link rel="stylesheet" href="../css/styles.css?v=20260921a">

@@ -15,8 +15,12 @@ if (form) {
   const contador = area ? area.parentElement.querySelector('[data-contador] span') : null;
   const maxPalavras = area ? Number(area.dataset.palavras || 0) : 0;
 
+  // Na página chinesa o limite vale para caracteres (sem contar espaços)
+  const porCaracteres = area ? area.dataset.contagem === 'caracteres' : false;
+
   function contarPalavras(texto) {
     const t = texto.trim();
+    if (porCaracteres) return t.replace(/\s+/g, '').length;
     return t === '' ? 0 : t.split(/\s+/).length;
   }
 
@@ -42,7 +46,7 @@ if (form) {
     contador.textContent = String(n);
     const passou = maxPalavras > 0 && n > maxPalavras;
     area.parentElement.classList.toggle('it-passou', passou);
-    area.setCustomValidity(passou ? `Please keep the description to ${maxPalavras} words.` : '');
+    area.setCustomValidity(passou ? (area.dataset.aviso || `Please keep the description to ${maxPalavras} words.`) : '');
   }
 
   // Grupos de escolha múltipla obrigatórios: pelo menos uma caixa marcada

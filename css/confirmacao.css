@@ -120,6 +120,9 @@
   transition: color 0.25s ease;
 }
 .conf-voltar:hover { color: var(--champagne); }
+/* Sobre a caixa champagne clara: grafite com fio amora (o branco pérola dava 1,2:1) */
+.conf-voltar--escuro { color: var(--grafite); border-bottom-color: var(--amora); }
+.conf-voltar--escuro:hover { color: var(--amora); }
 .conf-fecho + .footer { border-top: 1px solid var(--linha-champagne); }
 
 /* Tablet */
