@@ -23,7 +23,7 @@ $estado = (($_GET['sent'] ?? '') === '1') ? 'enviado' : ((($_GET['error'] ?? '')
   <link rel="stylesheet" href="../../css/styles.css?v=20260921a">
   <link rel="stylesheet" href="../../css/due-diligence.css?v=20260921c">
   <link rel="stylesheet" href="../../css/full-advisory.css?v=20260921b">
-  <link rel="stylesheet" href="../../css/zh.css?v=20260927e">
+  <link rel="stylesheet" href="../../css/zh.css?v=20260928a">
 </head>
 <body class="<?= $estado !== '' ? 'fa-estado-' . $estado : '' ?>">
 <div class="page dd fa">

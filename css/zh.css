@@ -252,7 +252,10 @@ html[lang="zh-Hans"] .faixa + .faq { padding-top: 104px; }
   html[lang="zh-Hans"] .zh-dores h2,
   html[lang="zh-Hans"] .zh-metodo h2,
   html[lang="zh-Hans"] .zh-fases h2 { font-size: 36px; }
-  .zh-fases-grade { grid-template-columns: minmax(0, 1fr); }
+  /* as três fases continuam lado a lado, mais compactas */
+  .zh-fases-grade { gap: 12px; }
+  .zh-fase { gap: 18px; padding: 28px 20px 32px; }
+  .zh-fase .lista-pontos li { font-size: 18px; }
   .zh-numeros-lista { justify-content: flex-start; }
   .zh-numeros-lista b { font-size: 36px; }
 }
@@ -275,8 +278,14 @@ html[lang="zh-Hans"] .faixa + .faq { padding-top: 104px; }
   .zh-dores-lista li { padding: 28px 24px; }
   .zh-dores-lista p, .zh-metodo-lista p, .zh-fase .lista-pontos li { font-size: 18px; }
   .zh-dores-fecho { padding-left: 20px; font-size: 22px; }
-  .zh-fase { padding: 32px 24px; }
-  html[lang="zh-Hans"] .zh-fase h3 { font-size: 26px; }
+  /* três colunas também no celular: caixas estreitas, texto menor, sem os pontos */
+  .zh-fases-grade { gap: 6px; }
+  .zh-fase { gap: 12px; padding: 20px 10px 22px; }
+  html[lang="zh-Hans"] .zh-fase h3 { font-size: 20px; }
+  .zh-fase .lista-pontos { gap: 0; }
+  .zh-fase .lista-pontos li { display: block; padding: 8px 0; border-top: 1px solid var(--linha); font-size: 14px; line-height: 1.5; text-wrap: balance; }
+  .zh-fase .lista-pontos li:first-child { border-top: 0; padding-top: 0; }
+  .zh-fase .lista-pontos li::before { display: none; }
   html[lang="zh-Hans"] .card-corpo .card-dor { font-size: 19px; }
   .zh-numeros { margin: 24px var(--margem) 0; padding: 32px 24px; }
   .zh-numeros-lista { flex-direction: column; gap: 20px; }
