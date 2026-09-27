@@ -212,8 +212,8 @@ html[lang="zh-Hans"] .card--ardosia .card-corpo .card-dor { color: var(--champag
 html[lang="zh-Hans"] .colunas--equipe h2 { font-size: 40px; color: var(--grafite); }
 html[lang="zh-Hans"] .colunas--equipe p { font-size: 22px; line-height: 1.8; }
 html[lang="zh-Hans"] .colunas--equipe .equipe-col { gap: 28px; }
-html[lang="zh-Hans"] .faixa { margin-bottom: 0; }
-html[lang="zh-Hans"] .faq + .faixa { margin-top: 0; }
+/* A faixa de contato fica entre a equipe e o FAQ: o FAQ ganha respiro acima */
+html[lang="zh-Hans"] .faixa + .faq { padding-top: 104px; }
 
 @media (max-width: 1100px) {
   html[lang="zh-Hans"] .marca h2 { font-size: 34px; }
@@ -234,6 +234,7 @@ html[lang="zh-Hans"] .faq + .faixa { margin-top: 0; }
   html[lang="zh-Hans"] .diagnostico { font-size: 19px; }
   html[lang="zh-Hans"] .faixa h2 { font-size: 32px; }
   html[lang="zh-Hans"] .faq { padding-bottom: 64px; }
+  html[lang="zh-Hans"] .faixa + .faq { padding-top: 56px; }
   html[lang="zh-Hans"] .faq h2 { font-size: 30px; }
   html[lang="zh-Hans"] .faq summary { font-size: 18px; }
   html[lang="zh-Hans"] .faq-resposta { padding-left: 0; }
