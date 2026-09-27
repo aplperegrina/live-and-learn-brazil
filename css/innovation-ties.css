@@ -140,7 +140,41 @@
 /* --------------------------------------------------------------------------
    Tablet
    -------------------------------------------------------------------------- */
+/* ==========================================================================
+   Talentos: parcerias com instituições de ensino e formação de talentos
+   Região clara no meio da página. Painel em champagne clara com fio champagne
+   de 2px no topo; texto à esquerda, público-alvo num card azul-gelo à direita.
+   Contraste: grafite 10:1 sobre champagne clara e 12:1 sobre azul-gelo; amora
+   10:1 sobre champagne clara e 11,5:1 sobre azul-gelo.
+   ========================================================================== */
+.it-talentos {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 56px;
+  background: var(--champagne-claro);
+  border-top: 2px solid var(--champagne);
+}
+.it-talentos-rotulo { font-size: 24px; color: var(--amora); }
+.it-talentos .dd-titulo { max-width: 24em; }
+.it-talentos-corpo { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start; padding-top: 8px; }
+.it-talentos-texto { font-size: 20px; line-height: 1.6; color: var(--grafite); }
+.it-talentos-para {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 32px;
+  background: var(--azul-gelo);
+  border-top: 2px solid var(--champagne);
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--grafite);
+}
+.it-talentos-para .dd-rotulo { color: var(--amora); }
+
 @media (max-width: 1100px) {
+  .it-talentos { padding: 40px; }
+  .it-talentos-corpo { gap: 32px; }
   .it-hero { padding: 52px var(--margem) 64px; }
   .it-h1 { font-size: 52px; }
   .it-sub { font-size: 21px; }
@@ -163,6 +197,11 @@
    Celular: a linha fica vertical, como na Due Diligence
    -------------------------------------------------------------------------- */
 @media (max-width: 760px) {
+  .it-talentos { padding: 32px 24px; gap: 18px; }
+  .it-talentos-rotulo { font-size: 19px; letter-spacing: 0.1em; }
+  .it-talentos-corpo { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-top: 0; }
+  .it-talentos-texto, .it-talentos-para { font-size: 18px; }
+  .it-talentos-para { padding: 22px 24px; }
   .it-hero { padding: 40px var(--margem) 48px; gap: 16px; }
   .it-migalhas { font-size: 14px; }
   .it-h1 { font-size: 38px; }

@@ -49,6 +49,8 @@ html[lang="zh-Hans"] .faixa h2 { font-size: 52px; }
 html[lang="zh-Hans"] .colunas p { line-height: 1.8; max-width: 32em; }
 html[lang="zh-Hans"] .card-corpo p,
 html[lang="zh-Hans"] .lista-tracos p { line-height: 1.8; }
+html[lang="zh-Hans"] .lista-pontos li { line-height: 1.8; }
+html[lang="zh-Hans"] .lista-pontos li::before { margin-top: 15px; }
 html[lang="zh-Hans"] .lista-tracos > div::before { margin-top: 17px; }
 html[lang="zh-Hans"] .faixa-texto p { line-height: 1.8; }
 

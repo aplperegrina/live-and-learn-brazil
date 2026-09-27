@@ -46,6 +46,11 @@ $carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo())
 <?php it_oque(); ?>
   </section>
 
+  <!-- ===== TALENTOS: parcerias com instituições de ensino e formação de talentos (região clara) ===== -->
+  <section class="dd-secao" id="talent" aria-labelledby="it-t-talentos">
+<?php it_talentos('en'); ?>
+  </section>
+
   <!-- ===== 03 / COMO FUNCIONA: a linha com pontos ===== -->
   <section class="dd-secao" aria-label="How it works">
 <?php it_como(); ?>

@@ -75,6 +75,40 @@ const IT_COPY = [
     'fecho_cta'    => 'Schedule an initial call',
 ];
 
+/* Bloco "Talentos" (parcerias com instituições de ensino e formação de talentos).
+   Nas quatro línguas desde já; a página só existe em inglês por enquanto e usa 'en'.
+   'para_rotulo' é a etiqueta curta da linha de público-alvo. */
+const IT_TALENTOS = [
+    'en' => [
+        'rotulo'      => 'UNIVERSITY–INDUSTRY PARTNERSHIPS AND TALENT DEVELOPMENT',
+        'titulo'      => 'Local talent that understands technology, speaks Portuguese and knows how Chinese companies work is still scarce.',
+        'texto'       => 'We connect companies with Brazilian universities and vocational schools and design internship and joint training programmes. We also arrange internships and Portuguese-language study in Brazil for Chinese students. Our methodology organises the roles and expectations of all three parties: company, school and student.',
+        'para_rotulo' => 'FOR',
+        'para'        => 'Chinese companies with long-term hiring needs, and Chinese universities.',
+    ],
+    'pt' => [
+        'rotulo'      => 'PARCERIAS COM INSTITUIÇÕES DE ENSINO E FORMAÇÃO DE TALENTOS',
+        'titulo'      => 'Ainda são poucos os profissionais locais que entendem de tecnologia, falam português e conhecem o funcionamento das empresas chinesas.',
+        'texto'       => 'Conectamos empresas a universidades e escolas técnicas brasileiras e desenhamos programas de estágio e de formação conjunta. Também organizamos estágios e estudo de português no Brasil para estudantes chineses. Nossa metodologia organiza os papéis e as expectativas das três partes: empresa, instituição de ensino e estudante.',
+        'para_rotulo' => 'PARA',
+        'para'        => 'empresas chinesas com demanda contínua de contratação e universidades chinesas.',
+    ],
+    'zh' => [
+        'rotulo'      => '校企合作与人才培养',
+        'titulo'      => '懂技术、会葡语、熟悉中国企业的本地人才太少。',
+        'texto'       => '我们为企业对接巴西大学与职业院校，设计实习与联合培养项目；也为中国学生安排赴巴实习与葡语学习，由我们的方法论组织企业、学校与学员三方的分工与期望。',
+        'para_rotulo' => '适合',
+        'para'        => '有长期用人需求的中资企业、中国高校',
+    ],
+    'it' => [
+        'rotulo'      => 'PARTNERSHIP UNIVERSITÀ–IMPRESA E FORMAZIONE DEI TALENTI',
+        'titulo'      => 'Sono ancora pochi i talenti locali che conoscono la tecnologia, parlano portoghese e sanno come lavorano le aziende cinesi.',
+        'texto'       => 'Mettiamo in contatto le aziende con università e istituti tecnici brasiliani e progettiamo programmi di tirocinio e di formazione congiunta. Organizziamo inoltre tirocini e corsi di portoghese in Brasile per studenti cinesi. Con la nostra metodologia definiamo ruoli e aspettative delle tre parti: azienda, istituto e studente.',
+        'para_rotulo' => 'PER',
+        'para'        => 'aziende cinesi con esigenze di assunzione a lungo termine e università cinesi.',
+    ],
+];
+
 /* Seções e campos do formulário. Cada campo: chave, rótulo, tipo e se é obrigatório.
    'opcoes' vale para escolha única (radio), múltipla (checkbox) e lista (select).
    'mostra' liga um campo condicional ao valor que o revela. */
