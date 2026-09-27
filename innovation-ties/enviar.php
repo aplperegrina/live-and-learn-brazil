@@ -16,6 +16,10 @@ header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
 
 const IT_CONFIRMACAO = '/innovation-ties/request-received/';
+/* Envio vindo da página chinesa (/zh/innovation-ties/): mesma validação, mas a
+   pessoa volta às páginas em chinês e a descrição é medida em caracteres. */
+$it_zh = (($_POST['lang'] ?? '') === 'zh');
+$it_confirmacao = $it_zh ? '/zh/innovation-ties/request-received/' : IT_CONFIRMACAO;
 
 $quer_json = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 
@@ -47,21 +51,21 @@ $valores = [];
 
 function responder(bool $ok, string $motivo = ''): never
 {
-    global $quer_json, $valores;
+    global $quer_json, $valores, $it_zh, $it_confirmacao;
     if ($quer_json) {
         header('Content-Type: application/json; charset=UTF-8');
-        echo json_encode($ok ? ['ok' => true, 'redirect' => IT_CONFIRMACAO] : ['ok' => false, 'reason' => $motivo]);
+        echo json_encode($ok ? ['ok' => true, 'redirect' => $it_confirmacao] : ['ok' => false, 'reason' => $motivo]);
         exit;
     }
     if ($ok) {
-        header('Location: ' . IT_CONFIRMACAO, true, 303);
+        header('Location: ' . $it_confirmacao, true, 303);
         exit;
     }
     // Sem JavaScript: a pessoa volta ao formulário com tudo o que escreveu no lugar
     http_response_code(422);
     $it_valores = $valores;
     $it_erro = true;
-    require __DIR__ . '/index.php';
+    require $it_zh ? __DIR__ . '/../zh/innovation-ties/index.php' : __DIR__ . '/index.php';
     exit;
 }
 
@@ -145,7 +149,9 @@ foreach ($campos as $k => $f) {
 if (filter_var($valores['email'], FILTER_VALIDATE_EMAIL) === false || preg_match('/[^\x21-\x7E]/', $valores['email'])) {
     responder(false, 'email');
 }
-if (palavras($valores['description']) > 500) {
+/* Em chinês não há espaços entre palavras: o limite de 500 vale para caracteres */
+$tamanho_descricao = $it_zh ? mb_strlen((string) preg_replace('/\s+/u', '', $valores['description'])) : palavras($valores['description']);
+if ($tamanho_descricao > 500) {
     responder(false, 'words');
 }
 
@@ -180,7 +186,7 @@ function enviar(string $para, string $assunto, string $corpo, string $reply_to =
 
 $corpo  = "Innovation Ties request — $prioridade\n";
 $corpo .= "Received via liveandlearnbrazil.com/innovation-ties/ on " . gmdate('Y-m-d H:i') . " UTC\n";
-$corpo .= "Words in the project description: " . palavras($valores['description']) . "\n";
+$corpo .= ($it_zh ? "Characters in the project description (Chinese form): " : "Words in the project description: ") . $tamanho_descricao . "\n";
 
 foreach (IT_FORM as $s) {
     $corpo .= "\n" . mb_strtoupper($s['titulo']) . "\n";

@@ -132,7 +132,7 @@ function e(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8')
     </form>
 
     <!-- ===== CELULAR: WhatsApp e WeChat (champagne-claro) ===== -->
-    <section class="ct-mobile" aria-labelledby="ct-t-mobile">
+    <section class="ct-mobile" id="wechat" aria-labelledby="ct-t-mobile">
       <h2 class="dd-rotulo dd-rotulo--sub" id="ct-t-mobile"><?= e($t['mobile_rotulo']) ?></h2>
       <p class="ct-mobile-p"><?= e($t['mobile_p']) ?></p>
       <div class="ct-canais">

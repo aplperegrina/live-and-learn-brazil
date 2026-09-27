@@ -354,6 +354,27 @@ html[lang="zh-Hans"] .btn-escopo {
   text-transform: none;
   letter-spacing: 0;
 }
+html[lang="zh-Hans"] .pacote-rotulo,
+html[lang="zh-Hans"] .pacote-para-rotulo,
+html[lang="zh-Hans"] .pacote .btn,
+html[lang="zh-Hans"] .fecho-ds .cta {
+  font-family: var(--fonte-zh-titulo);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+/* O hero chinês tem dor, fecho, slogan e equipe: a segunda linha da grade cresce
+   com o texto em vez de seguir --hero-altura. O painel fica preso à base da
+   introdução (como no inglês) e sobe só a própria altura, sem esticar vazio. */
+html[lang="zh-Hans"] .abertura { grid-template-rows: var(--painel-topo) auto auto; }
+html[lang="zh-Hans"] .como { align-self: end; }
+html[lang="zh-Hans"] .hero-ds { padding-bottom: 72px; }
+/* O slogan, só na versão chinesa: champagne sobre ardósia, 5,4:1 */
+.hero-ds-slogan { font-family: var(--fonte-zh-titulo); font-weight: 600; font-size: 26px; line-height: 1.4; letter-spacing: 0.04em; color: var(--champagne); }
+/* Os dois botões do fecho lado a lado; o WeChat como link sublinhado */
+.fecho-ds-botoes { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 36px; }
+.fecho-ds-botoes .btn-escopo { margin-top: 0; }
+.fecho-ds-botoes .cta { align-self: center; color: var(--gelo); }
 html[lang="zh-Hans"] .servico h3 { line-height: 1.4; }
 html[lang="zh-Hans"] .servico p,
 html[lang="zh-Hans"] .como li p,

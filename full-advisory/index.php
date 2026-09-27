@@ -16,6 +16,9 @@ $estado = (($_GET['sent'] ?? '') === '1') ? 'enviado' : ((($_GET['error'] ?? '')
   <title>Full advisory — Live &amp; Learn Brazil</title>
   <meta name="description" content="Tell us about your operation. We will come back with a proposed scope for on-site intercultural advisory, sized to your company.">
   <link rel="canonical" href="https://liveandlearnbrazil.com/full-advisory/">
+  <link rel="alternate" hreflang="en" href="https://liveandlearnbrazil.com/full-advisory/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://liveandlearnbrazil.com/zh/full-advisory/">
+  <link rel="alternate" hreflang="x-default" href="https://liveandlearnbrazil.com/full-advisory/">
   <link rel="icon" type="image/svg+xml" href="../img/live-and-learn-brazil-favicon.svg">
   <link rel="stylesheet" href="../css/styles.css?v=20260921a">
   <link rel="stylesheet" href="../css/due-diligence.css?v=20260921c">

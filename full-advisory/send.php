@@ -21,7 +21,9 @@ function responder(bool $ok, string $motivo = ''): never
         header('Content-Type: application/json; charset=UTF-8');
         echo json_encode($ok ? ['ok' => true] : ['ok' => false, 'reason' => $motivo]);
     } else {
-        header('Location: ' . FA_PAGINA . ($ok ? '?sent=1' : '?error=1'), true, 303);
+        // Volta para a página de onde veio o envio: a versão chinesa manda lang=zh
+        $pagina = (($_POST['lang'] ?? '') === 'zh') ? '/zh/full-advisory/' : FA_PAGINA;
+        header('Location: ' . $pagina . ($ok ? '?sent=1' : '?error=1'), true, 303);
     }
     exit;
 }
