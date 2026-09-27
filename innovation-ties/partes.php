@@ -92,6 +92,22 @@ function it_como(): void
     </ol>
 <?php }
 
+/* Talentos: bloco claro no meio da página. Painel em champagne clara com fio
+   champagne no topo; texto à esquerda e, à direita, a linha de público-alvo num
+   card azul-gelo. Uma coluna no celular. */
+function it_talentos(string $lang = 'en'): void
+{
+    $c = IT_TALENTOS[$lang] ?? IT_TALENTOS['en']; ?>
+    <div class="it-talentos">
+      <p class="dd-rotulo it-talentos-rotulo"><?= e($c['rotulo']) ?></p>
+      <h2 class="dd-titulo" id="it-t-talentos"><?= e($c['titulo']) ?></h2>
+      <div class="it-talentos-corpo">
+        <p class="it-talentos-texto"><?= e($c['texto']) ?></p>
+        <p class="it-talentos-para"><span class="dd-rotulo"><?= e($c['para_rotulo']) ?></span> <?= e($c['para']) ?></p>
+      </div>
+    </div>
+<?php }
+
 function it_quem(): void
 {
     $c = IT_COPY; ?>
@@ -245,5 +261,5 @@ function it_head(string $raiz, string $canonical, bool $noindex = false): void
   <link rel="stylesheet" href="<?= e($raiz) ?>css/styles.css?v=20260921a">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/due-diligence.css?v=20260921c">
   <link rel="stylesheet" href="<?= e($raiz) ?>css/full-advisory.css?v=20260921b">
-  <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260923c">
+  <link rel="stylesheet" href="<?= e($raiz) ?>css/innovation-ties.css?v=20260927a">
 <?php }
