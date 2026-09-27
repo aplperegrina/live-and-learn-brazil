@@ -9,8 +9,8 @@
    (fonts/noto-sans-sc-zh-*.woff2, ~69 KB cada). Ao escrever um título novo
    em chinês, gere o subset de novo, senão a linha mistura duas fontes. O corpo do texto
    usa a fonte do sistema: uma CJK completa pesaria 8 a 12 MB. */
-@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/noto-sans-sc-zh-500.woff2?v=20260927") format("woff2"); }
-@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/noto-sans-sc-zh-600.woff2?v=20260927") format("woff2"); }
+@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/noto-sans-sc-zh-500.woff2?v=20260927b") format("woff2"); }
+@font-face { font-family: "Noto Sans SC Titulos"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/noto-sans-sc-zh-600.woff2?v=20260927b") format("woff2"); }
 
 html[lang="zh-Hans"] {
   /* "Noto Sans CJK SC" é a do Android/Linux. "Noto Sans SC" fica fora da lista: em styles.css
@@ -141,7 +141,7 @@ html[lang="zh-Hans"] .faq-resposta p + p { margin-top: 12px; }
 html[lang="zh-Hans"] .hero { height: auto; min-height: 662px; }
 html[lang="zh-Hans"] .hero-bloco { height: auto; }
 html[lang="zh-Hans"] .hero-conteudo { height: auto; min-height: 100%; padding: 88px var(--margem) 80px; }
-html[lang="zh-Hans"] .hero-texto { gap: 22px; max-width: 880px; }
+html[lang="zh-Hans"] .hero-texto { gap: 22px; max-width: 920px; } /* o título (14 ideogramas a 64px) cabe numa linha */
 /* Títulos longos: cada oração (até a vírgula) fica inteira, a linha quebra entre elas */
 .zh-frase { display: inline-block; }
 html[lang="zh-Hans"] .hero-texto .hero-lead { font-size: 22px; line-height: 1.8; max-width: 34em; }
