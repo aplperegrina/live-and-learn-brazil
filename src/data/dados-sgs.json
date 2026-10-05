@@ -1,7 +1,7 @@
 {
- "atualizadoEm": "2026-10-02T16:02:09.811Z",
+ "atualizadoEm": "2026-10-05T18:57:40.810Z",
  "fonte": "Banco Central do Brasil, Sistema Gerenciador de Séries Temporais (api.bcb.gov.br)",
- "seriesObtidas": 11,
+ "seriesObtidas": 12,
  "seriesTotal": 12,
  "series": {
   "selic": {
@@ -9,9 +9,9 @@
    "nome": "Selic, meta definida pelo Copom",
    "unidade": "% a.a.",
    "periodicidade": "diaria",
-   "obtidoEm": "2026-10-01T16:46:59.934Z",
+   "obtidoEm": "2026-10-05T18:57:15.906Z",
    "ultimo": {
-    "data": "2026-10-01",
+    "data": "2026-10-05",
     "valor": 13.75
    },
    "historico": [
@@ -2278,12 +2278,20 @@
     [
      "2026-10-01",
      13.75
+    ],
+    [
+     "2026-10-02",
+     13.75
+    ],
+    [
+     "2026-10-05",
+     13.75
     ]
    ],
    "dezAnos": {
     "desde": "2016-10",
     "ate": "2026-10",
-    "obtidoEm": "2026-10-02T16:02:09.811Z",
+    "obtidoEm": "2026-10-05T18:57:40.810Z",
     "meses": [
      [
       "2016-10",
@@ -2777,9 +2785,9 @@
    "nome": "CDI, taxa diária",
    "unidade": "% a.d.",
    "periodicidade": "diaria",
-   "obtidoEm": "2026-10-02T16:01:40.763Z",
+   "obtidoEm": "2026-10-05T18:57:18.615Z",
    "ultimo": {
-    "data": "2026-10-01",
+    "data": "2026-10-02",
     "valor": 0.050788
    },
    "historico": [
@@ -4966,6 +4974,10 @@
     [
      "2026-10-01",
      0.050788
+    ],
+    [
+     "2026-10-02",
+     0.050788
     ]
    ]
   },
@@ -4974,10 +4986,10 @@
    "nome": "TR, taxa referencial diária",
    "unidade": "% a.m.",
    "periodicidade": "diaria",
-   "obtidoEm": "2026-10-02T16:01:43.969Z",
+   "obtidoEm": "2026-10-05T18:57:22.009Z",
    "ultimo": {
-    "data": "2026-10-01",
-    "valor": 0.1616
+    "data": "2026-10-02",
+    "valor": 0.1335
    },
    "historico": [
     [
@@ -7243,6 +7255,10 @@
     [
      "2026-10-01",
      0.1616
+    ],
+    [
+     "2026-10-02",
+     0.1335
     ]
    ]
   },
@@ -7251,10 +7267,10 @@
    "nome": "Dólar PTAX, venda",
    "unidade": "BRL por USD",
    "periodicidade": "diaria",
-   "obtidoEm": "2026-10-02T16:01:45.868Z",
+   "obtidoEm": "2026-10-05T18:57:23.825Z",
    "ultimo": {
-    "data": "2026-10-01",
-    "valor": 5.2079
+    "data": "2026-10-05",
+    "valor": 4.9859
    },
    "historico": [
     [
@@ -9440,6 +9456,14 @@
     [
      "2026-10-01",
      5.2079
+    ],
+    [
+     "2026-10-02",
+     5.2238
+    ],
+    [
+     "2026-10-05",
+     4.9859
     ]
    ]
   },
@@ -9448,7 +9472,7 @@
    "nome": "IPCA, variação mensal",
    "unidade": "% a.m.",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-10-02T16:01:46.317Z",
+   "obtidoEm": "2026-10-05T18:57:24.003Z",
    "ultimo": {
     "data": "2026-08-01",
     "valor": -0.32
@@ -9561,7 +9585,7 @@
    "nome": "IPCA, acumulado em 12 meses",
    "unidade": "% 12m",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-10-02T16:01:47.290Z",
+   "obtidoEm": "2026-10-05T18:57:24.590Z",
    "ultimo": {
     "data": "2026-08-01",
     "valor": 4.22
@@ -9674,7 +9698,7 @@
    "nome": "IGP-M, variação mensal",
    "unidade": "% a.m.",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-10-02T16:01:47.993Z",
+   "obtidoEm": "2026-10-05T18:57:24.779Z",
    "ultimo": {
     "data": "2026-09-01",
     "valor": 1.57
@@ -9791,7 +9815,7 @@
    "nome": "INCC, variação mensal",
    "unidade": "% a.m.",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-10-02T16:01:48.340Z",
+   "obtidoEm": "2026-10-05T18:57:25.219Z",
    "ultimo": {
     "data": "2026-08-01",
     "valor": 0.66
@@ -9904,7 +9928,7 @@
    "nome": "IVG-R, índice de valores de garantia de imóveis residenciais",
    "unidade": "índice",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-10-02T16:01:48.935Z",
+   "obtidoEm": "2026-10-05T18:57:25.634Z",
    "ultimo": {
     "data": "2026-07-01",
     "valor": 790.08
@@ -10013,7 +10037,7 @@
    "nome": "Juros médios, financiamento imobiliário PF",
    "unidade": "% a.a.",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-10-02T16:01:49.311Z",
+   "obtidoEm": "2026-10-05T18:57:26.069Z",
    "ultimo": {
     "data": "2026-08-01",
     "valor": 9.22
@@ -10126,7 +10150,7 @@
    "nome": "Crédito imobiliário PF (ver CONFERIR no script)",
    "unidade": "R$ bilhões",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-10-02T16:01:49.757Z",
+   "obtidoEm": "2026-10-05T18:57:26.652Z",
    "ultimo": {
     "data": "2026-08-01",
     "valor": 20.44
@@ -10239,7 +10263,7 @@
    "nome": "IBC-Br, índice de atividade econômica",
    "unidade": "índice",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-10-02T16:01:51.939Z",
+   "obtidoEm": "2026-10-05T18:57:27.051Z",
    "ultimo": {
     "data": "2026-07-01",
     "valor": 114.40189
