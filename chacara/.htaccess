@@ -1,0 +1,8 @@
+# Boletim Chácara Santo Antônio — subdomínio chacara.liveandlearnbrazil.com
+# Regras próprias para não herdar o redirecionamento da raiz (que manda tudo para liveandlearnbrazil.com)
+DirectoryIndex index.html
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://chacara.liveandlearnbrazil.com%{REQUEST_URI} [L,R=301,NE]
