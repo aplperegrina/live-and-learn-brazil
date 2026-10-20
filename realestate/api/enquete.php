@@ -1,5 +1,5 @@
 <?php
-/* Enquetes dos boletins de bairro (imoveis.liveandlearnbrazil.com)
+/* Enquetes dos boletins de bairro (realestate.liveandlearnbrazil.com)
    POST JSON: {acao:"voto", enquete:"adivinhe"|"planos", site:"brooklin", palpite?, resposta?, optin?, nome?, contato?, idioma?}
    Guarda contagens em ../_dados/enquetes.json e os contatos (só de quem marcou a caixa) em ../_dados/contatos.csv.
    A pasta _dados tem .htaccess que bloqueia o acesso pelo navegador. */
