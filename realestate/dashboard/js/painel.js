@@ -1,6 +1,6 @@
 /* ==========================================================================
    Painel do dashboard: carrega o JSON uma vez, monta a configuração de cada
-   gráfico (src/data/marketData.js) e chama o componente certo para cada
+   gráfico (js/marketData.js) e chama o componente certo para cada
    tile marcado com data-grafico.
 
    Em cada tile, a chave de séries também mostra a última leitura com a data
@@ -10,7 +10,7 @@
 import {
   carregarDados, rotuloBusca, rotuloMes, fmtPct, fmtIndice, fmtCambio,
   montarCustoDoDinheiro, montarVariacaoMensal, montarGauges, montarValoresIndexados, montarCambio, montarAtividade,
-} from '../../data/marketData.js';
+} from './marketData.js';
 import { preencherTabela } from './animacao.js';
 import { desenharLinhas } from './linhas.js';
 import { desenharBarras } from './barras-divergentes.js';

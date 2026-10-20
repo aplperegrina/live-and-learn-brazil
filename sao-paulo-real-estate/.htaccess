@@ -1,0 +1,6 @@
+# Dashboard moved to the real estate subdomain
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^ https://realestate.liveandlearnbrazil.com/dashboard/ [L,R=301]
+</IfModule>
+Redirect 301 /sao-paulo-real-estate https://realestate.liveandlearnbrazil.com/dashboard/

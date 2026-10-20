@@ -5,7 +5,7 @@ Feito para rodar no GitHub Actions, sem interação e sem cair para FTP em texto
 Só usa a biblioteca padrão do Python (ftplib), nada para instalar.
 
 Uso:
-    python3 scripts/enviar-dados-ftp.py src/data/dados-sgs.json [outro/arquivo ...]
+    python3 scripts/enviar-dados-ftp.py realestate/dashboard/dados-sgs.json [outro/arquivo ...]
 
 Variáveis de ambiente (vêm dos Secrets do repositório):
     FTP_HOST   servidor (ex.: 185.211.7.251)
