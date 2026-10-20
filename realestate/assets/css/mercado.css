@@ -1,6 +1,6 @@
 /* ==========================================================================
    Live & Learn Brazil — dashboard do mercado imobiliário de São Paulo
-   Estilos próprios da página /sao-paulo-real-estate/. Tokens vêm de
+   Estilos próprios da página inicial de realestate.liveandlearnbrazil.com. Tokens vêm de
    styles.css (paleta, tinta de dado, tempos de movimento, texto secundário).
    O dashboard mantém a versão anterior da paleta, mais colorida: o verde
    e o off-white que saíram da paleta principal ficam definidos aqui.
@@ -164,6 +164,29 @@ table.visually-hidden { display: block; }
   .grafico-area { height: 230px; }
   .fecho { padding: 36px var(--margem) 8px; }
 }
+
+/* --------------------------------------------------------------------------
+   7. Boletins de bairro: quatro tiles abaixo do painel
+   -------------------------------------------------------------------------- */
+.boletins { padding: 44px var(--margem) 0; }
+.boletins-cab { display: grid; gap: 4px; margin-bottom: 14px; max-width: 860px; }
+.boletins-cab h2 { font-size: 26px; line-height: 1.2; color: var(--grafite); }
+.boletins-cab .unidade { margin: 0; font-size: 14px; line-height: 1.55; color: var(--texto-secundario); }
+.boletins-grade { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--vao); }
+.boletim { text-decoration: none; gap: 4px; padding: 16px 16px 14px; transition: border-color .2s, background-color .2s; }
+.boletim::before { content: ""; position: absolute; inset: -1px -1px auto; height: 2px; background: var(--champagne); }
+.boletim:hover { border-color: rgba(var(--ardosia-rgb), .45); background: #EEF3FC; }
+.boletim:focus-visible { outline: 2px solid var(--ardosia); outline-offset: 2px; }
+.boletim-tipo { font-family: var(--fonte-menu); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--texto-secundario); }
+.boletim h3 { font-size: 22px; }
+.boletim .unidade { margin: 0 0 10px; }
+.boletim-valor { margin: auto 0 0; display: grid; gap: 0; }
+.boletim-valor b { font-family: var(--fonte-titulo); font-size: 28px; font-weight: 400; color: var(--ardosia); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.boletim-valor span, .boletim-n { font-size: 12.5px; color: var(--texto-secundario); margin: 0; }
+.boletim-abre { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--linha-champagne, rgba(220,199,146,.4)); font-size: 13px; font-weight: 600; color: var(--ardosia); }
+.boletins-nota { margin: 12px 0 0; max-width: 90ch; font-size: 12.5px; line-height: 1.6; color: var(--texto-secundario); }
+@media (max-width: 1100px) { .boletins-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .boletins-grade { grid-template-columns: minmax(0, 1fr); } .boletins { padding-top: 36px; } }
 
 /* Sem movimento: os componentes leem a preferência e desenham no estado final. */
 @media (prefers-reduced-motion: reduce) {

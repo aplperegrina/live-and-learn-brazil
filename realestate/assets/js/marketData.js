@@ -1,7 +1,7 @@
 /* ==========================================================================
    Live & Learn Brazil — dados do dashboard imobiliário de São Paulo
 
-   Os números vivem em realestate/dashboard/dados-sgs.json, gravado todo dia útil por
+   Os números vivem em realestate/dados/dados-sgs.json, gravado todo dia útil por
    scripts/buscar-dados.js (GitHub Actions, 7h de Brasília). Este módulo só
    carrega o JSON e o transforma nas séries que cada gráfico precisa.
    Nenhum número fica escrito nos componentes nem aqui.
@@ -10,7 +10,7 @@
    de hoje; o JSON também traz atualizadoEm, a data em que foi buscado.
    ========================================================================== */
 
-const URL_DADOS = new URL('../dados-sgs.json', import.meta.url);
+const URL_DADOS = new URL('../../dados/dados-sgs.json', import.meta.url);
 const MESES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const JANELA = 24; /* meses mostrados nos gráficos de linha */
 

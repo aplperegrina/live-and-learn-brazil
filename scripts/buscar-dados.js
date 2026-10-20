@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /* ==========================================================================
    Live & Learn Brazil — dashboard imobiliário
-   Busca as séries do SGS (Banco Central) e grava realestate/dashboard/dados-sgs.json
-   (publicado em https://realestate.liveandlearnbrazil.com/dashboard/).
+   Busca as séries do SGS (Banco Central) e grava realestate/dados/dados-sgs.json
+   (publicado em https://realestate.liveandlearnbrazil.com/).
 
    Node 20 ou mais novo, fetch nativo, nenhuma dependência.
    Uso:  node scripts/buscar-dados.js
@@ -37,7 +37,7 @@ const ULTIMOS_MAXIMO = 20;
 const MESES_DE_HISTORICO = 26;     /* 24 meses de gráfico + folga para séries atrasadas */
 const ANOS_SELIC_LONGA = 10;       /* percentil da Selic: um valor por mês, 10 anos (limite da API) */
 
-const SAIDA = path.resolve(__dirname, '..', 'realestate', 'dashboard', 'dados-sgs.json');
+const SAIDA = path.resolve(__dirname, '..', 'realestate', 'dados', 'dados-sgs.json');
 const MINIMO_DE_SERIES = 6;
 const TENTATIVAS = 3;
 const ESPERAS_MS = [3000, 8000];   /* entre a 1ª e a 2ª, entre a 2ª e a 3ª */

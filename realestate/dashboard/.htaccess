@@ -1,0 +1,5 @@
+# O dashboard virou a página inicial do subdomínio
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^ https://realestate.liveandlearnbrazil.com/ [L,R=301]
+</IfModule>
