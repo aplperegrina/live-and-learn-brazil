@@ -243,7 +243,7 @@ sup .ast{font-size:.55em}
 .st-l .l{font-size:10.5px;font-weight:500;fill:var(--ink2)}
 .st-l g.off{display:none}
 /* lugares especiais */
-:root{--c-cafe:#4F6488;--c-padaria:#E0604E;--c-arte:#8A5A3C;--c-cultura:#C99A1F;--c-marco:#5B3A8E}
+:root{--c-cafe:#4F6488;--c-padaria:#E0604E;--c-arte:#8A5A3C;--c-cultura:#C99A1F;--c-marco:#5B3A8E;--c-mesa:#6E2C4E;--c-evento:#A88B4A}
 .guia{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px;margin-bottom:22px}
 .gcat{border:1.5px solid var(--ink);background:#fff;padding:16px 18px;display:grid;gap:6px;align-content:start;border-top:7px solid var(--cc)}
 .gcat b{font-family:var(--display);font-size:21px;line-height:1.15}
@@ -777,7 +777,7 @@ function drawPois(){
   });
 }
 const LG = (C.lugares && C.lugares.itens) || [];
-const LGC = {cafe:'#4F6488', padaria:'#E0604E', arte:'#8A5A3C', cultura:'#C99A1F', marco:'#5B3A8E'};
+const LGC = {cafe:'#4F6488', padaria:'#E0604E', arte:'#8A5A3C', cultura:'#C99A1F', marco:'#5B3A8E', mesa:'#6E2C4E', evento:'#A88B4A'};
 const lugEls = [];
 function drawLug(){
   const g = $('lug'); g.innerHTML = ''; lugEls.length = 0;
