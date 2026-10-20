@@ -285,6 +285,48 @@ svg.zk .lugp text,.lugp.on text{display:block}
 .res .bar i{display:block;height:100%;background:var(--blue);width:0;transition:width .9s cubic-bezier(.2,.8,.2,1)}
 .res .row.me .bar i{background:var(--red)}
 
+/* quantos m² você compra */
+.compra{background:var(--soft);border:1px solid rgba(62,73,95,.14);border-top:6px solid var(--champ);padding:30px 28px 24px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:26px 40px;position:relative}
+.compra::before{content:"";position:absolute;right:0;top:-6px;width:28%;height:6px;background:var(--red)}
+.compra-q{display:grid;gap:14px;align-content:start;min-width:0}
+.compra-h{font-size:clamp(28px,3.6vw,42px);line-height:1.25;color:var(--ink)}
+.cm-in{display:inline-flex;align-items:baseline;gap:6px;background:#fff;border-bottom:3px dashed var(--red);padding:2px 10px 0;cursor:text;white-space:nowrap;max-width:100%;vertical-align:baseline;border-radius:4px 4px 0 0;box-shadow:0 0 0 1px rgba(62,73,95,.12)}
+.cm-in:focus-within{border-bottom-style:solid;box-shadow:0 0 0 2px var(--champ)}
+.cm-in.hint{animation:cmPulse 2.2s ease-in-out infinite}
+@keyframes cmPulse{0%,100%{box-shadow:0 0 0 1px rgba(62,73,95,.12)}50%{box-shadow:0 0 0 6px rgba(220,199,146,.55)}}
+.cm-rs{font-family:var(--display);font-weight:700;color:var(--muted);font-size:.8em}
+.cm-in input{font:700 1em/1.15 var(--display);color:var(--blue);border:0;background:transparent;padding:0;width:var(--cw,7ch);min-width:3ch;max-width:11ch;outline:none;font-variant-numeric:tabular-nums}
+.cm-pen{font-family:var(--ui);font-size:.45em;color:var(--red);align-self:center;font-weight:700}
+.cm-range{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;cursor:pointer;margin:6px 0 0;--p:.4}
+.cm-range::-webkit-slider-runnable-track{height:10px;border-radius:5px;background:linear-gradient(90deg,var(--red) calc(var(--p)*100%),var(--soft2) 0);box-shadow:inset 0 0 0 1px rgba(62,73,95,.18)}
+.cm-range::-moz-range-track{height:10px;border-radius:5px;background:linear-gradient(90deg,var(--red) calc(var(--p)*100%),var(--soft2) 0);box-shadow:inset 0 0 0 1px rgba(62,73,95,.18)}
+.cm-range::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-10px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 2px 8px rgba(52,66,94,.35)}
+.cm-range::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--blue);box-shadow:0 2px 8px rgba(52,66,94,.35)}
+.cm-range:focus-visible{outline:none}.cm-range:focus-visible::-webkit-slider-thumb{outline:3px solid var(--red);outline-offset:2px}
+.cm-scale{display:flex;justify-content:space-between;font-family:var(--narrow);font-size:15px;font-weight:700;color:var(--muted);margin-top:-6px}
+.cm-chips{display:flex;flex-wrap:wrap;gap:8px}
+.cm-chips button{font:700 15px/1 var(--narrow);letter-spacing:.04em;padding:10px 14px;min-height:42px;border:1.5px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer;border-radius:21px}
+.cm-chips button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.compra-res{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center;align-self:center;min-width:0}
+.cm-plan svg{width:min(210px,40vw);height:auto;display:block;overflow:visible}
+.cm-leg{font-family:var(--narrow);font-size:14.5px;font-weight:700;color:var(--muted);margin-top:6px;max-width:220px;line-height:1.5}
+.cm-leg span{display:inline-block;width:14px;height:10px;margin:0 5px 0 0;vertical-align:-1px}.cm-leg .a{background:rgba(52,66,94,.14);border:2px solid #34425E}.cm-leg .b{border:2px dashed #8E9DBB;margin-left:10px}
+.cm-plan text{font-family:var(--narrow);font-size:15px;font-weight:700;fill:var(--ink2)}
+.cm-big{font-family:var(--display);font-weight:700;font-size:clamp(52px,7vw,84px);line-height:.95;color:var(--blue)}
+.cm-big small{font-size:.45em;margin-left:4px}
+#cm-sub{font-size:15.5px;color:var(--ink2);margin-top:8px}
+.cm-rows{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:18px 40px;border-top:1px solid var(--champ);padding-top:18px}
+.cm-g h3{font-family:var(--narrow);font-size:16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.cm-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:baseline;margin-bottom:9px;font-size:15px}
+.cm-row span{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cm-row b{font-family:var(--display);font-size:20px;color:var(--blue);font-variant-numeric:tabular-nums}
+.cm-row i{grid-column:1/-1;display:block;height:8px;background:var(--soft2);border-radius:4px;overflow:hidden}
+.cm-row i em{display:block;height:100%;background:var(--blue);border-radius:4px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.cm-row.sm i em{background:var(--blue3)}
+#cm-note{grid-column:1/-1}
+@media (max-width:900px){.compra{grid-template-columns:minmax(0,1fr);padding:24px 18px 20px}.compra-res{grid-template-columns:minmax(0,1fr)}.cm-plan svg{width:min(190px,60vw)}}
+@media (prefers-reduced-motion: reduce){.cm-in.hint{animation:none}.cm-row i em{transition:none}}
+
 /* animação de entrada */
 .rise{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .rise.on{opacity:1;transform:none}
@@ -354,6 +396,24 @@ svg.zk .lugp text,.lugp.on text{display:block}
     <div class="card rise"><h3 id="c2-h"></h3><div class="sub" id="c2-s"></div><div class="leg" id="c2-l"></div><svg id="c2" viewBox="0 0 600 300" role="img"></svg><div class="foot" id="c2-f"></div></div>
     <div class="card rise"><h3 id="c3-h"></h3><div class="sub" id="c3-s"></div><svg id="c3" viewBox="0 0 600 300" role="img"></svg><div class="foot" id="c3-f"></div></div>
     <div class="card rise"><h3 id="c4-h"></h3><div class="sub" id="c4-s"></div><svg id="c4" viewBox="0 0 600 380" role="img"></svg><div class="foot" id="c4-f"></div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="compra"><div class="wrap">
+  <div class="compra rise">
+    <div class="compra-q">
+      <div class="k" id="t-cm-k"></div>
+      <h2 class="compra-h"><span id="t-cm-a"></span> <label class="cm-in hint" id="cm-lab"><span class="cm-rs">R$</span><input id="cm-v" inputmode="numeric" autocomplete="off" enterkeyhint="done"><span class="cm-pen" aria-hidden="true">✎</span></label><span id="t-cm-b">?</span></h2>
+      <input type="range" id="cm-r" class="cm-range" min="0" max="1000" step="1">
+      <div class="cm-scale num" id="cm-scale"></div>
+      <div class="cm-chips" id="cm-chips" role="group"></div>
+    </div>
+    <div class="compra-res" aria-live="polite">
+      <div class="cm-plan"><svg id="cm-sq" viewBox="-6 -6 232 240" aria-hidden="true"></svg><p class="cm-leg" id="cm-leg"></p></div>
+      <div><div class="cm-big num" id="cm-big">—</div><p id="cm-sub"></p></div>
+    </div>
+    <div class="cm-rows" id="cm-rows"></div>
+    <p class="small" id="cm-note"></p>
   </div>
 </div></section>
 
@@ -843,10 +903,89 @@ function renderText(){ gScale(); set('g-val', R(+rg.value)); thermoSet();
    ? `<div>Sources: property-transfer tax (ITBI) records, City of São Paulo (Jan/2021–${MESES.en[lastM-1]}/${lastY}), purchases only, excluding records below the reference value; fiscal blocks from GeoSampa; news and reports linked in each section.</div><div class="nota-m2"><b>* About the price per m² of private area.</b> The City's ITBI records only give the built area from the property-tax (IPTU) record, which also counts each unit's share of common areas, parking and amenities. To bring the figures closer to the private area used in listings and in the news, we divide the IPTU area of each apartment and flat by an approximate factor that grows with unit size: about 1.35 for studios and up to 1.95 for large units with several parking spaces. The IPTU-based figure is shown alongside. This is a statistical estimate for the block and the neighborhood. It does not represent the actual value of any specific property on the block, which varies with the building's construction standard, its condition and the data confirmed in the property registry (matrícula). For a valuation of your property, talk to Andrea.</div><div>Houses, offices and shops use the IPTU built area. Blocks with fewer than 3 sales are flagged.</div>`
    : `<div>Fontes: guias de ITBI pagas, Prefeitura de São Paulo (jan/2021 a ${MESES.pt[lastM-1]}/${lastY}), só compra e venda, sem guias abaixo do valor venal de referência; quadras fiscais do GeoSampa; notícias e relatórios com links em cada seção.</div><div class="nota-m2"><b>* Sobre o m² de área privativa.</b> As guias de ITBI da Prefeitura trazem apenas a área construída do IPTU, que soma à área privativa a parte de cada unidade nas áreas comuns, vagas e lazer. Para aproximar os números do m² privativo usado nos anúncios e nas notícias, dividimos a área do IPTU de cada apartamento e flat por um fator aproximado que cresce com o tamanho da unidade: cerca de 1,35 nos studios e até 1,95 nas unidades grandes com várias vagas. O número pela área do IPTU aparece ao lado. Trata-se de uma estimativa estatística da quadra e do bairro. Ela não representa o valor real de cada propriedade da quadra, que varia conforme o padrão de construção, o estado de conservação e os dados averiguados na matrícula. Para avaliar o seu imóvel, fale com a Andrea.</div><div>Casas, escritórios e lojas usam a área construída do IPTU. Quadras com menos de 3 vendas aparecem com aviso de amostra pequena.</div>`;
   svg.setAttribute('aria-label', L==='en'?`Map of blocks in ${D.nome} colored by price per m²`:`Mapa de quadras ${DO} ${D.nome} coloridas pelo m²`);
-  renderLug();
+  renderLug(); cmText();
   renderSeg(); renderDash(false); legend(); drawPois(); drawLug(); scaleCS(d3.zoomTransform(svg).k); relayout(d3.zoomTransform(svg));
   if (cur) select(cur.f.k);
 }
+// ---------- quantos m² você compra ----------
+const CM = (() => {
+  const base = D.kpi.m2, tk = D.kpi.ticket || base*60;
+  const nice = v => { const p = Math.pow(10, Math.floor(Math.log10(v))); return Math.round(v/p*2)/2*p; };
+  const lo = nice(base*20), hi = nice(base*400);
+  const cand = [150e3,200e3,300e3,500e3,800e3,1e6,1.5e6,2e6,3e6,5e6,8e6,12e6].filter(v => v >= lo*1.5 && v <= hi/1.3);
+  const chips = cand.length <= 4 ? cand : [0, Math.round((cand.length-1)/3), Math.round((cand.length-1)*2/3), cand.length-1].map(i => cand[i]);
+  return {base, lo, hi, chips, v: nice(tk), touched: false};
+})();
+const cmPos = v => Math.log(v/CM.lo)/Math.log(CM.hi/CM.lo);
+const cmVal = p => { const v = CM.lo*Math.pow(CM.hi/CM.lo, p); const st = v < 1e6 ? 10e3 : 50e3; return Math.round(v/st)*st; };
+const cmMoney = v => v >= 1e6 ? 'R$ ' + nf(v/1e6, v % 1e6 ? 1 : 0) + (L==='en' ? ' M' : ' mi') : 'R$ ' + nf(Math.round(v/1000)) + (L==='en' ? 'k' : ' mil');
+const cmFmt = v => v ? v.toLocaleString(L==='en'?'en-US':'pt-BR') : '';
+function cmSize(){ const i = $('cm-v'); i.style.setProperty('--cw', Math.max(3, i.value.length + 0.6) + 'ch'); }
+function cmSet(v, from){
+  CM.v = Math.max(0, Math.min(v, 999e6));
+  if (from !== 'in'){ $('cm-v').value = cmFmt(CM.v); }
+  cmSize();
+  if (from !== 'r'){ const p = Math.max(0, Math.min(1, CM.v ? cmPos(CM.v) : 0)); $('cm-r').value = Math.round(p*1000); }
+  $('cm-r').style.setProperty('--p', (+$('cm-r').value/1000).toFixed(3));
+  document.querySelectorAll('#cm-chips button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.v === CM.v));
+  cmRender();
+}
+function cmTouch(){ if (!CM.touched){ CM.touched = true; $('cm-lab').classList.remove('hint'); } }
+const cmM2 = (v, m2) => m2 ? v/m2 : 0;
+const cmN = x => x >= 10 ? nf(Math.round(x)) : nf(x, 1);
+function cmRender(){
+  const v = CM.v, m = cmM2(v, CM.base), ref = D.kpi.area_med || 0;
+  $('cm-big').innerHTML = v ? `≈ ${cmN(m)}<small>m²</small>` : '—';
+  const onde = MODO ? (L==='en' ? 'in the Zona Sul of Osasco' : 'na Zona Sul de Osasco') : (L==='en' ? `in ${D.nome}` : `${NO} ${D.nome}`);
+  set('cm-sub', !v ? (L==='en'?'Type an amount above.':'Digite um valor acima.') : MODO
+    ? (L==='en' ? `of usable area, at the median asking price of apartments ${onde} (${R(CM.base)}/m²).` : `de área útil, pelo preço pedido mediano dos apartamentos anunciados ${onde} (${R(CM.base)}/m²).`)
+    : (L==='en' ? `of private area*, at the median price of apartments sold ${onde} in the last 12 months (${R(CM.base)}/m²).` : `de área privativa*, pelo m² mediano dos apartamentos vendidos ${onde} nos últimos 12 meses (${R(CM.base)}/m²).`));
+  // planta em escala
+  const sq = $('cm-sq'); sq.innerHTML = '';
+  const mx = Math.max(m, ref, 1) , S = 200, side = x => S*Math.sqrt(Math.min(x, mx)/mx);
+  if (v){
+    const a = side(m), r = side(ref), lado = Math.sqrt(m);
+    if (ref) { el('rect',{x:0,y:S-r,width:r,height:r,fill:'none',stroke:'#8E9DBB','stroke-width':2,'stroke-dasharray':'6 5'},sq); }
+    el('rect',{x:0,y:S-a,width:a,height:a,fill:'rgba(52,66,94,.14)',stroke:'#34425E','stroke-width':3,rx:2},sq);
+    const t = el('text',{x:a/2,y:S+26,'text-anchor':'middle'},sq); t.textContent = `≈ ${nf(lado,1)} × ${nf(lado,1)} m`;
+  }
+  $('cm-leg').innerHTML = v && ref ? `<span class="a"></span>${L==='en'?'your amount':'o seu valor'} <span class="b"></span>${L==='en'?'typical unit sold':'unidade típica vendida'}: ${ref} m²` : '';
+  // linhas
+  let gmx = 1; const grp = (h, rows, sm) => { const mxr = gmx; return `<div class="cm-g"><h3>${h}</h3>` + rows.map(([n, x]) => `<div class="cm-row${sm?' sm':''}"><span title="${n}">${n}</span><b>${v ? '≈ ' + cmN(x) + ' m²' : '—'}</b><i><em style="width:${(100*x/mxr).toFixed(1)}%"></em></i></div>`).join('') + '</div>'; };
+  let out = '';
+  if (MODO){
+    const bs0 = Object.entries(D.bairros).filter(([k,b]) => b.n_apto >= 10 && b.apto_m2).map(([k,b]) => cmM2(v, b.apto_m2)); gmx = Math.max(1, ...bs0);
+    const bs = Object.entries(D.bairros).filter(([k,b]) => b.n_apto >= 10 && b.apto_m2).map(([k,b]) => [k, cmM2(v, b.apto_m2)]).sort((a,b) => b[1]-a[1]);
+    const half = Math.ceil(bs.length/2);
+    out += grp(L==='en'?'Where it buys more':'Onde rende mais', bs.slice(0, half)) + grp(L==='en'?'Where it buys less':'Onde rende menos', bs.slice(half), true);
+  } else {
+    gmx = Math.max(1, ...Object.values(D.sub).filter(x => x.kpi && x.kpi.m2).map(x => cmM2(v, x.kpi.m2)), ...D.predios.filter(p => p.m2).slice(0,7).map(p => cmM2(v, p.m2)));
+    const ks = Object.keys(D.sub).filter(k => D.sub[k].kpi && D.sub[k].kpi.m2);
+    if (ks.length >= 2) out += grp(L==='en'?`By part of ${D.nome}`:`Por região ${DO} ${D.nome}`, ks.map(k => [tx(C.subareas[k]), cmM2(v, D.sub[k].kpi.m2)]).sort((a,b) => b[1]-a[1]));
+    const ps = D.predios.filter(p => p.m2).slice(0, 7).map(p => [p.end, cmM2(v, p.m2)]).sort((a,b) => b[1]-a[1]);
+    if (ps.length) out += grp(L==='en'?'In the buildings with the most sales':'Nos prédios com mais vendas', ps, true);
+  }
+  $('cm-rows').innerHTML = out;
+  set('cm-note', MODO
+    ? (L==='en' ? 'Asking prices from listings, which usually close lower. Parking, condition and floor change the result. It is an estimate for the area, not a valuation of a specific property.' : 'Preços pedidos em anúncios, que costumam fechar abaixo. Vaga, conservação e andar mudam a conta. É uma estimativa para a região, não a avaliação de um imóvel específico.')
+    : (L==='en' ? '* Estimated private area, from ITBI records (see the note at the end of the page). Parking, condition, floor and construction standard change the result. It is an estimate for the area, not a valuation of a specific property.' : '* Área privativa estimada a partir das guias de ITBI (veja a nota no fim da página). Vaga, conservação, andar e padrão de construção mudam a conta. É uma estimativa para a região, não a avaliação de um imóvel específico.'));
+}
+function cmText(){
+  set('t-cm-k', L==='en' ? 'Interactive · type an amount or drag the bar' : 'Interativo · digite um valor ou arraste a barra');
+  set('t-cm-a', L==='en' ? 'How many m² can you buy here with' : 'Quantos m² você compra aqui com');
+  $('cm-v').setAttribute('aria-label', L==='en' ? 'Amount in reais' : 'Valor em reais');
+  $('cm-r').setAttribute('aria-label', L==='en' ? 'Amount in reais' : 'Valor em reais');
+  $('cm-scale').innerHTML = `<span>${cmMoney(CM.lo)}</span><span>${cmMoney(CM.hi)}</span>`;
+  $('cm-chips').setAttribute('aria-label', L==='en' ? 'Quick amounts' : 'Valores rápidos');
+  $('cm-chips').innerHTML = CM.chips.map(v => `<button type="button" data-v="${v}">${cmMoney(v)}</button>`).join('');
+  document.querySelectorAll('#cm-chips button').forEach(b => b.onclick = () => { cmTouch(); cmSet(+b.dataset.v); });
+  cmSet(CM.v);
+}
+$('cm-v').addEventListener('input', e => { cmTouch(); const d = e.target.value.replace(/\D/g, '').slice(0, 9); const v = +d || 0; e.target.value = cmFmt(v); cmSet(v, 'in'); });
+$('cm-v').addEventListener('focus', e => { cmTouch(); setTimeout(() => e.target.select(), 0); });
+$('cm-v').addEventListener('keydown', e => { if (e.key === 'Enter') e.target.blur(); });
+$('cm-r').addEventListener('input', e => { cmTouch(); cmSet(cmVal(+e.target.value/1000), 'r'); });
+$('cm-lab').addEventListener('click', () => $('cm-v').focus());
 document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => { L = b.dataset.l; try { localStorage.setItem('lang', L); } catch (e) {} renderText(); }));
 
 // ---------- lugares especiais ----------
