@@ -314,3 +314,17 @@ html[lang="zh-Hans"] .dd-intro p + p { margin-top: 12px; }
 /* Innovation Ties, 适用对象: sem a segunda linha do inglês, os cards ficavam colados em "05 / 价格" */
 html[lang="zh-Hans"] .it-quem { margin-bottom: 36px; }
 html[lang="zh-Hans"] .it-quem-card h3 { font-family: var(--fonte-zh-titulo); font-weight: 500; line-height: 1.6; }
+
+/* Contato logo no início da página (22/10/2026): QR do WeChat, WhatsApp e e-mail no hero */
+.hero-contato { display: flex; align-items: center; gap: 18px; margin-top: 8px; padding: 14px 18px; background: rgba(var(--ardosia-rgb), 0.55); border-left: 3px solid var(--champagne); max-width: 640px; }
+.hero-contato img { flex: none; width: 96px; height: 96px; background: var(--branco); padding: 6px; }
+.hero-contato-linhas { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+html[lang="zh-Hans"] .hero-contato p { font-size: 17px; line-height: 1.5; color: var(--gelo); }
+html[lang="zh-Hans"] .hero-contato .hero-contato-titulo { font-family: var(--fonte-zh-titulo); font-weight: 600; font-size: 20px; color: var(--champagne); }
+.hero-contato a { color: var(--gelo); border-bottom: 1px solid var(--champagne); overflow-wrap: anywhere; }
+.hero-contato a:hover { color: var(--champagne); }
+@media (max-width: 760px) {
+  .hero-contato { align-items: flex-start; padding: 12px 14px; }
+  .hero-contato img { width: 84px; height: 84px; }
+  html[lang="zh-Hans"] .hero-contato p { font-size: 15px; }
+}

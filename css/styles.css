@@ -609,3 +609,41 @@ html[lang="it"] .hero h1 { font-size: 76px; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+
+/* --------------------------------------------------------------------------
+   12. Chamadas para contato (22/10/2026)
+   Botões no hero, ação + link de detalhes nos cards e e-mail na faixa.
+   O hero passa a crescer com o conteúdo (min-height no lugar de height).
+   -------------------------------------------------------------------------- */
+html:not([lang="zh-Hans"]) .hero { height: auto; min-height: 662px; }
+.hero-chamadas { display: flex; flex-wrap: wrap; gap: 14px 18px; }
+.btn--acao { font-size: 18px; background: var(--champagne); border-color: var(--champagne); color: var(--grafite); }
+.btn--acao:hover { background: var(--gelo); border-color: var(--gelo); color: var(--ardosia); }
+.btn--acao-sec { font-size: 18px; background: transparent; border-color: var(--champagne); color: var(--gelo); }
+.btn--acao-sec:hover { background: var(--champagne); color: var(--grafite); }
+
+.card-preco { font-weight: 700; }
+.card-acoes { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 28px; }
+.cta-detalhes {
+  font-size: 17px;
+  color: var(--texto-secundario);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.25s ease;
+}
+.cta-detalhes:hover { color: var(--amora); }
+.card--ardosia .cta-detalhes { color: var(--texto-sobre-ardosia); }
+.card--ardosia .cta-detalhes:hover { color: var(--champagne); }
+
+.contatos-links a[href^="mailto:"] { text-transform: none; letter-spacing: 0.02em; }
+
+@media (max-width: 1100px) {
+  html:not([lang="zh-Hans"]) .hero { min-height: 600px; }
+}
+@media (max-width: 760px) {
+  html:not([lang="zh-Hans"]) .hero { min-height: 0; }
+  html:not([lang="zh-Hans"]) .hero-bloco { height: auto; min-height: 560px; }
+  .btn--acao, .btn--acao-sec { font-size: 15px; padding: 14px 18px; }
+  .cta-detalhes { font-size: 15px; }
+}
