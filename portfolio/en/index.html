@@ -312,9 +312,9 @@ html[lang="zh-CN"] .hero h1 span{white-space:nowrap}
 .of-card{background:var(--branco);border-top:5px solid var(--amora);padding:26px 24px 24px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .of-card.menor{border-top-color:var(--ardosia)}
 .of-card h3{font-family:var(--title);font-size:24px;line-height:1.2;color:var(--grafite);margin:0}
-.of-preco{display:flex;flex-direction:column;gap:2px}
-.of-preco b{font-family:var(--title);font-size:40px;line-height:1;color:var(--amora);font-variant-numeric:tabular-nums}
-.of-card.menor .of-preco b{font-size:30px;color:var(--ardosia)}
+.of-preco{display:flex;flex-direction:column;gap:2px;margin-top:auto;padding-top:12px;border-top:1px solid rgba(62,73,95,.14)}
+.of-preco b{font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.55;color:var(--amora);font-variant-numeric:tabular-nums} /* mesmo tamanho e peso do corpo do cartão */
+.of-card.menor .of-preco b{color:var(--ardosia)}
 .of-preco span{font-size:14px;color:var(--texto-2)}
 .of-card p{font-size:16px;line-height:1.55;color:var(--texto);margin:0}
 .of-inclui{list-style:none;margin:0;padding:12px 14px;background:var(--azul-gelo);display:flex;flex-direction:column;gap:8px}
@@ -322,7 +322,7 @@ html[lang="zh-CN"] .hero h1 span{white-space:nowrap}
 .of-inclui li::before{content:"✓";flex:none;font-weight:700;color:var(--amora)}
 .of-inclui .of-rotulo{font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ardosia)}
 .of-inclui .of-rotulo::before{content:none}
-.of-card .of-acao{margin-top:auto;display:inline-block;align-self:flex-start;text-decoration:none;font-weight:700;font-size:16px;padding:12px 18px;background:var(--amora);color:#fff}
+.of-card .of-acao{display:inline-block;align-self:flex-start;text-decoration:none;font-weight:700;font-size:16px;padding:12px 18px;background:var(--amora);color:#fff}
 .of-card.menor .of-acao{background:var(--ardosia)}
 .of-card .of-acao:hover{background:var(--grafite)}
 .of-rodape{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;background:var(--branco);padding:18px 22px}
@@ -336,7 +336,7 @@ html[lang="zh-CN"] .hero h1 span{white-space:nowrap}
 .of-card p.of-obs{font-size:13px;color:var(--texto-2)}
 .cbox img.wx-qr{width:150px;height:150px;background:#fff;padding:8px}
 @media (max-width:980px){.of-grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:620px){.of-grade{grid-template-columns:minmax(0,1fr)}.of-preco b{font-size:34px}}
+@media (max-width:620px){.of-grade{grid-template-columns:minmax(0,1fr)}}
 </style>
 <style id="leve">
 /* Comum às duas direções: menos blocos escuros, foto com cor, mais respiro */
@@ -427,46 +427,45 @@ html,body{background:var(--perola)}
   <div class="of-grade">
     <article class="of-card">
       <h3>Property with benefits</h3>
-      <div class="of-preco"><b>No extra cost</b><span>for the included services</span></div>
       <p>Renting or buying residential or commercial property across São Paulo State, with a specialised bilingual team and partnerships with leading developers and agencies.</p>
       <ul class="of-inclui"><li class="of-rotulo">Included</li><li>Technical inspection of the property</li><li>Accounting to set up your company</li><li>Operating licences</li><li>Service in Portuguese, English and Chinese</li></ul>
+      <div class="of-preco"><b>No extra cost</b><span>for the included services</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=Hi%2C%20I%20saw%20the%20portfolio%20and%20would%20like%20to%20know%20more%20about%3A%20property%20with%20benefits">I want this offer</a>
     </article>
     <article class="of-card">
       <h3>Intercultural management diagnosis</h3>
-      <div class="of-preco"><b>R$1,600</b><span>full report · or an initial session for R$800</span></div>
       <p>Solves internal communication problems and makes processes flow. Questionnaire in Chinese, Portuguese or English; report within 7 days of the answers.</p>
       <ul class="of-inclui"><li class="of-rotulo">Included</li><li>Report for the board</li><li>Techniques that are easy to apply</li><li>Questionnaire in three languages</li></ul>
+      <div class="of-preco"><b>R$1,600</b><span>full report · or an initial session for R$800</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=Hi%2C%20I%20saw%20the%20portfolio%20and%20would%20like%20to%20know%20more%20about%3A%20intercultural%20diagnosis">I want this offer</a>
     </article>
     <article class="of-card">
       <h3>Guide to setting up in Brazil</h3>
-      <div class="of-preco"><b>R$5,000</b><span>starting price · based on the company’s annual revenue</span></div>
       <p>Everything your company needs to know to set up here, in one report, with support from Chinese and Brazilian lawyers. If you hire us for the implementation, the guide’s fee is deducted.</p>
       <ul class="of-inclui"><li class="of-rotulo">Included</li><li>Every licence and procedure you need</li><li>Best locations for your physical facilities</li><li>Legal, tax and organisational compliance</li><li>Initial market research</li><li>Intercultural research on how to introduce your product</li></ul>
-      <table class="of-faixas"><caption>Annual revenue</caption><tr><td>up to R$350 thousand</td><td>R$5,000</td></tr><tr><td>up to R$2 million</td><td>R$8,000</td></tr><tr><td>up to R$4 million</td><td>R$10,000</td></tr><tr><td>above R$4 million</td><td>R$15,000</td></tr></table>
       <p class="of-obs">Does not include carrying out the legal procedures.</p>
+      <div class="of-preco"><b>from R$5,000</b></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=Hi%2C%20I%20saw%20the%20portfolio%20and%20would%20like%20to%20know%20more%20about%3A%20set-up%20guide">I want this offer</a>
     </article>
     <article class="of-card menor">
       <h3>Portuguese for Chinese speakers</h3>
-      <div class="of-preco"><b>R$200</b><span>per 80-minute private class</span></div>
       <p>Classes for meetings, negotiation and daily life, with a teacher who speaks Mandarin. In-company groups from R$500 per class.</p>
       <ul class="of-inclui"><li class="of-rotulo">Included</li><li>Free 60-minute online trial class (one per company)</li><li>Materials built around your goal</li></ul>
+      <div class="of-preco"><b>R$200</b><span>per 80-minute private class</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=Hi%2C%20I%20saw%20the%20portfolio%20and%20would%20like%20to%20know%20more%20about%3A%20Portuguese%20classes">I want this offer</a>
     </article>
     <article class="of-card menor">
       <h3>Destination services for teams</h3>
-      <div class="of-preco"><b>Tailored</b><span>cost adapted to team size</span></div>
       <p>Housing, documents, security and Survival Portuguese for technical and operational staff, compliant with Brazilian law.</p>
       <ul class="of-inclui"><li class="of-rotulo">Included</li><li>One coordinator for the whole team</li><li>Compliance with Brazilian rules</li></ul>
+      <div class="of-preco"><b>Tailored</b><span>cost adapted to team size</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=Hi%2C%20I%20saw%20the%20portfolio%20and%20would%20like%20to%20know%20more%20about%3A%20destination%20services">I want this offer</a>
     </article>
     <article class="of-card menor">
       <h3>Marketing and cultural market entry</h3>
-      <div class="of-preco"><b>Affordable</b><span>quote within 2 business days</span></div>
       <p>We adapt how your product is presented and communicated to Brazilian consumers, so you sell more and work more effectively.</p>
       <ul class="of-inclui"><li class="of-rotulo">Included</li><li>Cultural diagnosis of the brand</li><li>Communication plan for Brazil</li></ul>
+      <div class="of-preco"><b>Affordable</b><span>quote within 2 business days</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=Hi%2C%20I%20saw%20the%20portfolio%20and%20would%20like%20to%20know%20more%20about%3A%20marketing%20and%20cultural%20entry">I want this offer</a>
     </article>
   </div>

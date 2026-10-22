@@ -309,9 +309,9 @@ html[lang="zh-CN"] .hero h1 span{white-space:nowrap}
 .of-card{background:var(--branco);border-top:5px solid var(--amora);padding:26px 24px 24px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .of-card.menor{border-top-color:var(--ardosia)}
 .of-card h3{font-family:var(--title);font-size:24px;line-height:1.2;color:var(--grafite);margin:0}
-.of-preco{display:flex;flex-direction:column;gap:2px}
-.of-preco b{font-family:var(--title);font-size:40px;line-height:1;color:var(--amora);font-variant-numeric:tabular-nums}
-.of-card.menor .of-preco b{font-size:30px;color:var(--ardosia)}
+.of-preco{display:flex;flex-direction:column;gap:2px;margin-top:auto;padding-top:12px;border-top:1px solid rgba(62,73,95,.14)}
+.of-preco b{font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.55;color:var(--amora);font-variant-numeric:tabular-nums} /* mesmo tamanho e peso do corpo do cartão */
+.of-card.menor .of-preco b{color:var(--ardosia)}
 .of-preco span{font-size:14px;color:var(--texto-2)}
 .of-card p{font-size:16px;line-height:1.55;color:var(--texto);margin:0}
 .of-inclui{list-style:none;margin:0;padding:12px 14px;background:var(--azul-gelo);display:flex;flex-direction:column;gap:8px}
@@ -319,7 +319,7 @@ html[lang="zh-CN"] .hero h1 span{white-space:nowrap}
 .of-inclui li::before{content:"✓";flex:none;font-weight:700;color:var(--amora)}
 .of-inclui .of-rotulo{font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ardosia)}
 .of-inclui .of-rotulo::before{content:none}
-.of-card .of-acao{margin-top:auto;display:inline-block;align-self:flex-start;text-decoration:none;font-weight:700;font-size:16px;padding:12px 18px;background:var(--amora);color:#fff}
+.of-card .of-acao{display:inline-block;align-self:flex-start;text-decoration:none;font-weight:700;font-size:16px;padding:12px 18px;background:var(--amora);color:#fff}
 .of-card.menor .of-acao{background:var(--ardosia)}
 .of-card .of-acao:hover{background:var(--grafite)}
 .of-rodape{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;background:var(--branco);padding:18px 22px}
@@ -333,7 +333,7 @@ html[lang="zh-CN"] .hero h1 span{white-space:nowrap}
 .of-card p.of-obs{font-size:13px;color:var(--texto-2)}
 .cbox img.wx-qr{width:150px;height:150px;background:#fff;padding:8px}
 @media (max-width:980px){.of-grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:620px){.of-grade{grid-template-columns:minmax(0,1fr)}.of-preco b{font-size:34px}}
+@media (max-width:620px){.of-grade{grid-template-columns:minmax(0,1fr)}}
 </style>
 <style id="leve">
 /* Comum às duas direções: menos blocos escuros, foto com cor, mais respiro */
@@ -424,46 +424,45 @@ html,body{background:var(--perola)}
   <div class="of-grade">
     <article class="of-card">
       <h3>购租房产，附赠服务</h3>
-      <div class="of-preco"><b>附赠服务不另收费</b></div>
       <p>在圣保罗州租赁或购买住宅及商业地产。专业团队双语服务，与州内优质开发商和房产中介合作。</p>
       <ul class="of-inclui"><li class="of-rotulo">包含</li><li>房屋技术验房</li><li>公司设立会计服务</li><li>经营许可办理</li><li>葡语、英语、中文服务</li></ul>
+      <div class="of-preco"><b>附赠服务不另收费</b></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%B8%9A%E5%8A%A1%E4%BB%8B%E7%BB%8D%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%EF%BC%9A%E6%88%BF%E4%BA%A7">咨询这个套餐</a>
     </article>
     <article class="of-card">
       <h3>跨文化管理诊断</h3>
-      <div class="of-preco"><b>R$ 1.600</b><span>完整报告 · 初步诊断 R$ 800</span></div>
       <p>解决企业内部沟通问题，让流程更顺畅。中文、葡语或英语问卷，收齐答卷后 7 天内交付报告。</p>
       <ul class="of-inclui"><li class="of-rotulo">包含</li><li>提交管理层的诊断报告</li><li>容易落地的改进方法</li><li>三种语言问卷</li></ul>
+      <div class="of-preco"><b>R$ 1.600</b><span>完整报告 · 初步诊断 R$ 800</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%B8%9A%E5%8A%A1%E4%BB%8B%E7%BB%8D%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%EF%BC%9A%E8%B7%A8%E6%96%87%E5%8C%96%E8%AF%8A%E6%96%AD">咨询这个套餐</a>
     </article>
     <article class="of-card">
       <h3>巴西落地指南</h3>
-      <div class="of-preco"><b>R$ 5.000 起</b><span>按企业年营业额定价</span></div>
       <p>企业在巴西落地需要了解的一切，汇成一份报告，并由中巴两国律师提供支持。如委托我们实施，指南费用可抵扣实施费用。</p>
       <ul class="of-inclui"><li class="of-rotulo">包含</li><li>列明所需的全部许可和手续</li><li>推荐厂房和办公场地的最佳选址</li><li>法律、税务和组织合规信息</li><li>初步市场调研</li><li>产品进入巴西的跨文化调研</li></ul>
-      <table class="of-faixas"><caption>年营业额</caption><tr><td>35 万雷亚尔以内</td><td>R$ 5.000</td></tr><tr><td>200 万雷亚尔以内</td><td>R$ 8.000</td></tr><tr><td>400 万雷亚尔以内</td><td>R$ 10.000</td></tr><tr><td>400 万雷亚尔以上</td><td>R$ 15.000</td></tr></table>
       <p class="of-obs">不含法律手续的具体办理。</p>
+      <div class="of-preco"><b>R$ 5.000 起</b></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%B8%9A%E5%8A%A1%E4%BB%8B%E7%BB%8D%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%EF%BC%9A%E8%90%BD%E5%9C%B0%E6%8C%87%E5%8D%97">咨询这个套餐</a>
     </article>
     <article class="of-card menor">
       <h3>中国人学葡语</h3>
-      <div class="of-preco"><b>R$ 200</b><span>一对一，每节 80 分钟</span></div>
       <p>会议、谈判和日常生活葡语，老师会说中文。企业内训每节 R$ 500 起。</p>
       <ul class="of-inclui"><li class="of-rotulo">包含</li><li>免费线上试听课 60 分钟（每家企业一次）</li><li>根据学习目标定制教材</li></ul>
+      <div class="of-preco"><b>R$ 200</b><span>一对一，每节 80 分钟</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%B8%9A%E5%8A%A1%E4%BB%8B%E7%BB%8D%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%EF%BC%9A%E8%91%A1%E8%AF%AD%E8%AF%BE">咨询这个套餐</a>
     </article>
     <article class="of-card menor">
       <h3>技术与操作人员落地服务</h3>
-      <div class="of-preco"><b>按需定价</b><span>费用随团队规模调整</span></div>
       <p>为技术和操作人员安排住宿、证件、安全和生存葡语，符合巴西法规。</p>
       <ul class="of-inclui"><li class="of-rotulo">包含</li><li>整个团队一位协调人</li><li>符合巴西合规要求</li></ul>
+      <div class="of-preco"><b>按需定价</b><span>费用随团队规模调整</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%B8%9A%E5%8A%A1%E4%BB%8B%E7%BB%8D%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%EF%BC%9A%E8%90%BD%E5%9C%B0%E6%9C%8D%E5%8A%A1">咨询这个套餐</a>
     </article>
     <article class="of-card menor">
       <h3>产品营销与文化融入</h3>
-      <div class="of-preco"><b>价格实惠</b><span>两个工作日内报价</span></div>
       <p>根据巴西消费者的习惯调整产品的呈现和传播方式，帮助您提高销量、提升工作效率。</p>
       <ul class="of-inclui"><li class="of-rotulo">包含</li><li>品牌文化诊断</li><li>巴西市场传播方案</li></ul>
+      <div class="of-preco"><b>价格实惠</b><span>两个工作日内报价</span></div>
       <a class="of-acao" href="https://wa.me/5511954395027?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E7%9C%8B%E4%BA%86%E4%B8%9A%E5%8A%A1%E4%BB%8B%E7%BB%8D%EF%BC%8C%E6%83%B3%E4%BA%86%E8%A7%A3%EF%BC%9A%E8%90%A5%E9%94%80">咨询这个套餐</a>
     </article>
   </div>
