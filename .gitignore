@@ -54,3 +54,6 @@ deploy/
 .netrc
 .htpasswd
 credentials.json
+
+# Matomo (analytics auto-hospedado): instalado à mão no servidor, nunca passa pelo Git
+analises/

@@ -24,6 +24,7 @@ $carimbo = $emitido . '.' . hash_hmac('sha256', (string) $emitido, fa_segredo())
 <html lang="zh-Hans">
 <head>
 <?php it_head($raiz, 'https://liveandlearnbrazil.com/zh/innovation-ties/'); ?>
+  <script src="https://liveandlearnbrazil.com/src/analytics.js?v=20261027a" defer></script>
 </head>
 <body class="<?= $erro ? 'fa-estado-erro' : '' ?>">
 <div class="page dd fa it">

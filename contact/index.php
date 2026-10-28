@@ -57,6 +57,7 @@ function e(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8')
   <link rel="stylesheet" href="../css/due-diligence.css?v=20260921c">
   <link rel="stylesheet" href="../css/full-advisory.css?v=20260921b">
   <link rel="stylesheet" href="../css/contact.css?v=20260921a">
+  <script src="https://liveandlearnbrazil.com/src/analytics.js?v=20261027a" defer></script>
 </head>
 <body class="<?= $estado !== '' ? 'fa-estado-' . $estado : '' ?>">
 <div class="page dd fa ct">
