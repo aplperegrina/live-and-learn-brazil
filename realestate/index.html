@@ -7,8 +7,8 @@
   <meta name="description" content="The rates, prices and currency that move São Paulo property, explained for the foreign executive. Refreshed every weekday from Central Bank data; every figure carries the date of its observation.">
   <link rel="canonical" href="https://realestate.liveandlearnbrazil.com/">
   <link rel="icon" type="image/svg+xml" href="assets/img/live-and-learn-brazil-favicon.svg">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260925a">
-  <link rel="stylesheet" href="assets/css/mercado.css?v=20261022a">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261103">
+  <link rel="stylesheet" href="assets/css/mercado.css?v=20261103">
   <script src="https://liveandlearnbrazil.com/src/analytics.js?v=20261027a" defer></script>
 </head>
 <body>
@@ -31,14 +31,26 @@
   <section class="abertura" aria-labelledby="titulo-painel">
     <div class="abertura-topo">
       <div class="abertura-titulo">
-        <h1 id="titulo-painel">The São Paulo property market, read by the numbers that move it.</h1>
+        <a class="volta-boletim" id="volta-boletim" href="#" hidden></a>
+        <script>
+        (() => {   // quem chega de um boletim (?de=brooklin) ganha o caminho de volta
+          const nomes = {brooklin: 'Brooklin', morumbi: 'Morumbi'};
+          const de = new URLSearchParams(location.search).get('de');
+          if (!nomes[de]) return;
+          const a = document.getElementById('volta-boletim');
+          a.href = de + '/';
+          a.textContent = 'Back to the ' + nomes[de] + ' bulletin · Voltar ao boletim';
+          a.hidden = false;
+        })();
+        </script>
+                <h1 id="titulo-painel">The São Paulo property market, read by the numbers that move it.</h1>
         <!-- REVISAR: Andrea -->
         <p>The rates that decide what an apartment costs to finance, what it must yield to be worth owning, and what your currency does to both. Refreshed every weekday from the Central Bank of Brazil.</p>
         <p class="stamp"><i aria-hidden="true"></i><span><span data-atualizado>Data fetched every weekday</span>. Each figure carries the date of its own observation.</span></p>
       </div>
       <!-- Chamada da corretagem, à direita da abertura (22/10/2026) -->
       <aside class="cta-imovel" aria-label="Corretagem de imóveis em São Paulo">
-        <p class="cta-imovel-rotulo">Corretagem em São Paulo <span lang="en">· Real estate brokerage</span></p>
+        <p class="cta-imovel-rotulo" lang="en">Real Estate Brokerage</p>
         <div class="cta-imovel-item">
           <p class="cta-imovel-frase">Quer vender ou alugar seu imóvel? Aqui agimos com estratégia e eficiência.</p>
           <p class="cta-imovel-en" lang="en">Selling or renting out? We act with strategy and efficiency.</p>

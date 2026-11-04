@@ -57,3 +57,8 @@ credentials.json
 
 # Matomo (analytics auto-hospedado): instalado à mão no servidor, nunca passa pelo Git
 analises/
+
+# matchmaking: chave da Nonstop e fotos da vitrine ficam só no servidor
+realestate/matchmaking/lib/config.php
+realestate/matchmaking/f/
+realestate/matchmaking/_dados/
