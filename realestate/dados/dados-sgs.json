@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-11-05T17:45:09.989Z",
+ "atualizadoEm": "2026-11-06T17:00:41.600Z",
  "fonte": "Banco Central do Brasil, Sistema Gerenciador de Séries Temporais (api.bcb.gov.br)",
  "seriesObtidas": 12,
  "seriesTotal": 12,
@@ -9,9 +9,9 @@
    "nome": "Selic, meta definida pelo Copom",
    "unidade": "% a.a.",
    "periodicidade": "diaria",
-   "obtidoEm": "2026-11-05T17:44:50.814Z",
+   "obtidoEm": "2026-11-06T17:00:25.118Z",
    "ultimo": {
-    "data": "2026-11-05",
+    "data": "2026-11-06",
     "valor": 13.75
    },
    "historico": [
@@ -2290,12 +2290,16 @@
     [
      "2026-11-05",
      13.75
+    ],
+    [
+     "2026-11-06",
+     13.75
     ]
    ],
    "dezAnos": {
     "desde": "2016-11",
     "ate": "2026-11",
-    "obtidoEm": "2026-11-05T17:45:09.989Z",
+    "obtidoEm": "2026-11-06T17:00:41.600Z",
     "meses": [
      [
       "2016-11",
@@ -2789,9 +2793,9 @@
    "nome": "CDI, taxa diária",
    "unidade": "% a.d.",
    "periodicidade": "diaria",
-   "obtidoEm": "2026-11-05T17:44:52.785Z",
+   "obtidoEm": "2026-11-06T17:00:26.813Z",
    "ultimo": {
-    "data": "2026-11-04",
+    "data": "2026-11-05",
     "valor": 0.050788
    },
    "historico": [
@@ -4978,6 +4982,10 @@
     [
      "2026-11-04",
      0.050788
+    ],
+    [
+     "2026-11-05",
+     0.050788
     ]
    ]
   },
@@ -4986,10 +4994,10 @@
    "nome": "TR, taxa referencial diária",
    "unidade": "% a.m.",
    "periodicidade": "diaria",
-   "obtidoEm": "2026-11-05T17:44:55.637Z",
+   "obtidoEm": "2026-11-06T17:00:28.561Z",
    "ultimo": {
-    "data": "2026-11-04",
-    "valor": 0.1696
+    "data": "2026-11-05",
+    "valor": 0.1695
    },
    "historico": [
     [
@@ -7263,6 +7271,10 @@
     [
      "2026-11-04",
      0.1696
+    ],
+    [
+     "2026-11-05",
+     0.1695
     ]
    ]
   },
@@ -7271,10 +7283,10 @@
    "nome": "Dólar PTAX, venda",
    "unidade": "BRL por USD",
    "periodicidade": "diaria",
-   "obtidoEm": "2026-11-05T17:44:57.477Z",
+   "obtidoEm": "2026-11-06T17:00:30.256Z",
    "ultimo": {
-    "data": "2026-11-05",
-    "valor": 5.4621
+    "data": "2026-11-06",
+    "valor": 5.5013
    },
    "historico": [
     [
@@ -9464,6 +9476,10 @@
     [
      "2026-11-05",
      5.4621
+    ],
+    [
+     "2026-11-06",
+     5.5013
     ]
    ]
   },
@@ -9472,7 +9488,7 @@
    "nome": "IPCA, variação mensal",
    "unidade": "% a.m.",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-05T17:44:57.788Z",
+   "obtidoEm": "2026-11-06T17:00:30.453Z",
    "ultimo": {
     "data": "2026-09-01",
     "valor": 0.82
@@ -9585,7 +9601,7 @@
    "nome": "IPCA, acumulado em 12 meses",
    "unidade": "% 12m",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-05T17:44:57.973Z",
+   "obtidoEm": "2026-11-06T17:00:30.821Z",
    "ultimo": {
     "data": "2026-09-01",
     "valor": 4.58
@@ -9698,7 +9714,7 @@
    "nome": "IGP-M, variação mensal",
    "unidade": "% a.m.",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-05T17:44:58.269Z",
+   "obtidoEm": "2026-11-06T17:00:31.539Z",
    "ultimo": {
     "data": "2026-10-01",
     "valor": 1.47
@@ -9815,7 +9831,7 @@
    "nome": "INCC, variação mensal",
    "unidade": "% a.m.",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-05T17:44:58.591Z",
+   "obtidoEm": "2026-11-06T17:00:31.891Z",
    "ultimo": {
     "data": "2026-09-01",
     "valor": 0.22
@@ -9928,7 +9944,7 @@
    "nome": "IVG-R, índice de valores de garantia de imóveis residenciais",
    "unidade": "índice",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-05T17:44:58.886Z",
+   "obtidoEm": "2026-11-06T17:00:32.771Z",
    "ultimo": {
     "data": "2026-08-01",
     "valor": 796.75
@@ -10037,7 +10053,7 @@
    "nome": "Juros médios, financiamento imobiliário PF",
    "unidade": "% a.a.",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-05T17:44:59.187Z",
+   "obtidoEm": "2026-11-06T17:00:33.153Z",
    "ultimo": {
     "data": "2026-09-01",
     "valor": 8.99
@@ -10150,7 +10166,7 @@
    "nome": "Crédito imobiliário PF (ver CONFERIR no script)",
    "unidade": "R$ bilhões",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-05T17:44:59.572Z",
+   "obtidoEm": "2026-11-06T17:00:33.499Z",
    "ultimo": {
     "data": "2026-09-01",
     "valor": 20.59
@@ -10263,7 +10279,7 @@
    "nome": "IBC-Br, índice de atividade econômica",
    "unidade": "índice",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-05T17:44:59.882Z",
+   "obtidoEm": "2026-11-06T17:00:33.847Z",
    "ultimo": {
     "data": "2026-08-01",
     "valor": 111.71919
