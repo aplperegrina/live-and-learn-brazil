@@ -10,6 +10,10 @@
 
    Node 20 ou mais novo, fetch nativo, nenhuma dependência.
    Uso:  node scripts/buscar-alugueis.js
+         node scripts/buscar-alugueis.js --completo
+   Com --completo a planilha da Fipe é baixada e lida mesmo que não tenha
+   mudado. É o que o workflow usa no modo "Só testar as buscas", para o teste
+   passar pela leitura inteira e não parar na resposta "sem mudança".
 
    Regras (as de buscar-dados.js, adaptadas a duas fontes mensais):
    - 3 tentativas por fonte, com espera crescente entre elas;
@@ -67,6 +71,7 @@ const TENTATIVAS = 3;
 const ESPERAS_MS = [3000, 8000];   /* entre a 1ª e a 2ª, entre a 2ª e a 3ª */
 const TIMEOUT_MS = 60000;          /* a planilha tem quase 5 MB */
 const AGENTE = 'liveandlearnbrazil.com dashboard (GitHub Actions)';
+const COMPLETO = process.argv.includes('--completo');   /* baixa a planilha mesmo sem mudança */
 
 const FONTE_IVAR = 'FGV IBRE, Índice de Variação de Aluguéis Residenciais (IVAR)';
 const FONTE_FIPEZAP = 'Fipe, Índice FipeZAP de Locação Residencial, séries históricas';
@@ -411,10 +416,11 @@ async function principal() {
     if (ivar.pagina !== paginaIvar) { paginaIvar = ivar.pagina; mudou = true; }
   }
 
-  /* FipeZap: só pede a planilha de novo se as séries dela estão todas no arquivo anterior */
+  /* FipeZap: só deixa o servidor responder "sem mudança" se as séries dela estão todas no
+     arquivo anterior e a execução não é a de teste (--completo) */
   let modificadaEm = anterior?.fontes?.fipezap?.modificadaEm ?? null;
   const temFipezap = IDS_FIPEZAP.every(id => anterior?.series?.[id]);
-  const fipezap = await baixarFipezap(temFipezap ? modificadaEm : null);
+  const fipezap = await baixarFipezap(temFipezap && !COMPLETO ? modificadaEm : null);
   if (!fipezap) { manter(IDS_FIPEZAP, 'fipezap'); problemas.push('a planilha do FipeZap (Fipe) não respondeu ou mudou de formato'); }
   else if (fipezap.igual) manter(IDS_FIPEZAP);
   else {

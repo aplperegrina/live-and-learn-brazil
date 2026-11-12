@@ -17,7 +17,8 @@
 # no último passo.
 #
 # Teste sem publicar: no botão "Run workflow", marque "Só testar as buscas".
-# As buscas rodam e aparecem no registro, mas nada é commitado nem publicado.
+# As buscas rodam por inteiro (a planilha da Fipe é baixada mesmo sem mudança)
+# e aparecem no registro, mas nada é commitado nem publicado.
 
 name: Atualizar dados do dashboard
 
@@ -61,7 +62,7 @@ jobs:
         id: alugueis
         continue-on-error: true
         timeout-minutes: 5
-        run: node scripts/buscar-alugueis.js
+        run: node scripts/buscar-alugueis.js ${{ inputs.sem_commit && '--completo' || '' }}
 
       - name: Commitar os JSON se mudaram
         id: commit
