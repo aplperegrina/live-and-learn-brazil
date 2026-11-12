@@ -1,14 +1,24 @@
-# Atualização diária dos dados do dashboard imobiliário (realestate/dados/dados-sgs.json)
+# Atualização diária dos dados do dashboard imobiliário
+# (realestate/dados/dados-sgs.json e realestate/dados/dados-alugueis.json)
 #
 # Horário: o GitHub só aceita cron em UTC. Brasília é UTC−3 o ano inteiro
 # (sem horário de verão desde 2019), então '0 10 * * 1-5' = 07:00 de Brasília,
 # de segunda a sexta. O SGS publica as séries diárias no fim da tarde do dia
 # anterior, então às 7h o dado do dia útil anterior já está lá.
 #
-# Passos: busca as séries → commita o JSON só se mudou → push. A integração
-# Git da Hostinger (hPanel) faz checkout do repositório em /public_html a cada
-# push, então o próprio push já publica o JSON; não há envio por FTPS aqui.
-# Não precisa de secret nenhum.
+# Passos: busca as séries do Banco Central → busca IVAR (FGV) e FipeZap (Fipe)
+# → commita os JSON só se mudaram → push. A integração Git da Hostinger (hPanel)
+# faz checkout do repositório em /public_html a cada push, então o próprio push
+# já publica os JSON; não há envio por FTPS aqui. Não precisa de secret nenhum.
+#
+# IVAR e FipeZap são mensais e vêm de sites fora do Banco Central. Se um deles
+# falhar, os dados do Banco Central são commitados do mesmo jeito, o site fica
+# com o último dado bom de aluguel e a execução termina vermelha, com o motivo
+# no último passo.
+#
+# Teste sem publicar: no botão "Run workflow", marque "Só testar as buscas".
+# As buscas rodam por inteiro (a planilha da Fipe é baixada mesmo sem mudança)
+# e aparecem no registro, mas nada é commitado nem publicado.
 
 name: Atualizar dados do dashboard
 
@@ -16,6 +26,11 @@ on:
   schedule:
     - cron: '0 10 * * 1-5'   # 10:00 UTC = 07:00 Brasília, seg–sex
   workflow_dispatch:          # botão "Run workflow" na aba Actions
+    inputs:
+      sem_commit:
+        description: 'Só testar as buscas (não commita nem publica nada)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -27,7 +42,7 @@ concurrency:
 jobs:
   atualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Baixar o repositório
@@ -41,19 +56,42 @@ jobs:
       - name: Buscar as séries do SGS
         run: node scripts/buscar-dados.js
 
-      - name: Commitar o JSON se mudou
+      # Se a FGV ou a Fipe falhar, este passo fica vermelho mas o job segue
+      # (continue-on-error): o script já gravou o que deu certo e manteve o resto.
+      - name: Buscar IVAR (FGV) e FipeZap (Fipe)
+        id: alugueis
+        continue-on-error: true
+        timeout-minutes: 5
+        run: node scripts/buscar-alugueis.js ${{ inputs.sem_commit && '--completo' || '' }}
+
+      - name: Commitar os JSON se mudaram
         id: commit
+        if: ${{ !inputs.sem_commit }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add realestate/dados/dados-sgs.json
+          for arquivo in realestate/dados/dados-sgs.json realestate/dados/dados-alugueis.json; do
+            if [ -f "$arquivo" ]; then git add "$arquivo"; fi
+          done
           if git diff --staged --quiet; then
             echo "Sem mudança nos dados; nada a commitar."
             echo "mudou=false" >> "$GITHUB_OUTPUT"
           else
-            git commit -m "dados: séries do SGS atualizadas em $(date -u +%Y-%m-%d)"
+            # o arquivo de aluguéis só muda quando sai mês novo: a mensagem avisa quando isso acontece
+            if git diff --staged --quiet -- realestate/dados/dados-alugueis.json; then
+              series="séries do SGS"
+            else
+              series="séries do SGS e de aluguel (IVAR, FipeZap)"
+            fi
+            git commit -m "dados: $series atualizadas em $(date -u +%Y-%m-%d)"
             # o remoto pode ter recebido commits depois do checkout: reaplica o commit do bot por cima
             git pull --rebase origin main
             git push
             echo "mudou=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Avisar se IVAR ou FipeZap falharam
+        if: ${{ steps.alugueis.outcome == 'failure' }}
+        run: |
+          echo "::error title=IVAR ou FipeZap não foram atualizados::Veja o passo 'Buscar IVAR (FGV) e FipeZap (Fipe)'. Os dados do Banco Central seguiram o caminho normal e o site continua com o último dado bom de aluguel."
+          exit 1
