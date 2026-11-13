@@ -10,7 +10,7 @@
    de SVG sem unidade são descartadas.
    ========================================================================== */
 
-import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, reduzMovimento } from './animacao.js?v=20261112';
+import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, reduzMovimento } from './animacao.js?v=20261113';
 
 export function desenharBarrasH(raiz, cfg) {
   const maior = Math.max(...cfg.categorias.map(g => g.valor), cfg.referencia ? cfg.referencia.valor : 0);

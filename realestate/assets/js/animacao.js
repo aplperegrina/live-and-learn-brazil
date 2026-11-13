@@ -63,6 +63,17 @@ export function escala(min, max, desdeZero = false) {
   return { inicio, fim: marcas[marcas.length - 1], passo, marcas };
 }
 
+/** O ano do primeiro mês do eixo cabe ao lado do ano do janeiro seguinte?
+    Quando a janela começa em novembro ou dezembro, os dois rótulos ficam a um ou dois meses
+    de distância e se sobrepõem; nesse caso o do primeiro mês não é desenhado.
+    `distancia`: px entre os dois pontos do eixo. `ancoradoNoInicio`: o primeiro rótulo começa
+    no ponto (true) ou é centrado nele (false); o de janeiro é sempre centrado. */
+export function cabeAnoNoInicio(distancia, ancoradoNoInicio) {
+  const LARGURA = 26;   /* "2026" no rótulo de ano: PT Sans Narrow 11px, negrito, com espaçamento */
+  const FOLGA = 6;      /* respiro mínimo entre dois anos */
+  return distancia >= LARGURA * (ancoradoNoInicio ? 1.5 : 1) + FOLGA;
+}
+
 /** Preenche uma tabela (para leitor de tela) com meses × séries. */
 export function preencherTabela(tabela, meses, series, rotuloMes, formato) {
   if (!tabela) return;
