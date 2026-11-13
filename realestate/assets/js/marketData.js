@@ -1,16 +1,20 @@
 /* ==========================================================================
    Live & Learn Brazil — dados do dashboard imobiliário de São Paulo
 
-   Os números vivem em realestate/dados/dados-sgs.json, gravado todo dia útil por
-   scripts/buscar-dados.js (GitHub Actions, 7h de Brasília). Este módulo só
-   carrega o JSON e o transforma nas séries que cada gráfico precisa.
-   Nenhum número fica escrito nos componentes nem aqui.
+   Os números vivem em dois arquivos de realestate/dados, gravados todo dia
+   útil pelo GitHub Actions (7h de Brasília):
+   - dados-sgs.json: séries do Banco Central (scripts/buscar-dados.js);
+   - dados-alugueis.json: IVAR, da FGV, e FipeZap de São Paulo, da Fipe
+     (scripts/buscar-alugueis.js).
+   Este módulo só carrega os JSON e os transforma nas séries que cada gráfico
+   precisa. Nenhum número fica escrito nos componentes nem aqui.
 
    Toda leitura exibida leva a DATA da observação (ultimo.data), nunca a data
-   de hoje; o JSON também traz atualizadoEm, a data em que foi buscado.
+   de hoje; os JSON também trazem atualizadoEm, a data em que foram buscados.
    ========================================================================== */
 
 const URL_DADOS = new URL('../../dados/dados-sgs.json', import.meta.url);
+const URL_ALUGUEIS = new URL('../../dados/dados-alugueis.json', import.meta.url);
 const MESES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const JANELA = 24; /* meses mostrados nos gráficos de linha */
 
@@ -18,6 +22,13 @@ const JANELA = 24; /* meses mostrados nos gráficos de linha */
 export async function carregarDados() {
   const resposta = await fetch(URL_DADOS, { cache: 'no-cache' });
   if (!resposta.ok) throw new Error(`dados-sgs.json: HTTP ${resposta.status}`);
+  return resposta.json();
+}
+
+/** O mesmo para as séries de aluguel (IVAR e FipeZap), que têm arquivo próprio. */
+export async function carregarAlugueis() {
+  const resposta = await fetch(URL_ALUGUEIS, { cache: 'no-cache' });
+  if (!resposta.ok) throw new Error(`dados-alugueis.json: HTTP ${resposta.status}`);
   return resposta.json();
 }
 
@@ -38,6 +49,7 @@ export const fmtPct = v => v.toFixed(2) + '%';
 export const fmtPct1 = v => (v > 0 ? '+' : '') + v.toFixed(2) + '%';
 export const fmtIndice = v => v.toFixed(1);
 export const fmtCambio = v => 'R$ ' + v.toFixed(3);
+export const fmtReais = v => 'R$ ' + v.toFixed(2);
 /* rótulos de eixo: menos casas, para não competir com o dado */
 const eixoPct = v => +v.toFixed(2) + '%';
 const eixoPctSinal = v => (v > 0 ? '+' : '') + +v.toFixed(2) + '%';
@@ -92,8 +104,34 @@ function mensal(fonte, meses, transformar) {
   return meses.map(m => (mapa.has(m) ? +mapa.get(m).toFixed(3) : null));
 }
 
+/** Variação mensal (histórico [[aaaa-mm-dd, %]]) → acumulado em 12 meses, por mês (AAAA-MM → %).
+    Um mês só entra se os 11 anteriores existem e são seguidos. */
+function acumulado12(historico) {
+  const mensais = [...porMes(historico).entries()];
+  const mapa = new Map();
+  for (let i = 11; i < mensais.length; i++) {
+    if (janelaDeMeses(mensais[i][0], 12)[0] !== mensais[i - 11][0]) continue;   /* buraco na série */
+    let fator = 1;
+    for (let k = i - 11; k <= i; k++) fator *= 1 + mensais[k][1] / 100;
+    mapa.set(mensais[i][0], +((fator - 1) * 100).toFixed(2));
+  }
+  return mapa;
+}
+
+/** Valores de um mapa (AAAA-MM → valor) alinhados à janela: um por mês ou null. */
+const alinhar = (mapa, meses) => meses.map(m => (mapa.has(m) ? mapa.get(m) : null));
+
+/** Última leitura não nula de uma série alinhada à janela, com o mês dela. */
+function ultimaLeitura(valores, meses) {
+  for (let i = valores.length - 1; i >= 0; i--) {
+    if (valores[i] != null) return { valor: valores[i], data: meses[i] + '-01', rotulo: rotuloMes(meses[i] + '-01') };
+  }
+  return null;
+}
+
 /* ==========================================================================
    Construtores, um por gráfico. Todos devolvem null se faltar série.
+   Os seis primeiros leem dados-sgs.json; os de aluguel, dados-alugueis.json.
    ========================================================================== */
 
 /** 1. Twenty-four months of rates: Selic, CDI, IPCA 12m e juros de financiamento (linhas com área). */
@@ -250,5 +288,110 @@ export function montarAtividade(dados) {
     formatoEixo: eixoInteiro,
     descricao: 'IBC-Br economic activity index, seasonally adjusted',
     series: [{ ...base(s.ibcbr, 'ibcbr', 'IBC-Br', 'IBC-Br', 'verde-esc', 'index'), valores: mensal(s.ibcbr, meses), area: true, largura: 2.2 }],
+  };
+}
+
+/** 7. Lease indexers: IPCA e IGP-M acumulados em 12 meses, 24 meses (linhas).
+    O IPCA em 12 meses vem pronto do SGS (13522); o do IGP-M é composto da série mensal (189),
+    que por isso é buscada com mais histórico que as outras (ver scripts/buscar-dados.js). */
+export function montarIndexadores(dados) {
+  const s = dados.series || {};
+  if (!s.igpm || !s.ipca12m) return null;
+  const meses = janelaDeMeses(s.igpm.ultimo.data.slice(0, 7), JANELA);
+  const vIgpm = alinhar(acumulado12(s.igpm.historico), meses);
+  const vIpca = mensal(s.ipca12m, meses);
+  const uIgpm = ultimaLeitura(vIgpm, meses), uIpca = ultimaLeitura(vIpca, meses);
+  if (!uIgpm || !uIpca) return null;
+  return {
+    id: 'indexadores',
+    meses,
+    desdeZero: false,
+    formato: fmtPct,
+    formatoEixo: eixoPct,
+    descricao: 'IPCA and IGP-M accumulated in 12 months, percent',
+    /* ordem de desenho: a primeira fica embaixo, a última por cima */
+    series: [
+      {
+        id: 'igpm12', nome: 'IGP-M acumulado em 12 meses', nomeCurto: 'IGP-M', cor: 'verde', unidade: '% 12m',
+        codigoSgs: s.igpm.codigo, fonte: `BCB/SGS ${s.igpm.codigo}, ${s.igpm.nome}, compounded over 12 months`,
+        valores: vIgpm, ultimo: uIgpm, area: false, largura: 2,
+      },
+      { ...base(s.ipca12m, 'ipca12', 'IPCA acumulado em 12 meses', 'IPCA', 'ardosia', '% 12m'), valores: vIpca, ultimo: uIpca, area: true, largura: 2.5 },
+    ],
+  };
+}
+
+/** 8. Asking rents by bedrooms: FipeZap (Fipe), cidade de São Paulo, R$ por m² ao mês
+    (barras horizontais), com a média da cidade como linha de referência. */
+export function montarAluguel(alugueis) {
+  const s = alugueis.series || {};
+  const quebras = [['aluguelSp1d', '1 bedroom'], ['aluguelSp2d', '2 bedrooms'], ['aluguelSp3d', '3 bedrooms'], ['aluguelSp4d', '4 or more']];
+  if (!s.aluguelSp || quebras.some(([id]) => !s[id])) return null;
+  const mes = s.aluguelSp.ultimo.data;
+  if (quebras.some(([id]) => s[id].ultimo.data !== mes)) return null;   /* leituras de meses diferentes não se comparam */
+  const quando = rotuloMes(mes);
+  const media = s.aluguelSp.ultimo.valor;
+  const doze = s.aluguelSp12m && s.aluguelSp12m.ultimo.data === mes ? s.aluguelSp12m.ultimo.valor : null;
+  const categorias = quebras.map(([id, rotulo]) => ({ rotulo, valor: s[id].ultimo.valor, detalhe: `${fmtReais(s[id].ultimo.valor)} per m² a month, ${quando}` }));
+  const descricao = 'Asking rent per square metre a month in the city of São Paulo, by number of bedrooms';
+  return {
+    id: 'aluguel',
+    cor: 'verde',
+    formato: fmtReais,
+    descricao,
+    categorias,
+    referencia: { rotulo: 'All sizes', valor: media },
+    /* leituras da chave que não são barras: a média da cidade e a variação em 12 meses */
+    chaves: [
+      { id: 'aluguel-media', valor: fmtReais(media), rotulo: quando },
+      ...(doze == null ? [] : [{ id: 'aluguel-12', valor: fmtPct(doze), rotulo: quando }]),
+    ],
+    rotuloAcessivel: `${descricao}, ${quando}. ${categorias.map(g => `${g.rotulo}: ${fmtReais(g.valor)}`).join('; ')}. City average for all sizes: ${fmtReais(media)}${doze == null ? '' : `, ${fmtPct(doze)} in 12 months`}.`,
+  };
+}
+
+/** 9. Rents under contract: IVAR (FGV), variação mensal dos últimos 6 meses (barras divergentes),
+    com o acumulado em 12 meses na chave. */
+export function montarIvar(alugueis) {
+  const s = alugueis.series || {};
+  if (!s.ivar) return null;
+  const mes = s.ivar.ultimo.data;
+  const meses = janelaDeMeses(mes.slice(0, 7), 6);
+  const quando = rotuloMes(mes);
+  const doze = s.ivar12m ? porMes(s.ivar12m.historico).get(mes.slice(0, 7)) : null;
+  return {
+    id: 'ivar',
+    meses,
+    formato: fmtPct1,
+    formatoEixo: eixoPctSinal,
+    descricao: 'IVAR, change on the previous month, percent',
+    series: [{
+      id: 'ivar', nome: 'IVAR', nomeCurto: 'IVAR', cor: 'ardosia', unidade: '% a.m.', fonte: s.ivar.fonte,
+      valores: mensal(s.ivar, meses), ultimo: { valor: s.ivar.ultimo.valor, data: mes, rotulo: quando },
+    }],
+    chaves: doze == null ? [] : [{ id: 'ivar12', valor: fmtPct(doze), rotulo: quando }],
+    complemento: doze == null ? '' : `${fmtPct(doze)} in 12 months`,
+  };
+}
+
+/** 10. Building costs: INCC acumulado em 12 meses, 13 meses (colunas). Composto da série mensal (192). */
+export function montarCustoDeConstrucao(dados) {
+  const s = dados.series || {};
+  if (!s.incc) return null;
+  const meses = janelaDeMeses(s.incc.ultimo.data.slice(0, 7), 13);
+  const valores = alinhar(acumulado12(s.incc.historico), meses);
+  const ultimo = ultimaLeitura(valores, meses);
+  if (!ultimo) return null;
+  return {
+    id: 'construcao',
+    meses,
+    formato: fmtPct,
+    formatoEixo: eixoPct,
+    descricao: 'INCC accumulated in 12 months, percent',
+    series: [{
+      id: 'incc12', nome: 'INCC acumulado em 12 meses', nomeCurto: 'INCC', cor: 'verde-esc', unidade: '% 12m',
+      codigoSgs: s.incc.codigo, fonte: `BCB/SGS ${s.incc.codigo}, ${s.incc.nome}, compounded over 12 months`,
+      valores, ultimo,
+    }],
   };
 }

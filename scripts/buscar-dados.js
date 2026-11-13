@@ -35,6 +35,7 @@ const API_INTERVALO = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/da
 const API_ULTIMOS = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados/ultimos/{n}?formato=json';
 const ULTIMOS_MAXIMO = 20;
 const MESES_DE_HISTORICO = 26;     /* 24 meses de gráfico + folga para séries atrasadas */
+const MESES_PARA_12M = 38;         /* séries mensais que o painel compõe em 12 meses: 24 de gráfico + 11 para compor + folga */
 const ANOS_SELIC_LONGA = 10;       /* percentil da Selic: um valor por mês, 10 anos (limite da API) */
 
 const SAIDA = path.resolve(__dirname, '..', 'realestate', 'dados', 'dados-sgs.json');
@@ -52,8 +53,9 @@ const SERIES = [
   { id: 'ptax',         codigo: 1,     nome: 'Dólar PTAX, venda',                                      unidade: 'BRL por USD', periodicidade: 'diaria' },
   { id: 'ipca',         codigo: 433,   nome: 'IPCA, variação mensal',                                  unidade: '% a.m.',      periodicidade: 'mensal' },
   { id: 'ipca12m',      codigo: 13522, nome: 'IPCA, acumulado em 12 meses',                            unidade: '% 12m',       periodicidade: 'mensal' },
-  { id: 'igpm',         codigo: 189,   nome: 'IGP-M, variação mensal',                                 unidade: '% a.m.',      periodicidade: 'mensal' },
-  { id: 'incc',         codigo: 192,   nome: 'INCC, variação mensal',                                  unidade: '% a.m.',      periodicidade: 'mensal' },
+  /* IGP-M e INCC: o painel mostra o acumulado em 12 meses, composto da variação mensal, então vêm com mais histórico */
+  { id: 'igpm',         codigo: 189,   nome: 'IGP-M, variação mensal',                                 unidade: '% a.m.',      periodicidade: 'mensal', meses: MESES_PARA_12M },
+  { id: 'incc',         codigo: 192,   nome: 'INCC, variação mensal',                                  unidade: '% a.m.',      periodicidade: 'mensal', meses: MESES_PARA_12M },
   { id: 'ivgr',         codigo: 21340, nome: 'IVG-R, índice de valores de garantia de imóveis residenciais', unidade: 'índice', periodicidade: 'mensal' },
   /* CONFERIR no visualizador do SGS: deve ser a taxa média PF, financiamento imobiliário com taxas reguladas. */
   { id: 'jurosImob',    codigo: 20770, nome: 'Juros médios, financiamento imobiliário PF',             unidade: '% a.a.',      periodicidade: 'mensal' },
@@ -146,7 +148,7 @@ async function comTentativas(rotulo, urlDa, somenteDiasUteis = false) {
 async function baixarSerie(serie) {
   const rotulo = `${serie.id.padEnd(13)} SGS ${String(serie.codigo).padEnd(6)}`;
   const historico = await comTentativas(rotulo, i =>
-    (i < TENTATIVAS - 1 ? urlIntervalo(serie.codigo, mesesAtras(MESES_DE_HISTORICO)) : urlUltimos(serie.codigo)),
+    (i < TENTATIVAS - 1 ? urlIntervalo(serie.codigo, mesesAtras(serie.meses ?? MESES_DE_HISTORICO)) : urlUltimos(serie.codigo)),
     serie.periodicidade === 'diaria');
   if (!historico) return null;
   const [data, valor] = historico[historico.length - 1];

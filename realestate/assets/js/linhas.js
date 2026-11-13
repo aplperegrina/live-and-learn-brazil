@@ -11,7 +11,7 @@
    atraso em --mov-area; ponta aparece no fim. Sem máscara perseguindo a linha.
    ========================================================================== */
 
-import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, escala, reduzMovimento } from './animacao.js';
+import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, escala, reduzMovimento } from './animacao.js?v=20261112';
 
 const MESES = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 

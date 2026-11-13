@@ -1,13 +1,21 @@
 /* ==========================================================================
    Live & Learn Brazil — dashboard do mercado imobiliário de São Paulo
-   Estilos próprios da página inicial de realestate.liveandlearnbrazil.com. Tokens vêm de
+   Estilos próprios das páginas de realestate.liveandlearnbrazil.com (o painel
+   e a página de oportunidades). Tokens, fontes, base e rodapé vêm de
    styles.css (paleta, tinta de dado, tempos de movimento, texto secundário).
    O dashboard mantém a versão anterior da paleta, mais colorida: o verde
    e o off-white que saíram da paleta principal ficam definidos aqui.
 
-   Composição: painel compacto em grade de 12 colunas, tiles em múltiplos de
-   60px, vão de 12px, cantos retos, sem sombra, fio de 1px. Duas regiões
-   ardósia: a abertura e o fecho (que emenda no rodapé do site).
+   Composição (modelo de 12/11/2026): cabeçalho em dois volumes (os serviços
+   da casa falam baixo, a página fala alto); abertura ardósia em três colunas
+   (título, boletins por bairro e a folha branca dos imóveis com desconto);
+   painel compacto em grade de 12 colunas, tiles em múltiplos de 60px, vão de
+   12px, cantos retos, sem sombra, fio de 1px, com o bloco da corretagem na
+   terceira coluna; fecho ardósia, que emenda no rodapé do site.
+
+   Ordem do arquivo: as seções 2 a 6 são o painel, como já era; as seções 7 a
+   11 são o modelo novo e vêm depois porque algumas regras dele se apoiam nas
+   do painel.
    ========================================================================== */
 
 :root {
@@ -17,31 +25,27 @@
   /* Tokens próprios do dashboard (paleta anterior) */
   --verde: #3E5F4E;     /* notas explicativas e itálicos das legendas */
   --neve: #FAF9F4;      /* texto sobre a abertura e o fecho ardósia */
+  --bronze: #BF9454;    /* fios e pontos de destaque; nunca como cor de texto sobre ardósia */
+
+  --altura-barra: 60px;                      /* linha principal do cabeçalho */
+  --veu-claro: rgba(255, 255, 255, 0.06);    /* linha do quadro sob o cursor, sobre ardósia */
+  --sombra-folha: rgba(20, 24, 33, 0.3);     /* sombra curta sob a curva da folha */
 }
 
 /* --------------------------------------------------------------------------
-   1. Abertura ardósia: título, uma frase e a data da busca
+   1. Base desta página, por cima da base de styles.css
    -------------------------------------------------------------------------- */
-.abertura {
-  position: relative;
-  background: var(--ardosia);
-  background-image: linear-gradient(160deg, rgba(255, 255, 255, .04), rgba(0, 0, 0, .04));
-  color: var(--neve);
-}
-.abertura::before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; background: var(--champagne); }
-.abertura-topo {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 30px var(--margem) 26px;
-}
-.abertura-titulo { flex: 1 1 auto; min-width: 0; max-width: 860px; }
-.abertura h1 { font-size: 30px; line-height: 1.2; color: var(--neve); }
-.abertura p { margin: 6px 0 0; font-size: 14px; line-height: 1.55; color: var(--texto-sobre-ardosia); }
-.stamp { flex: none; display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--texto-sobre-ardosia); max-width: 320px; text-align: right; }
-.stamp i { flex: none; width: 6px; height: 6px; background: var(--champagne); }
-.stamp [data-atualizado] { color: var(--neve); }
+html { scrollbar-color: var(--texto-secundario) var(--gelo); }
+::selection { background: var(--champagne); color: var(--grafite); }
+:focus-visible { outline-color: var(--amora); }   /* sobre fundo claro; nas faixas ardósia volta a champagne */
+.page { position: relative; }
+
+/* Margem lateral das faixas novas: a mesma do painel, do fecho e do rodapé */
+.servicos-in, .cabecalho, .abertura-in, .servicos-fim { padding-left: var(--margem); padding-right: var(--margem); }
+#bairros, #painel, #corretagem, #fontes { scroll-margin-top: calc(var(--altura-barra) + 20px); }
+
+.pular { position: absolute; left: 8px; top: -80px; z-index: 40; padding: 10px 14px; background: var(--ardosia); color: var(--branco); font-size: 14px; font-weight: 600; }
+.pular:focus { top: 8px; }
 
 /* --------------------------------------------------------------------------
    2. Painel: grade densa de tiles
@@ -149,16 +153,12 @@ table.visually-hidden { display: block; }
   .c3, .c6, .c9 { grid-column: span 6; }
   .a4, .a5 { grid-row: auto; }
   .grafico-area { height: 250px; }
-  .abertura h1 { font-size: 26px; }
 }
 
 /* --------------------------------------------------------------------------
    6. Celular (até 760px): um tile por linha, chave em coluna
    -------------------------------------------------------------------------- */
 @media (max-width: 760px) {
-  .abertura-topo { flex-direction: column; align-items: flex-start; gap: 14px; padding: 24px var(--margem) 22px; }
-  .abertura h1 { font-size: 22px; }
-  .stamp { max-width: none; text-align: left; }
   .tile { grid-column: span 12; }
   .chave { flex-direction: column; gap: 2px; }
   .grafico-area { height: 230px; }
@@ -166,110 +166,367 @@ table.visually-hidden { display: block; }
 }
 
 /* --------------------------------------------------------------------------
-   7. Boletins de bairro: quatro tiles abaixo do painel
+   7. Cabeçalho em dois volumes
    -------------------------------------------------------------------------- */
-.boletins { padding: 44px var(--margem) 0; }
-.boletins-cab { display: grid; gap: 4px; margin-bottom: 14px; max-width: 860px; }
-.boletins-cab h2 { font-size: 26px; line-height: 1.2; color: var(--grafite); }
-.boletins-cab .unidade { margin: 0; font-size: 14px; line-height: 1.55; color: var(--texto-secundario); }
-.boletins-grade { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--vao); }
-.boletim { text-decoration: none; gap: 4px; padding: 16px 16px 14px; transition: border-color .2s, background-color .2s; }
-.boletim::before { content: ""; position: absolute; inset: -1px -1px auto; height: 2px; background: var(--champagne); }
-.boletim:hover { border-color: rgba(var(--ardosia-rgb), .45); background: #EEF3FC; }
-.boletim:focus-visible { outline: 2px solid var(--ardosia); outline-offset: 2px; }
-.boletim-tipo { font-family: var(--fonte-menu); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--texto-secundario); }
-.boletim h3 { font-size: 22px; }
-.boletim .unidade { margin: 0 0 10px; }
-.boletim-valor { margin: auto 0 0; display: grid; gap: 0; }
-.boletim-valor b { font-family: var(--fonte-titulo); font-size: 28px; font-weight: 400; color: var(--ardosia); font-variant-numeric: tabular-nums; line-height: 1.1; }
-.boletim-valor span, .boletim-n { font-size: 12.5px; color: var(--texto-secundario); margin: 0; }
-.boletim-abre { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--linha-champagne, rgba(220,199,146,.4)); font-size: 13px; font-weight: 600; color: var(--ardosia); }
-.boletins-nota { margin: 12px 0 0; max-width: 90ch; font-size: 12.5px; line-height: 1.6; color: var(--texto-secundario); }
-@media (max-width: 1100px) { .boletins-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .boletins-grade { grid-template-columns: minmax(0, 1fr); } .boletins { padding-top: 36px; } }
+/* 1a. Serviços da Live & Learn Brazil: uma linha discreta, sem caixa alta */
+.servicos { background: var(--gelo); border-bottom: 1px solid var(--linha); }
+.servicos-in { display: flex; justify-content: flex-end; align-items: center; flex-wrap: wrap; gap: 0 26px; min-height: 30px; }
+.servicos a {
+  padding: 6px 0;
+  font-family: var(--fonte-menu);
+  font-size: 14px;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  color: var(--texto-secundario);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+.servicos a:hover { color: var(--amora); }
+
+/* 1b. Linha principal: marca, o que existe nesta página e o contato */
+.cabecalho {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0 32px;
+  min-height: var(--altura-barra);
+  background: var(--gelo);
+  border-bottom: 1px solid var(--linha);
+}
+@media (min-width: 1041px) {
+  .cabecalho { position: sticky; top: 0; }
+}
+.cabecalho-marca { flex: none; display: flex; align-items: center; gap: 14px; margin-left: -11px; } /* o desenho do logo traz 11px de ar à esquerda nesta altura */
+.marca-logo { display: block; flex: none; }
+.marca-logo img { height: 44px; width: auto; }
+.marca-secao {
+  display: grid;
+  padding-left: 16px;
+  border-left: 1px solid var(--champagne);
+  font-family: var(--fonte-menu);
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.marca-secao b { font-weight: 700; font-size: 13px; color: var(--ardosia); }
+.marca-secao span { font-size: 12px; color: var(--texto-secundario); }
+
+.secoes { flex: 1 1 auto; min-width: 0; display: flex; justify-content: flex-end; align-items: center; gap: 0 30px; }
+.secoes a {
+  position: relative;
+  padding: 14px 0;
+  font-family: var(--fonte-menu);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amora);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+.secoes a:hover { color: var(--ardosia); }
+.secoes a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 2px;
+  background: var(--bronze);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.4s var(--curva);
+}
+.secoes a:hover::after, .secoes a[aria-current]::after { transform: scaleX(1); }
+.secoes .secoes-novo::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--bronze);
+  vertical-align: 0.14em;
+}
+.so-estreito { display: none; }
+
+.whats {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid var(--amora);
+  background: var(--azul-gelo);
+  color: var(--grafite);
+  font-weight: 700;
+  font-size: 13.5px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.whats:hover { background: var(--amora); color: var(--gelo); }
+.whats-numero { font-variant-numeric: tabular-nums; }
+
+/* --------------------------------------------------------------------------
+   8. Folha: o desenho do quadro dos imóveis com desconto. Três arestas retas
+      com fio bronze e a base em curva, a mesma curva do logotipo e do rodapé.
+      O SVG estica com o quadro; os fios mantêm a espessura.
+   -------------------------------------------------------------------------- */
+.folha { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 5px 5px var(--sombra-folha)); }
+.folha path { vector-effect: non-scaling-stroke; }
+.folha-fundo { fill: var(--gelo); stroke: none; }
+.folha-fio { fill: none; stroke: var(--bronze); stroke-width: 2; stroke-linejoin: miter; }
+.folha-curva { fill: none; stroke: var(--bronze); stroke-width: 2.5; stroke-linecap: round; }
+
+/* --------------------------------------------------------------------------
+   9. Abertura ardósia em três colunas, na mesma grade do painel:
+      título | boletins por bairro | imóveis com desconto
+   -------------------------------------------------------------------------- */
+.abertura { position: relative; background: var(--ardosia); background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.04)); color: var(--branco); }
+.abertura::before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; background: var(--bronze); }   /* o fio bronze do site, no encontro com o cabeçalho */
+.abertura :focus-visible { outline-color: var(--champagne); }
+.abertura-in { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--vao); padding-block: 28px 26px; }
+
+.abertura-titulo { position: relative; grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.abertura h1 { font-size: clamp(28px, 2.4vw, 34px); line-height: 1.13; color: var(--champagne); text-wrap: balance; }   /* o dourado da marca sobre a ardósia */
+.abertura-apoio { display: grid; gap: 14px; margin-top: auto; }   /* resumo e data descem até a base da coluna */
+.abertura-lead { max-width: 62ch; font-size: 15px; line-height: 1.6; color: var(--branco); }
+.carimbo { display: flex; align-items: baseline; gap: 10px; font-size: 13px; line-height: 1.5; color: var(--branco); }
+.carimbo i { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--bronze); transform: translateY(-2px); }
+
+/* volta ao boletim de origem: quem chega com ?de=brooklin ganha o caminho de volta */
+.volta-boletim { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin: 0 0 -8px; font-family: var(--fonte-menu); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: 14px; color: var(--branco); }
+.volta-boletim::before { content: "←"; color: var(--champagne); letter-spacing: 0; font-size: 18px; }
+.volta-boletim:hover { color: var(--champagne); }
+.volta-boletim[hidden] { display: none; }
+
+/* 3a. Quadro de preços por bairro: uma linha por boletim, valores numa coluna só */
+.quadro { position: relative; grid-column: 4 / span 6; display: flex; flex-direction: column; min-width: 0; padding-inline: 24px 44px; }
+.quadro-cab { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 2px 20px; }
+.quadro-cab h2 { font-size: 23px; line-height: 1.2; color: var(--branco); }
+.quadro-meta { font-family: var(--fonte-menu); font-size: 14.5px; line-height: 1.3; letter-spacing: 0.04em; color: var(--texto-sobre-ardosia); }
+.quadro-unidade { margin-top: 10px; padding-right: 36px; font-size: 12px; line-height: 1.4; text-align: right; color: var(--texto-sobre-ardosia); }   /* a unidade dos preços, uma vez só, sobre a coluna dos valores */
+.quadro-lista { list-style: none; margin: 5px 0 0; padding: 0; border-top: 1px solid var(--bronze); }
+.quadro-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 18px;
+  grid-template-areas: "nome valor seta" "chamada valor seta";
+  column-gap: 18px;
+  align-items: center;
+  margin-inline: -10px;
+  padding: 9px 10px 10px;
+  transition: background-color 0.2s ease;
+}
+.quadro-item::before { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 1px; background: var(--linha-champagne); }   /* o fio fica na largura do título; o realce passa 10px de cada lado */
+.quadro-item:hover { background: var(--veu-claro); }
+.quadro-item h3 { grid-area: nome; align-self: end; font-size: 20px; line-height: 1.2; color: var(--branco); }
+.quadro-item h3 a::after { content: ""; position: absolute; inset: 0; }   /* a linha inteira abre o boletim */
+@supports selector(:has(a)) {
+  .quadro-item h3 a:focus-visible { outline: none; }
+  .quadro-item:has(a:focus-visible) { outline: 2px solid var(--champagne); outline-offset: -2px; }
+}
+.quadro-chamada { grid-area: chamada; align-self: start; font-size: 12.5px; line-height: 1.4; color: var(--texto-sobre-ardosia); }
+.quadro-valor { grid-area: valor; font-family: var(--fonte-titulo); font-size: 24px; line-height: 1.1; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; color: var(--branco); }
+.quadro-seta { grid-area: seta; font-size: 18px; line-height: 1; color: var(--champagne); transition: transform 0.35s var(--curva); }
+.quadro-item:hover .quadro-seta { transform: translateX(5px); }
+.quadro-nota { margin-top: auto; padding-top: 10px; font-size: 12px; line-height: 1.5; color: var(--texto-sobre-ardosia); text-wrap: pretty; }
+.quadro-nota-cel { display: none; }   /* no celular a mesma nota abre com um toque, como as legendas dos gráficos */
+
+/* 3b. Imóveis com desconto: folha branca à direita, na coluna que continua no quadro da corretagem */
+.oferta { position: relative; isolation: isolate; grid-column: 10 / -1; display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 26px 24px 58px; color: var(--amora); }
+.oferta-corpo { flex: 1; display: flex; flex-direction: column; gap: 10px; min-width: 0; background: var(--gelo); }   /* mesma cor da folha */
+.oferta-titulo { font-family: var(--fonte-titulo); font-size: clamp(28px, 2.4vw, 34px); line-height: 1.13; text-wrap: balance; }   /* o mesmo tamanho do título da página */
+.oferta-en { font-size: 13.5px; line-height: 1.5; }
+.oferta-acao { margin-top: auto; padding-top: 12px; font-weight: 700; font-size: 12.5px; line-height: 1.3; letter-spacing: 0.12em; text-transform: uppercase; }
+.oferta-acao-texto { text-decoration: underline; text-decoration-color: var(--bronze); text-decoration-thickness: 2px; text-underline-offset: 6px; transition: text-decoration-color 0.25s ease; }
+.oferta-seta { display: inline-block; margin-left: 6px; transition: transform 0.35s var(--curva); }
+.oferta:hover .oferta-acao-texto { text-decoration-color: var(--amora); }
+.oferta:hover .oferta-seta { transform: translateX(5px); }
+
+/* --------------------------------------------------------------------------
+   10. Painel: tinta dos gráficos novos e o bloco da corretagem, na terceira
+      coluna. O bloco é igual aos dos gráficos (mesmo fundo, mesmo fio, cantos
+      retos); só o título e o botão do WhatsApp ficam em amora. Acompanha a
+      rolagem no desktop. Com os quatro gráficos novos, o painel tem dez
+      gráficos em quatro fileiras.
+   -------------------------------------------------------------------------- */
+.painel { position: relative; }
+/* tinta de interface dos gráficos novos (barras horizontais e linha de referência) */
+.barra-trilho { fill: var(--linha); }
+.ref-linha { stroke: var(--dado-ardosia); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.ref-rotulo { font-family: var(--fonte-menu); font-size: 11px; letter-spacing: 0.08em; fill: var(--grafite); font-weight: 700; }
+.amostra--ref line { stroke: var(--dado-ardosia); stroke-width: 3; stroke-dasharray: 4 2; }
+
+.corretagem { grid-column: 10 / -1; grid-row: 1 / span 20; min-width: 0; }
+.corretagem-quadro {
+  position: sticky;
+  top: calc(var(--altura-barra) + var(--vao));
+  display: flex;
+  flex-direction: column;
+  min-height: calc(var(--linha-base) * 5 + var(--vao) * 4);   /* a altura de um bloco de gráfico */
+  padding: 14px 16px;
+  background: var(--azul-gelo);
+  border: 1px solid var(--linha);
+  color: var(--grafite);
+}
+.corretagem-corpo { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.corretagem-quadro h2 { font-size: 22px; line-height: 1.2; color: var(--amora); text-wrap: balance; }
+.corretagem-frase { margin-top: 12px; font-family: var(--fonte-titulo); font-size: 18px; line-height: 1.3; color: var(--grafite); text-wrap: balance; }
+.corretagem-en { font-size: 12.5px; line-height: 1.4; color: var(--texto-secundario); }
+.corretagem-acoes { display: grid; gap: 10px; justify-items: start; margin-top: 14px; }
+/* o botão é um link direto para a conversa no WhatsApp, com a mensagem pronta do site */
+.corretagem-btn {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 7px;
+  min-height: 44px;
+  padding: 8px 16px;
+  background: var(--amora);
+  color: var(--branco);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  transition: background-color 0.25s ease;
+}
+.corretagem-btn span { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.corretagem-btn:hover { background: var(--ardosia); }
+.corretagem-mail { font-size: 13.5px; line-height: 1.5; color: var(--ardosia); text-decoration: underline; text-decoration-color: var(--bronze); text-decoration-thickness: 2px; text-underline-offset: 5px; overflow-wrap: anywhere; }
+.corretagem-mail:hover { color: var(--amora); }
+.corretagem-assina { margin-top: auto; padding-top: 14px; font-family: var(--fonte-menu); font-size: 13.5px; line-height: 1.4; letter-spacing: 0.04em; color: var(--texto-secundario); }
+/* quem chega pelo item "Brokerage" do menu vê o fio do bloco acender uma vez */
+.corretagem:target .corretagem-quadro { animation: chamada 1.8s var(--curva) 1; }
+@keyframes chamada { 0%, 100% { border-color: var(--linha); } 35% { border-color: var(--amora); } }
+
+/* links e foco sobre ardósia */
+.fecho a { color: var(--neve); text-decoration: underline; text-decoration-color: var(--champagne); text-underline-offset: 4px; }
+.fecho :focus-visible, .servicos-fim :focus-visible, .footer :focus-visible { outline-color: var(--champagne); }
+
+/* serviços no fim da página: só no celular, onde a linha do topo sai */
+.servicos-fim { display: none; }
+
+/* --------------------------------------------------------------------------
+   11. Telas menores do modelo novo (as do painel estão nas seções 5 e 6)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1340px) {
+  .whats-numero { display: none; }
+  .corretagem-quadro h2 { font-size: 21px; }
+  .corretagem-frase { margin-top: 8px; font-size: 17px; }
+  .corretagem-acoes { margin-top: 10px; gap: 8px; }
+  .corretagem-assina { padding-top: 8px; }
+}
+@media (max-width: 1180px) {
+  .secoes { gap: 0 24px; }
+  .so-largo { display: none; }
+  .so-estreito { display: inline; }
+}
+@media (max-width: 1040px) {
+  .cabecalho { flex-wrap: wrap; row-gap: 8px; padding-top: 8px; }
+  .whats { margin-left: auto; }
+  .secoes { order: 3; flex-basis: 100%; justify-content: flex-start; border-top: 1px solid var(--linha); }
+  .secoes a { padding: 11px 0; }
+  .secoes a::after { bottom: 6px; }
+}
+@media (max-width: 1100px) {
+  /* a abertura fica em duas linhas: título e descontos lado a lado, boletins embaixo */
+  .abertura-titulo { grid-column: 1 / span 7; grid-row: 1; }
+  .oferta { grid-column: 8 / -1; grid-row: 1; padding: 22px 22px 52px; }
+  .quadro { grid-column: 1 / -1; grid-row: 2; margin-top: 28px; padding-inline: 0; }
+  .quadro-nota { margin-top: 0; }
+  /* a corretagem deixa de ser coluna e vem depois dos gráficos */
+  .corretagem { grid-column: 1 / -1; grid-row: auto; }
+  .corretagem-quadro { position: relative; top: auto; min-height: 0; padding: 18px 20px; }
+  .corretagem-corpo { max-width: 560px; }
+}
+@media (max-width: 760px) {
+  .servicos, .marca-secao { display: none; }
+  .cabecalho-marca { margin-left: -9px; }
+  .marca-logo img { height: 38px; }
+  .cabecalho { min-height: 0; padding-top: 10px; }
+  .secoes { justify-content: space-between; gap: 0 12px; }
+  .secoes a { padding: 13px 0; font-size: 13px; letter-spacing: 0.08em; }
+  .secoes .secoes-novo::before { margin-right: 6px; }
+
+  .abertura-in { padding-block: 24px 22px; }
+  .abertura h1 { font-size: 26px; }
+  .abertura-lead { font-size: 14.5px; }
+  .abertura-titulo, .quadro, .oferta { grid-column: 1 / -1; grid-row: auto; }
+  .abertura-titulo { order: 1; }
+  .abertura-apoio { margin-top: 0; }
+  .oferta { order: 2; margin-top: 18px; padding: 16px 20px 36px; }
+  .oferta-corpo { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 14px; align-items: center; }
+  .oferta-titulo { grid-column: 1; font-size: 26px; }
+  .oferta-en { grid-column: 1; }
+  .oferta-acao { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; padding-top: 0; font-size: 22px; letter-spacing: 0; }
+  .oferta-acao-texto { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .oferta-seta { margin-left: 0; }
+  .quadro { order: 3; margin-top: 24px; }
+  .quadro-nota { display: none; }
+  .quadro-nota-cel { display: block; margin-top: 2px; font-size: 12px; line-height: 1.5; color: var(--texto-sobre-ardosia); }
+  .quadro-nota-cel summary { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; list-style: none; font-size: 12.5px; color: var(--branco); }
+  .quadro-nota-cel summary::-webkit-details-marker { display: none; }
+  .quadro-nota-cel summary::after { content: "+"; font-family: var(--fonte-titulo); font-size: 15px; line-height: 1; }
+  .quadro-nota-cel[open] summary::after { content: "×"; }
+  .quadro-nota-cel p { padding-bottom: 6px; }
+  .quadro-item { grid-template-columns: minmax(0, 1fr) auto 16px; grid-template-areas: "nome valor seta" "chamada chamada chamada"; column-gap: 12px; row-gap: 2px; margin-inline: 0; padding: 10px 0 11px; }
+  .quadro-item h3 { align-self: center; }
+  .quadro-item::before { left: 0; right: 0; }
+  .quadro-valor { font-size: 22px; }
+  .quadro-unidade { padding-right: 28px; }
+
+  .corretagem-quadro { padding: 16px 16px 18px; }
+
+  .servicos-fim { display: grid; gap: 2px; padding-block: 14px 4px; background: var(--ardosia); }
+  .servicos-fim::before { content: ""; height: 1px; margin-bottom: 8px; background: var(--linha-champagne); }
+  .servicos-fim a { padding: 9px 0; font-family: var(--fonte-menu); font-size: 15px; line-height: 1.3; letter-spacing: 0.04em; color: var(--champagne-claro); }
+}
 
 /* Sem movimento: os componentes leem a preferência e desenham no estado final. */
 @media (prefers-reduced-motion: reduce) {
   .serie-linha, .serie-area, .serie-ponta, .gauge-arco { animation: none !important; transition: none !important; }
 }
 
-
 /* --------------------------------------------------------------------------
-   8. Chamada da corretagem na abertura (22/10/2026)
-   Quadro champagne à direita do título; a data da busca desce para baixo
-   do parágrafo. No celular, o quadro vem logo abaixo do título.
+   12. Página de oportunidades (oportunidades/): provisória, até a lista de
+       imóveis com desconto entrar. Usa o cabeçalho, a abertura e o rodapé
+       desta folha; a faixa ardósia ocupa a altura que sobra da tela.
    -------------------------------------------------------------------------- */
-.abertura-topo { align-items: center; }
-.abertura-titulo .stamp { margin-top: 16px; max-width: none; text-align: left; }
-.cta-imovel {
-  flex: 0 0 380px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 24px 26px;
-  background: var(--champagne-claro);
-  border-top: 4px solid var(--champagne);
-  color: var(--grafite);
-}
-.abertura .cta-imovel p { margin: 0; color: var(--grafite); }
-.abertura .cta-imovel .cta-imovel-rotulo {
-  font-family: var(--fonte-menu);
+.page--curta { min-height: 100vh; }
+.page--curta main { flex: 1; display: flex; flex-direction: column; }
+.page--curta .abertura { flex: 1; }
+.oportunidades-in { display: block; padding-block: 56px 64px; }
+.oportunidades-texto { display: grid; justify-items: start; gap: 14px; max-width: 640px; }
+.oportunidades-texto .volta-boletim { margin: 0 0 6px; }
+.oportunidades-texto h1 { font-size: clamp(30px, 3.4vw, 44px); }
+.oportunidades-en { font-family: var(--fonte-titulo); font-size: 20px; line-height: 1.3; color: var(--branco); }
+.oportunidades-texto .abertura-lead { margin-top: 10px; }
+.oportunidades-btn {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+  min-height: 44px;
+  margin-top: 10px;
+  padding: 8px 18px;
+  background: var(--gelo);
+  color: var(--amora);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 14px;
-  color: var(--ardosia);
-}
-.cta-imovel-item { display: flex; flex-direction: column; gap: 2px; }
-.abertura .cta-imovel .cta-imovel-frase { font-family: var(--fonte-titulo); font-size: 20px; line-height: 1.3; }
-.abertura .cta-imovel .cta-imovel-en { font-size: 13px; color: var(--texto-secundario); }
-.cta-imovel-acoes { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; margin-top: 4px; }
-.cta-imovel-btn {
-  display: inline-block;
-  font-weight: 700;
-  letter-spacing: 0.06em;
   font-size: 15px;
-  padding: 12px 18px;
-  background: var(--ardosia);
-  color: var(--neve);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
   transition: background-color 0.25s ease;
 }
-.cta-imovel-btn:hover { background: var(--amora); }
-.cta-imovel-mail { font-size: 14px; color: var(--ardosia); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-.cta-imovel-mail:hover { color: var(--amora); }
-
-@media (max-width: 1100px) {
-  .cta-imovel { flex-basis: 320px; }
-  .abertura .cta-imovel .cta-imovel-frase { font-size: 18px; }
-}
+.oportunidades-btn span { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.oportunidades-btn:hover { background: var(--champagne-claro); }
 @media (max-width: 760px) {
-  .cta-imovel { flex: none; width: 100%; }
+  .oportunidades-in { padding-block: 36px 44px; }
+  .oportunidades-en { font-size: 18px; }
 }
-
-/* --------------------------------------------------------------------------
-   9. Ajustes de 03/11/2026: abertura em branco com detalhes em bronze,
-   quadro da corretagem só com contorno, volta ao boletim de origem
-   -------------------------------------------------------------------------- */
-:root { --bronze: #BF9454; }
-.menu a { color: var(--amora); }
-.menu a:hover { color: var(--ardosia); }
-.abertura::before { background: var(--bronze); }
-.abertura h1 { color: #fff; }
-.abertura p { color: #fff; }
-.stamp { color: #fff; }
-.stamp i { background: var(--bronze); border-radius: 50%; }
-.stamp [data-atualizado] { color: #fff; }
-.cta-imovel { background: transparent; border: 1px solid var(--bronze); box-shadow: 0 0 0 4px var(--amora); color: #fff; }
-.abertura .cta-imovel p { color: #fff; }
-.abertura .cta-imovel .cta-imovel-rotulo { color: var(--bronze); display: flex; align-items: center; gap: 10px; }
-.abertura .cta-imovel .cta-imovel-rotulo::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--bronze); }
-.abertura .cta-imovel .cta-imovel-en { color: #fff; opacity: .78; }
-.cta-imovel-btn { background: var(--amora); color: #fff; box-shadow: inset 0 0 0 1px var(--bronze); }
-.cta-imovel-btn:hover { background: var(--bronze); color: var(--ardosia); }
-.cta-imovel-mail { color: #fff; text-decoration-color: var(--bronze); text-decoration-thickness: 2px; text-underline-offset: 5px; }
-.cta-imovel-mail:hover { color: var(--bronze); }
-.volta-boletim { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin: 0 0 6px; font-family: var(--fonte-menu); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 14px; color: #fff; text-decoration: none; }
-.volta-boletim::before { content: "←"; color: var(--bronze); letter-spacing: 0; font-size: 18px; }
-.volta-boletim:hover { color: var(--bronze); }
-.volta-boletim[hidden] { display: none; }
-@media (max-width: 760px) { .cta-imovel { margin: 4px; width: calc(100% - 8px); } }
