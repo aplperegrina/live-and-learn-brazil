@@ -10,7 +10,7 @@
    geométricas de SVG sem unidade são descartadas.
    ========================================================================== */
 
-import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, escala, reduzMovimento } from './animacao.js?v=20261112';
+import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, escala, reduzMovimento, cabeAnoNoInicio } from './animacao.js?v=20261113';
 
 const MESES = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
@@ -38,6 +38,9 @@ export function desenharColunas(raiz, cfg) {
       svgEl('text', { x: m.left - 8, y: y(v) + 4, 'text-anchor': 'end', class: 'eixo-rotulo' }, grade).textContent = cfg.formatoEixo(v);
     }
     colunas = [];
+    /* o ano do primeiro mês só entra se não encosta no do janeiro seguinte */
+    const janeiroSeguinte = cfg.meses.findIndex((ym, i) => i > 0 && ym.endsWith('-01'));
+    const anoNoInicio = janeiroSeguinte < 0 || cabeAnoNoInicio(janeiroSeguinte * passo, false);
     cfg.meses.forEach((ym, i) => {
       const cx = m.left + i * passo + passo / 2;
       const v = serie.valores[i];
@@ -45,9 +48,9 @@ export function desenharColunas(raiz, cfg) {
         const rect = svgEl('rect', { x: (cx - largura / 2).toFixed(1), width: largura.toFixed(1), y: yBase, height: 0, style: `fill:var(--dado-${serie.cor});fill-opacity:${i === n - 1 ? 1 : 0.5}` }, svg);
         colunas.push({ rect, y: y(v), h: yBase - y(v), i });
       }
-      /* eixo x: um mês a cada três, contando a partir do último; o ano no primeiro mês e em janeiro */
+      /* eixo x: um mês a cada três, contando a partir do último; o ano em janeiro e, se couber, no primeiro mês */
       if ((n - 1 - i) % 3 === 0) svgEl('text', { x: cx, y: yBase + 18, 'text-anchor': 'middle', class: 'eixo-rotulo' }, grade).textContent = MESES[+ym.slice(5, 7) - 1];
-      if (i === 0 || ym.endsWith('-01')) svgEl('text', { x: cx, y: yBase + 33, 'text-anchor': 'middle', class: 'eixo-rotulo eixo-rotulo--ano' }, grade).textContent = ym.slice(0, 4);
+      if (ym.endsWith('-01') || (i === 0 && anoNoInicio)) svgEl('text', { x: cx, y: yBase + 33, 'text-anchor': 'middle', class: 'eixo-rotulo eixo-rotulo--ano' }, grade).textContent = ym.slice(0, 4);
     });
     if (animado) for (const c of colunas) { c.rect.setAttribute('y', c.y); c.rect.setAttribute('height', c.h); }
   }

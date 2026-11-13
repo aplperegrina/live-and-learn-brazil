@@ -11,7 +11,7 @@
    atraso em --mov-area; ponta aparece no fim. Sem máscara perseguindo a linha.
    ========================================================================== */
 
-import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, escala, reduzMovimento } from './animacao.js?v=20261112';
+import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, escala, reduzMovimento, cabeAnoNoInicio } from './animacao.js?v=20261113';
 
 const MESES = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
@@ -47,8 +47,11 @@ export function desenharLinhas(raiz, cfg) {
       svgEl('text', { x: m.left - 8, y: y(v) + 4, 'text-anchor': 'end', class: 'eixo-rotulo' }, grade).textContent = formatoEixo(v);
     }
 
-    /* eixo x: mês, e o ano em janeiro (e no primeiro mês, quando cabe) */
+    /* eixo x: mês, e o ano em janeiro. O primeiro mês também leva o ano quando a tela não é
+       estreita e o rótulo não encosta no do janeiro seguinte. */
     const passo = estreito ? 6 : W < 640 ? 3 : 1;
+    const janeiroSeguinte = cfg.meses.findIndex((ym, i) => i > 0 && ym.endsWith('-01'));
+    const anoNoInicio = !estreito && (janeiroSeguinte < 0 || cabeAnoNoInicio(x(janeiroSeguinte) - x(0), true));
     for (let i = 0; i < n; i++) {
       const ym = cfg.meses[i];
       const janeiro = ym.endsWith('-01');
@@ -56,7 +59,7 @@ export function desenharLinhas(raiz, cfg) {
         svgEl('text', { x: x(i), y: yBase + 18, 'text-anchor': i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle', class: 'eixo-rotulo' }, grade)
           .textContent = MESES[+ym.slice(5, 7) - 1];
       }
-      if (janeiro || (i === 0 && !estreito)) {
+      if (janeiro || (i === 0 && anoNoInicio)) {
         svgEl('text', { x: x(i), y: yBase + 33, 'text-anchor': i === 0 ? 'start' : 'middle', class: 'eixo-rotulo eixo-rotulo--ano' }, grade).textContent = ym.slice(0, 4);
       }
     }

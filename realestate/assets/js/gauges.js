@@ -8,7 +8,7 @@
    escalonado 260ms entre arcos.
    ========================================================================== */
 
-import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, reduzMovimento } from './animacao.js?v=20261112';
+import { svgEl, tempo, curva, quandoVisivel, aoRedimensionar, reduzMovimento } from './animacao.js?v=20261113';
 
 /** Quebra `texto` em até `maxLinhas` linhas de até `maxChars` caracteres; a última ganha "…" se sobrar texto. */
 function quebrar(texto, maxChars, maxLinhas) {

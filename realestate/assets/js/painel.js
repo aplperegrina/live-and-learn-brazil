@@ -17,13 +17,13 @@ import {
   carregarDados, carregarAlugueis, rotuloBusca, rotuloMes, fmtPct, fmtPct1, fmtIndice, fmtCambio,
   montarCustoDoDinheiro, montarVariacaoMensal, montarGauges, montarValoresIndexados, montarCambio, montarAtividade,
   montarIndexadores, montarAluguel, montarIvar, montarCustoDeConstrucao,
-} from './marketData.js?v=20261112';
-import { preencherTabela } from './animacao.js?v=20261112';
-import { desenharLinhas } from './linhas.js?v=20261112';
-import { desenharBarras } from './barras-divergentes.js?v=20261112';
-import { desenharGauges } from './gauges.js?v=20261112';
-import { desenharColunas } from './colunas.js?v=20261112';
-import { desenharBarrasH } from './barras-horizontais.js?v=20261112';
+} from './marketData.js?v=20261113';
+import { preencherTabela } from './animacao.js?v=20261113';
+import { desenharLinhas } from './linhas.js?v=20261113';
+import { desenharBarras } from './barras-divergentes.js?v=20261113';
+import { desenharGauges } from './gauges.js?v=20261113';
+import { desenharColunas } from './colunas.js?v=20261113';
+import { desenharBarrasH } from './barras-horizontais.js?v=20261113';
 
 /* origem: de que arquivo o gráfico lê. Sem origem, é o do Banco Central (sgs). */
 const GRAFICOS = {
