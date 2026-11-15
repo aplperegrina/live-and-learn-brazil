@@ -1,6 +1,8 @@
 # Boletins imobiliários (realestate.liveandlearnbrazil.com)
 DirectoryIndex index.html index.php
 Options -Indexes
+# robots.txt, llms.txt e sitemap.xml com acentos corretos
+AddCharset UTF-8 .txt .xml
 ErrorDocument 404 /index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
