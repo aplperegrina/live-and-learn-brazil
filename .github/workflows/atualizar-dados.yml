@@ -64,13 +64,22 @@ jobs:
         timeout-minutes: 5
         run: node scripts/buscar-alugueis.js ${{ inputs.sem_commit && '--completo' || '' }}
 
+      # Grava no HTML o texto e os dados estruturados que buscadores e IAs leem (scripts/seo-boletins.py).
+      # Atualiza a data do painel, os números de aluguel do FAQ, o sitemap e o llms.txt.
+      # Se falhar, os dados seguem o caminho normal.
+      - name: Atualizar SEO dos boletins e do painel
+        continue-on-error: true
+        run: python3 scripts/seo-boletins.py
+
       - name: Commitar os JSON se mudaram
         id: commit
         if: ${{ !inputs.sem_commit }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for arquivo in realestate/dados/dados-sgs.json realestate/dados/dados-alugueis.json; do
+          for arquivo in realestate/dados/dados-sgs.json realestate/dados/dados-alugueis.json \
+                         realestate/index.html realestate/*/index.html \
+                         realestate/sitemap.xml realestate/llms.txt realestate/robots.txt; do
             if [ -f "$arquivo" ]; then git add "$arquivo"; fi
           done
           if git diff --staged --quiet; then

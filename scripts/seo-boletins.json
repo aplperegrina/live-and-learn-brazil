@@ -1,0 +1,111 @@
+{
+  "_leia": "Textos de SEO/GEO dos boletins de realestate.liveandlearnbrazil.com. Depois de editar este arquivo ou os dados (blocos D e C) de um boletim, rode: python3 scripts/seo-boletins.py. O GitHub Actions também roda o script todo dia útil. Nas respostas do FAQ, {chaves} viram números do boletim (lista em scripts/seo-boletins.py, função valores). Mude 'atualizado' quando o conteúdo do boletim mudar.",
+  "base": "https://realestate.liveandlearnbrazil.com",
+  "pessoa": {
+    "nome": "Andrea Longobardi",
+    "cargo": "Corretora de imóveis",
+    "creci": "CRECI-SP 338018-F",
+    "bio": "Corretora de imóveis especializada em estratégia de venda no Brooklin, no Morumbi e em Cidade Jardim. Doutora em Educação e História. Atende em português, inglês, chinês e italiano.",
+    "formacao": "Doutorado em Educação e História",
+    "imobiliaria": "Coelho da Fonseca",
+    "telefone": "+55 11 95439-5027",
+    "email": "reception@liveandlearnbrazil.com",
+    "foto": "/assets/img/andrea-longobardi.jpg",
+    "idiomas": [
+      "pt-BR",
+      "en",
+      "zh",
+      "it"
+    ],
+    "areas": [
+      "Brooklin",
+      "Chácara Santo Antônio",
+      "Campo Belo",
+      "Morumbi",
+      "Jardim Guedala",
+      "Caxingui",
+      "Jardim Previdência",
+      "Cidade Jardim",
+      "Jardim Panorama"
+    ]
+  },
+  "home": {
+    "titulo": "São Paulo Real Estate, by the numbers · Live & Learn Brazil",
+    "descricao": "The rates, prices and currency that move São Paulo property, explained for the foreign executive and refreshed every weekday from Central Bank data, plus neighborhood bulletins for Brooklin, Morumbi and Cidade Jardim."
+  },
+  "boletins": {
+    "brooklin": {
+      "publicado": "2026-10-19",
+      "atualizado": "2026-11-15",
+      "subtitulo": {
+        "pt": "Informações sobre negócios imobiliários, casas, apartamentos e características do Brooklin e Chácara Santo Antônio",
+        "en": "Real estate deals, houses, apartments and neighborhood features in Brooklin and Chácara Santo Antônio"
+      },
+      "manchete": "Boletim Imobiliário do Brooklin e da Chácara Santo Antônio",
+      "descricao": "Preço do m², vendas por mês, aluguel e perguntas frequentes sobre o Brooklin e a Chácara Santo Antônio, com dados de ITBI da Prefeitura. Por Andrea Longobardi, corretora de imóveis, CRECI-SP 338018-F.",
+      "llms": "m² mediano dos apartamentos {m2} ({m2_var_txt} em 12 meses até {mes_fim}), {por_mes} vendas por mês, apartamento típico {ticket}; perguntas frequentes sobre venda, preço, aluguel, casas e zoneamento",
+      "faq_titulo": "Perguntas frequentes sobre o Brooklin",
+      "faq": [
+        {
+          "p": "É fácil vender imóvel no Brooklin?",
+          "r": "O Brooklin tem um mercado de apartamentos com bastante movimento: foram {n} vendas registradas na Prefeitura nos 12 meses até {mes_fim}, cerca de {por_mes} por mês, {n_var_txt} que nos 12 meses anteriores. A facilidade muda com o tipo de imóvel. Apartamentos de 3 e 4 dormitórios encontram pouca concorrência de prédios novos, enquanto studios e compactos disputam compradores com os prédios entregues desde 2024. As casas ficaram mais raras: as vendas passaram de {mov_casa_vol_a} para {mov_casa_vol_b} por mês entre 2021–2022 e 2025–2026. Os números completos estão no <a href=\"#painel\">painel de dados do bairro</a>."
+        },
+        {
+          "p": "É rápido vender no Brooklin?",
+          "r": "As guias de ITBI registram a data da venda, sem o tempo em que o imóvel ficou anunciado, por isso o boletim mede o ritmo do mercado pelo volume: cerca de {por_mes} apartamentos vendidos por mês. O prazo de cada venda depende de três fatores que o proprietário controla: preço alinhado às vendas reais da quadra, documentação pronta (matrícula atualizada, IPTU e condomínio em dia, planta aprovada) e uma apresentação que destaque a distância a pé das estações das Linhas 5-Lilás e 17-Ouro. O valor de referência da sua quadra aparece no <a href=\"#mapa\">mapa de preços por quadra</a>."
+        },
+        {
+          "p": "Onde e como vender imóveis no Brooklin?",
+          "r": "O caminho mais seguro começa pelo estudo de preço: compare o seu imóvel com as vendas da sua quadra e do seu prédio, porque a média do bairro junta studios novos e apartamentos de 300 m². Em seguida, reúna a documentação e defina onde o imóvel será anunciado. Anunciar em várias imobiliárias ao mesmo tempo amplia o alcance, e um(a) corretor(a) que represente o proprietário coordena esses anúncios, filtra as visitas e conduz a negociação. Para estudar o posicionamento do seu imóvel para venda, <a href=\"#contato\">entre em contato com Andrea Longobardi</a>."
+        },
+        {
+          "p": "Qual a melhor imobiliária do Brooklin?",
+          "r": "No Brooklin há diversas imobiliárias boas e muito procuradas. O ideal é fazer a gestão do seu imóvel com um(a) corretor(a) que ofereça o serviço de parceria com todas as imobiliárias locais. Assim o proprietário resolve dois problemas de uma vez: tem um corretor que o representa, filtra as visitas e corre atrás do resultado, e o anúncio do imóvel fica em todas as imobiliárias, para que qualquer comprador possa encontrá-lo. Como corretora da Coelho da Fonseca em São Paulo, especializada em estratégia de venda, eu faço este trabalho e ofereço resultados mais rápidos e satisfatórios."
+        },
+        {
+          "p": "Quanto custa um apartamento de 2 quartos no Brooklin?",
+          "r": "As guias de ITBI não informam o número de dormitórios, então o boletim mede o preço pela área. Com a mediana de {m2} por m² de área privativa estimada nos 12 meses até {mes_fim}, um apartamento de 55 a 70 m², faixa comum para 2 dormitórios, fica entre {v55} e {v70}. Na Chácara Santo Antônio a mediana é menor ({sub_chacara_m2} por m²), e no Brooklin Paulista e Novo é maior ({sub_residencial_m2} por m²). Prédio, andar, vaga e distância do metrô mudam bastante o valor; a <a href=\"#compra\">calculadora de m²</a> do boletim mostra quantos metros cabem no seu orçamento em cada parte do bairro."
+        },
+        {
+          "p": "Qual a média de preços de apartamentos no Brooklin?",
+          "r": "O boletim usa a mediana, que sofre menos com vendas fora do padrão. Nos 12 meses até {mes_fim}, o m² mediano dos apartamentos do Brooklin ficou em {m2} de área privativa estimada ({m2_iptu} pela área do IPTU), {m2_var_txt} contra os 12 meses anteriores. O apartamento típico vendido custou {ticket}, com cerca de {area_med} m² privativos. Por região: Brooklin Paulista e Novo, {sub_residencial_m2} por m²; Chácara Santo Antônio, {sub_chacara_m2} por m²; lado da Berrini, {sub_berrini_m2} por m². Alguns prédios de alto padrão da Rua Michigan passam de R$ 19 mil por m²."
+        },
+        {
+          "p": "Quanto custa alugar no Brooklin?",
+          "r": "Pelo Índice de Aluguel do QuintoAndar, o aluguel residencial no Brooklin ficou em média em R$ 104,60 por m² em janeiro de 2026, um dos valores mais altos do país nesse levantamento (<a href=\"https://timesbrasil.com.br/empresas-e-negocios/imoveis/aluguel-brooklin-vila-olimpia-acima-100-m2-ranking-sao-paulo/\" target=\"_blank\" rel=\"noopener\">Times Brasil</a>). Unidades menores custam mais por m²: na cidade de São Paulo, o índice FipeZap de {aluguel_sp_mes} marca {aluguel_sp_1d} por m² para 1 dormitório e {aluguel_sp_2d} por m² para 2 dormitórios, com média de {aluguel_sp} por m². Condomínio e IPTU são cobrados à parte."
+        },
+        {
+          "p": "Tem casas em condomínio de alto padrão no Brooklin?",
+          "r": "O Brooklin tem casas de rua, com destaque para o Brooklin Velho, que mantém casas e a herança alemã do bairro, mas a oferta de casas vem caindo: as vendas passaram de {mov_casa_vol_a} para {mov_casa_vol_b} por mês entre 2021–2022 e 2025–2026, com m² mediano de {mov_casa_m2_b} (o preço inclui o terreno). As guias de ITBI não separam as casas em condomínio fechado. Quem procura casa em condomínio de alto padrão na Zona Sul costuma estudar também o <a href=\"../morumbi/\">Morumbi</a> e <a href=\"../cidadejardim/\">Cidade Jardim</a>, regiões de lotes maiores, com boletins próprios."
+        },
+        {
+          "p": "Que tipo de negócio eu posso abrir no Brooklin?",
+          "r": "Depende do zoneamento do lote. O bairro tem quadras de zona exclusivamente residencial (ZER), onde não se abre comércio, e avenidas e eixos do metrô com zonas que admitem comércio e serviços. Antes de alugar ou comprar um ponto, confira a zona do lote no <a href=\"https://geosampa.prefeitura.sp.gov.br/\" target=\"_blank\" rel=\"noopener\">GeoSampa</a> e as regras da <a href=\"https://gestaourbana.prefeitura.sp.gov.br/marco-regulatorio/zoneamento/entenda-o-zoneamento/\" target=\"_blank\" rel=\"noopener\">Lei de Zoneamento</a>. Quanto à demanda, o lado da Berrini concentra escritórios, com vacância de 11,2% no 3º trimestre de 2026, abaixo da média da cidade (JLL), e o bairro tem público para cafés, padarias e escolas de música e tecnologia, como mostra o <a href=\"#guia\">guia de lugares especiais</a>."
+        }
+      ],
+      "faq_fontes": "Fontes: guias de ITBI pagas na Prefeitura de São Paulo (jan/2021 a {mes_fim_curto}), índice FipeZap (Fipe), Índice de Aluguel do QuintoAndar e JLL."
+    },
+    "morumbi": {
+      "publicado": "2026-10-19",
+      "atualizado": "2026-11-15",
+      "subtitulo": {
+        "pt": "Informações sobre negócios imobiliários, casas, apartamentos e características do Morumbi, Jardim Guedala, Caxingui e Jardim Previdência",
+        "en": "Real estate deals, houses, apartments and neighborhood features in Morumbi, Jardim Guedala, Caxingui and Jardim Previdência"
+      },
+      "manchete": "Boletim Imobiliário do Morumbi, Jardim Guedala, Caxingui e Jardim Previdência",
+      "descricao": "Preço do m², vendas por mês, mapa por quadra e notícias conferidas sobre o Morumbi, o Jardim Guedala, o Caxingui e o Jardim Previdência, com dados de ITBI da Prefeitura. Por Andrea Longobardi, corretora de imóveis, CRECI-SP 338018-F.",
+      "llms": "m² mediano dos apartamentos {m2} ({m2_var_txt} em 12 meses até {mes_fim}), {por_mes} vendas por mês, apartamento típico {ticket}"
+    },
+    "cidadejardim": {
+      "publicado": "2026-10-19",
+      "atualizado": "2026-11-15",
+      "subtitulo": {
+        "pt": "Informações sobre negócios imobiliários, casas, apartamentos e características de Cidade Jardim, Jardim Guedala e Jardim Panorama",
+        "en": "Real estate deals, houses, apartments and neighborhood features in Cidade Jardim, Jardim Guedala and Jardim Panorama"
+      },
+      "manchete": "Boletim Imobiliário de Cidade Jardim, Jardim Guedala e Jardim Panorama",
+      "descricao": "Preço do m², vendas por mês, mapa por quadra e notícias conferidas sobre Cidade Jardim, o Jardim Guedala e o Jardim Panorama, com dados de ITBI da Prefeitura. Por Andrea Longobardi, corretora de imóveis, CRECI-SP 338018-F.",
+      "llms": "m² mediano dos apartamentos {m2} ({m2_var_txt} em 12 meses até {mes_fim}), {por_mes} vendas por mês, apartamento típico {ticket}"
+    }
+  }
+}
