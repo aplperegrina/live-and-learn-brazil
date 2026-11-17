@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-11-12T10:20:27.742Z",
+ "atualizadoEm": "2026-11-17T18:52:17.285Z",
  "fontes": {
   "ivar": {
    "nome": "FGV IBRE, Índice de Variação de Aluguéis Residenciais (IVAR)",
@@ -9,7 +9,7 @@
    "nome": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "planilha": "https://downloads.fipe.org.br/indices/fipezap/fipezap-serieshistoricas.xlsx",
    "aba": "São Paulo",
-   "modificadaEm": "Thu, 05 Nov 2026 00:21:30 GMT",
+   "modificadaEm": "Mon, 16 Nov 2026 23:20:29 GMT",
    "nota": "Os preços são médias móveis de três meses (nota da planilha). 1D a 4D = número de dormitórios; 4D inclui 4 ou mais."
   }
  },
@@ -229,16 +229,12 @@
    "unidade": "R$/m² por mês",
    "fonte": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-12T10:20:27.742Z",
+   "obtidoEm": "2026-11-17T18:52:17.285Z",
    "ultimo": {
-    "data": "2026-09-01",
-    "valor": 65.78
+    "data": "2026-10-01",
+    "valor": 66.16
    },
    "historico": [
-    [
-     "2024-08-01",
-     56.61
-    ],
     [
      "2024-09-01",
      56.82
@@ -338,6 +334,10 @@
     [
      "2026-09-01",
      65.78
+    ],
+    [
+     "2026-10-01",
+     66.16
     ]
    ]
   },
@@ -346,16 +346,12 @@
    "unidade": "R$/m² por mês",
    "fonte": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-12T10:20:27.742Z",
+   "obtidoEm": "2026-11-17T18:52:17.285Z",
    "ultimo": {
-    "data": "2026-09-01",
-    "valor": 85.78
+    "data": "2026-10-01",
+    "valor": 86.14
    },
    "historico": [
-    [
-     "2024-08-01",
-     74.46
-    ],
     [
      "2024-09-01",
      74.86
@@ -455,6 +451,10 @@
     [
      "2026-09-01",
      85.78
+    ],
+    [
+     "2026-10-01",
+     86.14
     ]
    ]
   },
@@ -463,16 +463,12 @@
    "unidade": "R$/m² por mês",
    "fonte": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-12T10:20:27.742Z",
+   "obtidoEm": "2026-11-17T18:52:17.285Z",
    "ultimo": {
-    "data": "2026-09-01",
-    "valor": 60.99
+    "data": "2026-10-01",
+    "valor": 61.39
    },
    "historico": [
-    [
-     "2024-08-01",
-     52.58
-    ],
     [
      "2024-09-01",
      52.58
@@ -572,6 +568,10 @@
     [
      "2026-09-01",
      60.99
+    ],
+    [
+     "2026-10-01",
+     61.39
     ]
    ]
   },
@@ -580,16 +580,12 @@
    "unidade": "R$/m² por mês",
    "fonte": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-12T10:20:27.742Z",
+   "obtidoEm": "2026-11-17T18:52:17.285Z",
    "ultimo": {
-    "data": "2026-09-01",
-    "valor": 56.42
+    "data": "2026-10-01",
+    "valor": 56.74
    },
    "historico": [
-    [
-     "2024-08-01",
-     47.86
-    ],
     [
      "2024-09-01",
      48.26
@@ -689,6 +685,10 @@
     [
      "2026-09-01",
      56.42
+    ],
+    [
+     "2026-10-01",
+     56.74
     ]
    ]
   },
@@ -697,16 +697,12 @@
    "unidade": "R$/m² por mês",
    "fonte": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-12T10:20:27.742Z",
+   "obtidoEm": "2026-11-17T18:52:17.285Z",
    "ultimo": {
-    "data": "2026-09-01",
-    "valor": 58.05
+    "data": "2026-10-01",
+    "valor": 58.6
    },
    "historico": [
-    [
-     "2024-08-01",
-     49.73
-    ],
     [
      "2024-09-01",
      49.8
@@ -806,6 +802,10 @@
     [
      "2026-09-01",
      58.05
+    ],
+    [
+     "2026-10-01",
+     58.6
     ]
    ]
   },
@@ -814,16 +814,12 @@
    "unidade": "% 12m",
    "fonte": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-12T10:20:27.742Z",
+   "obtidoEm": "2026-11-17T18:52:17.285Z",
    "ultimo": {
-    "data": "2026-09-01",
-    "valor": 6.22
+    "data": "2026-10-01",
+    "valor": 6.63
    },
    "historico": [
-    [
-     "2024-08-01",
-     11.44
-    ],
     [
      "2024-09-01",
      11.14
@@ -923,6 +919,10 @@
     [
      "2026-09-01",
      6.22
+    ],
+    [
+     "2026-10-01",
+     6.63
     ]
    ]
   },
@@ -931,16 +931,12 @@
    "unidade": "% a.a.",
    "fonte": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "periodicidade": "mensal",
-   "obtidoEm": "2026-11-12T10:20:27.742Z",
+   "obtidoEm": "2026-11-17T18:52:17.285Z",
    "ultimo": {
-    "data": "2026-09-01",
-    "valor": 6.43
+    "data": "2026-10-01",
+    "valor": 6.44
    },
    "historico": [
-    [
-     "2024-08-01",
-     6.05
-    ],
     [
      "2024-09-01",
      6.04
@@ -1040,6 +1036,10 @@
     [
      "2026-09-01",
      6.43
+    ],
+    [
+     "2026-10-01",
+     6.44
     ]
    ]
   }
