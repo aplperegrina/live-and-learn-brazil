@@ -27,7 +27,7 @@
   <link rel="canonical" href="https://realestate.liveandlearnbrazil.com/">
   <link rel="icon" type="image/svg+xml" href="assets/img/live-and-learn-brazil-favicon.svg">
   <link rel="stylesheet" href="assets/css/styles.css?v=20261103">
-  <link rel="stylesheet" href="assets/css/mercado.css?v=20261112">
+  <link rel="stylesheet" href="assets/css/mercado.css?v=20261118">
   <script src="https://liveandlearnbrazil.com/src/analytics.js?v=20261027a" defer></script>
 </head>
 <body>
@@ -114,15 +114,17 @@
         <details class="quadro-nota-cel"><summary>* How these prices are measured</summary><p>* Sales recorded with the São Paulo city ITBI tax, median price per m² of estimated private area in the 12 months to September 2026, records at or above the City reference value. Figures describe the area, not the value of any specific property.</p></details>
       </section>
 
-      <!-- imóveis com desconto: folha branca à direita da abertura; leva à página de oportunidades -->
-      <a class="oferta" href="oportunidades/">
-        <svg class="folha" aria-hidden="true" focusable="false" viewBox="0 0 320 400" preserveAspectRatio="none"><path class="folha-fundo" d="M0 0H320V332C300 363 262 384 215 381C170 378 140 370 105 372C65 374 28 382 0 392Z"/><path class="folha-fio" d="M0 392V0H320V332"/><path class="folha-curva" d="M320 332C300 363 262 384 215 381C170 378 140 370 105 372C65 374 28 382 0 392"/></svg>
-        <span class="oferta-corpo">
-        <span class="oferta-titulo" lang="pt-BR">Oportunidades raras com desconto real</span>
-        <span class="oferta-en">Rare opportunities with real discounts</span>
-        <span class="oferta-acao"><span class="oferta-acao-texto">See the properties</span><span class="oferta-seta" aria-hidden="true">→</span></span>
-        </span>
-      </a>
+      <!-- imóveis com desconto: bloco quadrado no estilo dos boletins (ingresso rasgado, fio rosé dourado, branco frio);
+           cada bairro leva à seção Oportunidades do seu boletim -->
+      <nav class="oferta" aria-labelledby="oferta-titulo">
+        <p class="oferta-titulo" id="oferta-titulo"><span lang="pt-BR">Oportunidades raras com desconto real</span><span class="visually-hidden"> (rare opportunities with real discounts)</span></p>
+        <ul class="oferta-bairros">
+          <li><a href="brooklin/#vitrine">Brooklin</a></li>
+          <li><a href="morumbi/#vitrine">Morumbi</a></li>
+          <li><a href="cidadejardim/#vitrine">Cidade Jardim</a></li>
+        </ul>
+        <svg class="oferta-ticket" viewBox="0 0 72 44" aria-hidden="true" focusable="false"><g fill="#DCC48E" stroke="#8E1B2E" stroke-width="1" stroke-linejoin="round"><path vector-effect="non-scaling-stroke" transform="rotate(-6 31 22) translate(-1.5 0)" d="M5 9H31L29 12.5L32 15.5L29 18.5L32 21.5L29 24.5L32 27.5L29 30.5L31 35H5V26A4 4 0 0 0 5 18Z"/><path vector-effect="non-scaling-stroke" transform="rotate(5 41 22) translate(2 1)" d="M38 9H67V18A4 4 0 0 0 67 26V35H38L36 30.5L39 27.5L36 24.5L39 21.5L36 18.5L39 15.5L36 12.5Z"/></g><g stroke="#8E1B2E" stroke-width="1" stroke-linecap="round" fill="none"><path vector-effect="non-scaling-stroke" transform="rotate(-6 31 22) translate(-1.5 0)" d="M11 17H23M11 22H25M11 27H20"/><path vector-effect="non-scaling-stroke" transform="rotate(5 41 22) translate(2 1)" d="M46 18H60M46 23H56M46 28H59" stroke-dasharray="2 2"/></g></svg>
+      </nav>
     </div>
   </section>
 
