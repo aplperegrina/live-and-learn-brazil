@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar de empreendimentos novos · Brooklin e Morumbi · Andrea Longobardi</title>
+<meta name="description" content="Radar semanal de novos empreendimentos residenciais no Brooklin, na Chácara Santo Antônio e no Morumbi (Caxingui, Jardim Guedala, Jardim Previdência), em São Paulo: alvarás publicados, lançamentos e entregas, com dados de fonte pública.">
+<link rel="canonical" href="https://realestate.liveandlearnbrazil.com/radar/">
+<style>/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: none;
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ardosia:#2E3A44; --ardosia-mapa:#34414B; --gelo:#DCE6EC; --branco:#FFFFFF;
+  --cobre:#B87333; --amora:#8A3B5C; --champagne:#D9BE95;
+  --f1:#DCE6EC; --f2:#C9843F; --f3:#A2516F;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--branco);color:var(--ardosia);font-family:"Josefin Sans",sans-serif;font-weight:300}
+h1,h2,h3,.num{font-family:"Playfair Display SC",serif;font-weight:400;letter-spacing:.02em}
+a{color:inherit}
+.app{display:grid;grid-template-columns:2fr 1fr;height:100vh;min-height:620px}
+/* ---------- MAPA ---------- */
+.radar{position:relative;background:var(--ardosia-mapa);overflow:hidden}
+#map{position:absolute;inset:0;background:var(--ardosia-mapa)}
+body.embed .badge a,body.embed .badge .sep{display:none}
+body.embed .panel h1{display:none}
+.leaflet-container{font-family:inherit}
+.leaflet-control-attribution{background:rgba(46,58,68,.7)!important;color:rgba(220,230,236,.6)!important;font-size:10px}
+.leaflet-control-attribution a{color:rgba(220,230,236,.8)!important}
+.badge{position:absolute;z-index:500;top:14px;left:18px;color:var(--gelo);font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(220,230,236,.45);padding:6px 10px;border-radius:2px;background:rgba(46,58,68,.55)}
+.badge a{text-decoration:none}
+/* sonar */
+.sweepwrap{background:none;border:0}
+.sweep{width:100%;height:100%;border-radius:50%;background:conic-gradient(from 0deg,rgba(217,190,149,0) 0deg,rgba(217,190,149,.22) 62deg,rgba(217,190,149,0) 62deg);animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pulsewrap{background:none;border:0}
+.pulse{width:100%;height:100%;border-radius:50%;border:1px solid rgba(217,190,149,.55);animation:pulse 5s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.03);opacity:.8}100%{transform:scale(1);opacity:0}}
+.halowrap{background:none;border:0}
+.halo{width:100%;height:100%;border-radius:50%;border:1.5px solid var(--gelo);animation:halo 2.2s ease-out infinite}
+@keyframes halo{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1);opacity:0}}
+.sublabel{background:none;border:0;color:rgba(220,230,236,.6);font-size:11px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;text-align:center}
+.tt{background:rgba(46,58,68,.9);color:var(--gelo);border:0;border-radius:2px;font-size:12px;letter-spacing:.04em;padding:5px 8px;box-shadow:none}
+.tt::before{display:none}
+.pt-path{cursor:pointer}
+/* ---------- JANELA ---------- */
+.card{position:absolute;z-index:600;top:56px;left:18px;width:min(400px,calc(100% - 36px));max-height:calc(100% - 80px);overflow:auto;background:var(--branco);color:var(--ardosia);border-radius:3px;box-shadow:0 18px 50px rgba(0,0,0,.35);padding:22px 22px 18px;display:none}
+.card.open{display:block}
+.card .close{position:absolute;top:10px;right:12px;background:none;border:0;font-size:22px;line-height:1;cursor:pointer;color:var(--ardosia);opacity:.7}
+.fase{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:400}
+.fase i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.card h2{font-size:22px;margin:10px 0 2px;line-height:1.2}
+.card .sub2{font-size:13px;opacity:.75;margin-bottom:14px}
+dl{margin:0;display:grid;grid-template-columns:38% 62%;gap:7px 10px;font-size:14px;line-height:1.35}
+dt{opacity:.6;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+dd{margin:0;font-weight:400}
+.fonte{margin-top:14px;font-size:12px;opacity:.6;line-height:1.4}
+.fonte a{opacity:.9}
+.acts{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid var(--ardosia);background:none;color:var(--ardosia);padding:10px 14px;font:inherit;font-weight:400;font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;text-decoration:none}
+.btn.cobre{background:var(--cobre);border-color:var(--cobre);color:var(--branco)}
+.btn:hover{opacity:.85}
+.risco{display:none;margin-top:18px;border-top:1px solid rgba(46,58,68,.15);padding-top:14px}
+.risco.open{display:block}
+.risco h3{font-size:16px;margin:0 0 12px}
+.ind{display:grid;grid-template-columns:1fr auto;gap:2px 12px;margin-bottom:12px;font-size:13px}
+.ind .lab{font-weight:400}
+.ind .val{font-family:"Playfair Display SC",serif;font-size:17px;text-align:right}
+.ind .what{grid-column:1/3;font-size:12px;opacity:.6;line-height:1.3}
+.bar{grid-column:1/3;height:4px;background:rgba(46,58,68,.1);border-radius:2px;position:relative;margin-top:4px}
+.bar b{position:absolute;top:0;bottom:0;border-radius:2px;background:var(--ardosia)}
+.bar b.cobre{background:var(--cobre)} .bar b.amora{background:var(--amora)}
+.cta{margin-top:16px;background:var(--gelo);padding:14px;border-radius:2px;font-size:14px;line-height:1.4}
+.cta .amora{color:var(--amora);font-weight:400}
+/* ---------- PAINEL ---------- */
+.panel{background:var(--gelo);padding:30px 28px;display:flex;flex-direction:column;overflow:auto}
+.panel h1{font-size:24px;margin:0 0 4px;line-height:1.15}
+.panel .lead{font-size:14px;line-height:1.45;opacity:.8;margin:0 0 26px}
+.counts{display:flex;flex-direction:column;gap:10px}
+.count{display:grid;grid-template-columns:14px 1fr auto;gap:14px;align-items:center;background:var(--branco);padding:16px 18px;border-radius:3px;cursor:pointer;border:1px solid transparent;transition:border-color .15s}
+.count:hover{border-color:var(--ardosia)}
+.count i{width:12px;height:12px;border-radius:50%;display:block}
+.count .lab{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:400}
+.count .lab small{display:block;font-size:11px;letter-spacing:.04em;text-transform:none;opacity:.6;margin-top:3px}
+.count .num{font-size:30px;line-height:1}
+.empty{margin-top:14px;font-size:13px;line-height:1.5;opacity:.75;display:none}
+.empty.show{display:block}
+.list{display:none}
+.list.open{display:block}
+.counts.hide{display:none}
+.back{background:none;border:0;font:inherit;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;padding:0;margin-bottom:14px;color:var(--ardosia)}
+.list h2{font-size:16px;margin:0 0 12px}
+.item{background:var(--branco);padding:13px 16px;border-radius:3px;margin-bottom:8px;cursor:pointer;border:1px solid transparent;font-size:14px}
+.item:hover{border-color:var(--ardosia)}
+.item .t{font-weight:400}
+.item .s{font-size:12px;opacity:.65;margin-top:3px}
+.legend{margin-top:auto;padding-top:22px;font-size:12px;opacity:.75;line-height:1.5}
+.legend .id{display:block;margin-top:10px;font-weight:400;opacity:1}
+.f1{background:var(--f1);border:1px solid rgba(46,58,68,.35)} .f2{background:var(--f2)} .f3{background:var(--f3)}
+@media (max-width:880px), (orientation:portrait){
+  .app{grid-template-columns:1fr;grid-template-rows:62vh auto;height:auto}
+  .radar{height:62vh}
+  .panel{padding:22px 18px}
+  .card{top:auto;bottom:14px;left:10px;width:calc(100% - 20px);max-height:78%}
+  .card h2{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="radar">
+    <div id="map" role="region" aria-label="Mapa do radar de empreendimentos"></div>
+    <div class="badge"><a href="https://realestate.liveandlearnbrazil.com/">← Boletins de bairro</a><span class="sep"> &nbsp;·&nbsp; </span><span id="stamp">Radar</span></div>
+    <div class="card" id="card" role="dialog" aria-modal="false">
+      <button class="close" id="close" aria-label="Fechar">×</button>
+      <div id="cardBody"></div>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <h1>Radar de empreendimentos novos</h1>
+    <p class="lead">Novos empreendimentos nos perímetros dos boletins do Morumbi (com Cidade Jardim, Jardim Guedala, Caxingui e Jardim Previdência) e do Brooklin (com Chácara Santo Antônio). Clique num ponto ou numa fase.</p>
+
+    <div class="counts" id="counts">
+      <div class="count" data-fase="1"><i class="f1"></i><div class="lab">Fase 1 · alvará ou pré-lançamento<small>Diário Oficial, GeoSampa e incorporadoras</small></div><div class="num" id="n1">0</div></div>
+      <div class="count" data-fase="2"><i class="f2"></i><div class="lab">Lançamento<small>início das vendas</small></div><div class="num" id="n2">0</div></div>
+      <div class="count" data-fase="3"><i class="f3"></i><div class="lab">Entrega<small>Habite-se e chaves</small></div><div class="num" id="n3">0</div></div>
+      <p class="empty" id="empty">Primeira varredura em andamento. As fichas aparecem aqui depois da confirmação das fontes.</p>
+    </div>
+
+    <div class="list" id="list">
+      <button class="back" id="back">← voltar</button>
+      <h2 id="listTitle"></h2>
+      <div id="listBody"></div>
+    </div>
+
+    <div class="legend">
+      Fontes: Diário Oficial da Cidade de São Paulo (SMUL), GeoSampa, incorporadoras, Secovi-SP/Embraesp, guias de ITBI da Prefeitura de São Paulo, FGV (INCC). Atualização semanal.
+      <span class="id">Andrea Longobardi · Real Estate Consultancy · PT · EN · ZH · IT<br>Coelho da Fonseca · CRECI 338018-F</span>
+    </div>
+  </aside>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const WHATS='5511954395027';
+const FASES={1:{nome:'Fase 1 · alvará',cor:'#DCE6EC',fill:'rgba(220,230,236,.25)'},2:{nome:'Lançamento',cor:'#C9843F',fill:'#C9843F'},3:{nome:'Entrega',cor:'#A2516F',fill:'#A2516F'}};
+const CHAMP='#D9BE95';
+
+/* ---------- mapa ---------- */
+const QS=new URLSearchParams(location.search);
+const H0=(location.hash||'').slice(1);
+/* visões: morumbi e brooklin pelo campo "bairro" da ficha; cidadejardim (20/11/2026) = fichas do Morumbi dentro do
+   perímetro de Cidade Jardim (perimetros.json), o mesmo filtro que o boletim de Cidade Jardim usa nos totais */
+const VISOES=['morumbi','brooklin','cidadejardim'];
+const BAIRRO=VISOES.includes(QS.get('bairro'))?QS.get('bairro'):(VISOES.includes(H0)?H0:null);
+const EMBED=QS.get('embed')==='1';
+const grupo=e=>e.bairro==='Morumbi'?'morumbi':'brooklin';
+const NOME={morumbi:'Vila Progredior, Jardim Guedala, Cidade Jardim, Jardim Panorama, Real Parque, Caxingui e Jardim Previdência',brooklin:'Brooklin Paulista, Brooklin Novo, Vila Cordeiro, lado da Berrini e Chácara Santo Antônio',cidadejardim:'Cidade Jardim, Jardim Leonor, Jardim Panorama e Real Parque'};
+const TITULO={morumbi:'Morumbi',brooklin:'Brooklin',cidadejardim:'Cidade Jardim'};
+const PER={};   // anéis [lat,lng] de cada perímetro, preenchidos por perimetros.json
+const noPoli=(la,lo,aneis)=>(aneis||[]).some(an=>{let d=false;for(let i=0,j=an.length-1;i<an.length;j=i++){const [yi,xi]=an[i],[yj,xj]=an[j];if((yi>la)!==(yj>la)&&lo<(xj-xi)*(la-yi)/((yj-yi)||1e-12)+xi)d=!d;}return d;});
+const doGrupo=(e,g)=>g==='cidadejardim'?(grupo(e)==='morumbi'&&noPoli(e.lat,e.lng,PER.cidadejardim)):grupo(e)===g;
+if(EMBED)document.body.classList.add('embed');
+if(BAIRRO){
+  document.querySelector('.panel h1').textContent='Radar de empreendimentos novos · '+TITULO[BAIRRO];
+  document.querySelector('.panel .lead').textContent=NOME[BAIRRO]+', no perímetro do boletim. Clique num ponto ou numa fase.';
+}
+const map=L.map('map',{zoomControl:false,attributionControl:true,preferCanvas:false}).setView([-23.607,-46.703],window.innerWidth<700?12:13);
+map.attributionControl.setPrefix('').addAttribution('Quarteirões: GeoSampa · Prefeitura de São Paulo');
+L.control.zoom({position:'bottomright'}).addTo(map);
+
+/* quarteirões em branco transparente (GeoSampa, quadra viária) */
+map.createPane('quadras');map.getPane('quadras').style.zIndex=250;
+fetch('quadras.json').then(r=>r.json()).then(q=>{
+  L.polygon(q,{pane:'quadras',renderer:L.canvas({pane:'quadras',padding:.4}),stroke:false,fillColor:'#FFFFFF',fillOpacity:.13,interactive:false}).addTo(map);
+}).catch(()=>{});
+
+/* perímetros dos boletins (perimetros.json: {morumbi:[anel], brooklin:[anel]}, em [lat,lng]) */
+let PERB=null; const PERC={},CENT={};
+const perReady=fetch('perimetros.json').then(r=>r.ok?r.json():null).then(j=>{
+  if(!j)return; const st={color:'rgba(220,230,236,.55)',weight:1.2,dashArray:'6 5',fill:false,interactive:false};
+  Object.entries(j).forEach(([k,rings])=>{ PER[k]=rings; if(BAIRRO&&k!==BAIRRO)return; if(!BAIRRO&&k==='cidadejardim')return; const pl=L.polygon(rings,st).addTo(map); const cc=pl.getBounds().getCenter(); PERC[k]=[cc.lat,cc.lng]; if(k===BAIRRO)PERB=pl.getBounds(); });
+}).catch(()=>{});
+
+/* sonar: um por bairro, centrado nos pontos encontrados */
+const RING_M=[400,800,1200,1600,2000];
+const sweeps=[];
+function mpp(lat,z){return 40075016.686*Math.cos(lat*Math.PI/180)/Math.pow(2,z+8);}
+function addSonar(la,lo,rot){
+  RING_M.forEach(r=>L.circle([la,lo],{radius:r,color:CHAMP,weight:1,opacity:.3,fill:false,interactive:false}).addTo(map));
+  L.circleMarker([la,lo],{radius:2,color:CHAMP,fillColor:CHAMP,fillOpacity:.8,weight:0,interactive:false}).addTo(map);
+  const sw=L.marker([la,lo],{interactive:false,zIndexOffset:-100}).addTo(map);
+  const pu=L.marker([la,lo],{interactive:false,zIndexOffset:-100}).addTo(map);
+  sweeps.push({la,sw,pu,rot});
+}
+function sizeSweeps(){
+  const z=map.getZoom();
+  sweeps.forEach(s=>{
+    const d=Math.round(2*2000/mpp(s.la,z));
+    s.sw.setIcon(L.divIcon({className:'sweepwrap',html:'<div class="sweep" style="animation-delay:-'+s.rot+'s"></div>',iconSize:[d,d],iconAnchor:[d/2,d/2]}));
+    const d2=Math.round(2*1000/mpp(s.la,z));
+    s.pu.setIcon(L.divIcon({className:'pulsewrap',html:'<div class="pulse"></div>',iconSize:[d2,d2],iconAnchor:[d2/2,d2/2]}));
+  });
+}
+map.on('zoomend',sizeSweeps);
+
+/* ---------- dados ---------- */
+let EMP=[],markers={},halo=null,current=null;
+const fmtBRL=v=>v==null?null:'R$ '+Math.round(v).toLocaleString('pt-BR');
+const MES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+const fmtD=s=>{if(!s)return null;const [y,m]=s.split('-');return m?`${MES[+m-1]}/${y}`:y;};
+const fmtDl=s=>{if(!s)return null;const [y,m,d]=s.split('-');return d?`${d}/${m}/${y}`:fmtD(s);};
+const pct=v=>v==null?null:(v>0?'+':'')+Number(v).toFixed(1).replace('.',',')+' %';
+
+fetch('empreendimentos.json?v='+Date.now()).then(r=>r.json()).then(j=>perReady.then(()=>j)).then(j=>{   // a visão de Cidade Jardim precisa do perímetro antes de filtrar
+  EMP=(j.empreendimentos||[]).filter(e=>e.status==='aprovado'&&e.lat&&e.lng&&(!BAIRRO||doGrupo(e,BAIRRO)));
+  const DEF={morumbi:[-23.588,-46.716],brooklin:[-23.620,-46.692],cidadejardim:[-23.600,-46.703]};
+  (BAIRRO?[BAIRRO]:['morumbi','brooklin']).forEach((g,i)=>{
+    const P=EMP.filter(e=>doGrupo(e,g)).map(e=>[e.lat,e.lng]).sort((a,b)=>a[0]-b[0]);
+    // centro pela mediana, para um ponto isolado não deslocar o radar
+    const med=k=>{const v=P.map(p=>p[k]).sort((a,b)=>a-b);return v[Math.floor(v.length/2)];};
+    CENT[g]=P.length?[med(0),med(1)]:DEF[g];
+  });
+  perReady.then(()=>{ (BAIRRO?[BAIRRO]:['morumbi','brooklin']).forEach((g,i)=>{const c=PERC[g]||CENT[g]; addSonar(c[0],c[1],i*5);}); sizeSweeps(); if(!BAIRRO)return; if(PERB)map.fitBounds(PERB.pad(.04)); else if(EMP.length)map.fitBounds(L.latLngBounds(EMP.map(e=>[e.lat,e.lng])).pad(.25),{maxZoom:15}); });
+  if(j._meta&&j._meta.ultima_varredura)document.getElementById('stamp').textContent='Varredura de '+fmtDl(j._meta.ultima_varredura);
+  [1,2,3].forEach(f=>document.getElementById('n'+f).textContent=EMP.filter(e=>e.fase===f).length);
+  document.getElementById('empty').classList.toggle('show',EMP.length===0);
+  EMP.forEach(e=>{
+    const f=FASES[e.fase];
+    const m=L.circleMarker([e.lat,e.lng],{radius:6,color:f.cor,fillColor:f.fill,fillOpacity:1,weight:1.5,className:'pt-path'}).addTo(map);
+    m.bindTooltip(e.titulo,{direction:'right',offset:[10,0],className:'tt'});
+    m.on('click',()=>open(e.id));
+    markers[e.id]=m;
+  });
+  fromHash();
+}).catch(()=>{document.getElementById('empty').textContent='Não foi possível carregar a base do radar agora.';document.getElementById('empty').classList.add('show');});
+
+/* ---------- janela ---------- */
+const card=document.getElementById('card'),body=document.getElementById('cardBody');
+function rows(e){
+  const r=[],add=(k,v)=>{if(v!=null&&v!=='')r.push([k,v]);};
+  const a=e.alvara||{},p=e.projeto||{},pr=e.preco||{},d=e.datas||{},df=e.diferenciais||{};
+  const inc=e.incorporadora||(e.fase===1?'não identificada no despacho':null);
+  if(e.fase===1){
+    add('Documento',a.tipo?`Alvará de ${a.tipo}`:null);add('Publicado em',fmtDl(d.alvara));add('Processo',a.processo);
+    add('Terreno',a.terreno_m2?`${a.terreno_m2.toLocaleString('pt-BR')} m²${a.lotes_unidos?` · ${a.lotes_unidos} lotes unidos`:''}`:null);
+    add('Área computável',a.area_computavel_m2?`${a.area_computavel_m2.toLocaleString('pt-BR')} m²`:null);add('Uso',a.uso);add('Incorporadora',inc);
+  }else if(e.fase===2){
+    add('Incorporadora',inc);add('Construtora',e.construtora);
+    add('Torres',p.torres?`${p.torres} torre${p.torres>1?'s':''}${p.pavimentos?` · ${p.pavimentos} pavimentos`:''}`:null);
+    add('Unidades',p.unidades?`${p.unidades}${p.tipologias?` · ${p.tipologias}`:''}`:null);add('Área privativa',p.area_privativa);add('Vagas',p.vagas);
+    add('R$/m² de tabela',pr.m2_tabela?`${fmtBRL(pr.m2_tabela)}${pr.data_tabela?` · ${fmtD(pr.data_tabela)}`:''}`:null);
+    add('Lançamento',fmtD(d.lancamento));add('Entrega prevista',fmtD(d.entrega_prevista));
+    add('Arquitetura',p.arquitetura);add('Paisagismo',p.paisagismo);add('Interiores',p.interiores);
+    const dif=[].concat(df.construtivos||[],df.arquitetonicos||[],df.paisagisticos||[]);add('Diferenciais',dif.length?dif.join(' · '):null);
+  }else{
+    add('Incorporadora',inc);add('Lançado em',d.lancamento?`${fmtD(d.lancamento)}${pr.m2_lancamento?` · R$/m² ${fmtBRL(pr.m2_lancamento)}`:''}`:null);
+    add('Habite-se',fmtD(d.habitese));add('Entrega prevista',fmtD(d.entrega_prevista));add('Unidades',p.unidades?`${p.unidades}${p.tipologias?` · ${p.tipologias}`:''}`:null);
+    add('INCC-M no período',pr.incc_acumulado_pct!=null?`≈ ${pct(pr.incc_acumulado_pct).replace('+','')}`:null);
+    add('R$/m² pago (ITBI)',pr.m2_itbi_perimetro?`${fmtBRL(pr.m2_itbi_perimetro)} · estimativa pela área privativa`:null);
+  }
+  return r;
+}
+function wa(e){
+  const base=location.origin+location.pathname+(QS.get('bairro')&&BAIRRO?'?bairro='+BAIRRO:'');
+  const txt=`Olá, Andrea. Vi no radar o empreendimento "${e.titulo}" (${e.bairro}) e quero saber mais. ${base}#${e.id}`;
+  return `https://wa.me/${WHATS}?text=${encodeURIComponent(txt)}`;
+}
+function bar(v,max,cls){const w=Math.min(100,Math.abs(v)/max*100);return `<div class="bar"><b class="${cls||''}" style="left:${v<0?50-w/2:50}%;width:${w/2}%"></b></div>`;}
+function risco(e){
+  const r=e.risco||{};const has=Object.values(r).some(v=>v!=null&&v!=='');if(!has)return '';
+  const row=(lab,val,what,b)=>val==null?'':`<div class="ind"><span class="lab">${lab}</span><span class="val">${val}</span>${b||''}<span class="what">${what}</span></div>`;
+  return `<div class="risco" id="risco"><h3>Análise de risco · dados</h3>
+  ${row('Desconto da planta',pct(r.desconto_planta_pct),'R$/m² de tabela corrigido pelo INCC projetado até a entrega, comparado ao R$/m² pago por usados de padrão parecido no mesmo perímetro (guias de ITBI). Negativo: planta mais cara que o usado.',r.desconto_planta_pct!=null?bar(r.desconto_planta_pct,30,r.desconto_planta_pct<0?'amora':'cobre'):'')}
+  ${row('INCC projetado até a entrega',r.incc_projetado_pct!=null?pct(r.incc_projetado_pct).replace('+',''):null,'Correção do saldo devedor durante a obra. Série FGV, projeção pela média dos últimos 10 anos.',r.incc_projetado_pct!=null?bar(r.incc_projetado_pct,40):'')}
+  ${row('Valorização no perímetro · 12 meses',pct(r.valorizacao_itbi_12m_pct),'Variação da mediana do R$/m² pago nas guias de ITBI do sub-bairro, com peso fixo por sub-bairro.',r.valorizacao_itbi_12m_pct!=null?bar(r.valorizacao_itbi_12m_pct,10,'cobre'):'')}
+  ${row('Absorção do perímetro',r.absorcao_meses!=null?`${r.absorcao_meses} meses`:null,'Meses para vender o estoque de unidades novas no ritmo atual. Secovi-SP/Embraesp.',r.absorcao_meses!=null?bar(r.absorcao_meses,36):'')}
+  ${row('Incorporadora',r.incorporadora_entregas||null,'Histórico de entregas no prazo nos últimos 10 anos, pelo Habite-se publicado no Diário Oficial.')}
+  ${row('Custo de oportunidade',r.cdi_projetado_pct!=null?pct(r.cdi_projetado_pct).replace('+',''):null,'CDI acumulado projetado no mesmo período da obra. O que o mesmo dinheiro renderia parado.',r.cdi_projetado_pct!=null?bar(r.cdi_projetado_pct,60):'')}
+  <div class="cta">Quer saber o que esses números significam para o seu investimento? <span class="amora">Entre em contato</span> e eu faço a leitura deste empreendimento com você.<br><br><a class="btn cobre" target="_blank" rel="noopener" href="${wa(e)}">WhatsApp · +55 11 95439-5027</a></div>
+  </div>`;
+}
+function open(id){
+  const e=EMP.find(x=>x.id===id);if(!e)return;
+  current=id;
+  if(halo){map.removeLayer(halo);halo=null;}
+  halo=L.marker([e.lat,e.lng],{interactive:false,icon:L.divIcon({className:'halowrap',html:'<div class="halo"></div>',iconSize:[60,60],iconAnchor:[30,30]})}).addTo(map);
+  map.panTo([e.lat,e.lng],{animate:true});
+  const f=FASES[e.fase];
+  const nomeFase=(e.fase===1&&!(e.alvara&&e.alvara.tipo))?'Fase 1 · pré-lançamento':f.nome;
+  const dataRef=e.fase===1?e.datas?.alvara:e.fase===2?e.datas?.lancamento:e.datas?.habitese;
+  let h=`<div class="fase"><i style="background:${f.fill};border:1px solid ${f.cor}"></i>${nomeFase}${dataRef?' · '+fmtD(dataRef):''}</div>
+  <h2>${e.titulo}</h2><div class="sub2">${e.bairro}${e.sub?' · '+e.sub:''}</div><dl>`;
+  rows(e).forEach(([k,v])=>h+=`<dt>${k}</dt><dd>${v}</dd>`);
+  h+=`</dl>`;
+  if(e.fontes&&e.fontes.length)h+=`<div class="fonte">Fonte: ${e.fontes.map(s=>s.url?`<a href="${s.url}" target="_blank" rel="noopener">${s.nome}</a>`:s.nome).map((s,i)=>s+(e.fontes[i].data?' ('+fmtDl(e.fontes[i].data)+')':'')).join(' · ')}</div>`;
+  const rk=risco(e);
+  h+=`<div class="acts">${rk?'<button class="btn" id="btnRisco">Análise de risco</button>':''}<a class="btn cobre" target="_blank" rel="noopener" href="${wa(e)}">Falar com Andrea</a></div>${rk}`;
+  body.innerHTML=h;card.classList.add('open');
+  const b=document.getElementById('btnRisco');if(b)b.addEventListener('click',()=>document.getElementById('risco').classList.toggle('open'));
+  try{if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);}catch(_){}
+}
+document.getElementById('close').addEventListener('click',()=>{card.classList.remove('open');if(halo){map.removeLayer(halo);halo=null;}current=null;try{history.replaceState(null,'',location.pathname+location.search);}catch(_){}});
+
+/* ---------- painel ---------- */
+const counts=document.getElementById('counts'),list=document.getElementById('list');
+document.querySelectorAll('.count').forEach(c=>c.addEventListener('click',()=>{
+  const f=+c.dataset.fase,items=EMP.filter(e=>e.fase===f);
+  document.getElementById('listTitle').textContent=FASES[f].nome+' · '+items.length;
+  document.getElementById('listBody').innerHTML=items.length?items.map(e=>`<div class="item" data-id="${e.id}"><div class="t">${e.titulo}</div><div class="s">${e.bairro}${e.sub?' · '+e.sub:''}${e.atualizado_em?' · '+fmtD(e.atualizado_em):''}</div></div>`).join(''):'<p class="empty show">Nenhuma ficha nesta fase ainda.</p>';
+  document.querySelectorAll('.item').forEach(i=>i.addEventListener('click',()=>open(i.dataset.id)));
+  counts.classList.add('hide');list.classList.add('open');
+}));
+document.getElementById('back').addEventListener('click',()=>{list.classList.remove('open');counts.classList.remove('hide');});
+function fromHash(){const id=(location.hash||'').slice(1);if(id&&EMP.some(e=>e.id===id))open(id);}
+window.addEventListener('hashchange',fromHash);
+</script>
+</body>
+</html>
