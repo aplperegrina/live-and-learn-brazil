@@ -839,7 +839,7 @@ fetch('quadras.json').then(r=>r.json()).then(q=>{
 
 /* perímetros dos boletins (perimetros.json: {morumbi:[anel], brooklin:[anel]}, em [lat,lng]) */
 let PERB=null; const PERC={},CENT={};
-const perReady=fetch('perimetros.json').then(r=>r.ok?r.json():null).then(j=>{
+const perReady=fetch('perimetros.json?v=20261120')   // versão no endereço: o navegador não reaproveita o arquivo antigo, sem Cidade Jardim.then(r=>r.ok?r.json():null).then(j=>{
   if(!j)return; const st={color:'rgba(220,230,236,.55)',weight:1.2,dashArray:'6 5',fill:false,interactive:false};
   Object.entries(j).forEach(([k,rings])=>{ PER[k]=rings; if(BAIRRO&&k!==BAIRRO)return; if(!BAIRRO&&k==='cidadejardim')return; const pl=L.polygon(rings,st).addTo(map); const cc=pl.getBounds().getCenter(); PERC[k]=[cc.lat,cc.lng]; if(k===BAIRRO)PERB=pl.getBounds(); });
 }).catch(()=>{});
