@@ -685,6 +685,10 @@ a{color:inherit}
 #map{position:absolute;inset:0;background:var(--ardosia-mapa)}
 body.embed .badge a,body.embed .badge .sep{display:none}
 body.embed .panel h1{display:none}
+/* ?mini=1 (20/11/2026): só o mapa, para o bloco da primeira dobra dos boletins */
+body.mini .app{grid-template-columns:1fr!important;grid-template-rows:1fr!important;height:100vh!important;min-height:0!important}
+body.mini .radar{height:100vh!important;min-height:0!important}
+body.mini .panel,body.mini .leaflet-control-zoom,body.mini .leaflet-control-attribution,body.mini .badge{display:none!important}
 .leaflet-container{font-family:inherit}
 .leaflet-control-attribution{background:rgba(46,58,68,.7)!important;color:rgba(220,230,236,.6)!important;font-size:10px}
 .leaflet-control-attribution a{color:rgba(220,230,236,.8)!important}
@@ -823,6 +827,7 @@ const PER={};   // anéis [lat,lng] de cada perímetro, preenchidos por perimetr
 const noPoli=(la,lo,aneis)=>(aneis||[]).some(an=>{let d=false;for(let i=0,j=an.length-1;i<an.length;j=i++){const [yi,xi]=an[i],[yj,xj]=an[j];if((yi>la)!==(yj>la)&&lo<(xj-xi)*(la-yi)/((yj-yi)||1e-12)+xi)d=!d;}return d;});
 const doGrupo=(e,g)=>g==='cidadejardim'?(grupo(e)==='morumbi'&&noPoli(e.lat,e.lng,PER.cidadejardim)):grupo(e)===g;
 if(EMBED)document.body.classList.add('embed');
+if(QS.get('mini')==='1')document.body.classList.add('mini');
 if(BAIRRO){
   document.querySelector('.panel h1').textContent='Radar de empreendimentos novos · '+TITULO[BAIRRO];
   document.querySelector('.panel .lead').textContent=NOME[BAIRRO]+', no perímetro do boletim. Clique num ponto ou numa fase.';
