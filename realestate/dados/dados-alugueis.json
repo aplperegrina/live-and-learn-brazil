@@ -1,5 +1,5 @@
 {
- "atualizadoEm": "2026-11-17T18:52:17.285Z",
+ "atualizadoEm": "2026-11-24T20:26:19.660Z",
  "fontes": {
   "ivar": {
    "nome": "FGV IBRE, Índice de Variação de Aluguéis Residenciais (IVAR)",
@@ -9,7 +9,7 @@
    "nome": "Fipe, Índice FipeZAP de Locação Residencial, séries históricas",
    "planilha": "https://downloads.fipe.org.br/indices/fipezap/fipezap-serieshistoricas.xlsx",
    "aba": "São Paulo",
-   "modificadaEm": "Mon, 16 Nov 2026 23:20:29 GMT",
+   "modificadaEm": "Tue, 24 Nov 2026 01:08:07 GMT",
    "nota": "Os preços são médias móveis de três meses (nota da planilha). 1D a 4D = número de dormitórios; 4D inclui 4 ou mais."
   }
  },
