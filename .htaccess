@@ -70,7 +70,19 @@ ErrorDocument 404 /404.html
 <FilesMatch "\.(md|py|yml|yaml|pem|key)$">
   Require all denied
 </FilesMatch>
-# Pastas inteiras: scripts/ (Node e Python do workflow), .github/ e design/ (referências de layout)
+# Pastas inteiras: scripts/ (Node e Python do workflow), .github/ e design/ (referências de layout),
+# _arquivo/ (site antigo, guardado mas fora do ar) e propostas/ (rascunhos do redesenho)
 <IfModule mod_rewrite.c>
-  RewriteRule ^(scripts|\.github|design)(/|$) - [F,L]
+  RewriteRule ^(scripts|\.github|design|_arquivo|propostas)(/|$) - [F,L]
+</IfModule>
+
+# ---- Site antigo arquivado em 11/2026: links antigos levam para a home nova (301) ----
+<IfModule mod_rewrite.c>
+  RewriteRule ^zh/(intercultural-due-diligence|innovation-ties|brazilian-portuguese-and-communication|destination-services|full-advisory|diagnostic-confirmed|session-confirmed)(/.*)?$ /zh/ [L,R=301]
+  RewriteRule ^(intercultural-due-diligence|innovation-ties|brazilian-portuguese-and-communication|destination-services|full-advisory|brazil-decoded|diagnostic-confirmed|session-confirmed)(/.*)?$ / [L,R=301]
+  RewriteRule ^contact(/.*)?$ /#contato [L,R=301,NE]
+  # Portfólio MATRIX × Live & Learn (chinês, com /en/ e /pt/): fora do ar desde 11/2026
+  RewriteRule ^portfolio(/.*)?$ /zh/ [L,R=301]
+  # PT e IT voltam quando a home nova for traduzida; até lá, a versão em inglês
+  RewriteRule ^(pt|it)(/.*)?$ / [L,R=301]
 </IfModule>

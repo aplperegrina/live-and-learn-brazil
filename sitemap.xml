@@ -3,30 +3,12 @@
   <url>
     <loc>https://liveandlearnbrazil.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://liveandlearnbrazil.com/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://liveandlearnbrazil.com/pt/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://liveandlearnbrazil.com/it/"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://liveandlearnbrazil.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://liveandlearnbrazil.com/zh/"/>
   </url>
-  <url><loc>https://liveandlearnbrazil.com/pt/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/it/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/zh/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/zh/intercultural-due-diligence/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/zh/innovation-ties/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/zh/brazilian-portuguese-and-communication/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/zh/destination-services/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/zh/full-advisory/</loc></url>
-  <url><loc>https://realestate.liveandlearnbrazil.com/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/intercultural-due-diligence/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/innovation-ties/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/brazilian-portuguese-and-communication/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/destination-services/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/full-advisory/</loc></url>
-  <url><loc>https://liveandlearnbrazil.com/brazil-decoded/</loc></url>
   <url>
-    <loc>https://liveandlearnbrazil.com/contact/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://liveandlearnbrazil.com/contact/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://liveandlearnbrazil.com/contact/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://liveandlearnbrazil.com/contact/?lang=it"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://liveandlearnbrazil.com/contact/?lang=zh"/>
+    <loc>https://liveandlearnbrazil.com/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://liveandlearnbrazil.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://liveandlearnbrazil.com/zh/"/>
   </url>
+  <url><loc>https://realestate.liveandlearnbrazil.com/</loc></url>
 </urlset>
