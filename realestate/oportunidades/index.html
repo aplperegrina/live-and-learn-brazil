@@ -1,17 +1,94 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rare opportunities with real discounts · São Paulo Real Estate · Live &amp; Learn Brazil</title>
-  <meta name="description" content="Partner properties in São Paulo offered with real discounts. The selection is being prepared; meanwhile, ask on WhatsApp.">
-  <!-- Página provisória: fica fora dos buscadores até a lista de imóveis entrar. Tirar esta linha quando entrar. -->
+  <title>Oportunidades · Andrea Longobardi · São Paulo Real Estate · Live &amp; Learn Brazil</title>
+  <meta name="description" content="Avaliação e estratégia de venda, lançamentos e imóveis prontos em promoção no Brooklin, na Cidade Jardim e no Morumbi, e o boletim de mercado imobiliário. Andrea Longobardi, corretora associada à Coelho da Fonseca, CRECI 338018-F.">
+  <!-- Página nova (27/11/2026), ainda com as listas semanais em montagem: fica fora dos buscadores. Tirar esta linha quando a Andrea aprovar. -->
   <meta name="robots" content="noindex">
   <link rel="canonical" href="https://realestate.liveandlearnbrazil.com/oportunidades/">
   <link rel="icon" type="image/svg+xml" href="../assets/img/live-and-learn-brazil-favicon.svg">
   <link rel="stylesheet" href="../assets/css/styles.css?v=20261103">
   <link rel="stylesheet" href="../assets/css/mercado.css?v=20261112">
   <script src="https://liveandlearnbrazil.com/src/analytics.js?v=20261027a" defer></script>
+  <style>
+  /* Página de direcionamento do e-mail aos ex-clientes da Coelho (27/11/2026): quatro janelas e o filtro por bairro
+     (?bairro=brooklin|cidadejardim|morumbi). Paleta e títulos da identidade de corretora da Andrea (14/11/2026);
+     Philosopher auto-hospedada, sem Google Fonts, para abrir na China. O texto corrido segue a fonte do site. */
+  @font-face { font-family: "Philosopher"; font-weight: 700; font-style: normal; font-display: swap; src: url(../assets/fonts/philosopher-700.woff2) format("woff2"); }
+  .op4 { --op-bg: #F5FAFF; --op-ink: #333333; --op-pet: #023537; --op-euc: #8AB4B5; --op-bur: #93132D; --op-rose: #DAAC92; --op-muted: #56686A;
+    --op-titulo: "Philosopher", "Trebuchet MS", Arial, sans-serif; background: var(--op-bg); color: var(--op-ink); }
+  .op4-in { max-width: 1120px; margin: 0 auto; padding-left: max(var(--margem), env(safe-area-inset-left, 0px)); padding-right: max(var(--margem), env(safe-area-inset-right, 0px)); }
+  .op4 :focus-visible { outline: 2px solid var(--op-bur); outline-offset: 3px; }
+  .op4-topo { background: var(--op-pet); color: #FFFFFF; border-top: 2px solid var(--op-rose); border-bottom: 3px solid var(--op-rose); }
+  .op4-topo .op4-in { padding-block: 44px 36px; display: grid; gap: 14px; }
+  .op4-topo h1 { font-family: var(--op-titulo); font-weight: 700; font-size: clamp(32px, 4vw, 48px); line-height: 1.08; color: #FFFFFF; text-wrap: balance; }
+  .op4-quem { font-family: var(--fonte-menu); font-weight: 700; font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: var(--op-euc); margin: 0; }
+  .op4-lead { max-width: 60ch; font-size: 17px; line-height: 1.6; color: #E8F1F1; margin: 0; }
+  .op4-filtro { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+  .op4-filtro span { font-size: 14px; color: var(--op-euc); margin-right: 4px; }
+  .op4-filtro button { font: 600 15px/1.2 var(--fonte-texto); color: #FFFFFF; background: transparent; border: 1.5px solid var(--op-euc); border-radius: 999px; padding: 9px 16px; min-height: 40px; cursor: pointer; }
+  .op4-filtro button[aria-pressed="true"] { background: #FFFFFF; color: var(--op-pet); border-color: #FFFFFF; }
+  .op4-filtro button:focus-visible { outline-color: var(--op-rose); }
+  .op4-indice { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; padding-block: 28px 8px; }
+  .op4-indice a { display: grid; gap: 8px; align-content: start; text-decoration: none; color: var(--op-ink); background: #FFFFFF; border: 1px solid var(--op-euc); border-radius: 6px; padding: 16px; min-width: 0; }
+  .op4-indice a:hover { border-color: var(--op-pet); }
+  .op4-indice b { font-family: var(--op-titulo); font-weight: 700; color: var(--op-pet); font-size: 18px; line-height: 1.2; }
+  .op4-indice small { font-size: 13.5px; color: var(--op-muted); line-height: 1.4; }
+  .op4-jan { padding-block: 36px; border-bottom: 1px solid #DCE7EA; scroll-margin-top: calc(var(--altura-barra) + 16px); }
+  .op4-jan:last-of-type { border-bottom: 0; }
+  .op4-cab { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 14px; }
+  .op4-cab svg { flex: none; }
+  .op4-jan h2 { font-family: var(--op-titulo); font-weight: 700; color: var(--op-pet); font-size: clamp(24px, 2.6vw, 30px); line-height: 1.15; text-wrap: balance; margin-top: 4px; }
+  .op4-jan p { max-width: 68ch; margin: 0 0 12px; font-size: 16px; line-height: 1.65; }
+  .op4-passos { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 8px; max-width: 68ch; }
+  .op4-passos li { position: relative; padding-left: 20px; line-height: 1.55; }
+  .op4-passos li::before { content: ""; position: absolute; left: 0; top: .78em; width: 10px; height: 1.5px; background: var(--op-rose); }
+  .op4-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 12px 20px; border-radius: 4px; text-decoration: none; font: 700 16px/1.2 var(--op-titulo); cursor: pointer; }
+  .op4-btn--cheio { background: var(--op-bur); color: #FFFFFF; border: 0; }
+  .op4-btn--cheio:hover { background: #7A0F25; color: #FFFFFF; }
+  .op4-btn--linha { background: transparent; color: var(--op-pet); border: 1.5px solid var(--op-pet); }
+  .op4-btn--linha:hover { background: #E7F0F1; }
+  .op4-acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  .op4-grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 18px 0 14px; }
+  .op4-card { background: #FFFFFF; border: 1px solid var(--op-euc); border-top: 3px solid var(--op-bur); border-radius: 4px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+  .op4-card figure { margin: 0; aspect-ratio: 4 / 3; background: #E7F0F1; overflow: hidden; }
+  .op4-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .op4-card-corpo { padding: 14px 16px 16px; display: grid; gap: 7px; align-content: start; }
+  .op4-card-bairro { font-family: var(--fonte-menu); font-weight: 700; font-size: 13.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--op-muted); }
+  .op4-card h3 { font-family: var(--op-titulo); font-weight: 700; color: var(--op-pet); font-size: 20px; line-height: 1.2; }
+  .op4-card-fatos { font-size: 14.5px; color: var(--op-ink); line-height: 1.45; }
+  .op4-selo { justify-self: start; font-family: var(--fonte-menu); font-weight: 700; font-size: 13.5px; letter-spacing: .04em; color: var(--op-bur); border: 1px solid var(--op-bur); padding: 2px 8px; background: #FBF1F3; }
+  .op4-card .op4-btn { justify-self: start; margin-top: 4px; font-size: 15px; min-height: 42px; padding: 9px 14px; }
+  .op4-vazio { border: 1.5px dashed var(--op-euc); border-radius: 4px; padding: 18px; background: #FFFFFF; color: var(--op-muted); max-width: 68ch; margin: 14px 0; }
+  .op4-vazio b { display: block; color: var(--op-pet); font-family: var(--op-titulo); font-size: 17px; margin-bottom: 2px; }
+  .op4-nota { font-size: 13.5px; color: var(--op-muted); max-width: 78ch; }
+  .op4-assin { background: #FFFFFF; border-top: 3px solid var(--op-rose); }
+  .op4-assin .op4-in { padding-block: 26px 30px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+  .op4-assin b { display: block; font-family: var(--op-titulo); color: var(--op-pet); font-size: 19px; }
+  .op4-assin span { font-size: 14.5px; }
+  .op4-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (max-width: 1023px) { .op4-indice { grid-template-columns: repeat(2, minmax(0, 1fr)); } .op4-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .op4-in { padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+    .op4-indice, .op4-grade { grid-template-columns: minmax(0, 1fr); } .op4-topo .op4-in { padding-block: 32px 28px; } }
+  /* janela de agendamento: a mesma lógica das páginas de bairro */
+  .op4-dlg { width: min(520px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--op-euc); border-top: 5px solid var(--op-bur); background: #FFFFFF; color: var(--op-ink); }
+  .op4-dlg::backdrop { background: rgba(2, 53, 55, .55); }
+  .op4-dlg form { display: grid; gap: 14px; padding: 20px 22px 22px; }
+  .op4-dlg h2 { font-family: var(--op-titulo); font-weight: 700; font-size: 26px; color: var(--op-pet); margin: 0; }
+  .op4-dlg .vi-imovel { font-size: 15px; margin: 0; }
+  .op4-dlg label { display: grid; gap: 6px; font-family: var(--fonte-menu); font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--op-muted); }
+  .op4-dlg input[type=text], .op4-dlg select { font: 500 16px/1.3 var(--fonte-texto); color: var(--op-ink); padding: 11px 12px; min-height: 46px; border: 1px solid var(--op-euc); background: #FFFFFF; text-transform: none; letter-spacing: 0; }
+  .op4-dlg .vi-quando { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 10px; }
+  .op4-dlg .vi-check { display: flex; gap: 12px; align-items: flex-start; font: 500 15.5px/1.4 var(--fonte-texto); text-transform: none; letter-spacing: 0; color: var(--op-ink); padding: 12px 14px; background: var(--op-bg); border: 1px solid #DCE7EA; cursor: pointer; }
+  .op4-dlg .vi-check input { width: 22px; height: 22px; margin: 0; flex: none; accent-color: var(--op-bur); }
+  .op4-dlg .vi-nota { font-size: 13.5px; color: var(--op-muted); margin: 0; }
+  .op4-dlg .vi-acoes { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .op4-dlg .vi-fechar { background: none; border: 0; font: 600 15px var(--fonte-texto); color: var(--op-pet); text-decoration: underline; text-underline-offset: 3px; min-height: 44px; padding: 0 8px; cursor: pointer; }
+  @media (max-width: 480px) { .op4-dlg .vi-quando { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: no-preference) { .op4-btn, .op4-indice a { transition: background-color .15s ease, border-color .15s ease; } }
+  </style>
 </head>
 <body>
 <div class="page page--curta">
@@ -37,24 +114,89 @@
       <a href="../#corretagem">Brokerage</a>
       <a class="secoes-novo" href="./" aria-current="page"><span class="so-largo">Discounted properties</span><span class="so-estreito">Discounts</span></a>
     </nav>
-    <a class="whats" href="https://wa.me/5511954395027?text=Ol%C3%A1!%20Quero%20conhecer%20as%20oportunidades%20com%20desconto%20real.">WhatsApp <span class="whats-numero">+55 11 95439 5027</span></a>
+    <a class="whats" href="https://wa.me/5511954395027?text=Ol%C3%A1%2C%20Andrea.%20Vi%20a%20p%C3%A1gina%20de%20oportunidades.">WhatsApp <span class="whats-numero">+55 11 95439 5027</span></a>
   </header>
 
-  <main id="conteudo">
+  <main id="conteudo" class="op4">
 
-  <!-- ===== PÁGINA PROVISÓRIA: a lista de imóveis com desconto entra aqui ===== -->
-  <section class="abertura" aria-labelledby="titulo-oportunidades">
-    <div class="abertura-in oportunidades-in">
-      <div class="oportunidades-texto"><!-- REVISAR: Andrea -->
-        <a class="volta-boletim" href="../">Back to the panel · Voltar ao painel</a>
-        <h1 id="titulo-oportunidades" lang="pt-BR">Oportunidades raras com desconto real</h1>
-        <p class="oportunidades-en">Rare opportunities with real discounts</p>
-        <p class="abertura-lead" lang="pt-BR">A seleção de imóveis de parceiros com desconto real está sendo preparada e entra nesta página em breve. Enquanto isso, fale comigo pelo WhatsApp para conhecer as oportunidades.</p>
-        <p class="abertura-lead">The selection of partner properties with real discounts is being prepared and will be on this page soon. Meanwhile, message me on WhatsApp to hear about the opportunities.</p>
-        <a class="oportunidades-btn" href="https://wa.me/5511954395027?text=Ol%C3%A1!%20Quero%20conhecer%20as%20oportunidades%20com%20desconto%20real.">WhatsApp <span>+55 11 95439 5027</span></a>
+  <!-- ===== ABERTURA: quem é, o que a página reúne e o filtro por bairro ===== -->
+  <section class="op4-topo" aria-labelledby="op4-titulo">
+    <div class="op4-in">
+      <p class="op4-quem">Andrea Longobardi · Corretora associada · Coelho da Fonseca · CRECI 338018-F</p>
+      <h1 id="op4-titulo">Oportunidades</h1>
+      <p class="op4-lead">Avaliação e estratégia de venda, lançamentos e imóveis prontos em promoção, e o boletim de mercado imobiliário do Brooklin, da Cidade Jardim e do Morumbi.</p>
+      <div class="op4-filtro" role="group" aria-label="Filtrar por bairro">
+        <span>Bairro:</span>
+        <button type="button" data-bairro="" aria-pressed="true">Todos</button>
+        <button type="button" data-bairro="brooklin" aria-pressed="false">Brooklin</button>
+        <button type="button" data-bairro="cidadejardim" aria-pressed="false">Cidade Jardim</button>
+        <button type="button" data-bairro="morumbi" aria-pressed="false">Morumbi</button>
       </div>
     </div>
   </section>
+
+  <div class="op4-in">
+    <!-- ===== ÍNDICE: as quatro janelas ===== -->
+    <nav class="op4-indice" aria-label="Nesta página">
+      <a href="#avaliacao"><b>Avaliação e estratégia de venda</b><small>Como faço o estudo do imóvel</small></a>
+      <a href="#lancamentos"><b>Lançamentos em promoção</b><small>Unidades remanescentes de empreendimentos recentes</small></a>
+      <a href="#prontos"><b>Imóveis prontos em promoção</b><small>Abaixo da mediana da região</small></a>
+      <a href="#boletim"><b>Boletim de mercado imobiliário</b><small>Painel de indicadores e boletins dos bairros</small></a>
+    </nav>
+
+    <!-- ===== JANELA 1: avaliação e estratégia de venda (texto da Andrea, mensagem da campanha de ex-clientes) ===== -->
+    <section class="op4-jan" id="avaliacao" aria-labelledby="j1">
+      <div class="op4-cab"><svg width="48" height="48" viewBox="0 0 44 44" fill="none" stroke="#023537" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8 H30 V30 H6 Z"/><path d="M6 19 H17 V30 M17 8 V14"/><circle cx="30" cy="30" r="7" stroke="#DAAC92"/><path d="M35 35 L40 40" stroke="#DAAC92"/></svg><h2 id="j1">Como faço meu trabalho de avaliação e estratégia de venda</h2></div>
+      <p>Antes de qualquer anúncio, faço um estudo do imóvel:</p>
+      <ul class="op4-passos">
+        <li>vistoria com o olhar do comprador;</li>
+        <li>análise comparativa de mercado;</li>
+        <li>pesquisa sobre quem é o comprador ideal e onde encontrá-lo.</li>
+      </ul>
+      <p>Minha formação em construção civil e em história da arte me permite avaliar o imóvel com olhar técnico, considerando construção, conservação e potencial de valorização. A partir desse estudo, com atenção e empatia, traço junto com o proprietário a estratégia de venda de melhor resultado.</p>
+      <div class="op4-acoes"><a class="op4-btn op4-btn--cheio" href="https://wa.me/5511954395027?text=Ol%C3%A1%2C%20Andrea.%20Quero%20agendar%20uma%20entrevista%20para%20a%20avalia%C3%A7%C3%A3o%20do%20meu%20im%C3%B3vel." target="_blank" rel="noopener">Agendar uma entrevista</a></div>
+    </section>
+
+    <!-- ===== JANELA 2: lançamentos em promoção. Lista semanal manual: preencher LANCAMENTOS no script do fim da página ===== -->
+    <section class="op4-jan" id="lancamentos" aria-labelledby="j2">
+      <div class="op4-cab"><svg width="48" height="48" viewBox="0 0 44 44" fill="none" stroke="#023537" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 38 V14 H21 V38"/><path d="M21 38 V8 H33 V38"/><path d="M6 38 H38"/><path d="M13 19 H17 M13 25 H17 M13 31 H17 M25 13 H29 M25 19 H29 M25 25 H29 M25 31 H29"/><path d="M37 6 a4 4 0 0 1 4 4 c0 3 -4 7 -4 7 s-4 -4 -4 -7 a4 4 0 0 1 4 -4z" stroke="#DAAC92"/><circle cx="37" cy="10" r="1.2" fill="#DAAC92" stroke="#DAAC92"/></svg><h2 id="j2">Imóveis de lançamento em promoção</h2></div>
+      <p>Unidades remanescentes de empreendimentos recentes de excelente localização, ainda em condição de lançamento.</p>
+      <div id="op4-lanc"></div>
+      <div class="op4-acoes"><a class="op4-btn op4-btn--linha" id="wa-lanc" href="https://wa.me/5511954395027?text=Ol%C3%A1%2C%20Andrea.%20Quero%20receber%20a%20sele%C3%A7%C3%A3o%20de%20lan%C3%A7amentos%20em%20promo%C3%A7%C3%A3o." target="_blank" rel="noopener">Receber a seleção de lançamentos</a></div>
+    </section>
+
+    <!-- ===== JANELA 3: prontos em promoção. Vem da vitrine dos boletins (api/vitrine.php), só os imóveis com selo de m² abaixo da quadra ===== -->
+    <section class="op4-jan" id="prontos" aria-labelledby="j3">
+      <div class="op4-cab"><svg width="48" height="48" viewBox="0 0 44 44" fill="none" stroke="#023537" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 38 V22 L18 15 L28 22 V38"/><path d="M5 38 H31"/><path d="M15 38 V29 H21 V38"/><path d="M27 14 L33 8 M30 17 L36 11 M28.5 15.5 L34.5 9.5"/><path d="M31.5 12.5 L40 21" stroke="#DAAC92"/></svg><h2 id="j3">Imóveis prontos em promoção</h2></div>
+      <p>Imóveis abaixo da mediana da região, selecionados a partir de estudo de valor por quarteirão.</p>
+      <div id="op4-pront"><p class="op4-vazio"><b>Carregando a seleção</b>Um momento.</p></div>
+      <p class="op4-nota">Imóveis do acervo de corretores e imobiliárias parceiras, atualizados a cada 12 horas. O endereço e o prédio são informados no contato. Fotos só de ambientes internos.</p>
+      <div class="op4-acoes"><a class="op4-btn op4-btn--linha" id="wa-pront" href="https://wa.me/5511954395027?text=Ol%C3%A1%2C%20Andrea.%20Quero%20receber%20a%20sele%C3%A7%C3%A3o%20de%20im%C3%B3veis%20prontos%20em%20promo%C3%A7%C3%A3o." target="_blank" rel="noopener">Receber a seleção de imóveis prontos</a></div>
+    </section>
+
+    <!-- ===== JANELA 4: boletim. Leva à página central, que tem o painel e os links dos bairros ===== -->
+    <section class="op4-jan" id="boletim" aria-labelledby="j4">
+      <div class="op4-cab"><svg width="48" height="48" viewBox="0 0 44 44" fill="none" stroke="#023537" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="6" width="30" height="32" rx="2"/><path d="M12 31 L18 24 L23 27 L31 16"/><circle cx="31" cy="16" r="1.8" fill="#DAAC92" stroke="#DAAC92"/><path d="M12 12 H24"/></svg><h2 id="j4">Boletim de inteligência de mercado imobiliário</h2></div>
+      <p>Boletim de análise de mercado imobiliário que estou desenvolvendo, com o painel de indicadores e os boletins dos bairros.</p>
+      <div class="op4-acoes"><a class="op4-btn op4-btn--linha" href="../">Abrir o boletim</a></div>
+    </section>
+  </div>
+
+  <section class="op4-assin" aria-label="Contato">
+    <div class="op4-in">
+      <div><b>Andrea Longobardi</b><span>Corretora associada · Coelho da Fonseca · CRECI 338018-F</span></div>
+      <a class="op4-btn op4-btn--cheio" href="https://wa.me/5511954395027" target="_blank" rel="noopener">WhatsApp <span class="op4-num">+55 11 95439-5027</span></a>
+    </div>
+  </section>
+
+  <dialog class="op4-dlg" id="visita" aria-labelledby="vi-h"><form id="vi-form" novalidate>
+    <h2 id="vi-h">Agendar uma visita</h2><p class="vi-imovel" id="vi-imovel"></p>
+    <label>Seu nome<input type="text" id="vi-nome" autocomplete="name" required></label>
+    <div class="vi-quando"><label>Dia<select id="vi-dia"></select></label><label>Período<select id="vi-per"></select></label></div>
+    <label class="vi-check"><input type="checkbox" id="vi-mais"><span>Quero aproveitar a visita para conhecer mais 1 ou 2 imóveis semelhantes</span></label>
+    <p class="vi-nota">A mensagem abre no seu WhatsApp, já escrita. A Andrea confirma o horário e o endereço por lá.</p>
+    <div class="vi-acoes"><button type="submit" class="op4-btn op4-btn--cheio">Enviar pelo WhatsApp</button><button type="button" class="vi-fechar" id="vi-fechar">Cancelar</button></div>
+  </form></dialog>
 
   </main>
 
@@ -72,5 +214,122 @@
   </footer>
 
 </div>
+
+<script>
+(function(){
+'use strict';
+const WA = 'https://wa.me/5511954395027?text=';
+const BAIRROS = {brooklin: 'Brooklin', cidadejardim: 'Cidade Jardim', morumbi: 'Morumbi'};
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nf = v => Number(v).toLocaleString('pt-BR', {maximumFractionDigits: 0});
+const pt = o => o == null ? '' : (typeof o === 'string' ? o : (o.pt || ''));
+
+/* ---- Lançamentos em promoção: lista semanal, preenchida à mão pela Andrea ----
+   Um item por unidade: {bairro: 'brooklin'|'cidadejardim'|'morumbi', titulo: 'Nome do empreendimento ou tipo',
+   fatos: '2 suítes · 98 m² · entrega em 2027', foto: '../assets/img/oportunidades/arquivo.jpg'}
+   Sem preço, sem endereço. Lista vazia: a janela mostra o aviso e o botão do WhatsApp. */
+const LANCAMENTOS = [];
+
+let BAIRRO = '';
+{ const q = (new URLSearchParams(location.search).get('bairro') || '').toLowerCase().replace(/[^a-z]/g, ''); if (BAIRROS[q]) BAIRRO = q; }
+
+/* ---- prontos em promoção: vitrine dos boletins, só imóveis com m² ao menos 5% abaixo das vendas da quadra ---- */
+const VT = {}; let VT_PEND = 0, VT_ERRO = 0;
+Object.keys(BAIRROS).forEach(slug => {
+  VT_PEND++;
+  fetch('../api/vitrine.php?v=5&site=' + slug).then(r => r.ok ? r.json() : Promise.reject())
+    .then(j => { VT[slug] = (j.faixas || []).flatMap(f => f.imoveis || []).filter(i => i.abaixo).map(i => Object.assign({bairro: slug}, i)); })
+    .catch(() => { VT_ERRO++; })
+    .finally(() => { VT_PEND--; render(); });
+});
+const prontos = () => Object.keys(BAIRROS).filter(s => !BAIRRO || s === BAIRRO).flatMap(s => VT[s] || []).sort((a, b) => b.abaixo - a.abaixo);
+
+function fatosTxt(i){
+  const pl = (n, a, b) => `${n} ${n == 1 ? a : b}`;
+  return [i.area ? `${nf(i.area)} m²` : null, i.dorm ? pl(i.dorm, 'dormitório', 'dormitórios') : null, i.suites ? pl(i.suites, 'suíte', 'suítes') : null,
+    i.vagas ? pl(i.vagas, 'vaga', 'vagas') : null,
+    i.andar ? {andar_baixo:'andar baixo', andar_medio:'andar médio', andar_alto:'andar alto'}[i.andar] : null,
+    i.ano ? `construído em ${i.ano}` : null].filter(Boolean).join(' · ');
+}
+function vazio(titulo, texto){ return `<p class="op4-vazio"><b>${titulo}</b>${texto}</p>`; }
+const ondeTxt = () => BAIRRO ? ` ${BAIRRO === 'brooklin' ? 'no' : 'na'} ${BAIRRO === 'morumbi' ? 'região do Morumbi' : BAIRROS[BAIRRO]}` : '';
+
+function render(){
+  // lançamentos
+  const lanc = LANCAMENTOS.filter(l => !BAIRRO || l.bairro === BAIRRO);
+  $('op4-lanc').innerHTML = lanc.length ? `<div class="op4-grade">${lanc.map(l => `<article class="op4-card">
+      ${l.foto ? `<figure><img src="${esc(l.foto)}" alt="${esc(l.titulo)}" loading="lazy"></figure>` : '<div></div>'}
+      <div class="op4-card-corpo"><div class="op4-card-bairro">${esc(BAIRROS[l.bairro] || '')}</div><h3>${esc(l.titulo)}</h3>
+      <div class="op4-card-fatos">${esc(l.fatos || '')}</div>
+      <a class="op4-btn op4-btn--linha" target="_blank" rel="noopener" href="${WA + encodeURIComponent(`Olá, Andrea. Quero saber mais sobre o lançamento ${l.titulo}${l.bairro ? ' (' + BAIRROS[l.bairro] + ')' : ''}, da página de oportunidades.`)}">Quero saber mais</a></div></article>`).join('')}</div>`
+    : vazio('Seleção da semana em atualização', `Peça pelo WhatsApp a seleção atual de lançamentos${ondeTxt()}.`);
+  // prontos
+  const p = prontos();
+  if (p.length) {
+    $('op4-pront').innerHTML = `<div class="op4-grade">${p.map(i => `<article class="op4-card">
+      <figure><img src="${esc(i.foto)}" alt="Foto interna do imóvel ${esc(i.codigo)}" loading="lazy"></figure>
+      <div class="op4-card-corpo"><div class="op4-card-bairro">${esc(BAIRROS[i.bairro])} · ${esc(i.codigo)}</div>
+      <div class="op4-selo">m² ${i.abaixo}% abaixo das vendas ${i.ref === 'quadra' ? 'nesta quadra' : 'nas quadras vizinhas'}</div>
+      <h3>${esc(pt(i.tipo))}</h3><div class="op4-card-fatos">${esc(fatosTxt(i))}</div>
+      <button type="button" class="op4-btn op4-btn--linha" data-visita="${esc(i.codigo)}">Quero agendar uma visita</button></div></article>`).join('')}</div>`;
+  } else if (VT_PEND > 0) {
+    $('op4-pront').innerHTML = vazio('Carregando a seleção', 'Um momento.');
+  } else {
+    $('op4-pront').innerHTML = vazio('Seleção da semana em atualização', `Peça pelo WhatsApp a seleção atual de imóveis prontos${ondeTxt()}.`);
+  }
+  // botões do WhatsApp das janelas levam o bairro escolhido
+  $('wa-lanc').href = WA + encodeURIComponent(`Olá, Andrea. Quero receber a seleção de lançamentos em promoção${ondeTxt()}.`);
+  $('wa-pront').href = WA + encodeURIComponent(`Olá, Andrea. Quero receber a seleção de imóveis prontos em promoção${ondeTxt()}.`);
+}
+
+/* ---- filtro por bairro: ?bairro=brooklin no endereço, para os links de cada página de bairro ---- */
+const botoes = [...document.querySelectorAll('.op4-filtro button')];
+function marcar(){ botoes.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.bairro === BAIRRO))); }
+botoes.forEach(b => b.addEventListener('click', () => {
+  BAIRRO = b.dataset.bairro; marcar(); render();
+  const u = new URL(location.href); if (BAIRRO) u.searchParams.set('bairro', BAIRRO); else u.searchParams.delete('bairro');
+  history.replaceState(null, '', u);
+}));
+marcar(); render();
+
+/* ---- agendar visita: dia e período livres da agenda (api/agenda.php); a mensagem chega pronta no WhatsApp ---- */
+let AGENDA = null, VI = null, VI_BTN = null;
+fetch('../api/agenda.php').then(r => r.ok ? r.json() : Promise.reject()).then(j => { AGENDA = j; }).catch(() => {});
+const PER = {manha: 'Manhã (9h às 12h)', tarde: 'Tarde (14h às 18h)'};
+function dias(){
+  if (AGENDA && AGENDA.dias && AGENDA.dias.length) return AGENDA.dias;
+  const out = [], hoje = new Date();
+  for (let i = 1; out.length < 10 && i < 16; i++){
+    const d = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate() + i), w = d.getDay();
+    out.push({data: `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`, periodos: w === 6 ? ['manha'] : ['manha','tarde']});
+  }
+  return out;
+}
+const diaTxt = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('pt-BR', {weekday:'short', day:'2-digit', month:'2-digit'}); };
+function periodos(){ const d = dias().find(x => x.data === $('vi-dia').value); $('vi-per').innerHTML = (d ? d.periodos : ['manha','tarde']).map(p => `<option value="${p}">${PER[p]}</option>`).join(''); }
+function abrir(cod, btn){
+  const i = Object.values(VT).flat().find(x => x.codigo === cod); if (!i) return;
+  VI = i; VI_BTN = btn;
+  $('vi-imovel').innerHTML = `<b>${esc(i.codigo)}</b> · ${esc(pt(i.tipo))}${i.area ? ` · ${nf(i.area)} m²` : ''} · ${esc(BAIRROS[i.bairro])}`;
+  $('vi-dia').innerHTML = dias().map(d => `<option value="${d.data}">${diaTxt(d.data)}</option>`).join('');
+  periodos(); $('vi-mais').checked = false;
+  $('visita').showModal(); $('vi-nome').focus();
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-visita]'); if (b){ e.preventDefault(); abrir(b.dataset.visita, b); } });
+$('vi-dia').addEventListener('change', periodos);
+$('vi-fechar').addEventListener('click', () => $('visita').close());
+$('visita').addEventListener('close', () => { if (VI_BTN) VI_BTN.focus(); });
+$('vi-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const nome = $('vi-nome').value.trim(); if (!nome){ $('vi-nome').focus(); return; }
+  const i = VI || {}, per = $('vi-per').value;
+  let msg = `Oi, Andrea. Eu sou ${nome}. Quero agendar uma visita ao imóvel ${i.codigo} (${pt(i.tipo)}${i.area ? `, ${nf(i.area)} m²` : ''}, ${BAIRROS[i.bairro] || ''}) da página de oportunidades no dia ${diaTxt($('vi-dia').value)}, no período da ${per === 'manha' ? 'manhã' : 'tarde'}.`;
+  if ($('vi-mais').checked) msg += ' Você também tem 1 ou 2 imóveis semelhantes para aproveitar a visita?';
+  window.open(WA + encodeURIComponent(msg), '_blank', 'noopener');
+  $('visita').close();
+});
+})();
+</script>
 </body>
 </html>
