@@ -53,6 +53,8 @@
 .gbar .g-sep{flex:0 0 1px;align-self:stretch;margin:12px 10px;background:var(--fio,#ccc)}
 .gbar .g-rot{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2,#666);white-space:nowrap;margin-right:2px}
 .gbar a.g.g-bol{font-size:14px;color:var(--ink2,#555)}
+
+.vt-selo.vt-nota{color:#555;border-color:#999;background:#F4F4F4}
 #op-lista-topo{scroll-margin-top:calc(var(--gbar) + 12px)}
 .op-card.destaque{outline:3px solid var(--vinho);outline-offset:3px}
 .op-fotos{position:relative;margin:0;aspect-ratio:3/2;background:var(--soft2)}
@@ -145,7 +147,7 @@
   <div class="op-metodo">
     <div>
       <h2><span class="so-pt">Como escolho os imóveis</span><span class="so-en" lang="en">How I choose the homes</span></h2>
-      <p><span class="so-pt">Comparo o preço pedido de cada imóvel com as vendas registradas na Prefeitura (guias de ITBI) de imóveis do mesmo tipo e tamanho, no mesmo prédio, na mesma quadra ou nas quadras vizinhas. Ficam nesta página os que pedem um preço na mediana dessas vendas ou abaixo, quando a comparação tem boa confiança.</span><span class="so-en" lang="en">I compare each home's asking price with sales recorded by the City (ITBI records) of homes of the same type and size, in the same building, on the same block or on nearby blocks. This page shows the ones asking a price at or below the median of those sales, when the comparison is reliable.</span></p>
+      <p><span class="so-pt">Comparo o preço pedido de cada imóvel com as vendas registradas na Prefeitura (guias de ITBI) de imóveis do mesmo tipo e tamanho, no mesmo prédio, na mesma quadra ou nas quadras vizinhas. Ficam nesta página os que pedem um preço na mediana dessas vendas ou abaixo, quando a comparação tem boa confiança. Coberturas de grande metragem, para as quais não há vendas comparáveis registradas, aparecem identificadas no cartão.</span><span class="so-en" lang="en">I compare each home's asking price with sales recorded by the City (ITBI records) of homes of the same type and size, in the same building, on the same block or on nearby blocks. This page shows the ones asking a price at or below the median of those sales, when the comparison is reliable. Large penthouses with no comparable recorded sales are marked on the card.</span></p>
       <p><span class="so-pt">A triagem é feita com o meu motor de avaliação e, em alguns casos, com uma avaliação feita por mim no imóvel. Preço de oportunidade não substitui a visita: conservação, andar, vaga e documentação também pesam no valor.</span><span class="so-en" lang="en">The screening uses my valuation engine and, in some cases, a valuation I make in person. A good price does not replace a visit: condition, floor, parking and paperwork also weigh on value.</span></p>
     </div>
     <div>
@@ -246,7 +248,8 @@ const T = {
   cond: {pt:'Condomínio', en:'Condo fee'}, mes: {pt:'/mês', en:'/month'},
   imob: {pt:'Imóvel Coelho da Fonseca', en:'Coelho da Fonseca listing'},
   ref: {pt:'Ref.', en:'Ref.'},
-  avAndrea: {pt:'Avaliado pessoalmente por Andrea', en:'Valued in person by Andrea'}
+  avAndrea: {pt:'Avaliado pessoalmente por Andrea', en:'Valued in person by Andrea'},
+  semComp: {pt:'Metragem sem vendas comparáveis no ITBI', en:'No comparable recorded sales for this size'}
 };
 const VI = {
   hVisita: {pt:'Agendar uma visita', en:'Book a visit'}, hDossie: {pt:'Pedir o dossiê do imóvel', en:'Request the property dossier'},
@@ -313,6 +316,7 @@ function cartao(i){
       <p class="vt-preco num">${R(i.preco)}${i.condominio ? `<small>${esc(tx(T.cond))} ${R(i.condominio)}${esc(tx(T.mes))}</small>` : ''}</p>
       ${car ? `<p class="vt-car">${esc(car)}</p>` : ''}
       ${i.avaliacao === 'andrea' ? `<p class="vt-selo">${esc(tx(T.avAndrea))}</p>` : ''}
+      ${i.avaliacao === 'sem_comparaveis' ? `<p class="vt-selo vt-nota">${esc(tx(T.semComp))}</p>` : ''}
       <div class="op-acoes"><button type="button" class="btn red" data-acao="visita" data-ref="${esc(i.ref)}">${esc(tx(T.visita))}</button><button type="button" class="btn alt" data-acao="dossie" data-ref="${esc(i.ref)}">${esc(tx(T.dossie))}</button></div>
     </div></article>`;
 }
