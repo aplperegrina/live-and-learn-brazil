@@ -40,7 +40,7 @@
 .op-chips button[aria-pressed="true"]{background:var(--vinho);border-color:var(--vinho);color:#fff}
 .op-chips button .n{font-size:13px;opacity:.75;margin-left:4px}
 .op-grupo>label{display:grid;gap:0}
-.op-grupo select{font:500 16px/1.3 var(--ui);color:var(--ink);padding:10px 12px;min-height:44px;border:1px solid var(--blue3);background:#fff;border-radius:0}
+.op-grupo select{min-width:240px;font:500 16px/1.3 var(--ui);color:var(--ink);padding:10px 12px;min-height:44px;border:1px solid var(--blue3);background:#fff;border-radius:0}
 .op-conta{font-size:15px;color:var(--ink2);margin-top:14px}
 .op-conta b{color:var(--ink)}
 .op-aviso{margin-top:14px;padding:12px 16px;background:var(--soft);border-left:3px solid var(--vinho);color:var(--ink2);max-width:78ch}
@@ -91,7 +91,7 @@
   .op-chips button{flex:none}
   .op-linha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
   .op-linha fieldset{grid-column:1/-1}
-  .op-grupo select{width:100%}
+  .op-grupo select{min-width:240px;width:100%}
 }
 @media (prefers-reduced-motion: reduce){.op-fotos ul{scroll-behavior:auto}}
 @media print{.op-filtros,.op-acoes,.op-seta,.op-mais{display:none}}
@@ -125,11 +125,9 @@
   <h2 class="vh" id="h-lista"><span class="so-pt">Imóveis selecionados</span><span class="so-en" lang="en">Selected homes</span></h2>
   <p class="op-aviso" id="op-aviso" role="status" hidden></p>
   <div class="op-filtros">
-    <fieldset class="op-grupo"><legend><span class="so-pt">Bairro</span><span class="so-en" lang="en">Neighborhood</span></legend><div class="op-chips" id="f-bairro"></div></fieldset>
     <div class="op-linha">
-      <fieldset class="op-grupo"><legend><span class="so-pt">Tipo</span><span class="so-en" lang="en">Type</span></legend><div class="op-chips" id="f-tipo"></div></fieldset>
-      <div class="op-grupo"><label><span><span class="so-pt">Preço</span><span class="so-en" lang="en">Price</span></span><select id="f-preco"></select></label></div>
-      <div class="op-grupo"><label><span><span class="so-pt">Ordenar por</span><span class="so-en" lang="en">Sort by</span></span><select id="f-ordem"></select></label></div>
+      <div class="op-grupo"><label><span><span class="so-pt">Bairro</span><span class="so-en" lang="en">Neighborhood</span></span><select id="f-bairro"></select></label></div>
+      <div class="op-grupo"><label><span><span class="so-pt">Tipo de imóvel</span><span class="so-en" lang="en">Property type</span></span><select id="f-tipo"></select></label></div>
     </div>
   </div>
   <p class="op-conta" id="op-conta" role="status" aria-live="polite"></p>
@@ -254,7 +252,7 @@ const VI = {
 };
 
 let DADOS = null, ERRO = false, MOSTRAR = POR_PAGINA, AGENDA = null;
-const F = {bairro: Q.get('bairro') || '', tipo: Q.get('tipo') || '', preco: Q.get('preco') || '', ordem: Q.get('ordem') || ''};
+const F = {bairro: Q.get('bairro') || '', tipo: Q.get('tipo') || '', preco: '', ordem: ''};
 const REF = (Q.get('ref') || '').toUpperCase();
 if (F.bairro && !BAIRROS[F.bairro]) F.bairro = '';
 
@@ -316,10 +314,9 @@ function render(){
   if (!DADOS) return;
   const bs = bairrosComImoveis();
   const contagem = b => DADOS.imoveis.filter(i => !b || i.bairro === b).length;
-  $('f-bairro').innerHTML = ['', ...bs].map(b => `<button type="button" data-f="bairro" data-v="${b}" aria-pressed="${(F.bairro === b || (!b && !bs.includes(F.bairro)))}">${esc(b ? BAIRROS[b] : tx(T.todos))}<span class="n" aria-hidden="true">${contagem(b)}</span></button>`).join('');
-  $('f-tipo').innerHTML = TIPOF.map(t => `<button type="button" data-f="tipo" data-v="${t.k}" aria-pressed="${F.tipo === t.k}">${esc(tx(t.t))}</button>`).join('');
-  $('f-preco').innerHTML = FAIXAS.map(p => `<option value="${p.k}"${F.preco === p.k ? ' selected' : ''}>${esc(tx(p.t))}</option>`).join('');
-  $('f-ordem').innerHTML = ORDENS.map(o => `<option value="${o.k}"${F.ordem === o.k ? ' selected' : ''}>${esc(tx(o.t))}</option>`).join('');
+  const sel = bairrosComImoveis().includes(F.bairro) ? F.bairro : '';
+  $('f-bairro').innerHTML = ['', ...bs].map(b => `<option value="${b}"${sel === b ? ' selected' : ''}>${esc(b ? BAIRROS[b] : (L === 'en' ? 'All neighborhoods' : 'Todos os bairros'))} (${contagem(b)})</option>`).join('');
+  $('f-tipo').innerHTML = TIPOF.map(t => `<option value="${t.k}"${F.tipo === t.k ? ' selected' : ''}>${esc(t.k ? tx(t.t) : (L === 'en' ? 'Houses and apartments' : 'Casas e apartamentos'))}</option>`).join('');
   const {l, temBairro} = lista();
   const aviso = F.bairro && !temBairro ? tx(T.semBairro)(F.bairro) : '';
   $('op-aviso').hidden = !aviso; $('op-aviso').textContent = aviso;
@@ -368,8 +365,8 @@ document.addEventListener('click', e => {
   const a = e.target.closest('[data-acao]');
   if (a){ abrir(a.dataset.acao, a.dataset.ref, a); }
 });
-$('f-preco').addEventListener('change', e => { F.preco = e.target.value; MOSTRAR = POR_PAGINA; urlEstado(); render(); });
-$('f-ordem').addEventListener('change', e => { F.ordem = e.target.value; MOSTRAR = POR_PAGINA; urlEstado(); render(); });
+$('f-bairro').addEventListener('change', e => { F.bairro = e.target.value; MOSTRAR = POR_PAGINA; urlEstado(); render(); });
+$('f-tipo').addEventListener('change', e => { F.tipo = e.target.value; MOSTRAR = POR_PAGINA; urlEstado(); render(); });
 $('op-mais').addEventListener('click', () => {
   const antes = MOSTRAR, {l} = lista(); MOSTRAR += POR_PAGINA; DADOS._primeiros = 0;
   const grid = $('op-grid'); grid.insertAdjacentHTML('beforeend', l.slice(antes, MOSTRAR).map(cartao).join(''));
