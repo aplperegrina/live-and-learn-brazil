@@ -27,10 +27,10 @@ for ordem,(_,r) in enumerate(sel.iterrows(),1):
         'preco':int(r.preco_f),'condominio':int(f['condominio']) if f.get('condominio') else None,
         'caracs':list(dict.fromkeys(CAR[c] for c in f['caracs'] if c in CAR)),
         'fotos':[f"fotos/{ref.lower()}/{k}.webp" for k in range(1,len(usadas)+1)],
-        'imobiliaria':'Coelho da Fonseca','avaliacao':'motor','confianca':r.confianca,'ordem':ordem})
+        'imobiliaria':'Coelho da Fonseca','avaliacao':'motor','ordem':ordem})
     mapa.append({'Ref. vitrine':ref,'Código Coelho':r.codigo,'Link Coelho':r.url,'Endereço':f"{r.rua}, {r.numero}",'Bairro':r.bairro,
                  'Fotos usadas (ordem)':', '.join(u for u,_ in usadas),'Preço ÷ mediana':r.razao,'Confiança':r.confianca})
-dados={'atualizado':'2026-11-27','fonte':'Seleção de Andrea Longobardi: imóveis com preço pedido na mediana ou abaixo das vendas registradas de imóveis comparáveis (ITBI), com confiança alta ou média. avaliacao = "motor" (triagem automática) ou "andrea" (avaliação da corretora).','imoveis':itens}
+dados={'atualizado':'2026-11-27','imoveis':itens}
 json.dump(dados,open(f"{REPO}/dados/oportunidades.json",'w'),ensure_ascii=False,separators=(',',':'))
 pd.DataFrame(mapa).to_excel('/mnt/user-data/outputs/referencias_oportunidades.xlsx',index=False)
 print(len(itens), cont)

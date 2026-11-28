@@ -1021,6 +1021,8 @@ html:not([lang="en"]) .match .so-pt,html[lang="en"] .match .so-en{display:grid!i
 .news h3 a,.src a{text-underline-offset:3px}
 @media (prefers-reduced-motion: reduce){.c4,.c4 .seta4,.vt-card,.vt-card figure img,.parede img{transition:none!important}}
 #vt .vt-fx,#vt .vt-faixa>h3{display:none}
+#vt .vt-cod::after{content:' · Imóvel Coelho da Fonseca';color:var(--vinho)}
+html[lang="en"] #vt .vt-cod::after{content:' · Coelho da Fonseca listing'}
 .op-link{margin-top:18px;font-size:17px;font-weight:600}
 .op-link a{color:var(--vinho);text-underline-offset:4px}
 </style>
@@ -1935,7 +1937,7 @@ function renderVitrine(){
       i.ano ? (L==='en' ? `built in ${i.ano}` : `construído em ${i.ano}`) : null].filter(Boolean).join(' · ');
     const car = [...i.caracs, ...i.caracs_cond].map(tx).join(' · ');
     const wa = 'https://wa.me/5511954395027?text=' + encodeURIComponent(tx(GT.wa).replace('%s', i.codigo).replace('%s', D.nome));
-    return `<article class="vt-card"><figure><img src="${i.foto}" alt="${L==='en'?'Interior photo of listing':'Foto interna do imóvel'} ${i.codigo}" loading="lazy"></figure><div class="vt-body">
+    return `<article class="vt-card"><figure><img src="${i.foto}" alt="${L==='en'?'Photo of home':'Foto do imóvel'} ${i.codigo}" loading="lazy"></figure><div class="vt-body">
       <div class="vt-cod">${i.codigo}</div>${i.abaixo ? `<div class="vt-selo">${L==='en' ? `m² ${i.abaixo}% below recent sales ${i.ref === 'quadra' ? 'on this block' : 'on nearby blocks'}²` : `m² ${i.abaixo}% abaixo das vendas ${i.ref === 'quadra' ? 'nesta quadra' : 'nas quadras vizinhas'}²`}</div>` : ''}
       <h4>${tx(i.tipo)}${i.area ? ` · ${nf(i.area)} m²` : ''}</h4>
       <div class="vt-fatos">${fatos}</div>
@@ -1949,7 +1951,7 @@ const OP_BAIRRO = 'cidade-jardim', OP_TIPOS = {apartamento:{pt:'Apartamento',en:
 fetch('../oportunidades/dados/oportunidades.json').then(r => r.ok ? r.json() : Promise.reject()).then(j => {
   const l = j.imoveis.filter(i => i.bairro === OP_BAIRRO).sort((a, b) => a.ordem - b.ordem).slice(0, 4);
   VT = {faixas: [{min: null, max: null, imoveis: l.map(i => ({codigo: i.ref, tipo: OP_TIPOS[i.tipo] || {pt: i.tipo, en: i.tipo}, area: i.area, dorm: i.dorm, suites: i.suites, vagas: i.vagas, andar: null, ano: null,
-    preco: i.preco, condominio: i.condominio, caracs: [{pt: 'Imóvel Coelho da Fonseca', en: 'Coelho da Fonseca listing'}], caracs_cond: [], foto: '../oportunidades/' + i.fotos[0], abaixo: null}))}]};
+    preco: i.preco, condominio: i.condominio, caracs: [], caracs_cond: [], foto: '../oportunidades/' + i.fotos[0], abaixo: null}))}]};
   renderCapa();
 }).catch(() => { VT_ERRO = true; renderCapa(); });
 // barra fixa: aparece quando a faixa da capa sai da tela; marca o grupo em leitura
@@ -2034,8 +2036,8 @@ function renderV3(){
       .map(([n, t]) => `<div><b class="num">${nf(n)}</b><span>${t}</span></div>`).join('') : '';
   const av = $('vt-aviso');
   if (av) av.innerHTML = en
-    ? `<b>²</b> A lower price per m² does not necessarily mean the best opportunity: a property's value also depends on its condition, floor, parking, building and paperwork. This is a digital filter we use to find homes priced as opportunities. For a careful assessment of an opportunity, <a href="${waLink()}" target="_blank" rel="noopener">contact Andrea directly on WhatsApp</a>.`
-    : `<b>²</b> O preço do m² mais baixo não significa necessariamente a melhor oportunidade: o valor de um imóvel depende também da conservação, do andar, da vaga, do prédio e da documentação. Este é um filtro digital que usamos para localizar imóveis com preço de oportunidade. Para uma avaliação criteriosa, <a href="${waLink()}" target="_blank" rel="noopener">fale diretamente com a Andrea pelo WhatsApp</a>.`;
+    ? `A price at or below comparable sales does not by itself make the best opportunity: a property's value also depends on its condition, floor, parking, building and paperwork. For a careful assessment of an opportunity, <a href="${waLink()}" target="_blank" rel="noopener">contact Andrea directly on WhatsApp</a>.`
+    : `Preço na mediana ou abaixo das vendas comparáveis não basta para ser a melhor oportunidade: o valor de um imóvel depende também da conservação, do andar, da vaga, do prédio e da documentação. Para uma avaliação criteriosa, <a href="${waLink()}" target="_blank" rel="noopener">fale diretamente com a Andrea pelo WhatsApp</a>.`;
   // capa: oportunidades em miniatura (o CSS mostra 2 no celular e 4 no computador); uma de cada faixa primeiro
   const mo = $('mini-ops');
   if (mo){
@@ -2101,8 +2103,8 @@ $('vi-form').addEventListener('submit', e => {
   const imovel = `${VI_COD} (${tx(i.tipo)}${i.area ? `, ${nf(i.area)} m²` : ''}${i.preco ? `, ${R(i.preco)}` : ''})`;
   const dia = viDiaTxt($('vi-dia').value), per = $('vi-per').value;
   let msg = en
-    ? `Hi Andrea, I'm ${nome}. I would like to book a visit to listing ${imovel} from the ${D.nome} bulletin on ${dia}, in the ${per === 'manha' ? 'morning' : 'afternoon'}. I liked this property.`
-    : `Oi, Andrea. Eu sou ${nome}. Quero agendar uma visita ao imóvel ${imovel} do boletim ${DO} ${D.nome} no dia ${dia}, no período da ${per === 'manha' ? 'manhã' : 'tarde'}. Gostei deste imóvel.`;
+    ? `Hi Andrea, I'm ${nome}. I would like to book a visit to listing ${imovel} from the ${D.nome} bulletin on ${dia}, in the ${per === 'manha' ? 'morning' : 'afternoon'}. I liked this property. https://realestate.liveandlearnbrazil.com/oportunidades/?ref=${VI_COD}&lang=en`
+    : `Oi, Andrea. Eu sou ${nome}. Quero agendar uma visita ao imóvel ${imovel} do boletim ${DO} ${D.nome} no dia ${dia}, no período da ${per === 'manha' ? 'manhã' : 'tarde'}. Gostei deste imóvel. https://realestate.liveandlearnbrazil.com/oportunidades/?ref=${VI_COD}`;
   // com a caixa marcada, a mensagem termina em pergunta: a Andrea mostra as opções antes de marcar (17/11/2026)
   if ($('vi-mais').checked) msg += en ? ' Do you also have 1 or 2 similar homes I could see on the same visit?' : ' Você também tem 1 ou 2 imóveis semelhantes para aproveitar a visita?';
   window.open('https://wa.me/5511954395027?text=' + encodeURIComponent(msg), '_blank', 'noopener');
