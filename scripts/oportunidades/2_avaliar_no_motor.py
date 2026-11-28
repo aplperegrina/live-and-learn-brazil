@@ -35,7 +35,8 @@ ALIAS={"Rua Reverendo Miguel Rizzo Júnior":"R REV MIGUEL RIZZO JUNIOR","Rua Mar
 "Rua Desembargador Amorim Lima":"R DESEM AMORIM LIMA","Rua Manuel Carlos de Figueiredo Ferraz":"R DR MANUEL CARLOS DE F FERRAZ",
 "Rua Professor José Horácio Meirelles Teixeira":"R PROF J H MEIRELLES TEIXEIRA","Rua Comissário Gastão Moutinho":"R COMIS GASTAO MOUTINHO",
 "Rua Comandante Garcia DAvila":"R COMTE GARCIA D AVILA","Coronel Raul Humaitá":"R CEL RAUL HUMAITA VILA NOVA","Avenida Rubem Berta - lado par":"AV RUBEM BERTA",
-"Rua Luigi Pirandello":"R PIRANDELLO","Rua Desembargador Dalmo do Valle Nogueira":"R DESEM DALMO DO VALLE NOGUEIRA","Rua Comandante Lira":"R COMTE LIRA"}
+"Rua Luigi Pirandello":"R PIRANDELLO","Rua Desembargador Dalmo do Valle Nogueira":"R DESEM DALMO DO VALLE NOGUEIRA","Rua Comandante Lira":"R COMTE LIRA",
+"Avenida Quarto Centenário":"AV IV CENTENARIO","Praça Jacintho Moreira Cabral":"PC MOREIRA CABRAL","Rua Desembargador Aguiar Valim":"R DESEM AGUIAR VALIM"}
 s = Servico()
 df = pd.read_csv(sys.argv[1], sep="\t", dtype=str).fillna("")
 TIPO = {"apartamento": "apartamento", "cobertura": "apartamento", "garden": "apartamento", "studio": "apartamento",
