@@ -1,4 +1,10 @@
 <?php
+/* DESATIVADO em 27/11/2026 (decisão da Andrea): os boletins não usam mais a Nonstop na vitrine. As oportunidades vêm agora de
+   ../oportunidades/dados/oportunidades.json (seleção dela, com o motor de avaliação). O código abaixo fica guardado caso ela volte
+   a usar a Nonstop: para reativar, apagar as duas linhas seguintes. */
+http_response_code(410); header('Content-Type: application/json; charset=utf-8'); echo '{"erro":"desativado"}';
+exit;
+
 /* Vitrine dos boletins: imóveis da Nonstop dentro do perímetro da página, em três faixas de preço.
    GET ?site=brooklin|morumbi → JSON com no máximo 3 imóveis por faixa.
 
