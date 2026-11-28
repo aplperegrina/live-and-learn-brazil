@@ -49,6 +49,11 @@
 @media (max-width:1020px){.op-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.op-grid{grid-template-columns:minmax(0,1fr)}}
 .op-card{scroll-margin-top:calc(var(--gbar) + 16px)}
+.gbar .g-bairros{display:contents}
+.gbar .g-sep{flex:0 0 1px;align-self:stretch;margin:12px 10px;background:var(--fio,#ccc)}
+.gbar .g-rot{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2,#666);white-space:nowrap;margin-right:2px}
+.gbar a.g.g-bol{font-size:14px;color:var(--ink2,#555)}
+#op-lista-topo{scroll-margin-top:calc(var(--gbar) + 12px)}
 .op-card.destaque{outline:3px solid var(--vinho);outline-offset:3px}
 .op-fotos{position:relative;margin:0;aspect-ratio:3/2;background:var(--soft2)}
 .op-fotos ul{list-style:none;margin:0;padding:0;display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
@@ -105,9 +110,11 @@
 
 <header class="top"><div class="wrap"><span>ANDREA LONGOBARDI · CRECI-SP 338018-F</span><span class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-l="pt" lang="pt">PORTUGUÊS</button><button type="button" data-l="en" lang="en">ENGLISH</button></span></div></header>
 
-<nav class="gbar" aria-label="Boletins imobiliários / Real estate bulletins"><div class="wrap">
+<nav class="gbar" aria-label="Bairros e boletins / Neighborhoods and bulletins"><div class="wrap">
   <a class="nome" href="./"><span class="so-pt">Oportunidades</span><span class="so-en" lang="en">Opportunities</span></a>
-  <a class="g" href="../brooklin/" data-boletim>Brooklin</a><a class="g" href="../morumbi/" data-boletim>Morumbi</a><a class="g" href="../cidadejardim/" data-boletim>Cidade Jardim</a><a class="g" href="../" data-boletim><span class="so-pt">Painel de São Paulo</span><span class="so-en" lang="en">São Paulo panel</span></a>
+  <span id="g-bairros" class="g-bairros"><a class="g" href="./" data-menu-bairro=""><span class="so-pt">Todos</span><span class="so-en" lang="en">All</span></a><a class="g" href="?bairro=brooklin" data-menu-bairro="brooklin">Brooklin</a><a class="g" href="?bairro=cidade-jardim" data-menu-bairro="cidade-jardim">Cidade Jardim</a><a class="g" href="?bairro=itaim-bibi" data-menu-bairro="itaim-bibi">Itaim Bibi</a><a class="g" href="?bairro=jardim-guedala" data-menu-bairro="jardim-guedala">Jardim Guedala</a><a class="g" href="?bairro=moema" data-menu-bairro="moema">Moema</a><a class="g" href="?bairro=morumbi" data-menu-bairro="morumbi">Morumbi</a></span>
+  <span class="g-sep" aria-hidden="true"></span><span class="g-rot"><span class="so-pt">Boletins</span><span class="so-en" lang="en">Bulletins</span></span>
+  <a class="g g-bol" href="../brooklin/" data-boletim>Brooklin</a><a class="g g-bol" href="../morumbi/" data-boletim>Morumbi</a><a class="g g-bol" href="../cidadejardim/" data-boletim>Cidade Jardim</a><a class="g g-bol" href="../" data-boletim><span class="so-pt">Painel de São Paulo</span><span class="so-en" lang="en">São Paulo panel</span></a>
 </div></nav>
 
 <main id="conteudo">
@@ -125,7 +132,7 @@
 <section class="sec" aria-labelledby="h-lista" style="padding-top:0"><div class="wrap">
   <h2 class="vh" id="h-lista"><span class="so-pt">Imóveis selecionados</span><span class="so-en" lang="en">Selected homes</span></h2>
   <p class="op-aviso" id="op-aviso" role="status" hidden></p>
-  <div class="op-filtros">
+  <div class="op-filtros" id="op-lista-topo">
     <div class="op-linha">
       <div class="op-grupo"><label><span><span class="so-pt">Bairro</span><span class="so-en" lang="en">Neighborhood</span></span><select id="f-bairro"></select></label></div>
       <div class="op-grupo"><label><span><span class="so-pt">Tipo de imóvel</span><span class="so-en" lang="en">Property type</span></span><select id="f-tipo"></select></label></div>
@@ -317,6 +324,7 @@ function render(){
   const bs = bairrosComImoveis();
   const contagem = b => DADOS.imoveis.filter(i => !b || i.bairro === b).length;
   const sel = bairrosComImoveis().includes(F.bairro) ? F.bairro : '';
+  document.querySelectorAll('[data-menu-bairro]').forEach(a => { const b = a.dataset.menuBairro; a.hidden = !!b && !bs.includes(b); a.setAttribute('aria-current', b === sel ? 'true' : 'false'); const q = new URLSearchParams(); if (b) q.set('bairro', b); if (L === 'en') q.set('lang', 'en'); a.href = './' + (q.toString() ? '?' + q : ''); });
   $('f-bairro').innerHTML = ['', ...bs].map(b => `<option value="${b}"${sel === b ? ' selected' : ''}>${esc(b ? BAIRROS[b] : (L === 'en' ? 'All neighborhoods' : 'Todos os bairros'))} (${contagem(b)})</option>`).join('');
   $('f-tipo').innerHTML = TIPOF.map(t => `<option value="${t.k}"${F.tipo === t.k ? ' selected' : ''}>${esc(tx(t.t))}</option>`).join('');
   const {l, temBairro} = lista();
@@ -367,6 +375,11 @@ document.addEventListener('click', e => {
   const a = e.target.closest('[data-acao]');
   if (a){ abrir(a.dataset.acao, a.dataset.ref, a); }
 });
+document.querySelectorAll('[data-menu-bairro]').forEach(a => a.addEventListener('click', e => {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+  e.preventDefault(); F.bairro = a.dataset.menuBairro; MOSTRAR = POR_PAGINA; urlEstado(); render();
+  $('op-lista-topo').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+}));
 $('f-bairro').addEventListener('change', e => { F.bairro = e.target.value; MOSTRAR = POR_PAGINA; urlEstado(); render(); });
 $('f-tipo').addEventListener('change', e => { F.tipo = e.target.value; MOSTRAR = POR_PAGINA; urlEstado(); render(); });
 $('op-mais').addEventListener('click', () => {
