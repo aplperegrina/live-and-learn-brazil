@@ -44,6 +44,10 @@ caminhos e nomes de arquivo estão no código e precisam ser ajustados a cada no
   continua a numeração por prefixo e refaz só o campo `ordem`, global por preço ÷ mediana). Prefixos novos: MO Moema, MR Morumbi, JG Jardim Guedala.
 - `6_refazer_fotos.py` + `fotos_vitrine2.py` + `residuo.py`: escolha de fotos que evita a marca sobre parede clara e lisa (onde sobra resíduo
   do contorno das letras) e deixa por último as fotos fora de 3:2. Capa só entre as fotos sem esse risco.
-- Pendência: fotos de celular (4:3, retrato) trazem outra versão da marca (uma linha só, "COELHO DA FONSECA" à esquerda), que
-  `marca_dagua_alpha.npz` não remove. Falta um molde próprio para ela.
+- Fotos fora de 3:2 (fotos de celular 4:3, 16:9 etc.) trazem outra versão da marca: "COELHO DA FONSECA" numa linha só,
+  centralizada, com largura proporcional à da foto, branca a ~30%. `marca_linha.py` remove essa versão:
+  `marca_linha_alpha.npz` acha a faixa e testa se a marca está na foto (perspectivas de lançamento costumam vir sem marca);
+  `marca_linha_a2.npz` é a opacidade por pixel, estimada com 177 fotos alinhadas uma a uma (ECC). Cada foto também é alinhada
+  ao molde antes da remoção, e as letras não podem ficar mais escuras que o fundo ao redor (fotos retocadas depois da marca).
+  Imagens pequenas (~900 px) às vezes trazem a marca em outra escala e não são reconhecidas: conferir na folha de fotos.
 - O boletim do Morumbi mostra também os imóveis do Jardim Guedala (perímetro do boletim).
