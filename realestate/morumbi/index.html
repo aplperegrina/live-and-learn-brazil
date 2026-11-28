@@ -1950,7 +1950,7 @@ function renderVitrine(){
 // vitrine (27/11/2026): sai a Nonstop; entram os imóveis bem precificados do bairro da página Oportunidades, numa fileira só
 const OP_BAIRRO = 'morumbi', OP_TIPOS = {apartamento:{pt:'Apartamento',en:'Apartment'}, cobertura:{pt:'Cobertura',en:'Penthouse'}, garden:{pt:'Apartamento garden',en:'Garden apartment'}, studio:{pt:'Studio',en:'Studio'}, casa:{pt:'Casa',en:'House'}, casa_condominio:{pt:'Casa em condomínio',en:'House in a gated community'}, casa_vila:{pt:'Casa de vila',en:'Mews house'}, casa_rua_fechada:{pt:'Casa em rua fechada',en:'House on a gated street'}};
 fetch('../oportunidades/dados/oportunidades.json').then(r => r.ok ? r.json() : Promise.reject()).then(j => {
-  const l = j.imoveis.filter(i => i.bairro === OP_BAIRRO).sort((a, b) => a.ordem - b.ordem).slice(0, 4);
+  const l = j.imoveis.filter(i => i.bairro === OP_BAIRRO || i.bairro === 'jardim-guedala').sort((a, b) => a.ordem - b.ordem).slice(0, 4);
   VT = {faixas: [{min: null, max: null, imoveis: l.map(i => ({codigo: i.ref, tipo: OP_TIPOS[i.tipo] || {pt: i.tipo, en: i.tipo}, area: i.area, dorm: i.dorm, suites: i.suites, vagas: i.vagas, andar: null, ano: null,
     preco: i.preco, condominio: i.condominio, caracs: [], caracs_cond: [], foto: '../oportunidades/' + i.fotos[0], abaixo: null}))}]};
   renderCapa();

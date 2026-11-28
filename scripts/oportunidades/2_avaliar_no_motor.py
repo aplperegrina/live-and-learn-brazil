@@ -30,6 +30,12 @@ def loc_itbi_amplo(s, rua, numero):
             d=l.como_dict(); d.pop("unidades",None); d.update({"fonte":"vizinho","logradouro":normalizar_logradouro(rua),"numero":n,"numero_vizinho":int(g.numero.iloc[0])}); return d
     return None
 
+ALIAS={"Rua Reverendo Miguel Rizzo Júnior":"R REV MIGUEL RIZZO JUNIOR","Rua Marechal Hastimphilo de Moura":"R MAL HASTINFILO DE MOURA",
+"Avenida Doutor Guilherme Dumont Villares":"AV DR GUILHERME DUMONT VILARES","Rua Joaquim Cândido de Azevedo Marques":"R JOAQUIM C DE AZEVEDO MQS",
+"Rua Desembargador Amorim Lima":"R DESEM AMORIM LIMA","Rua Manuel Carlos de Figueiredo Ferraz":"R DR MANUEL CARLOS DE F FERRAZ",
+"Rua Professor José Horácio Meirelles Teixeira":"R PROF J H MEIRELLES TEIXEIRA","Rua Comissário Gastão Moutinho":"R COMIS GASTAO MOUTINHO",
+"Rua Comandante Garcia DAvila":"R COMTE GARCIA D AVILA","Coronel Raul Humaitá":"R CEL RAUL HUMAITA VILA NOVA","Avenida Rubem Berta - lado par":"AV RUBEM BERTA",
+"Rua Luigi Pirandello":"R PIRANDELLO","Rua Desembargador Dalmo do Valle Nogueira":"R DESEM DALMO DO VALLE NOGUEIRA","Rua Comandante Lira":"R COMTE LIRA"}
 s = Servico()
 df = pd.read_csv(sys.argv[1], sep="\t", dtype=str).fillna("")
 TIPO = {"apartamento": "apartamento", "cobertura": "apartamento", "garden": "apartamento", "studio": "apartamento",
@@ -45,7 +51,8 @@ for _, r in df.iterrows():
     preco = re.search(r"R\$\s*([\d.]+)", r["card"])
     preco = num(preco.group(1)) if preco else None
     rua = re.split(r"\s*-\s*(?:de|até|ate)\b", r["rua"])[0].strip()
-    rec = {"codigo": r["codigo"], "categoria": cat, "rua": rua, "numero": r["numero"], "cep": r["cep"], "area": area,
+    rua_anuncio = rua; rua = ALIAS.get(r["rua"].strip(), ALIAS.get(rua, rua))
+    rec = {"codigo": r["codigo"], "categoria": cat, "rua": rua_anuncio, "numero": r["numero"], "cep": r["cep"], "area": area,
            "terreno": num(r["terreno"]), "preco": preco, "url": "https://www.coelhodafonseca.com.br" + slug,
            "n_fotos": len([x for x in r["imagens"].split(",") if x])}
     tipo = TIPO.get(cat)

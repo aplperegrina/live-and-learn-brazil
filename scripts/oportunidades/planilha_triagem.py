@@ -22,7 +22,7 @@ s=o[sel].sort_values(['grupo','razao'])
 todos=o[o.status=='avaliado'].sort_values('razao')
 fora=o[o.status!='avaliado']
 como=pd.DataFrame({'Como ler':[
- f'Base: {len(o)} anúncios residenciais à venda da Coelho da Fonseca em {reg}, lidos em 27/11/2026.',
+ f'Base: {len(o)} anúncios residenciais à venda da Coelho da Fonseca em {reg}, lidos em 27/11/2026 (segunda rodada).',
  'Cada anúncio passou pelo motor de avaliação do Assistente do Corretor (ITBI 2025–2026, vendas até 07/09/2026), na mesma lógica do app: localização pelo endereço (ou pelo número vizinho da mesma rua), área do IPTU estimada a partir da área do anúncio (método A4 do app: unidades do prédio entre 1 e 2 vezes a área privativa; casas usam a própria área), camadas edifício → quadra → raios → distrito.',
  '"Preço ÷ mediana": preço pedido dividido pelo valor na mediana dos comparáveis, corrigido até hoje. 1,00 = na mediana; abaixo de 1,00 = abaixo da mediana.',
  'Grupo A: na mediana ou abaixo, com confiança alta ou média (comparáveis no prédio, na quadra ou em até 600 m). São os indicados para a vitrine.',

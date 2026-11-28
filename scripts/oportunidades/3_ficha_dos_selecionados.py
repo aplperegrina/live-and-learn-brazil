@@ -1,7 +1,7 @@
 import re, requests, json, pandas as pd, concurrent.futures as cf
 from bs4 import BeautifulSoup
 sel=[]
-for res,tsv in [('resultado_brooklin_v2.csv','/home/claude/data/anuncios.tsv'),('resultado_cj_itaim.csv','/home/claude/data/anuncios_cj_itaim.tsv')]:
+for res,tsv in [('resultado_mmj.csv','/home/claude/data/anuncios_mmj.tsv')]:
     o=pd.read_csv(res,dtype={'codigo':str,'numero':str}); t=pd.read_csv(tsv,sep='\t',dtype=str).fillna('')
     a=o[(o.status=='avaliado')&(o.razao<=1)&o.confianca.isin(['alta','media'])].merge(t[['codigo','slug','imagens']],on='codigo')
     sel.append(a)

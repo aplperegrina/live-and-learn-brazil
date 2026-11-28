@@ -35,3 +35,15 @@ caminhos e nomes de arquivo estão no código e precisam ser ajustados a cada no
   usam o mesmo padrão pela largura, com a altura achada por correlação. Conferir as capas numa folha de miniaturas.
 - **Boletim do bairro**: se o bairro tiver boletim, a fileira do boletim já lê o JSON (constante `OP_BAIRRO` no boletim).
 - **Avaliação feita pela Andrea**: imóvel com `"avaliacao": "andrea"` ganha o selo "Avaliado pessoalmente por Andrea".
+
+## Segunda rodada (27/11/2026: Morumbi, Moema, Jardim Guedala)
+
+- `2_avaliar_no_motor.py` ganhou a tabela `ALIAS`: ruas cuja grafia no ITBI é diferente da do anúncio (ex.: "Hastinfilo", "Dumont Vilares",
+  "Azevedo Mqs", "Desem", "Comte"). Acrescentar novas equivalências a cada rodada, olhando os "endereço não localizado".
+- `5_novos.py`: acrescenta os novos selecionados ao JSON existente (tira os já publicados pela planilha de referências e as duplicatas,
+  continua a numeração por prefixo e refaz só o campo `ordem`, global por preço ÷ mediana). Prefixos novos: MO Moema, MR Morumbi, JG Jardim Guedala.
+- `6_refazer_fotos.py` + `fotos_vitrine2.py` + `residuo.py`: escolha de fotos que evita a marca sobre parede clara e lisa (onde sobra resíduo
+  do contorno das letras) e deixa por último as fotos fora de 3:2. Capa só entre as fotos sem esse risco.
+- Pendência: fotos de celular (4:3, retrato) trazem outra versão da marca (uma linha só, "COELHO DA FONSECA" à esquerda), que
+  `marca_dagua_alpha.npz` não remove. Falta um molde próprio para ela.
+- O boletim do Morumbi mostra também os imóveis do Jardim Guedala (perímetro do boletim).
