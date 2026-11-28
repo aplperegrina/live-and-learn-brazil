@@ -91,7 +91,8 @@
   .op-chips button{flex:none}
   .op-linha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
   .op-linha fieldset{grid-column:1/-1}
-  .op-grupo select{min-width:240px;width:100%}
+  .op-grupo select{min-width:0;width:100%}
+  .op-grupo,.op-grupo>label{min-width:0}
 }
 @media (prefers-reduced-motion: reduce){.op-fotos ul{scroll-behavior:auto}}
 @media print{.op-filtros,.op-acoes,.op-seta,.op-mais{display:none}}
@@ -216,8 +217,9 @@ const ORDENS = [
 ];
 const TIPOF = [
   {k:'', t:{pt:'Todos', en:'All'}},
-  {k:'apto', t:{pt:'Apartamentos', en:'Apartments'}, f:i => !CASAS.has(i.tipo)},
-  {k:'casa', t:{pt:'Casas', en:'Houses'}, f:i => CASAS.has(i.tipo)}
+  {k:'casa', t:{pt:'Casa', en:'House'}, f:i => CASAS.has(i.tipo)},
+  {k:'apto', t:{pt:'Apartamento', en:'Apartment'}, f:i => !CASAS.has(i.tipo) && i.tipo !== 'cobertura'},
+  {k:'cobertura', t:{pt:'Cobertura', en:'Penthouse'}, f:i => i.tipo === 'cobertura'}
 ];
 const T = {
   todos: {pt:'Todos', en:'All'},
@@ -316,7 +318,7 @@ function render(){
   const contagem = b => DADOS.imoveis.filter(i => !b || i.bairro === b).length;
   const sel = bairrosComImoveis().includes(F.bairro) ? F.bairro : '';
   $('f-bairro').innerHTML = ['', ...bs].map(b => `<option value="${b}"${sel === b ? ' selected' : ''}>${esc(b ? BAIRROS[b] : (L === 'en' ? 'All neighborhoods' : 'Todos os bairros'))} (${contagem(b)})</option>`).join('');
-  $('f-tipo').innerHTML = TIPOF.map(t => `<option value="${t.k}"${F.tipo === t.k ? ' selected' : ''}>${esc(t.k ? tx(t.t) : (L === 'en' ? 'Houses and apartments' : 'Casas e apartamentos'))}</option>`).join('');
+  $('f-tipo').innerHTML = TIPOF.map(t => `<option value="${t.k}"${F.tipo === t.k ? ' selected' : ''}>${esc(tx(t.t))}</option>`).join('');
   const {l, temBairro} = lista();
   const aviso = F.bairro && !temBairro ? tx(T.semBairro)(F.bairro) : '';
   $('op-aviso').hidden = !aviso; $('op-aviso').textContent = aviso;
